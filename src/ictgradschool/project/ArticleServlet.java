@@ -24,6 +24,8 @@ import java.sql.SQLException;
             try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
                 System.out.println("cool servlet");
 
+
+        //set attribute to user
             } catch (SQLException e) {
                 e.printStackTrace();
             }
