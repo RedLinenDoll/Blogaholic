@@ -19,7 +19,7 @@ public class BlogServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String authorID = req.getParameter("authorID");
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-            User author = UserDAO.getUserById(connection, Integer.parseInt(authorID));
+            User author = UserDAO.getAuthorById(connection, Integer.parseInt(authorID));
             req.setAttribute("author", author);
             req.getRequestDispatcher("WEB-INF/view/blog-view.jsp").forward(req, resp);
 
@@ -28,6 +28,5 @@ public class BlogServlet extends HttpServlet {
 //            resp.sendRedirect("WEB-INF/error-view/500.jsp");
             e.printStackTrace();
         }
-
     }
 }
