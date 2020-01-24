@@ -1,4 +1,4 @@
-package ictgradschool.project;
+package ictgradschool.project.model;
 
 public class User {
     private int userID;

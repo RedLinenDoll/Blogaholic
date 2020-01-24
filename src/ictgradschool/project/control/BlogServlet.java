@@ -1,6 +1,6 @@
 package ictgradschool.project.control;
 
-import ictgradschool.project.User;
+import ictgradschool.project.model.User;
 import ictgradschool.project.model.UserDAO;
 import ictgradschool.project.util.DBConnectionUtils;
 
