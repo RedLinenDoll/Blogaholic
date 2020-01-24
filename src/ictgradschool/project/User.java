@@ -21,6 +21,15 @@ public class User {
         this.layoutID=layoutID;
     }
 
+    public User(int userID, String avatarPath, String blogName, String blogDescription, String themeColor, int layoutID) {
+        this.userID = userID;
+        this.avatarPath = avatarPath;
+        this.blogName = blogName;
+        this.blogDescription = blogDescription;
+        this.themeColor = themeColor;
+        this.layoutID = layoutID;
+    }
+
     public int getLayoutID() {
         return layoutID;
     }
