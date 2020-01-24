@@ -1,4 +1,4 @@
-package ictgradschool.project;
+package ictgradschool.project.model;
 
 public class User {
     private int userID;
@@ -21,8 +21,9 @@ public class User {
         this.layoutID=layoutID;
     }
 
-    public User(int userID, String avatarPath, String blogName, String blogDescription, String themeColor, int layoutID) {
+    public User(int userID, String username, String avatarPath, String blogName, String blogDescription, String themeColor, int layoutID) {
         this.userID = userID;
+        this.username = username;
         this.avatarPath = avatarPath;
         this.blogName = blogName;
         this.blogDescription = blogDescription;

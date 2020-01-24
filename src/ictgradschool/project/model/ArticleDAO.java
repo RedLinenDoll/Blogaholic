@@ -1,4 +1,4 @@
-package ictgradschool.project;
+package ictgradschool.project.model;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

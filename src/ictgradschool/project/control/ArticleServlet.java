@@ -1,4 +1,4 @@
-package ictgradschool.project;
+package ictgradschool.project.control;
 
 import ictgradschool.project.util.DBConnectionUtils;
 import javax.servlet.ServletException;
