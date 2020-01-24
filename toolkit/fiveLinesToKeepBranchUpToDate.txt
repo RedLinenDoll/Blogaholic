@@ -1,6 +1,0 @@
-
-git checkout master
-git pull upstream master
-git push origin master
-git checkout <type the branch name currently working on>
-git merge master
