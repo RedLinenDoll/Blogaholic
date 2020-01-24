@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS article_db
   article_id         INT NOT NULL AUTO_INCREMENT,
   title              VARCHAR(64),
   content            TEXT,
-  created_time       TIMESTAMP,
+  created_time       TIMESTAMP NOT NULL,
   edit_time          TIMESTAMP,
   number_of_likes    INT NOT NULL DEFAULT 0,
   number_of_dislikes INT NOT NULL DEFAULT 0,
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS comment_db
 (
   comment_id         INT NOT NULL AUTO_INCREMENT,
   body               TEXT,
-  created_time       TIMESTAMP,
+  created_time       TIMESTAMP NOT NULL,
   edit_time          TIMESTAMP,
   number_of_likes    INT NOT NULL DEFAULT 0,
   number_of_dislikes INT NOT NULL DEFAULT 0,
