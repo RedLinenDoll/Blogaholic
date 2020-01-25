@@ -4,7 +4,7 @@
 
 <div id="user-top-bar" class="top-bar">
     <div class="top-bar-home-link">
-        <a href="#">
+        <a href='<c:url value="/"/>'>
             JAVA Team Blog
         </a>
     </div>

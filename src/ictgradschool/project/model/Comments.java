@@ -1,6 +1,10 @@
 package ictgradschool.project.model;
 
 public class Comments {
+    // TODO This structure needs to be reviewed and
+    //  improved to support arbitrary levels of comment: maintain a comment arraylist.
+
+
     private int commentID;
     private String content;
     private int likes;
