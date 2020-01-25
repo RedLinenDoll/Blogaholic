@@ -4,50 +4,50 @@ import java.sql.Timestamp;
 
 public class Article {
     private int articleID;
-    private String title;
-    private String content;
-    private String brief;
+    private String articleTitle;
+    private String articleContent;
+    private String articleBrief;
     private Timestamp timeEdited;
     private Timestamp timeCreated;
-    private int likes;
-    private int dislikes;
+    private int likesCount;
+    private int dislikesCount;
 
 
     // full article fetch
-    public Article(int articleID, String title, String content, String brief, Timestamp timeEdited, Timestamp timeCreated, int likes, int dislikes) {
+    public Article(int articleID, String articleTitle, String articleContent, String articleBrief, Timestamp timeEdited, Timestamp timeCreated, int likesCount, int dislikesCount) {
         this.articleID = articleID;
-        this.title = title;
-        this.content = content;
-        this.brief = brief;
+        this.articleTitle = articleTitle;
+        this.articleContent = articleContent;
+        this.articleBrief = articleBrief;
         this.timeEdited = timeEdited;
         this.timeCreated = timeCreated;
-        this.likes = likes;
-        this.dislikes = dislikes;
+        this.likesCount = likesCount;
+        this.dislikesCount = dislikesCount;
     }
 
     // article creation without brief
-    public Article(String title, String content) {
-        this.title = title;
-        this.content = content;
-        this.likes = 0;
-        this.dislikes = 0;
+    public Article(String articleTitle, String articleContent) {
+        this.articleTitle = articleTitle;
+        this.articleContent = articleContent;
+        this.likesCount = 0;
+        this.dislikesCount = 0;
     }
 
 
-    public int getLikes() {
-        return likes;
+    public int getLikesCount() {
+        return likesCount;
     }
 
-    public void setLikes(int likes) {
-        this.likes = likes;
+    public void setLikesCount(int likesCount) {
+        this.likesCount = likesCount;
     }
 
-    public int getDislikes() {
-        return dislikes;
+    public int getDislikesCount() {
+        return dislikesCount;
     }
 
-    public void setDislikes(int dislikes) {
-        this.dislikes = dislikes;
+    public void setDislikesCount(int dislikesCount) {
+        this.dislikesCount = dislikesCount;
     }
 
     public int getArticleID() {
@@ -58,29 +58,29 @@ public class Article {
         this.articleID = articleID;
     }
 
-    public String getTitle() {
-        return title;
+    public String getArticleTitle() {
+        return articleTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setArticleTitle(String articleTitle) {
+        this.articleTitle = articleTitle;
     }
 
-    public String getContent() {
-        return content;
+    public String getArticleContent() {
+        return articleContent;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setArticleContent(String articleContent) {
+        this.articleContent = articleContent;
     }
 
 
-    public String getBrief() {
-        return brief;
+    public String getArticleBrief() {
+        return articleBrief;
     }
 
-    public void setBrief(String brief) {
-        this.brief = brief;
+    public void setArticleBrief(String articleBrief) {
+        this.articleBrief = articleBrief;
     }
 
     public Timestamp getTimeEdited() {

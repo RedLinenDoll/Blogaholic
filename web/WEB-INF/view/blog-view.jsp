@@ -8,7 +8,12 @@
     <title>${author.blogName}</title>
 
     <link rel="stylesheet" href='<c:url value="/assets/blog-layout${author.layoutID}.css"/>'/>
-    <script src='<c:url value="/js/blog-load.js"/>'></script>
+    <script src='<c:url value="/js/load-blog-articles.js"/>' type="text/javascript"></script>
+    <script type="text/javascript">
+        window.addEventListener("load", function () {
+            loadArticleList(${author.userID});
+        })
+    </script>
 </head>
 
 <body>
@@ -32,9 +37,8 @@
 </div>
 
 <div id="post-list-container">
-<%-- load posts with javascript here--%>
-</div>
 
+</div>
 
 
 </body>
