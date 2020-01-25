@@ -9,18 +9,22 @@
 
     <link href='<c:url value="https://unpkg.com/startbootstrap-resume/vendor/fontawesome-free/css/all.min.css"/>'
           rel="stylesheet">
-    <link rel="stylesheet" href='<c:url value="/assets/blog-layout${author.layoutID}.css"/>'/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600,700,800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href='<c:url value="/assets/blog-layout${author.layoutID}.css"/>'/>
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'/>
 
     <script src='<c:url value="/js/load-blog-articles.js"/>' type="text/javascript"></script>
+    <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>
     <script type="text/javascript">
         window.addEventListener("load", function () {
             loadArticleList(${author.userID});
+            applyThemeColor(`${author.themeColor}`);
+
         })
     </script>
+
 </head>
 
 <body>
@@ -49,6 +53,26 @@
 
 <div id="post-list-container">
 
+<%--    This part is for demoenstration of jsp structure, and will be cleared once loaded article --%>
+<div class="articleDiv">
+    <a class="full-article-link" href='<c:url value="#"/>'>
+    <div class="articleTitleDiv">
+        <h2 class="articleTitle">
+<%--            article title shows here  --%>
+        </h2>
+    </div>
+    <div class="articleBriefDiv">
+        <p class="articleBrief">
+<%--            article brief shows here --%>
+        </p>
+    </div>
+    </a>
+    <div class="articleInforDiv">
+        <span class="articleInfo">
+<%--           creation date , likes and dislikes shows here --%>
+        </span>
+    </div>
+</div>
 </div>
 
 

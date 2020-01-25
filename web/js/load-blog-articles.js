@@ -13,6 +13,10 @@ function renderArticleDiv(article) {
     const articleDiv = document.createElement("div");
     articleDiv.classList.add("articleDiv");
 
+    const fullArticleLink = document.createElement("a");
+    fullArticleLink.classList.add("full-article-link");
+    fullArticleLink.href=`/blog/article-view?articleID=${article.articleID}`;
+
     const articleTitleDiv = document.createElement("div");
     articleTitleDiv.classList.add("articleTitleDiv");
     const articleTitle = document.createElement("h2");
@@ -22,7 +26,7 @@ function renderArticleDiv(article) {
 
     const articleBriefDiv = document.createElement("div");
     articleBriefDiv.classList.add("articleBriefDiv");
-    const articleBrief = document.createElement("span");
+    const articleBrief = document.createElement("p");
     articleBrief.classList.add("articleBrief");
     articleBrief.innerText = article.articleBrief;
     articleBriefDiv.appendChild(articleBrief);
@@ -34,8 +38,9 @@ function renderArticleDiv(article) {
     articleInfo.innerHTML = `Created on ${timestampToLocaleString(article.timeCreated)} · ${article.likesCount} <i class="far fa-thumbs-up like-empty-button"></i>· ${article.dislikesCount} <i class="far fa-thumbs-down dislike-empty-button"></i>`;
     articleInfoDiv.appendChild(articleInfo);
 
-    articleDiv.appendChild(articleTitleDiv);
-    articleDiv.appendChild(articleBriefDiv);
+    fullArticleLink.appendChild(articleTitleDiv);
+    fullArticleLink.appendChild(articleBriefDiv);
+    articleDiv.appendChild(fullArticleLink);
     articleDiv.appendChild(articleInfoDiv);
     articleDiv.innerHTML+='<hr class="line-between-articles">';
     return articleDiv;
