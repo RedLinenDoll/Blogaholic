@@ -1,3 +1,8 @@
+:root {
+    --theme-color: #227788;
+    --heavy-color: #122222;
+}
+
 .inline-avatar {
     width: 1.5em;
     height: 1.5em;
@@ -28,7 +33,6 @@ h2 {
 
 a {
     text-decoration: none;
-    color: black;
 }
 
 
@@ -52,5 +56,39 @@ a {
     padding: 5px;
     vertical-align: center;
     font-weight: 800;
-    color: #333333;
+}
+
+.top-bar-home-link, .top-bar-links {
+    width: fit-content;
+    position: absolute;
+}
+
+.top-bar-links {
+    right: 3vw;
+}
+.top-bar-home-link {
+    left: 1vw;
+}
+#my-blog-span, #create-blog-span {
+    border-right: solid #333333 2px;
+    padding-right: 4px;
+}
+
+#log-out-span, #log-in-span {
+    padding-left: 6px;
+}
+
+a {
+    color: var(--heavy-color);
+}
+a:hover{
+    color: var(--theme-color);
+}
+
+.primary-link {
+    color: var(--theme-color);
+}
+
+.primary-link:hover{
+    text-decoration: underline;
 }

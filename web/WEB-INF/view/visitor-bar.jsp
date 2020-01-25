@@ -3,8 +3,22 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <br>
-<%-- visitor's top bar --%>
 <div id="visitor-top-bar" class="top-bar">
-    <a href='<c:url value="/signup"/>'><span id="create-blog-button">Create My Blog</span></a>|
-    <a href='<c:url value="/login"/>'><span id="log-in-button">Log In</span></a>
+    <div class="top-bar-home-link">
+        <a href="#">
+        JAVA Team Blog
+        </a>
+    </div>
+    <div class="top-bar-links" id="visitor-top-bar-links">
+        <span id="create-blog-span">
+            <a href='<c:url value="/signup"/>' class="primary-link">
+                Create My Blog
+            </a>
+        </span>
+        <span id="log-in-span">
+            <a href='<c:url value="/login"/>'>
+                Log In
+            </a>
+        </span>
+    </div>
 </div>
