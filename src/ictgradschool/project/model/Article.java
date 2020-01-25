@@ -7,14 +7,14 @@ public class Article {
     private String articleTitle;
     private String articleContent;
     private String articleBrief;
-    private Timestamp timeEdited;
     private Timestamp timeCreated;
+    private Timestamp timeEdited;
     private int likesCount;
     private int dislikesCount;
 
 
     // full article fetch
-    public Article(int articleID, String articleTitle, String articleContent, String articleBrief, Timestamp timeEdited, Timestamp timeCreated, int likesCount, int dislikesCount) {
+    public Article(int articleID, String articleTitle, String articleContent, String articleBrief, Timestamp timeCreated, Timestamp timeEdited, int likesCount, int dislikesCount) {
         this.articleID = articleID;
         this.articleTitle = articleTitle;
         this.articleContent = articleContent;
@@ -33,6 +33,16 @@ public class Article {
         this.dislikesCount = 0;
     }
 
+    // brief article
+    public Article(int articleID, String articleTitle, String articleBrief, Timestamp timeCreated, Timestamp timeEdited, int likesCount, int dislikesCount) {
+        this.articleID = articleID;
+        this.articleTitle = articleTitle;
+        this.articleBrief = articleBrief;
+        this.timeEdited = timeEdited;
+        this.timeCreated = timeCreated;
+        this.likesCount = likesCount;
+        this.dislikesCount = dislikesCount;
+    }
 
     public int getLikesCount() {
         return likesCount;
