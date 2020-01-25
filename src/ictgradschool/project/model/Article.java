@@ -1,24 +1,38 @@
 package ictgradschool.project.model;
 
+import java.sql.Timestamp;
+
 public class Article {
     private int articleID;
     private String title;
     private String content;
-    private String timeEdited;
-    private String timeCreated;
+    private String brief;
+    private Timestamp timeEdited;
+    private Timestamp timeCreated;
     private int likes;
     private int dislikes;
 
 
-    public Article(int articleID, String title, String content, String timeCreated, String timeEdited, int likes, int dislikes) {
+    // full article fetch
+    public Article(int articleID, String title, String content, String brief, Timestamp timeEdited, Timestamp timeCreated, int likes, int dislikes) {
         this.articleID = articleID;
         this.title = title;
         this.content = content;
+        this.brief = brief;
         this.timeEdited = timeEdited;
         this.timeCreated = timeCreated;
         this.likes = likes;
         this.dislikes = dislikes;
     }
+
+    // article creation without brief
+    public Article(String title, String content) {
+        this.title = title;
+        this.content = content;
+        this.likes = 0;
+        this.dislikes = 0;
+    }
+
 
     public int getLikes() {
         return likes;
@@ -60,19 +74,28 @@ public class Article {
         this.content = content;
     }
 
-    public String getTimeEdited() {
+
+    public String getBrief() {
+        return brief;
+    }
+
+    public void setBrief(String brief) {
+        this.brief = brief;
+    }
+
+    public Timestamp getTimeEdited() {
         return timeEdited;
     }
 
-    public void setTimeEdited(String timeEdited) {
+    public void setTimeEdited(Timestamp timeEdited) {
         this.timeEdited = timeEdited;
     }
 
-    public String getTimeCreated() {
+    public Timestamp getTimeCreated() {
         return timeCreated;
     }
 
-    public void setTimeCreated(String timeCreated) {
+    public void setTimeCreated(Timestamp timeCreated) {
         this.timeCreated = timeCreated;
     }
 }

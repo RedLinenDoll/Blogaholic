@@ -11,20 +11,14 @@ public class ArticleDAO {
     //some methods here
 
 
-    public static Article createArticleFromResultSet(ResultSet rs) throws SQLException{
+    public static Article createArticleFromResultSet(ResultSet rs) throws SQLException {
 
-    Article article= new Article(
-            rs.getInt(1),
-            rs.getString(2),
-            rs.getString(3),
-            rs.getString(4),
-            rs.getString(5),
-            rs.getInt(6),
-            rs.getInt(7)
-    );
+        // there is  rs.getTimeStamp(int ) to use for time.
+        rs.getTimestamp(4);
+        return null;
 
-return article;
-    }
+    };
+
 
     private static List<Article>getAllArticles(Connection conn){
         List<Article> articles = new ArrayList<>();

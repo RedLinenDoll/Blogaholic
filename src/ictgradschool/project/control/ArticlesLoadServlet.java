@@ -10,21 +10,17 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-
-
-
-
-
-    @WebServlet(name = "ArticleServlet", urlPatterns = {"/articles"})
-    public class ArticleServlet extends HttpServlet {
+    @WebServlet(name = "ArticleServlet", urlPatterns = {"/load-articles"})
+    public class ArticlesLoadServlet extends HttpServlet {
 
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+            int authorID = Integer.parseInt(request.getParameter("authorID"));
 
             try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
                 System.out.println("cool servlet");
 
 
-        //set attribute to user
             } catch (SQLException e) {
                 e.printStackTrace();
             }
