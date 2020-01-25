@@ -9,7 +9,8 @@
 
     <link href='<c:url value="https://unpkg.com/startbootstrap-resume/vendor/fontawesome-free/css/all.min.css"/>'
           rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600,700,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600,700,800&display=swap"
+          rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href='<c:url value="/assets/layout${author.layoutID}.css"/>'/>
@@ -35,7 +36,7 @@
     </c:otherwise>
 </c:choose>
 
-<div  class="head-container">
+<div class="head-container">
     <div id="article-title-container" class="primary-h1-container">
         <h1 id="article-title">${article.articleTitle}</h1>
     </div>
@@ -46,17 +47,16 @@
 </div>
 
 <div id="article-content-container">
-<p>
-    ${article.articleContent}
-</p>
+    <p>
+        ${article.articleContent}
+    </p>
 </div>
 
 <div id="visitor-options-container">
-
-    <a class="primary-link" href='<c:url value="/blog-view?authorID=${author.userID}"/>' >
-    <button class="link-button">
-        Back to ${author.username}'s blog
-    </button>
+    <a class="primary-link" href='<c:url value="/blog-view?authorID=${author.userID}"/>'>
+        <button class="link-button">
+            Back to ${author.username}'s blog
+        </button>
     </a>
 </div>
 

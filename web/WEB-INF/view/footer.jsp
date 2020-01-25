@@ -5,6 +5,6 @@
 <br>
 <%-- visitor's top bar --%>
 <div id="page-footer">
-footer bar here
+    footer bar here
 
 </div>

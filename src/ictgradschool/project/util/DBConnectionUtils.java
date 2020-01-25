@@ -22,8 +22,11 @@ import java.util.Properties;
  */
 public class DBConnectionUtils {
 
-    /** Static utility class */
-    private DBConnectionUtils() { }
+    /**
+     * Static utility class
+     */
+    private DBConnectionUtils() {
+    }
 
     /**
      * This method will create a {@link Connection} from a properties file with the given name, located in a resource

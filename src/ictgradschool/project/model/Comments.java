@@ -9,7 +9,7 @@ public class Comments {
     private String timeEdited;
 
 
-    public Comments(int commentID, String content, String timeCreated, String timeEdited,int likes,int dislikes) {
+    public Comments(int commentID, String content, String timeCreated, String timeEdited, int likes, int dislikes) {
         this.commentID = commentID;
         this.content = content;
         this.likes = likes;

@@ -16,23 +16,23 @@ import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "ArticleServlet", urlPatterns = {"/load-articles"})
-    public class ArticleListLoadServlet extends HttpServlet {
+public class ArticleListLoadServlet extends HttpServlet {
 
-        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-            int authorID = Integer.parseInt(request.getParameter("authorID"));
+        int authorID = Integer.parseInt(request.getParameter("authorID"));
 
-            try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+        try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
 
-                List<Article> articles = ArticleDAO.getBriefArticleListByAuthorID(connection, authorID);
+            List<Article> articles = ArticleDAO.getBriefArticleListByAuthorID(connection, authorID);
 
-                JSONResponse.send(response, articles);
+            JSONResponse.send(response, articles);
 
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
     }
+}
 
