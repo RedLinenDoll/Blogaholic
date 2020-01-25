@@ -10,7 +10,6 @@ async function loadArticleList(authorID) {
 }
 
 function renderArticleDiv(article) {
-    console.log(article);
     const articleDiv = document.createElement("div");
     articleDiv.classList.add("articleDiv");
 
@@ -32,12 +31,13 @@ function renderArticleDiv(article) {
     articleInfoDiv.classList.add("articleInfoDiv");
     const articleInfo = document.createElement("span");
     articleInfo.classList.add("articleInfo");
-    articleInfo.innerText = `Created on ${timestampToLocaleString(article.timeCreated)} · ${article.likesCount} likes · ${article.dislikesCount} dislikes`;
+    articleInfo.innerHTML = `Created on ${timestampToLocaleString(article.timeCreated)} · ${article.likesCount} <i class="far fa-thumbs-up like-empty-button"></i>· ${article.dislikesCount} <i class="far fa-thumbs-down dislike-empty-button"></i>`;
     articleInfoDiv.appendChild(articleInfo);
 
     articleDiv.appendChild(articleTitleDiv);
     articleDiv.appendChild(articleBriefDiv);
     articleDiv.appendChild(articleInfoDiv);
+    articleDiv.innerHTML+='<hr class="line-between-articles">';
     return articleDiv;
 
 }
