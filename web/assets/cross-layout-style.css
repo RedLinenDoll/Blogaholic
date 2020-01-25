@@ -92,3 +92,7 @@ a:hover{
 .primary-link:hover{
     text-decoration: underline;
 }
+
+button:focus {
+    outline:none;
+}
