@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="blog: ${author.blogName}">
     <title>${author.blogName}</title>
+
+    <link rel="stylesheet" href='<c:url value="/assets/blog-layout${author.layoutID}.css"/>'/>
+    <script src='<c:url value="/js/blog-load.js"/>'></script>
 </head>
 
 <body>
@@ -15,7 +18,7 @@
         <jsp:include page="visitor-bar.jsp"/>
     </c:when>
     <c:otherwise>
-        <jsp:include page="user-var.jsp"/>
+        <jsp:include page="user-bar.jsp"/>
     </c:otherwise>
 </c:choose>
 
@@ -31,6 +34,8 @@
 <div id="post-list-container">
 <%-- load posts with javascript here--%>
 </div>
+
+
 
 </body>
 </html>
