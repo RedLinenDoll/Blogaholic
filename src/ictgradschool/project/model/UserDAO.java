@@ -31,9 +31,11 @@ public class UserDAO {
     }
 
     public static User getAuthorById(Connection connection, int id) throws SQLException {
-        try (PreparedStatement statement = connection.prepareStatement("SELECT (user_id, username, avatar_path, " +
-                "blog_name, blog_description, theme_color, layout_id) FROM users_db " +
-                "WHERE user_id = ?")) {
+        try (PreparedStatement statement = connection.prepareStatement(
+                "SELECT user_id, username, avatar_path, " +
+                        "blog_name, blog_description, theme_color, layout_id " +
+                        "FROM users_db " +
+                        "WHERE user_id = ?")) {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
@@ -45,7 +47,7 @@ public class UserDAO {
     }
 
     public static User getLoggedUserById(Connection connection, int id) throws SQLException {
-        try (PreparedStatement statement = connection.prepareStatement("SELECT (user_id, username, avatar_path) " +
+        try (PreparedStatement statement = connection.prepareStatement("SELECT user_id, username, avatar_path " +
                 "FROM users_db WHERE user_id = ?")) {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {

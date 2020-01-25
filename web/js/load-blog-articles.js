@@ -1,8 +1,8 @@
 async function loadArticleList(authorID) {
     const postContainer = document.querySelector("#post-list-container");
-    let response = await fetch(`./load-articles?authorID=${authorID}`);
-    let articleListJSON = await response.json();
-    let articleList = await JSON.parse(articleListJSON);
+    let response = await fetch(`/blog/load-articles?authorID=${authorID}`);
+    let articleList = await response.json();
+
     articleList.forEach(article => {
             postContainer.appendChild(renderArticleDiv(article));
         }
@@ -10,12 +10,13 @@ async function loadArticleList(authorID) {
 }
 
 function renderArticleDiv(article) {
+    console.log(article);
     const articleDiv = document.createElement("div");
     articleDiv.classList.add("articleDiv");
 
     const articleTitleDiv = document.createElement("div");
     articleTitleDiv.classList.add("articleTitleDiv");
-    const articleTitle = document.createElement("span");
+    const articleTitle = document.createElement("h2");
     articleTitleDiv.classList.add("articleTitle");
     articleTitle.innerText = article.articleTitle;
     articleTitleDiv.appendChild(articleTitle);
@@ -31,7 +32,7 @@ function renderArticleDiv(article) {
     articleInfoDiv.classList.add("articleInfoDiv");
     const articleInfo = document.createElement("span");
     articleInfo.classList.add("articleInfo");
-    articleInfo.innerText = `Created on ${article.createTime} · ${article.likesCount} likes · ${article.dislikesCount} dislikes`;
+    articleInfo.innerText = `Created on ${timestampToLocaleString(article.timeCreated)} · ${article.likesCount} likes · ${article.dislikesCount} dislikes`;
     articleInfoDiv.appendChild(articleInfo);
 
     articleDiv.appendChild(articleTitleDiv);
@@ -39,4 +40,8 @@ function renderArticleDiv(article) {
     articleDiv.appendChild(articleInfoDiv);
     return articleDiv;
 
+}
+
+function timestampToLocaleString(timestamp) {
+    return new Date(timestamp).toLocaleString()
 }
