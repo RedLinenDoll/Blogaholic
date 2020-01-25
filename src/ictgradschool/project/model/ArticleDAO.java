@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArticleDAO {
-    //some methods here
+
+    //TODO getFullArticleByID
 
 
     public static Article createArticleFromResultSet(ResultSet rs) throws SQLException {

@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "ArticleServlet", urlPatterns = {"/load-articles"})
-    public class ArticlesLoadServlet extends HttpServlet {
+    public class ArticleListLoadServlet extends HttpServlet {
 
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
