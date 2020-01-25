@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="blog: ${author.blogName}">
-    <title>${author.blogName}</title>
+    <meta name="description" content="article: ${article.articleTitle}">
+    <title>${article.articleTitle} by ${author.username}</title>
 
     <link href='<c:url value="https://unpkg.com/startbootstrap-resume/vendor/fontawesome-free/css/all.min.css"/>'
           rel="stylesheet">
@@ -16,11 +16,9 @@
     <link rel="stylesheet" href='<c:url value="/assets/layout${author.layoutID}.css"/>'/>
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'/>
 
-    <script src='<c:url value="/js/load-blog-articles.js"/>' type="text/javascript"></script>
     <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>
     <script type="text/javascript">
         window.addEventListener("load", function () {
-            loadArticleList(${author.userID});
             applyThemeColor(`${author.themeColor}`);
         })
     </script>
@@ -39,11 +37,8 @@
 </c:choose>
 
 <div class="head-container">
-    <div id="blog-name-container" class="primary-h1-container">
-        <h1 id="blog-name">${author.blogName}</h1>
-    </div>
-    <div id="blog-description-container">
-        <p id="blog-description">${author.blogDescription}</p>
+    <div id="article-title-container" class="primary-h1-container">
+        <h1 id="article-title">${article.articleTitle}</h1>
     </div>
     <div class="author-intro-container">
         <span>by <img class="inline-avatar" src='<c:url value="/images/avatar/${author.avatarPath}"/>'
@@ -51,27 +46,18 @@
     </div>
 </div>
 
-<div id="post-list-container">
-    <%--    This part is for demoenstration of jsp structure, and will be cleared once loaded article --%>
-    <div class="articleDiv">
-        <a class="full-article-link" href='<c:url value="#"/>'>
-            <div class="articleTitleDiv">
-                <h2 class="articleTitle">
-                    <%--            article title shows here  --%>
-                </h2>
-            </div>
-            <div class="articleBriefDiv">
-                <p class="articleBrief">
-                    <%--            article brief shows here --%>
-                </p>
-            </div>
-        </a>
-        <div class="articleInforDiv">
-        <span class="articleInfo">
-            <%--           creation date , likes and dislikes shows here --%>
-        </span>
-        </div>
-    </div>
+<div id="article-content-container">
+    <p>
+        ${article.articleContent}
+    </p>
+</div>
+
+<div id="visitor-options-container">
+    <a class="primary-link" href='<c:url value="/blog-view?authorID=${author.userID}"/>'>
+        <button class="link-button">
+            Back to ${author.username}'s blog
+        </button>
+    </a>
 </div>
 
 

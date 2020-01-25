@@ -5,8 +5,8 @@
 <br>
 <div id="visitor-top-bar" class="top-bar">
     <div class="top-bar-home-link">
-        <a href="#">
-        JAVA Team Blog
+        <a href='<c:url value="/"/>'>
+            JAVA Team Blog
         </a>
     </div>
     <div class="top-bar-links" id="visitor-top-bar-links">

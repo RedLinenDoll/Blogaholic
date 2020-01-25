@@ -1,6 +1,10 @@
 package ictgradschool.project.model;
 
 public class Comments {
+    // TODO This structure needs to be reviewed and
+    //  improved to support arbitrary levels of comment: maintain a comment arraylist.
+
+
     private int commentID;
     private String content;
     private int likes;
@@ -9,7 +13,7 @@ public class Comments {
     private String timeEdited;
 
 
-    public Comments(int commentID, String content, String timeCreated, String timeEdited,int likes,int dislikes) {
+    public Comments(int commentID, String content, String timeCreated, String timeEdited, int likes, int dislikes) {
         this.commentID = commentID;
         this.content = content;
         this.likes = likes;
