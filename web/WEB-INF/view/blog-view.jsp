@@ -7,7 +7,14 @@
     <meta name="description" content="blog: ${author.blogName}">
     <title>${author.blogName}</title>
 
+    <link href='<c:url value="https://unpkg.com/startbootstrap-resume/vendor/fontawesome-free/css/all.min.css"/>'
+          rel="stylesheet">
     <link rel="stylesheet" href='<c:url value="/assets/blog-layout${author.layoutID}.css"/>'/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600,700,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'/>
+
     <script src='<c:url value="/js/load-blog-articles.js"/>' type="text/javascript"></script>
     <script type="text/javascript">
         window.addEventListener("load", function () {
@@ -33,6 +40,10 @@
     </div>
     <div id="blog-description-container">
         <p id="blog-description">${author.blogDescription}</p>
+    </div>
+    <div id="author-intro-container">
+        <span>by <img class="inline-avatar" src='<c:url value="/images/avatar/${author.avatarPath}"/>'
+                      alt="author avatar"> ${author.username}</span>
     </div>
 </div>
 

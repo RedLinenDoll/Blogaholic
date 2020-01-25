@@ -1,0 +1,32 @@
+.inline-avatar {
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    border: #bbbbbb solid 1px;
+    position: relative;
+    top: 0.5em;
+}
+
+body {
+    font-family: var(--primary-font);
+}
+
+h1{
+    font-weight: 800;
+}
+h2{
+    margin-bottom: 0.2em;
+    margin-top:0.2em;
+    font-weight: 800;
+}
+
+.articleInfo {
+    font-weight: 400;
+    font-family: var(--secondary-font);
+    font-style:italic;
+    color: #868e96;
+}
+
+.articleBrief {
+    font-weight: 400;
+}
