@@ -32,7 +32,7 @@
         <h1 id="blog-name">${author.blogName}</h1>
     </div>
     <div id="blog-description-container">
-        <p id="blog-description" >${author.blogDescription}</p>
+        <p id="blog-description">${author.blogDescription}</p>
     </div>
 </div>
 

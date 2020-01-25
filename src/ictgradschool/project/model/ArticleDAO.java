@@ -1,6 +1,5 @@
 package ictgradschool.project.model;
 
-import java.security.interfaces.RSAKey;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,7 +23,6 @@ public class ArticleDAO {
         );
     }
 
-    ;
 
     public static List<Article> getArticleBriefListByAuthor(Connection connection, int authorID) throws SQLException {
         List<Article> articles = new ArrayList<>();
@@ -33,7 +31,7 @@ public class ArticleDAO {
                 ("SELECT article_id, title, brief, created_time, edit_time, number_of_likes, number_of_dislikes FROM article_db WHERE author_id = ?")) {
             statement.setInt(1, authorID);
             try (ResultSet resultSet = statement.executeQuery()) {
-                while(resultSet.next()) {
+                while (resultSet.next()) {
                     articles.add(createArticleFromResultSet(resultSet));
                 }
             }
