@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600,700,800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href='<c:url value="/assets/blog-layout${author.layoutID}.css"/>'/>
+    <link rel="stylesheet" href='<c:url value="/assets/layout${author.layoutID}.css"/>'/>
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'/>
 
     <script src='<c:url value="/js/load-blog-articles.js"/>' type="text/javascript"></script>
@@ -21,7 +21,6 @@
         window.addEventListener("load", function () {
             loadArticleList(${author.userID});
             applyThemeColor(`${author.themeColor}`);
-
         })
     </script>
 

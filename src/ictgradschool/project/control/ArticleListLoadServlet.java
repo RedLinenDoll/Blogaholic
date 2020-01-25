@@ -24,7 +24,7 @@ import java.util.List;
 
             try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
 
-                List<Article> articles = ArticleDAO.getArticleBriefListByAuthor(connection, authorID);
+                List<Article> articles = ArticleDAO.getBriefArticleListByAuthorID(connection, authorID);
 
                 JSONResponse.send(response, articles);
 
@@ -33,7 +33,6 @@ import java.util.List;
                 e.printStackTrace();
             }
 
-//            request.getRequestDispatcher(jsp file here).forward(request, response);
         }
     }
 

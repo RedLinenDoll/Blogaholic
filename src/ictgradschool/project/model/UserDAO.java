@@ -7,36 +7,51 @@ import java.sql.SQLException;
 
 public class UserDAO {
 
+    // TODO get all users and their blog info, for blog homepage
 
-    private static User createLoggedUserFromResultSet(ResultSet rs) throws SQLException {
-        User visitor = new User(
-                rs.getInt(1),
-                rs.getString(2),
-                rs.getString(3)
+
+    private static User createLoggedUserFromResultSet(ResultSet resultSet) throws SQLException {
+        return new User(
+                resultSet.getInt(1), // userID
+                resultSet.getString(2), // userName
+                resultSet.getString(3)  // avatarPath
         );
-        return visitor;
     }
 
-    private static User createBlogAuthorFromResultSet(ResultSet rs) throws SQLException {
-        User author = new User(
-                rs.getInt(1),
-                rs.getString(2),
-                rs.getString(3),
-                rs.getString(4),
-                rs.getString(5),
-                rs.getString(6),
-                rs.getInt(7)
+    private static User createBlogAuthorFromResultSet(ResultSet resultSet) throws SQLException {
+        return new User(
+                resultSet.getInt(1), // userID
+                resultSet.getString(2), // userName
+                resultSet.getString(3), // avatarPath
+                resultSet.getString(4), // blog name
+                resultSet.getString(5), // blog description
+                resultSet.getString(6), // theme color
+                resultSet.getInt(7) // layout id
         );
-        return author;
     }
 
-    public static User getAuthorById(Connection connection, int id) throws SQLException {
+    public static User getAuthorById(Connection connection, int userID) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT user_id, username, avatar_path, " +
-                        "blog_name, blog_description, theme_color, layout_id " +
+                "SELECT user_id, username, avatar_path, blog_name, blog_description, theme_color, layout_id " +
                         "FROM users_db " +
                         "WHERE user_id = ?")) {
-            statement.setInt(1, id);
+            statement.setInt(1, userID);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return createBlogAuthorFromResultSet(resultSet);
+                } else
+                    return null;
+            }
+        }
+    }
+
+    public static User getAuthorByArticleId(Connection connection, int articleID) throws SQLException {
+        try (PreparedStatement statement = connection.prepareStatement
+                ("SELECT user.user_id, username, avatar_path, blog_name, blog_description, theme_color, layout_id " +
+                        "FROM article_db as article, users_db as user " +
+                        "WHERE article.author_id = user.user_id " +
+                        "AND article.article_id = ?;")) {
+            statement.setInt(1, articleID);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     return createBlogAuthorFromResultSet(resultSet);

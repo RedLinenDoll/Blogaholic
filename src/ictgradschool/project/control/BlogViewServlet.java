@@ -16,14 +16,14 @@ import java.sql.SQLException;
 @WebServlet (name="blog-view", urlPatterns="/blog-view")
 public class BlogViewServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String authorID = req.getParameter("authorID");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String authorID = request.getParameter("authorID");
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             User author = UserDAO.getAuthorById(connection, Integer.parseInt(authorID));
-            req.setAttribute("author", author);
-            req.getRequestDispatcher("WEB-INF/view/blog-view.jsp").forward(req, resp);
+            request.setAttribute("author", author);
+            request.getRequestDispatcher("WEB-INF/view/blog-view.jsp").forward(request, response);
         } catch (SQLException e) {
-            resp.setStatus(500);
+            response.setStatus(500);
 //            resp.sendRedirect("WEB-INF/error-view/500.jsp");
             e.printStackTrace();
         }

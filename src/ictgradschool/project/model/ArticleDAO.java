@@ -9,35 +9,59 @@ import java.util.List;
 
 public class ArticleDAO {
 
-    //TODO getFullArticleByID
+    public static Article getFullArticleByArticleID(Connection connection, int articleID) throws SQLException {
+        try (PreparedStatement statement = connection.prepareStatement(
+                "SELECT article_id, title, content, brief, created_time, edit_time, number_of_likes, number_of_dislikes " +
+                        "FROM article_db " +
+                        "WHERE article_id = ?;")) {
+            statement.setInt(1, articleID);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return createFullArticleFromResultSet(resultSet);
+                } else return null;
+            }
+        }
+    }
 
-
-    public static Article createArticleFromResultSet(ResultSet rs) throws SQLException {
+    private static Article createFullArticleFromResultSet(ResultSet resultSet) throws SQLException {
         return new Article(
-                rs.getInt(1), //articleID
-                rs.getString(2), //articleTitle
-                rs.getString(3), //articleBrief
-                rs.getTimestamp(4), //timeCreated
-                rs.getTimestamp(5), //timeEdited
-                rs.getInt(6), //likeCount
-                rs.getInt(7) //dislikeCount
+                resultSet.getInt(1), // article ID
+                resultSet.getString(2), // article title
+                resultSet.getString(3), // article content
+                resultSet.getString(4), // article brief
+                resultSet.getTimestamp(5), // time edited
+                resultSet.getTimestamp(6), // time created
+                resultSet.getInt(7), // like count
+                resultSet.getInt(8)  // dislike count
         );
     }
 
-
-    public static List<Article> getArticleBriefListByAuthor(Connection connection, int authorID) throws SQLException {
+    public static List<Article> getBriefArticleListByAuthorID(Connection connection, int authorID) throws SQLException {
         List<Article> articles = new ArrayList<>();
 
         try (PreparedStatement statement = connection.prepareStatement
-                ("SELECT article_id, title, brief, created_time, edit_time, number_of_likes, number_of_dislikes FROM article_db WHERE author_id = ?")) {
+                ("SELECT article_id, title, brief, created_time, edit_time, number_of_likes, number_of_dislikes " +
+                        "FROM article_db " +
+                        "WHERE author_id = ?")) {
             statement.setInt(1, authorID);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    articles.add(createArticleFromResultSet(resultSet));
+                    articles.add(createBriefArticleFromResultSet(resultSet));
                 }
             }
-
         }
         return articles;
+    }
+
+    private static Article createBriefArticleFromResultSet(ResultSet resultSet) throws SQLException {
+        return new Article(
+                resultSet.getInt(1), //articleID
+                resultSet.getString(2), //articleTitle
+                resultSet.getString(3), //articleBrief
+                resultSet.getTimestamp(4), //timeCreated
+                resultSet.getTimestamp(5), //timeEdited
+                resultSet.getInt(6), //likeCount
+                resultSet.getInt(7) //dislikeCount
+        );
     }
 }
