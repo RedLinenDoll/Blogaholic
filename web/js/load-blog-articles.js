@@ -1,6 +1,10 @@
+const uriStart = '/blog/';
+// TODO once we decided on our blog website name, the /blog/ part need to be updated.
+
+
 async function loadArticleList(authorID) {
     const postContainer = document.querySelector("#post-list-container");
-    let response = await fetch(`/blog/load-articles?authorID=${authorID}`);
+    let response = await fetch(`${uriStart}load-articles?authorID=${authorID}`);
     let articleList = await response.json();
 
     articleList.forEach(article => {
@@ -15,7 +19,7 @@ function renderArticleDiv(article) {
 
     const fullArticleLink = document.createElement("a");
     fullArticleLink.classList.add("full-article-link");
-    fullArticleLink.href=`/blog/article-view?articleID=${article.articleID}`;
+    fullArticleLink.href=`${uriStart}article-view?articleID=${article.articleID}`;
 
     const articleTitleDiv = document.createElement("div");
     articleTitleDiv.classList.add("articleTitleDiv");
