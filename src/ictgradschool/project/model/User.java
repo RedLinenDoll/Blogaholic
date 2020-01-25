@@ -1,26 +1,50 @@
 package ictgradschool.project.model;
 
 public class User {
-    private int userID;
+    private Integer userID;
     private String username;
-    private String password;
+    private String passwordHashBase64;
+    private String saltHashBase64;
+    private int saltLength;
+    private int iterationNum;
     private String avatarPath;
     private String blogName;
     private String blogDescription;
     private String themeColor;
     private int layoutID;
 
-    public User(int userID, String username, String password, String blogName, String blogDescription, int layoutID, String themeColor, String avatarPath) {
+    // user authentication with ID
+    public User(Integer userID, String username, String passwordHashBase64, String saltHashBase64, int saltLength, int iterationNum) {
         this.userID = userID;
         this.username = username;
-        this.password = password;
+        this.passwordHashBase64 = passwordHashBase64;
+        this.saltHashBase64 = saltHashBase64;
+        this.saltLength = saltLength;
+        this.iterationNum = iterationNum;
+    }
+
+    // user full creation
+    public User(String username, String passwordHashBase64, String saltHashBase64, int saltLength, int iterationNum, String avatarPath, String blogName, String blogDescription, String themeColor, int layoutID) {
+        this.username = username;
+        this.passwordHashBase64 = passwordHashBase64;
+        this.saltHashBase64 = saltHashBase64;
+        this.saltLength = saltLength;
+        this.iterationNum = iterationNum;
         this.avatarPath = avatarPath;
         this.blogName = blogName;
         this.blogDescription = blogDescription;
         this.themeColor = themeColor;
-        this.layoutID=layoutID;
+        this.layoutID = layoutID;
     }
 
+    // logged in visitor info
+    public User(Integer userID, String username, String avatarPath) {
+        this.userID = userID;
+        this.username = username;
+        this.avatarPath = avatarPath;
+    }
+
+    // blog author
     public User(int userID, String username, String avatarPath, String blogName, String blogDescription, String themeColor, int layoutID) {
         this.userID = userID;
         this.username = username;
@@ -31,12 +55,60 @@ public class User {
         this.layoutID = layoutID;
     }
 
-    public int getLayoutID() {
-        return layoutID;
+    public Integer getUserID() {
+        return userID;
     }
 
-    public void setLayoutID(int layoutID) {
-        this.layoutID = layoutID;
+    public void setUserID(Integer userID) {
+        this.userID = userID;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPasswordHashBase64() {
+        return passwordHashBase64;
+    }
+
+    public void setPasswordHashBase64(String passwordHashBase64) {
+        this.passwordHashBase64 = passwordHashBase64;
+    }
+
+    public String getSaltHashBase64() {
+        return saltHashBase64;
+    }
+
+    public void setSaltHashBase64(String saltHashBase64) {
+        this.saltHashBase64 = saltHashBase64;
+    }
+
+    public int getSaltLength() {
+        return saltLength;
+    }
+
+    public void setSaltLength(int saltLength) {
+        this.saltLength = saltLength;
+    }
+
+    public int getIterationNum() {
+        return iterationNum;
+    }
+
+    public void setIterationNum(int iterationNum) {
+        this.iterationNum = iterationNum;
+    }
+
+    public String getAvatarPath() {
+        return avatarPath;
+    }
+
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
     }
 
     public String getBlogName() {
@@ -63,35 +135,11 @@ public class User {
         this.themeColor = themeColor;
     }
 
-    public int getUserID() {
-        return userID;
+    public int getLayoutID() {
+        return layoutID;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getAvatarPath() {
-        return avatarPath;
-    }
-
-    public void setAvatarPath(String avatarPath) {
-        this.avatarPath = avatarPath;
+    public void setLayoutID(int layoutID) {
+        this.layoutID = layoutID;
     }
 }

@@ -4,7 +4,7 @@
 
 <br>
 <%-- visitor's top bar --%>
-<div id="visitor-top-bar" class="top-bar">
-    <a href='<c:url value="/logout"/>'><span id="log-out-button">Log Out</span></a>
-    <a href='<c:url value="/blog?authorID=${user.userID}"/>'><span id="my-blog-button">My Blog</span></a>
+<div id="page-footer">
+footer bar here
+
 </div>

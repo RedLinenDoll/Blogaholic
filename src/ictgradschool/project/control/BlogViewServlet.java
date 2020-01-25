@@ -13,21 +13,19 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebServlet (name="blog", urlPatterns="/blog")
-public class BlogServlet extends HttpServlet {
+@WebServlet (name="blog", urlPatterns="/blog-view")
+public class BlogViewServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String authorID = req.getParameter("authorID");
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-            User author = UserDAO.getUserById(connection, Integer.parseInt(authorID));
+            User author = UserDAO.getAuthorById(connection, Integer.parseInt(authorID));
             req.setAttribute("author", author);
             req.getRequestDispatcher("WEB-INF/view/blog-view.jsp").forward(req, resp);
-
         } catch (SQLException e) {
             resp.setStatus(500);
 //            resp.sendRedirect("WEB-INF/error-view/500.jsp");
             e.printStackTrace();
         }
-
     }
 }

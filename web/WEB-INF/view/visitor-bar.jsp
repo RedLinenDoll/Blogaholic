@@ -5,7 +5,7 @@
 <br>
 <%-- visitor's top bar --%>
 <div id="visitor-top-bar" class="top-bar">
-    <a href='<c:url value="/signup"/>'><span id="create-blog-button">Create BLog</span></a>
+    <a href='<c:url value="/signup"/>'><span id="create-blog-button">Create My Blog</span></a>
     <a href='<c:url value="/signup"/>'><span id="sign-up-button">Sign Up</span></a>
 <a href='<c:url value="/login"/>'><span id="log-in-button">Log In</span></a>
 </div>
