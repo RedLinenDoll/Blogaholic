@@ -48,13 +48,13 @@ a {
 }
 
 
-.articleInfo {
+.article-info {
     font-weight: 400;
     font-style: italic;
     font-family: var(--secondary-font);
 }
 
-.articleBrief {
+.article-brief {
     font-weight: 400;
 }
 
@@ -105,7 +105,7 @@ a:hover {
 }
 
 .primary-link:hover {
-    text-decoration: underline;
+    color: var(--heavy-color);
 }
 
 button:focus {
@@ -130,6 +130,6 @@ button.link-button {
     background-color: var(--heavy-color);
 }
 
-.articleInfo {
+.article-info {
     color: var(--median-gray);
 }
