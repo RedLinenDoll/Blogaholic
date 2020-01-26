@@ -9,6 +9,12 @@ import java.util.List;
 
 public class ArticleDAO {
 
+    //TODO delete article by article ID
+
+    //TODO add new article, given author ID and new article object
+
+    //TODO edit article, given article ID and new article object
+
     public static Article getFullArticleByArticleID(Connection connection, int articleID) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(
                 "SELECT article_id, title, content, brief, created_time, edit_time, number_of_likes, number_of_dislikes " +

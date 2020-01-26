@@ -1,7 +1,7 @@
 package ictgradschool.project.control;
 
-import ictgradschool.project.model.Article;
-import ictgradschool.project.model.ArticleDAO;
+import ictgradschool.project.model.Comment;
+import ictgradschool.project.model.CommentDAO;
 import ictgradschool.project.util.DBConnectionUtils;
 import ictgradschool.project.util.JSONResponse;
 
@@ -15,18 +15,18 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "article-list-load", urlPatterns = {"/load-articles"})
-public class ArticleListLoadServlet extends HttpServlet {
+@WebServlet(name = "comment-list-load", urlPatterns = {"/load-comments"})
+public class CommentListLoadServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int authorID = Integer.parseInt(request.getParameter("authorID"));
+        int articleID = Integer.parseInt(request.getParameter("articleID"));
 
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
 
-            List<Article> articles = ArticleDAO.getBriefArticleListByAuthorID(connection, authorID);
+            List<Comment> comments = CommentDAO.getCommentListByArticleID(connection, articleID);
 
-            JSONResponse.send(response, articles);
+            JSONResponse.send(response, comments);
 
         } catch (SQLException e) {
             e.printStackTrace();
