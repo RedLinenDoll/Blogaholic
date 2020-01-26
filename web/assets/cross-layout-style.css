@@ -96,3 +96,14 @@ a:hover{
 button:focus {
     outline:none;
 }
+
+button.link-button {
+    background-color: var(--theme-color);
+    font-family: var(--primary-font);
+    border: none;
+    height: 3em;
+    font-size: 15px;
+    color: white;
+    font-weight: 400;
+
+}

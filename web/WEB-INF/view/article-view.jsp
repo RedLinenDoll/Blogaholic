@@ -55,7 +55,7 @@
 <div id="visitor-options-container">
     <a class="primary-link" href='<c:url value="/blog-view?authorID=${author.userID}"/>'>
         <button class="link-button">
-            Back to ${author.username}'s blog
+            Back to ${author.username}'s blog  &nbsp;&#8594;
         </button>
     </a>
 </div>
