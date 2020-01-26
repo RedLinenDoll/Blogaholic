@@ -1,6 +1,6 @@
 :root {
     --theme-color: #227788;
-    --heavy-color: #122222;
+    --heavy-color: #225566;
 }
 
 .inline-avatar {
@@ -79,7 +79,7 @@ a {
 }
 
 a {
-    color: var(--heavy-color);
+    color: #333333;
 }
 a:hover{
     color: var(--theme-color);
@@ -105,5 +105,10 @@ button.link-button {
     font-size: 15px;
     color: white;
     font-weight: 400;
-
+}
+.link-button > a{
+    color: white;
+}
+.link-button:hover {
+    background-color: var(--heavy-color);
 }
