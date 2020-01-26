@@ -1,13 +1,25 @@
 :root {
-    --theme-color: #227788;
-    --heavy-color: #122222;
+    --theme-color: #888888;
+    --heavy-color: #666666;
+    /*    These will be immediately overwritten as soon as the blog or article view are loaded.*/
+
+    --gentle-black: #333333;
+    --gentle-white: #f0f0f0;
+    --bright-gray: #bbbbbb;
+    --median-gray: #868e96;
+    /*    These are always available for consistent black-white-gray colors */
+}
+
+:root {
+    --primary-font: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --secondary-font: Lora, 'Times New Roman', serif;
 }
 
 .inline-avatar {
     width: 1.5em;
     height: 1.5em;
     border-radius: 50%;
-    border: #bbbbbb solid 1px;
+    border: var(--bright-gray) solid 1px;
     position: relative;
     top: 0.5em;
 }
@@ -15,6 +27,7 @@
 body {
     font-family: var(--primary-font);
     margin: 0;
+    color: var(--gentle-black);
 }
 
 html {
@@ -36,13 +49,13 @@ a {
 }
 
 
-.articleInfo {
+.article-info {
     font-weight: 400;
     font-style: italic;
     font-family: var(--secondary-font);
 }
 
-.articleBrief {
+.article-brief {
     font-weight: 400;
 }
 
@@ -66,11 +79,13 @@ a {
 .top-bar-links {
     right: 3vw;
 }
+
 .top-bar-home-link {
     left: 1vw;
 }
+
 #my-blog-span, #create-blog-span {
-    border-right: solid #333333 2px;
+    border-right: solid var(--gentle-black) 2px;
     padding-right: 4px;
 }
 
@@ -79,9 +94,10 @@ a {
 }
 
 a {
-    color: var(--heavy-color);
+    color: var(--gentle-black);
 }
-a:hover{
+
+a:hover {
     color: var(--theme-color);
 }
 
@@ -89,10 +105,32 @@ a:hover{
     color: var(--theme-color);
 }
 
-.primary-link:hover{
-    text-decoration: underline;
+.primary-link:hover {
+    color: var(--heavy-color);
 }
 
 button:focus {
-    outline:none;
+    outline: none;
+}
+
+button.link-button {
+    background-color: var(--theme-color);
+    font-family: var(--primary-font);
+    border: none;
+    height: 3em;
+    font-size: 15px;
+    color: var(--gentle-white);
+    font-weight: 400;
+}
+
+.link-button > a {
+    color: var(--gentle-white);
+}
+
+.link-button:hover {
+    background-color: var(--heavy-color);
+}
+
+.article-info {
+    color: var(--median-gray);
 }

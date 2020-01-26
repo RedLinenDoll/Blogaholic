@@ -37,10 +37,10 @@
 </c:choose>
 
 <div class="head-container">
-    <div id="article-title-container" class="primary-h1-container">
+    <div id="article-title-container" class="page-h1-container">
         <h1 id="article-title">${article.articleTitle}</h1>
     </div>
-    <div class="author-intro-container">
+    <div class="author-intro-container page-author-container">
         <span>by <img class="inline-avatar" src='<c:url value="/images/avatar/${author.avatarPath}"/>'
                       alt="author avatar"> ${author.username}</span>
     </div>
@@ -53,11 +53,11 @@
 </div>
 
 <div id="visitor-options-container">
-    <a class="primary-link" href='<c:url value="/blog-view?authorID=${author.userID}"/>'>
         <button class="link-button">
-            Back to ${author.username}'s blog
+            <a href='<c:url value="/blog-view?authorID=${author.userID}"/>'>
+            Back to ${author.username}'s blog  &nbsp;&#8594;
+            </a>
         </button>
-    </a>
 </div>
 
 

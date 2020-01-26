@@ -39,35 +39,35 @@
 </c:choose>
 
 <div class="head-container">
-    <div id="blog-name-container" class="primary-h1-container">
+    <div id="blog-name-container" class="page-h1-container">
         <h1 id="blog-name">${author.blogName}</h1>
     </div>
-    <div id="blog-description-container">
+    <div id="blog-description-container" class="page-description-container">
         <p id="blog-description">${author.blogDescription}</p>
     </div>
-    <div class="author-intro-container">
+    <div class="author-intro-container" class="page-author-container">
         <span>by <img class="inline-avatar" src='<c:url value="/images/avatar/${author.avatarPath}"/>'
                       alt="author avatar"> ${author.username}</span>
     </div>
 </div>
 
-<div id="post-list-container">
+<div id="article-list-container" class="page-item-container">
     <%--    This part is for demoenstration of jsp structure, and will be cleared once loaded article --%>
-    <div class="articleDiv">
-        <a class="full-article-link" href='<c:url value="#"/>'>
-            <div class="articleTitleDiv">
-                <h2 class="articleTitle">
+    <div class="article-div page-item-div">
+        <a class="full-article-link page-item-link" href='<c:url value="#"/>'>
+            <div class="article-title-div page-item-title-div">
+                <h2 class="article-title page-item-title">
                     <%--            article title shows here  --%>
                 </h2>
             </div>
-            <div class="articleBriefDiv">
-                <p class="articleBrief">
+            <div class="article-brief-div page-item-brief-div">
+                <p class="article-brief page-item-brief">
                     <%--            article brief shows here --%>
                 </p>
             </div>
         </a>
-        <div class="articleInforDiv">
-        <span class="articleInfo">
+        <div class="article-info-div page-item-info-div">
+        <span class="article-info page-item-info">
             <%--           creation date , likes and dislikes shows here --%>
         </span>
         </div>

@@ -3,7 +3,7 @@ const uriStart = '/blog/';
 
 
 async function loadArticleList(authorID) {
-    const postContainer = document.querySelector("#post-list-container");
+    const postContainer = document.querySelector("#article-list-container");
     let response = await fetch(`${uriStart}load-articles?authorID=${authorID}`);
     let articleList = await response.json();
 
@@ -15,30 +15,30 @@ async function loadArticleList(authorID) {
 
 function renderArticleDiv(article) {
     const articleDiv = document.createElement("div");
-    articleDiv.classList.add("articleDiv");
+    articleDiv.classList.add("article-div", "page-item-div");
 
     const fullArticleLink = document.createElement("a");
     fullArticleLink.classList.add("full-article-link");
     fullArticleLink.href=`${uriStart}article-view?articleID=${article.articleID}`;
 
     const articleTitleDiv = document.createElement("div");
-    articleTitleDiv.classList.add("articleTitleDiv");
+    articleTitleDiv.classList.add("article-title-div");
     const articleTitle = document.createElement("h2");
-    articleTitleDiv.classList.add("articleTitle");
+    articleTitleDiv.classList.add("article-title");
     articleTitle.innerText = article.articleTitle;
     articleTitleDiv.appendChild(articleTitle);
 
     const articleBriefDiv = document.createElement("div");
-    articleBriefDiv.classList.add("articleBriefDiv");
+    articleBriefDiv.classList.add("article-brief-div", "page-item-brief-div");
     const articleBrief = document.createElement("p");
-    articleBrief.classList.add("articleBrief");
+    articleBrief.classList.add("article-brief", "page-item-brief");
     articleBrief.innerText = article.articleBrief;
     articleBriefDiv.appendChild(articleBrief);
 
     const articleInfoDiv = document.createElement("div");
-    articleInfoDiv.classList.add("articleInfoDiv");
+    articleInfoDiv.classList.add("article-info-div", "page-item-info-div");
     const articleInfo = document.createElement("span");
-    articleInfo.classList.add("articleInfo");
+    articleInfo.classList.add("article-info", "page-item-info");
     articleInfo.innerHTML = `Created on ${timestampToLocaleString(article.timeCreated)} · ${article.likesCount} <i class="far fa-thumbs-up like-empty-button"></i>· ${article.dislikesCount} <i class="far fa-thumbs-down dislike-empty-button"></i>`;
     articleInfoDiv.appendChild(articleInfo);
 
