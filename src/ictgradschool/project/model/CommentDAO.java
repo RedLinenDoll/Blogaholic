@@ -9,35 +9,15 @@ import java.util.List;
 
 public class CommentDAO {
 
+    // TODO get comment list by article ID
 
-    public List<Comments> getAllComments(Connection conn) {
-        List<Comments> comments = new ArrayList<>();
-        try (Statement stmt = conn.createStatement()) {
-//            add some kind of query here..
-//            try(ResultSet rs = stmt.executeQuery()){
-//            while(rs.next)...}
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    // TODO get comment list by comment ID
 
-        return comments;
+    // TODO add comment on article
 
-    }
+    // TODO add comment on comment
 
+    // TODO delete comment by comment ID
 
-    private static Comments createCommentFromResultSet(ResultSet rs) throws SQLException {
-
-        Comments comment = new Comments(
-                rs.getInt(1),
-                rs.getString(2),
-                rs.getString(3),
-                rs.getString(4),
-                rs.getInt(5),
-                rs.getInt(6)
-
-
-        );
-        return comment;
-    }
 
 }
