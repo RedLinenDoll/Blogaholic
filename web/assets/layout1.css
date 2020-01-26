@@ -1,12 +1,28 @@
 
-:root {
-    --primary-font: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    --secondary-font: Lora, 'Times New Roman', serif;
+/*
+Use any of the class and id names provided in blog-view.jsp and article-view.jsp.
+Add new class names into existing elements. Try to make the names self-explaining and readable.
+Add new empty div as decorating shapes or container as needed.
+
+------------------------------------------
+The colors available are:
+var(--theme-color)
+var(--heavy-color)
+var(--gentle-black)
+var(--gentle-white)
+var(--bright-gray)
+var(--median-gray)
+
+Usage example:
+if you want to make an element with id "example-id" have the theme color background:
+#example-id {
+background-color: var(--theme-color);
 }
 
+Please do not introduce new colors unless really needed, to keep a consistent color tone.
 
-.articleInfo {
-    color: #868e96;
-}
+-------------------------------------------
+
+*/
 
 

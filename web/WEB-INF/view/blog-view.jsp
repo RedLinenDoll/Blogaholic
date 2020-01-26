@@ -66,7 +66,7 @@
                 </p>
             </div>
         </a>
-        <div class="articleInforDiv">
+        <div class="articleInfoDiv">
         <span class="articleInfo">
             <%--           creation date , likes and dislikes shows here --%>
         </span>
