@@ -23,7 +23,7 @@ public class User {
         this.iterationNum = iterationNum;
     }
 
-    // user full creation
+    // user full creation, database will assign a user ID.
     public User(String username, String passwordHashBase64, String saltHashBase64, int saltLength, int iterationNum, String avatarPath, String blogName, String blogDescription, String themeColor, int layoutID) {
         this.username = username;
         this.passwordHashBase64 = passwordHashBase64;
