@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS layout_db
 CREATE TABLE IF NOT EXISTS users_db
 (
     user_id          INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    username         VARCHAR(16)  NOT NULL,
+    username         VARCHAR(16)  NOT NULL UNIQUE,
     hashed_password  VARCHAR(128),
     hashed_salt      VARCHAR(128),
     salt_length      INT UNSIGNED NOT NULL,
