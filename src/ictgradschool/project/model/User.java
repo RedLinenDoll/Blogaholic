@@ -55,6 +55,10 @@ public class User {
         this.layoutID = layoutID;
     }
 
+    public User() {
+
+    }
+
     public Integer getUserID() {
         return userID;
     }
