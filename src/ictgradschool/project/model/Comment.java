@@ -29,7 +29,7 @@ public class Comment {
         this.childComments = new ArrayList<>();
     }
 
-    public void addComment(Comment comment) {
+    public void addChildComment(Comment comment) {
         childComments.add(comment);
     }
 

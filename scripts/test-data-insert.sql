@@ -47,7 +47,7 @@ VALUES ('Cooking curry dish',
 
 INSERT INTO comment_db (body, created_time, edit_time, number_of_likes, number_of_dislikes, target_article_id, commenter_id)
 VALUES ('On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire.',
-        '2019-12-24 20:30:05', NULL, 10, 5, 5, 1),
+        '2019-12-24 20:30:05', NULL, 10, 5, 1, 1),
        ('But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted.',
         '2018-11-06 19:35:18', '2020-01-10 08:20:05', 20, 3, 4, 2),
        ('Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.',
@@ -59,7 +59,10 @@ VALUES ('On the other hand, we denounce with righteous indignation and dislike m
 
 INSERT INTO comment_db(body, created_time, edit_time, number_of_likes, number_of_dislikes, target_article_id, target_comment_id, commenter_id)
 VALUES ('Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.',
-        '2019-08-06 18:34:08', NULL, 0, 8, NULL, 30000001,3);
+        '2019-08-06 18:34:08', NULL, 0, 8, NULL, 30000000,3),
+       ('Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.',
+        '2019-08-06 18:34:08', NULL, 0, 8, NULL, 30000005,3)
+       ;
 
 
 
