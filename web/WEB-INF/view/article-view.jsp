@@ -18,6 +18,7 @@
 
     <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>
     <script src='<c:url value="/js/load-article-comments.js"/>' type="text/javascript"></script>
+    <script src='<c:url value="/js/like-or-dislike.js"/>' type="text/javascript"></script>
     <script type="text/javascript">
         window.addEventListener("load", function () {
             applyThemeColor(`${author.themeColor}`);
