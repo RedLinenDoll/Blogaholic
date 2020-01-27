@@ -75,4 +75,19 @@ public class UserDAO {
             }
         }
     }
+
+    public static boolean insertUser(Connection connection, User user) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users_db (username, hashed_password, hashed_salt, salt_length, iteration_number) VALUE (?,?,?,?,?)")) {
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getPasswordHashBase64());
+            preparedStatement.setString(3, user.getSaltHashBase64());
+            preparedStatement.setInt(4, user.getSaltLength());
+            preparedStatement.setInt(5, user.getIterationNum());
+
+            int rowUpdated = preparedStatement.executeUpdate();
+            return rowUpdated==1;
+        }
+    }
+
+
 }

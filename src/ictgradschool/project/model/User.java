@@ -13,6 +13,15 @@ public class User {
     private String themeColor;
     private int layoutID;
 
+
+    public User(String username, String passwordHashBase64, String saltHashBase64, int saltLength, int iterationNum) {
+        this.username = username;
+        this.passwordHashBase64 = passwordHashBase64;
+        this.saltHashBase64 = saltHashBase64;
+        this.saltLength = saltLength;
+        this.iterationNum = iterationNum;
+    }
+
     // user authentication with ID
     public User(Integer userID, String username, String passwordHashBase64, String saltHashBase64, int saltLength, int iterationNum) {
         this.userID = userID;
