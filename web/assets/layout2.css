@@ -1,0 +1,26 @@
+.body-container {
+    border-top: 2px var(--theme-color) dotted;
+}
+
+.link-button {
+    background-color: var(--theme-color);
+    border: none;
+    color: var(--gentle-white);
+    position: absolute;
+    right: 0;
+}
+
+.link-button > a {
+    color: var(--gentle-white);
+}
+
+.link-button:hover {
+    background-color: var(--heavy-color);
+}
+
+hr{
+    border: none;
+    height: 1px;
+    background-color: var(--bright-gray);
+    color: var(--bright-gray);
+}
