@@ -17,3 +17,10 @@
 .link-button:hover {
     background-color: var(--heavy-color);
 }
+
+hr{
+    border: none;
+    height: 1px;
+    background-color: var(--bright-gray);
+    color: var(--bright-gray);
+}
