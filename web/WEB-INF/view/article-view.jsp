@@ -17,9 +17,11 @@
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'/>
 
     <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>
+    <script src='<c:url value="/js/load-article-comments.js"/>' type="text/javascript"></script>
     <script type="text/javascript">
         window.addEventListener("load", function () {
             applyThemeColor(`${author.themeColor}`);
+            loadCommentList(${article.articleID});
         })
     </script>
 
@@ -53,11 +55,34 @@
 </div>
 
 <div id="visitor-options-container">
-        <button class="link-button">
-            <a href='<c:url value="/blog-view?authorID=${author.userID}"/>'>
-            Back to ${author.username}'s blog  &nbsp;&#8594;
-            </a>
-        </button>
+    <button class="link-button">
+        <a href='<c:url value="/blog-view?authorID=${author.userID}"/>'>
+            Back to ${author.username}'s blog &nbsp;&#8594;
+        </a>
+    </button>
+</div>
+
+<div id="all-comments-container">
+    <div class="root-comment-div comment-div">
+        <div class="block-avatar-div">
+        </div>
+        <div class="comment-info-div">
+        </div>
+        <div class="comment-body-div">
+        </div>
+        <div class="comment-options-div">
+        </div>
+
+        <div class="child-comment-div comment-div">
+            <div class="comment-body-div">
+            </div>
+            <div class="comment-info-div">
+            </div>
+
+            <%--            more layers of comment-div  --%>
+        </div>
+
+    </div>
 </div>
 
 

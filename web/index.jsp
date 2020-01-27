@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <%--TODO Create A LANDING PAGE --%>
+
     <meta charset="UTF-8">
     <title>Temporary Landing Page</title>
     <style type="text/css">
