@@ -42,5 +42,9 @@ public class ArticleViewServlet extends HttpServlet {
     }
 
 
+
+
+
+
     //TODO post method, article editing or deleting.
 }

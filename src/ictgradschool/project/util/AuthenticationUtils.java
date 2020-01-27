@@ -1,8 +1,25 @@
 package ictgradschool.project.util;
 
-public class AuthenticationUtils {
+import ictgradschool.project.model.User;
 
-    // TODO createUser,  given username and password, create a User object (with authentication info only).
+import java.util.Random;
+
+public class AuthenticationUtils {
+    private static Random RANDOM_GENERATOR = new Random();
+
+    public static User createUser(String username, String password) {
+        int randomSaltLength = RANDOM_GENERATOR.nextInt(20) + 1;
+        int randomIterationNum = RANDOM_GENERATOR.nextInt(20) + 1;
+
+        byte[] salt = new byte[randomSaltLength];
+        RANDOM_GENERATOR.nextBytes(salt);
+
+        String hashedSalt = PasswordUtil.base64Encode(salt);
+        String hashedPassword = PasswordUtil.base64Encode(PasswordUtil.hash(password.toCharArray(), salt, randomIterationNum));
+
+
+        return new User(username, hashedPassword, hashedSalt, randomSaltLength, randomIterationNum);
+    }
 
 
     // TODO authenticateUser, given a User object that contains authentication info
