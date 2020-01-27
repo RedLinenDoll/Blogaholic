@@ -20,8 +20,8 @@ function getCommentDiv(comment) {
     commentDiv.classList.add("comment-div");
 
     const avatarDiv = document.createElement("div");
-    avatarDiv.classList.add("block-avatar-icon-div");
-    avatarDiv.innerHTML = `<img src="${uriStart}images/avatar/${comment.avatarPath}" class="block-avatar-icon" alt="">`;
+    avatarDiv.classList.add("block-avatar-div");
+    avatarDiv.innerHTML = `<img src="${uriStart}images/avatar/${comment.avatarPath}" class="block-avatar comment-avatar" alt="">`;
 
     const commentInfoDiv = document.createElement("div");
     commentInfoDiv.classList.add("comment-info-div");

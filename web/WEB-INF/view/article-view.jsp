@@ -64,8 +64,7 @@
 
 <div id="all-comments-container">
     <div class="root-comment-div comment-div">
-        <div class="block-avatar-icon-div">
-            <img src="#" class="block-avatar-icon">
+        <div class="block-avatar-div">
         </div>
         <div class="comment-info-div">
         </div>
