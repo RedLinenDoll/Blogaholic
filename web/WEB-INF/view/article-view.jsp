@@ -49,13 +49,15 @@
     </div>
 </div>
 
+<div class="body-container">
+
 <div id="article-content-container">
     <p>
         ${article.articleContent}
     </p>
 </div>
 
-<div id="visitor-options-container">
+<div id="article-options-container">
     <button class="link-button">
         <a href='<c:url value="/blog-view?authorID=${author.userID}"/>'>
             Back to ${author.username}'s blog &nbsp;&#8594;
@@ -86,6 +88,6 @@
     </div>
 </div>
 
-
+</div>
 </body>
 </html>

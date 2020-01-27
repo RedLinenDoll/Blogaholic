@@ -42,15 +42,16 @@
     <div id="blog-name-container" class="page-h1-container">
         <h1 id="blog-name">${author.blogName}</h1>
     </div>
+    <div class="author-intro-container" class="page-author-container">
+        <span><img class="inline-avatar" src='<c:url value="/images/avatar/${author.avatarPath}"/>'
+                   alt="author avatar"> ${author.username}'s blog</span>
+    </div>
     <div id="blog-description-container" class="page-description-container">
         <p id="blog-description">${author.blogDescription}</p>
     </div>
-    <div class="author-intro-container" class="page-author-container">
-        <span>by <img class="inline-avatar" src='<c:url value="/images/avatar/${author.avatarPath}"/>'
-                      alt="author avatar"> ${author.username}</span>
-    </div>
-</div>
 
+</div>
+<div class="body-container">
 <div id="article-list-container" class="page-item-container">
     <%--    This part is for demoenstration of jsp structure, and will be cleared once loaded article --%>
     <div class="article-div page-item-div">
@@ -74,6 +75,6 @@
     </div>
 </div>
 
-
+</div>
 </body>
 </html>
