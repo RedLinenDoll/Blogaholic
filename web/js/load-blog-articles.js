@@ -6,7 +6,7 @@ async function loadArticleList(authorID) {
     const postContainer = document.querySelector("#article-list-container");
     let response = await fetch(`${uriStart}load-articles?authorID=${authorID}`);
     let articleList = await response.json();
-
+    postContainer.innerHTML="";
     articleList.forEach(article => {
             postContainer.appendChild(renderArticleDiv(article));
         }
@@ -39,7 +39,7 @@ function renderArticleDiv(article) {
     articleInfoDiv.classList.add("article-info-div", "page-item-info-div");
     const articleInfo = document.createElement("span");
     articleInfo.classList.add("article-info", "page-item-info");
-    articleInfo.innerHTML = `Created on ${timestampToLocaleString(article.timeCreated)} · ${article.likesCount} <i class="far fa-thumbs-up like-empty-button"></i>· ${article.dislikesCount} <i class="far fa-thumbs-down dislike-empty-button"></i>`;
+    articleInfo.innerHTML = `Created on ${timestampToLocaleString(article.timeCreated)} · ${article.likesCount} <i class="far fa-thumbs-up like-empty-button like-article" id="like-article-${article.articleID}"></i>· ${article.dislikesCount} <i class="far fa-thumbs-down dislike-empty-button dislike-article-${article.articleID}"></i>`;
     articleInfoDiv.appendChild(articleInfo);
 
     fullArticleLink.appendChild(articleTitleDiv);

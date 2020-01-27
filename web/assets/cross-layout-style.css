@@ -49,10 +49,12 @@ a {
 }
 
 
-.article-info {
+.article-info, .comment-info{
     font-weight: 400;
     font-style: italic;
     font-family: var(--secondary-font);
+    color: var(--median-gray);
+
 }
 
 .article-brief {
@@ -131,6 +133,3 @@ button.link-button {
     background-color: var(--heavy-color);
 }
 
-.article-info {
-    color: var(--median-gray);
-}

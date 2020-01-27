@@ -7,7 +7,7 @@ import java.util.List;
 public class Comment {
 
     private int commentID;
-    private String body;
+    private String commentBody;
     private String commenterUsername;
     private String avatarPath;
     private Timestamp timeCreated;
@@ -17,9 +17,9 @@ public class Comment {
     private List<Comment> childComments;
 
     // load comment
-    public Comment(int commentID, String body, String commenterUsername, String avatarPath, Timestamp timeCreated, Timestamp timeEdited, int likesCount, int dislikesCount) {
+    public Comment(int commentID, String commentBody, String commenterUsername, String avatarPath, Timestamp timeCreated, Timestamp timeEdited, int likesCount, int dislikesCount) {
         this.commentID = commentID;
-        this.body = body;
+        this.commentBody = commentBody;
         this.commenterUsername = commenterUsername;
         this.avatarPath = avatarPath;
         this.timeCreated = timeCreated;
@@ -41,12 +41,12 @@ public class Comment {
         this.commentID = commentID;
     }
 
-    public String getBody() {
-        return body;
+    public String getCommentBody() {
+        return commentBody;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setCommentBody(String commentBody) {
+        this.commentBody = commentBody;
     }
 
     public String getCommenterUsername() {
