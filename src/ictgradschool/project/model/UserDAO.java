@@ -11,11 +11,18 @@ public class UserDAO {
 
 
     private static User createLoggedUserFromResultSet(ResultSet resultSet) throws SQLException {
-        return new User(
+        User user = new User(
                 resultSet.getInt(1), // userID
-                resultSet.getString(2), // userName
-                resultSet.getString(3)  // avatarPath
+                resultSet.getString(2), // username
+                resultSet.getString(3),  // hashedPassword
+                resultSet.getString(4), // hashed_salt
+                resultSet.getInt(5), // salt_length
+                resultSet.getInt(6) //iterationNumber
         );
+        user.setLayoutID(resultSet.getInt(7));
+        user.setThemeColor(resultSet.getString(8));
+        user.setAvatarPath(resultSet.getString(9));
+        return user;
     }
 
     private static User createBlogAuthorFromResultSet(ResultSet resultSet) throws SQLException {
@@ -61,20 +68,6 @@ public class UserDAO {
         }
     }
 
-    public static User getLoggedUserById(Connection connection, int id) throws SQLException {
-        try (PreparedStatement statement = connection.prepareStatement("SELECT user_id, username, avatar_path " +
-                "FROM users_db WHERE user_id = ?")) {
-            statement.setInt(1, id);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    return createLoggedUserFromResultSet(
-                            resultSet
-                    );
-                } else
-                    return null;
-            }
-        }
-    }
 
     public static boolean insertUser(Connection connection, User user) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users_db (username, hashed_password, hashed_salt, salt_length, iteration_number) VALUE (?,?,?,?,?)")) {
@@ -85,9 +78,19 @@ public class UserDAO {
             preparedStatement.setInt(5, user.getIterationNum());
 
             int rowUpdated = preparedStatement.executeUpdate();
-            return rowUpdated==1;
+            return rowUpdated == 1;
         }
     }
 
 
+    public static User getLoggedUserByUsername(Connection connection, String username) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT user_id, username, hashed_password, hashed_salt, salt_length, iteration_number, layout_id, theme_color, avatar_path FROM users_db WHERE username = ?")) {
+            preparedStatement.setString(1, username);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return createLoggedUserFromResultSet(resultSet);
+                } else return null;
+            }
+        }
+    }
 }

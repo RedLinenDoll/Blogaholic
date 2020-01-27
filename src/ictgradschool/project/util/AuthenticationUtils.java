@@ -22,6 +22,18 @@ public class AuthenticationUtils {
     }
 
 
+    public static boolean authenticateUser(User user,String password){
+        if (user == null) return false;
+
+//            public static boolean isExpectedPassword(char[] password, byte[] salt, int iterations, byte[] expectedHash) {
+        return PasswordUtil.isExpectedPassword(
+                password.toCharArray(),
+                PasswordUtil.base64Decode(user.getSaltHashBase64()),
+                user.getIterationNum(),
+                PasswordUtil.base64Decode(user.getPasswordHashBase64())
+                ) ;
+    }
+
     // TODO authenticateUser, given a User object that contains authentication info
     //  (created from data queried from database with username) and a user input password, return
     //  a boolean indicating whether username and password match with each other.
