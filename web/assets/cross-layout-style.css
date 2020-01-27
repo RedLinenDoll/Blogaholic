@@ -152,6 +152,7 @@ a:hover {
 button:focus {
     outline: none;
 }
+
 .body-container {
     margin: 0 auto;
 }
@@ -175,22 +176,26 @@ button:focus {
     border: var(--bright-gray) solid 2px;
 }
 
-@media screen and (min-width: 900px){
+@media screen and (min-width: 900px) {
     .head-container {
         width: 70vw;
     }
+
     .body-container {
         width: 50vw;
     }
 }
+
 @media screen and (max-width: 900px) {
-    .head-container{
+    .head-container {
         width: 95vw;
     }
+
     .body-container {
         width: 95vw;
     }
 }
+
 .head-container {
     height: 40vh;
     margin: 0 auto;

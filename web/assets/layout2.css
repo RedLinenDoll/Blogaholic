@@ -9,9 +9,11 @@
     position: absolute;
     right: 0;
 }
+
 .link-button > a {
     color: var(--gentle-white);
 }
+
 .link-button:hover {
     background-color: var(--heavy-color);
 }

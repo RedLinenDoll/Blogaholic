@@ -51,42 +51,42 @@
 
 <div class="body-container">
 
-<div id="article-content-container">
-    <p>
-        ${article.articleContent}
-    </p>
-</div>
+    <div id="article-content-container">
+        <p>
+            ${article.articleContent}
+        </p>
+    </div>
 
-<div id="article-options-container">
-    <button class="link-button">
-        <a href='<c:url value="/blog-view?authorID=${author.userID}"/>'>
-            Back to ${author.username}'s blog &nbsp;&#8594;
-        </a>
-    </button>
-</div>
+    <div id="article-options-container">
+        <button class="link-button">
+            <a href='<c:url value="/blog-view?authorID=${author.userID}"/>'>
+                Back to ${author.username}'s blog &nbsp;&#8594;
+            </a>
+        </button>
+    </div>
 
-<div id="all-comments-container">
-    <div class="root-comment-div comment-div">
-        <div class="block-avatar-div">
-        </div>
-        <div class="comment-info-div">
-        </div>
-        <div class="comment-body-div">
-        </div>
-        <div class="comment-options-div">
-        </div>
-
-        <div class="child-comment-div comment-div">
-            <div class="comment-body-div">
+    <div id="all-comments-container">
+        <div class="root-comment-div comment-div">
+            <div class="block-avatar-div">
             </div>
             <div class="comment-info-div">
             </div>
+            <div class="comment-body-div">
+            </div>
+            <div class="comment-options-div">
+            </div>
 
-            <%--            more layers of comment-div  --%>
+            <div class="child-comment-div comment-div">
+                <div class="comment-body-div">
+                </div>
+                <div class="comment-info-div">
+                </div>
+
+                <%--            more layers of comment-div  --%>
+            </div>
+
         </div>
-
     </div>
-</div>
 
 </div>
 </body>

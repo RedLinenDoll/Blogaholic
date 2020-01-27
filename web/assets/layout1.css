@@ -1,4 +1,3 @@
-
 /*
 
 TODO style layout1. This layout will be applied to both blog-view and article-view.
@@ -31,15 +30,15 @@ Please do not introduce new colors unless really needed, to keep a consistent co
 */
 
 .head-container {
-/*    This it the div that contains the entry part of blog or article page: name, author, description. */
+    /*    This it the div that contains the entry part of blog or article page: name, author, description. */
 }
 
 #article-list-container {
-/*    This is the container for article list of the blog page  */
+    /*    This is the container for article list of the blog page  */
 }
 
 #article-div {
-/*    This is the container for each article items on the blog page*/
+    /*    This is the container for each article items on the blog page*/
 }
 
 /* See blog-view.jsp page and blog-view.jsp page for more class/id names. */
