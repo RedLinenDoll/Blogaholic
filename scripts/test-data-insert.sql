@@ -21,7 +21,7 @@ VALUES ('jayp', 'dCCxTC0I2ZFjhKWZc', '3tHlj6E', 20, 107, 'Cooking made easy',
         1, '#ffd500', 'avatar4.jpg'),
        ('vilam', 'KlNA51J5KSTTlCrWS1u', 'eDhPNnu9MbD3', 50, 222, 'Child teething',
         'In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. ',
-        1, '#9e7865', 'avatar5.jpg');
+        1, '#f29494', 'avatar5.jpg');
 
 
 INSERT INTO article_db (title, content, created_time, edit_time, number_of_likes, number_of_dislikes, author_id)
