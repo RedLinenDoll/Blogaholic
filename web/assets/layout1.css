@@ -4,41 +4,13 @@
     --secondary-font: 'Cinzel', serif;
 }
 
-/*
-
-Use any of the class and id names as needed.
-Add new class names as needed. Use full spelling and try to make the names self-explaining and readable.
-Add new empty div as decorating shapes or container as needed.
-
-Please do not delete existing class names or containers.
-
-------------------------------------------
-The colors available are:
-var(--theme-color)
-var(--heavy-color)
-var(--gentle-black)
-var(--gentle-white)
-var(--bright-gray)
-var(--median-gray)
-
-Usage example:
-if you want to make an element with id "example-id" have the theme color background:
-#example-id {
-background-color: var(--theme-color);
-}
-
-Please do not introduce new colors unless really needed, to keep a consistent color tone.
-
--------------------------------------------
-
-*/
-
 .head-container {
     /*    This it the div that contains the entry part of blog or article page: name, author, description. */
     background: url("../images/layout-decor/F100010654.jpg") no-repeat center center fixed;
     background-size: cover;
     padding-top: 10vh;
     padding-bottom: 10vh;
+    margin-bottom: 40px;
 }
 
 .head-container > div {
@@ -55,19 +27,10 @@ Please do not introduce new colors unless really needed, to keep a consistent co
 }
 
 
-#article-list-container {
-    /*    This is the container for article list of the blog page  */
-
-}
-
-.article-div {
-    /*    This is the container for each article items on the blog page*/
 
 
-}
 
 
-/* See blog-view.jsp page and blog-view.jsp page for more class/id names. */
 
 
 

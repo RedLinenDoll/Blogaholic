@@ -210,7 +210,9 @@ button:focus {
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-
+.body-container {
+    margin-bottom: 50px;
+}
 
 
 
