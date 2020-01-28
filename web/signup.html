@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="assets/cross-layout-style.css">
     <link rel="stylesheet" href="assets/layout2.css">
     <link rel="stylesheet" href="assets/authentication-page-style.css">
+    <script type="text/javascript" src="js/create-account-check.js"></script>
 </head>
 <body>
 <div class="page-content-container">
@@ -19,7 +20,7 @@
 <div class="body-container">
     <form id="sign-up" action="./signup" method="post">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username">
+        <input type="text" id="username" name="username"><p id="duplicate-warning" class="invisible">Username already exists!</p>
         <br>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password">
