@@ -10,7 +10,7 @@ import java.io.IOException;
 @WebServlet(name = "log-out", urlPatterns = "/logout")
 public class LogOut extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession().setAttribute("loggedUser", null);
         resp.sendRedirect("login.html");
     }
