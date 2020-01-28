@@ -4,6 +4,8 @@
 .idea/**/dictionaries
 .idea/**/inspectionProfiles
 .idea/**/misc.xml
+.idea/misc.xml
+.idea/sqldialects.xml
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/

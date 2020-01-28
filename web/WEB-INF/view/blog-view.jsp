@@ -7,14 +7,10 @@
     <meta name="description" content="blog: ${author.blogName}">
     <title>${author.blogName}</title>
 
-    <link href='<c:url value="https://unpkg.com/startbootstrap-resume/vendor/fontawesome-free/css/all.min.css"/>'
-          rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600,700,800&display=swap"
-          rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i&display=swap" rel="stylesheet">
+    <jsp:include page="../../cross-page-view/link-fonts.jsp"/>
 
-    <link rel="stylesheet" href='<c:url value="/assets/layout${author.layoutID}.css"/>'/>
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'/>
+    <link rel="stylesheet" href='<c:url value="/assets/layout${author.layoutID}.css"/>'/>
 
     <script src='<c:url value="/js/load-blog-articles.js"/>' type="text/javascript"></script>
     <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>
@@ -24,6 +20,14 @@
             applyThemeColor(`${author.themeColor}`);
         })
     </script>
+    <c:if test="${author.layoutID!=2}">
+        <style>
+            .head-container {
+                background: url("./images/layout-decor/layout1-${author.themeColor.substring(1)}.jpg") no-repeat center center fixed;
+                background-size: cover;
+            }
+        </style>
+    </c:if>
 
 </head>
 
