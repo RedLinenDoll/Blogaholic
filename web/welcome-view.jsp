@@ -17,6 +17,18 @@
 </c:choose>
 
 <%--TODO  Once login is achieved, create a welcome page, feeding recent articles. --%>
+<div class="head-container">
+<div class="page-h1-container" id="welcome-message-container">
+    <h1 id="welcome-message">
 Welcome, <img class="inline-avatar" src='<c:url value="/images/avatar/${loggedUser.avatarPath}"/>'>${loggedUser.username}
+    </h1>
+    <button class="link-button">
+        <a href='<c:url value="/blog-view?authorID=${loggedUser.userID}"/>'>
+        Go to my blog &nbsp;&#8594;
+        </a>
+    </button>
+</div>
+</div>
+
 </body>
 </html>

@@ -11,12 +11,12 @@
     </div>
     <div class="top-bar-links" id="visitor-top-bar-links">
         <span id="create-blog-span">
-            <a href='<c:url value="/signup"/>' class="primary-link">
+            <a href='<c:url value="/signup.html"/>' class="primary-link">
                 Create My Blog
             </a>
         </span>
         <span id="log-in-span">
-            <a href='<c:url value="/login"/>'>
+            <a href='<c:url value="/login.html"/>'>
                 Log In
             </a>
         </span>
