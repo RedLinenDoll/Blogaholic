@@ -4,10 +4,24 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
 
-    // TODO get all users and their blog info, for blog homepage
+    public static List<User> getAllBlogUsers(Connection connection) throws SQLException {
+        List<User> allBlogUsers = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT user_id, username, avatar_path, blog_name, blog_description, theme_color, layout_id FROM users_db"
+        )) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    allBlogUsers.add(createBlogAuthorFromResultSet(resultSet));
+                }
+            }
+        }
+        return allBlogUsers;
+    }
 
 
     private static User createLoggedUserFromResultSet(ResultSet resultSet) throws SQLException {

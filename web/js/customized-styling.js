@@ -24,9 +24,6 @@ function colorLuminanceVariance(colorHexCode, luminanceVariation) {
 }
 
 function applyLayoutSpecificStyling(layoutID, themeColor) {
-    console.log(layoutID);
-    console.log(themeColor);
-    if (layoutID == 2) return;
     if (layoutID == 1) {
         const headContainer = document.querySelector(".head-container");
         headContainer.style.setProperty("background",
