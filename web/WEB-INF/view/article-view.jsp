@@ -20,16 +20,10 @@
         window.addEventListener("load", function () {
             applyThemeColor(`${author.themeColor}`);
             loadCommentList(${article.articleID});
+            applyLayoutSpecificStyling(`${author.layoutID}`, `${author.themeColor}`);
         })
     </script>
-    <c:if test="${author.layoutID!=2}">
-        <style>
-            .head-container {
-                background: url("./images/layout-decor/layout1-${author.themeColor.substring(1)}.jpg") no-repeat center center fixed;
-                background-size:contain;
-            }
-        </style>
-    </c:if>
+
 </head>
 
 <body>

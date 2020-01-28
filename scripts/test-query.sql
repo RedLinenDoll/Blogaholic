@@ -9,9 +9,15 @@ FROM article_db as article, users_db as user
 WHERE article.author_id = user.user_id AND article.article_id = 6;
 
 
-UPDATE users_db SET avatar_path = 'avatar5.jpg' WHERE username = 'aniu423';
+UPDATE users_db SET
+                    avatar_path = 'avatar5.jpg',
+                    layout_id = 1,
+                    theme_color = '#3f99ae'
+WHERE username = 'anran';
 
 SELECT article_id, title, brief, created_time, edit_time, number_of_likes, number_of_dislikes
 FROM article_db
 ORDER BY created_time DESC
 LIMIT 10;
+
+

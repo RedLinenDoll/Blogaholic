@@ -12,22 +12,17 @@
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'/>
     <link rel="stylesheet" href='<c:url value="/assets/layout${author.layoutID}.css"/>'/>
 
-    <script src='<c:url value="/js/load-blog-articles.js"/>' type="text/javascript"></script>
     <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>
+    <script src='<c:url value="/js/load-blog-articles.js"/>' type="text/javascript"></script>
     <script type="text/javascript">
         window.addEventListener("load", function () {
-            loadArticleList(${author.userID});
             applyThemeColor(`${author.themeColor}`);
+            applyLayoutSpecificStyling(`${author.layoutID}`, `${author.themeColor}`);
+            loadArticleList(${author.userID});
+
         })
     </script>
-    <c:if test="${author.layoutID!=2}">
-        <style>
-            .head-container {
-                background: url("./images/layout-decor/layout1-${author.themeColor.substring(1)}.jpg") no-repeat center center fixed;
-                background-size: cover;
-            }
-        </style>
-    </c:if>
+
 
 </head>
 
