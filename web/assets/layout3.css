@@ -28,41 +28,7 @@ Please do not introduce new colors unless really needed, to keep a consistent co
 -------------------------------------------
 
 */
-@font-face {
-    font-family: 'Allura-Regular';
 
-    url('../assets/Allura-Regular.ttf') format('ttf'), /* Super Modern Browsers */
-
-}
-.head-container{
-    /*    This it the div that contains the entry part of blog or article page: name, author, description. */
-    background: url("../images/layout-decor/F100010654.jpg") no-repeat center center fixed;
-    background-size: cover;
-    padding-bottom: 20vh;
-    font-family: Arial, serif;
-
-}
-
-@font-face {
-    font-family: 'Allura-Regular';
-    src: url("Allura-Regular.ttf");
-
-}
-
-#article-list-container {
-    /*    This is the container for article list of the blog page  */
-
-
-
-
-}
-
-.article-div {
-    /*    This is the container for each article items on the blog page*/
-
-    font-family: 'Allura-Regular', cursive;
-
-    }
 
 
 /* See blog-view.jsp page and blog-view.jsp page for more class/id names. */

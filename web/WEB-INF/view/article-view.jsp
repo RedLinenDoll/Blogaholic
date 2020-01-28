@@ -14,7 +14,9 @@
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href='<c:url value="/assets/layout${author.layoutID}.css"/>'/>
+
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'/>
+
 
     <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>
     <script src='<c:url value="/js/load-article-comments.js"/>' type="text/javascript"></script>
