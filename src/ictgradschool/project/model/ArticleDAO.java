@@ -58,7 +58,6 @@ public class ArticleDAO {
 
     public static List<Article> getBriefArticleListByAuthorID(Connection connection, int authorID) throws SQLException {
         List<Article> articles = new ArrayList<>();
-
         try (PreparedStatement statement = connection.prepareStatement
                 ("SELECT article_id, title, brief, created_time, edit_time, number_of_likes, number_of_dislikes " +
                         "FROM article_db " +

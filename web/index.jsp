@@ -4,55 +4,46 @@
 <html lang="en">
 <head>
     <%--TODO Create A LANDING PAGE --%>
+    <%--    TODO change the name BLOG to a nice name--%>
 
     <meta charset="UTF-8">
-    <title>Temporary Landing Page</title>
-    <style type="text/css">
-        body {
-            width: 600px;
-            margin: 6em auto;
-            color: #444;
-            text-align: justify;
-            font-family: sans-serif;
-            font-size: 14pt;
-            line-height: 150%;
-        }
+    <title>Welcome to BLOG</title>
 
-        h1, h2 {
-            text-decoration: lightgrey underline;
-            color: #222;
-        }
+    <jsp:include page="/cross-page-view/link-fonts.jsp"/>
+    <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'/>
+    <link rel="stylesheet" href='<c:url value="/assets/layout1.css"/>'>
+    <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>
+    <script src='<c:url value="js/load-blog-list.js"/>'></script>
+    <script type="text/javascript">
+        window.addEventListener("load", function () {
+            loadAllBlogList();
+            applyThemeColor(`#3f99ae`);
+            applyLayoutSpecificStyling(`1`, `#3f99ae`);
+        })
+    </script>
 
-        h2 {
-            margin-top: 2em;
-        }
 
-        code {
-            background-color: rgba(255, 167, 182, 0.41);
-            color: darkred;
-            font-family: monospace;
-            border: 1px solid darkred;
-            padding: 1px 5px;
-        }
-
-        a:visited, a:active, a {
-            color: dodgerblue;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
 
+<div class="head-container">
+    <div id="index-welcome-container" class="page-h1-container">
+        <h1>
+            Welcome to BLOG, where ideas sparkle
+        </h1>
+    </div>
+    <button class="link-button">
+        <a href='<c:url value="/signup.html"/>'>
+            Create my blog &nbsp;&#8594;
+        </a>
+    </button>
+</div>
 
-<h1>Temporary Landing Page</h1>
+<div class="body-container" id="all-blog-container">
 
-<p>TODO: Replace or modify this page with an appropriate homepage for your project.</p>
 
-<p><a href="<c:url value="/HelloWorld"/>">Hello, world!</a></p>
+</div>
+
 
 </body>
 </html>

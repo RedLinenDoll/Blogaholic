@@ -24,14 +24,11 @@ function colorLuminanceVariance(colorHexCode, luminanceVariation) {
 }
 
 function applyLayoutSpecificStyling(layoutID, themeColor) {
-    console.log(layoutID);
-    console.log(themeColor);
-    if (layoutID == 2) return;
     if (layoutID == 1) {
         const headContainer = document.querySelector(".head-container");
         headContainer.style.setProperty("background",
             `url("./images/layout-decor/layout1-${themeColor.substr(1)}.jpg") no-repeat center center fixed`);
-        headContainer.style.setProperty("background-size", "contain");
+        headContainer.style.setProperty("background-size", "cover");
     }
 }
 

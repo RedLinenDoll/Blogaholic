@@ -33,13 +33,26 @@
     grid-template-areas: "avatar comment-info" "avatar comment-body" ". comment-option" ". child-comment";
 }
 
-.comment-avatar {
+.blog-div {
+    display: grid;
+    position: relative;
+    grid-template-columns: 5em 1fr;
+    grid-template-rows: 2em 4em 1fr;
+    grid-template-areas: "avatar blog" "avatar blog" ". blog";
+}
+
+.comment-avatar,
+.blog-avatar {
     width: 3em;
     height: 3em;
     float: left;
     grid-area: avatar;
     position: relative;
     top: 1.5em;
+}
+
+.full-article-link {
+    grid-area: blog;
 }
 
 .comment-info-div {
@@ -215,4 +228,9 @@ button:focus {
 
 
 
-
+.blog-tiny-username {
+    position: relative;
+    top: 1.5em;
+    text-align: center;
+    right: 1em;
+}
