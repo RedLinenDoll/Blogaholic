@@ -11,7 +11,7 @@
     <div class="top-bar-links" id="user-top-bar-links">
         <span id="my-blog-span" class="top-bar-span">
             <a class="primary-link" href='<c:url value="/blog-view?authorID=${loggedUser.userID}"/>'>
-                <img class="inline-avatar" src='<c:url value="/images/avatar/${loggedUser.avatarPath}"/>'/>'
+                <img class="inline-avatar" src='<c:url value="/images/avatar/${loggedUser.avatarPath}"/>'
                      alt="${loggedUser.username}'s avatar">
                 My Blog
             </a>
