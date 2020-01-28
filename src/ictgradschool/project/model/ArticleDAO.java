@@ -14,6 +14,20 @@ public class ArticleDAO {
     //TODO add new article, given author ID and new article object
 
     //TODO edit article, given article ID and new article object
+    public static List<Article> getRecentBriefArticleList(Connection connection) throws SQLException {
+        List<Article> articles = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT article_id, title, brief, created_time, edit_time, number_of_likes, number_of_dislikes\n" +
+                "FROM article_db\n" +
+                "ORDER BY created_time DESC\n" +
+                "LIMIT 10;")) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    articles.add(createBriefArticleFromResultSet(resultSet));
+                }
+            }
+        }
+        return articles;
+    }
 
     public static Article getFullArticleByArticleID(Connection connection, int articleID) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(
