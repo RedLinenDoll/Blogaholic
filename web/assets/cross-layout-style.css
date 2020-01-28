@@ -106,7 +106,6 @@ a {
     height: 40px;
     background-color: rgba(256, 256, 256, 0.9);
     padding: 10px 5px 0;
-    vertical-align: center;
     font-weight: 800;
     z-index: 999 !important;
 }
@@ -199,11 +198,11 @@ button:focus {
 .head-container {
     height: 40vh;
     margin: 0 auto;
-    vertical-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
 }
 
 .top-bar {

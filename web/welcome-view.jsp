@@ -3,15 +3,19 @@
 <html>
 <head>
     <title>Welcome, ${loggedUser.username}!</title>
+
+    <jsp:include page="/cross-page-view/link-fonts.jsp"/>
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'>
     <link rel="stylesheet" href='<c:url value="/assets/layout${loggedUser.layoutID}.css"/>'>
-    <link href='<c:url value="https://unpkg.com/startbootstrap-resume/vendor/fontawesome-free/css/all.min.css"/>'
-          rel="stylesheet">
+
+    <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>
     <script type="text/javascript" src='<c:url value="js/load-recent-articles.js"/>'></script>
     <script type="text/javascript">
         window.addEventListener("load", function () {
             loadRecentArticleList();
             applyThemeColor(`${loggedUser.themeColor}`);
+            applyLayoutSpecificStyling(`${loggedUser.layoutID}`, `${loggedUser.themeColor}`);
+
         })
     </script>
 </head>
