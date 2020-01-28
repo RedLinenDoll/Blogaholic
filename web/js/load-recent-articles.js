@@ -4,7 +4,7 @@ const uriStart = '/blog/';
 
 async function loadRecentArticleList() {
     const postContainer = document.querySelector("#recent-article-list-container");
-    let response = await fetch(`${uriStart}load-recent-articles`);
+    let response = await fetch(`${uriStart}load-articles`);
     let articleList = await response.json();
     postContainer.innerHTML="";
     articleList.forEach(article => {

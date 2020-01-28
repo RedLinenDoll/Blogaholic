@@ -4,6 +4,16 @@
 <head>
     <title>Welcome, ${loggedUser.username}!</title>
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'>
+    <link rel="stylesheet" href='<c:url value="/assets/layout${loggedUser.layoutID}.css"/>'>
+    <link href='<c:url value="https://unpkg.com/startbootstrap-resume/vendor/fontawesome-free/css/all.min.css"/>'
+          rel="stylesheet">
+    <script type="text/javascript" src='<c:url value="js/load-recent-articles.js"/>'></script>
+    <script type="text/javascript">
+        window.addEventListener("load", function () {
+            loadRecentArticleList();
+            applyThemeColor(`${loggedUser.themeColor}`);
+        })
+    </script>
 </head>
 <body>
 
@@ -16,7 +26,6 @@
     </c:otherwise>
 </c:choose>
 
-<%--TODO  Once login is achieved, create a welcome page, feeding recent articles. --%>
 <div class="head-container">
     <div class="page-h1-container" id="welcome-message-container">
         <h1 id="welcome-message">
