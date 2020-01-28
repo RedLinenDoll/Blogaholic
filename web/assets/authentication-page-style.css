@@ -1,0 +1,19 @@
+.head-container {
+    height: 20vh;
+}
+
+form {
+    width: 50%;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 20px auto;
+    line-height: 2em;
+}
+*:focus {
+    outline: none;
+}
+button {
+    border-radius: 0;
+
+}
+

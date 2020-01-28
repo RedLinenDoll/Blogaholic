@@ -3,13 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" href="assets/cross-layout-style.css">
+    <link rel="stylesheet" href="assets/layout2.css">
+    <link rel="stylesheet" href="assets/authentication-page-style.css">
 </head>
 <body>
+<div class="head-container">
+    <div class="page-h1-container" id="login-welcome-container">
+        <h1 id="login-welcome">
+            Welcome to log in. How are you today?
+        </h1>
+    </div>
+</div>
+<div class="body-container">
 <form id="log-in" action="./login" method="post">
     <label for="login-username">Username:</label>
     <input type="text" id="login-username" name="username">
+    <br>
     <label for="login-password">Password:</label>
     <input type="password" id="login-password" name="password">
+    <br>
     <button type="submit">Submit</button>
+</form>
+</div>
 </body>
 </html>

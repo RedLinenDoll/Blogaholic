@@ -11,7 +11,7 @@ import java.io.IOException;
 public class LogOut extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        req.getSession().setAttribute("loggedUser", null);
+        resp.sendRedirect("login.html");
     }
-    // TODO do post, set user session back to null
 }
