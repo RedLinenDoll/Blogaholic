@@ -7,7 +7,7 @@
     <meta name="description" content="blog: ${author.blogName}">
     <title>${author.blogName}</title>
 
-    <jsp:include page="link-fonts.jsp"/>
+    <jsp:include page="../../cross-page-view/link-fonts.jsp"/>
 
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'/>
     <link rel="stylesheet" href='<c:url value="/assets/layout${author.layoutID}.css"/>'/>
