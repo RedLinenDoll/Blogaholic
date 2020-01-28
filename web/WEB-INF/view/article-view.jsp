@@ -7,15 +7,10 @@
     <meta name="description" content="article: ${article.articleTitle}">
     <title>${article.articleTitle} by ${author.username}</title>
 
-    <link href='<c:url value="https://unpkg.com/startbootstrap-resume/vendor/fontawesome-free/css/all.min.css"/>'
-          rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600,700,800&display=swap"
-          rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href='<c:url value="/assets/layout${author.layoutID}.css"/>'/>
+    <jsp:include page="link-fonts.jsp"/>
 
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'/>
+    <link rel="stylesheet" href='<c:url value="/assets/layout${author.layoutID}.css"/>'/>
 
 
     <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>

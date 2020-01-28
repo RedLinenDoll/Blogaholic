@@ -1,6 +1,10 @@
-/*
 
-TODO style layout1. This layout will be applied to both blog-view and article-view.
+:root {
+    --primary-font: 'Cinzel', serif;
+    --secondary-font: 'Cinzel', serif;
+}
+
+/*
 
 Use any of the class and id names as needed.
 Add new class names as needed. Use full spelling and try to make the names self-explaining and readable.
@@ -28,41 +32,39 @@ Please do not introduce new colors unless really needed, to keep a consistent co
 -------------------------------------------
 
 */
-@font-face {
-    font-family: 'Allura-Regular';
 
-    url('../assets/Allura-Regular.ttf') format('ttf'), /* Super Modern Browsers */
-
-}
-.head-container{
+.head-container {
     /*    This it the div that contains the entry part of blog or article page: name, author, description. */
     background: url("../images/layout-decor/F100010654.jpg") no-repeat center center fixed;
     background-size: cover;
-    padding-bottom: 20vh;
-    font-family: Arial, serif;
-
+    padding-top: 10vh;
+    padding-bottom: 10vh;
 }
 
-@font-face {
-    font-family: 'Allura-Regular';
-    src: url("Allura-Regular.ttf");
-
+.head-container > div {
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    background-color: rgba(256, 256, 256, 0.6);
+    text-align: center;
 }
+#blog-description-container {
+    text-align: justify;
+    padding-left: 20px;
+    padding-right: 20px;;
+}
+
 
 #article-list-container {
     /*    This is the container for article list of the blog page  */
-
-
-
 
 }
 
 .article-div {
     /*    This is the container for each article items on the blog page*/
 
-    font-family: 'Allura-Regular', cursive;
 
-    }
+}
 
 
 /* See blog-view.jsp page and blog-view.jsp page for more class/id names. */
