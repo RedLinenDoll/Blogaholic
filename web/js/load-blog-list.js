@@ -14,12 +14,14 @@ async function loadAllBlogList() {
 }
 
 function renderBlogDiv(blogUser) {
+    if (blogUser.blogName === null) return;
     const blogDiv = document.createElement("div");
     blogDiv.classList.add("blog-div", "page-item-div");
 
     const avatarDiv = document.createElement("div");
     avatarDiv.classList.add("block-avatar-div");
     avatarDiv.innerHTML = `<img src="${uriStart}images/avatar/${blogUser.avatarPath}" class="block-avatar blog-avatar" alt="">`;
+    avatarDiv.innerHTML += `<p class="blog-username" style="font-size: 12px">${blogUser.username}</p>`;
 
     const blogLink = document.createElement("a");
     blogLink.classList.add("full-article-link");
