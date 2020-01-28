@@ -26,6 +26,7 @@
         <style>
             .head-container {
                 background: url("./images/layout-decor/layout1-${author.themeColor.substring(1)}.jpg") no-repeat center center fixed;
+                background-size:contain;
             }
         </style>
     </c:if>
