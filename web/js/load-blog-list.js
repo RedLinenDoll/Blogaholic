@@ -21,7 +21,7 @@ function renderBlogDiv(blogUser) {
     const avatarDiv = document.createElement("div");
     avatarDiv.classList.add("block-avatar-div");
     avatarDiv.innerHTML = `<img src="${uriStart}images/avatar/${blogUser.avatarPath}" class="block-avatar blog-avatar" alt="">`;
-    avatarDiv.innerHTML += `<p class="blog-username" style="font-size: 12px">${blogUser.username}</p>`;
+    avatarDiv.innerHTML += `<p class="blog-tiny-username">${blogUser.username}</p>`;
 
     const blogLink = document.createElement("a");
     blogLink.classList.add("full-article-link");

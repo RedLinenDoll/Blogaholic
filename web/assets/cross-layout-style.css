@@ -36,8 +36,8 @@
 .blog-div {
     display: grid;
     position: relative;
-    grid-template-columns: 4em 1fr;
-    grid-template-rows: 2em 3em 1fr;
+    grid-template-columns: 5em 1fr;
+    grid-template-rows: 2em 4em 1fr;
     grid-template-areas: "avatar blog" "avatar blog" ". blog";
 }
 
@@ -228,4 +228,9 @@ button:focus {
 
 
 
-
+.blog-tiny-username {
+    position: relative;
+    top: 1.5em;
+    text-align: center;
+    right: 1em;
+}
