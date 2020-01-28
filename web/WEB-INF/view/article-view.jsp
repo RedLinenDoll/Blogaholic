@@ -22,7 +22,13 @@
             loadCommentList(${article.articleID});
         })
     </script>
-
+    <c:if test="${author.layoutID!=2}">
+        <style>
+            .head-container {
+                background: url("./images/layout-decor/layout1-${author.themeColor.substring(1)}.jpg") no-repeat center center fixed;
+            }
+        </style>
+    </c:if>
 </head>
 
 <body>

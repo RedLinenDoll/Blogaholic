@@ -9,19 +9,19 @@ INSERT INTO users_db (username, hashed_password, hashed_salt, salt_length, itera
                       blog_description, layout_id, theme_color, avatar_path)
 VALUES ('jayp', 'dCCxTC0I2ZFjhKWZc', '3tHlj6E', 20, 107, 'Cooking made easy',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-        1, '#aa0000', 'avatar1.jpg'),
+        1, '#78914d', 'avatar1.jpg'),
        ('anrann', 'IQvcIpeDhP', 'dCCxTC0I', 10, 201, 'Child care pshycology',
         'In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided.',
-        1, '#00eedd', 'avatar2.jpg'),
+        1, '#6d6e6d', 'avatar2.jpg'),
        ('akashp', 'KSTTlCrWS1', '1uuKqI', 30, 410, 'Microbiology research',
         'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. ',
-        2, '#339933', 'avatar7.jpg'),
+        2, '#78914d', 'avatar7.jpg'),
        ('mandys', '1uuKqIQvcI', 'KWZcKlNA51J5', 40, 110, 'Library science management',
         'Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.',
-        1, '#aa33ff', 'avatar4.jpg'),
+        1, '#ffd500', 'avatar4.jpg'),
        ('vilam', 'KlNA51J5KSTTlCrWS1u', 'eDhPNnu9MbD3', 50, 222, 'Child teething',
         'In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. ',
-        1, '#eeee33', 'avatar5.jpg');
+        1, '#78914d', 'avatar5.jpg');
 
 
 INSERT INTO article_db (title, content, created_time, edit_time, number_of_likes, number_of_dislikes, author_id)

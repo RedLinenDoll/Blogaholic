@@ -5,8 +5,7 @@
 }
 
 .head-container {
-    /*    This it the div that contains the entry part of blog or article page: name, author, description. */
-    background: url("../images/layout-decor/F100010654.jpg") no-repeat center center fixed;
+    background: #868e96;
     background-size: cover;
     padding-top: 10vh;
     padding-bottom: 10vh;
@@ -14,12 +13,14 @@
 }
 
 .head-container > div {
+    box-sizing: border-box;
     width: 100%;
     margin: 0 auto;
     padding-bottom: 10px;
     background-color: rgba(256, 256, 256, 0.6);
     text-align: center;
 }
+
 #blog-description-container {
     text-align: justify;
     padding-left: 20px;
