@@ -31,10 +31,10 @@
 
 <c:choose>
     <c:when test="${loggedUser == null}">
-        <jsp:include page="visitor-bar.jsp"/>
+        <jsp:include page="../../cross-page-view/visitor-bar.jsp"/>
     </c:when>
     <c:otherwise>
-        <jsp:include page="user-bar.jsp"/>
+        <jsp:include page="../../cross-page-view/user-bar.jsp"/>
     </c:otherwise>
 </c:choose>
 

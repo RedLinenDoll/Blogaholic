@@ -9,4 +9,4 @@ FROM article_db as article, users_db as user
 WHERE article.author_id = user.user_id AND article.article_id = 6;
 
 
-
+UPDATE users_db SET avatar_path = 'avatar5.jpg' WHERE username = 'aniu423';
