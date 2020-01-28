@@ -4,22 +4,23 @@
 <html lang="en">
 <head>
     <%--TODO Create A LANDING PAGE --%>
-<%--    TODO change the name BLOG to a nice name--%>
+    <%--    TODO change the name BLOG to a nice name--%>
 
     <meta charset="UTF-8">
     <title>Welcome to BLOG</title>
 
-        <jsp:include page="/cross-page-view/link-fonts.jsp"/>
-        <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'/>
-        <link rel="stylesheet" href='<c:url value="/assets/layout1.css"/>'>
-        <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>
-        <script type="text/javascript">
-            window.addEventListener("load", function () {
-                loadAllBlogList();
-               applyThemeColor(`#3f99ae`);
-                applyLayoutSpecificStyling(`1`, `3f99ae`);
-            })
-        </script>
+    <jsp:include page="/cross-page-view/link-fonts.jsp"/>
+    <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'/>
+    <link rel="stylesheet" href='<c:url value="/assets/layout1.css"/>'>
+    <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>
+    <script src='<c:url value="js/load-blog-list.js"/>'></script>
+    <script type="text/javascript">
+        window.addEventListener("load", function () {
+            loadAllBlogList();
+            applyThemeColor(`#3f99ae`);
+            applyLayoutSpecificStyling(`1`, `#3f99ae`);
+        })
+    </script>
 
 
 </head>
@@ -39,8 +40,6 @@
 </div>
 
 <div class="body-container" id="all-blog-container">
-
-
 
 
 </div>

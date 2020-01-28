@@ -17,7 +17,7 @@ async function loadCommentList(articleID) {
 
 function getCommentDiv(comment) {
     const commentDiv = document.createElement("div");
-    commentDiv.classList.add("comment-div");
+    commentDiv.classList.add("comment-div page-item-div");
 
     const avatarDiv = document.createElement("div");
     avatarDiv.classList.add("block-avatar-div");
