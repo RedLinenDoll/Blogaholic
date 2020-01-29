@@ -5,8 +5,6 @@ const uriStart = '/team-java_blogaholic/';
 async function loadAllBlogList() {
     const blogListContainer = document.querySelector("#all-blog-container");
     let response = await fetch(`${uriStart}load-blog-list`);
-    console.log(response);
-    console.log(await response.text());
     let blogUserList = await response.json();
     console.log(blogUserList);
     blogListContainer.innerHTML = "";
