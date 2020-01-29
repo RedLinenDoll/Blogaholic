@@ -35,7 +35,10 @@
             </label>
             <input id="date-of-birth" name="date-of-birth" type="date">
 
-            <label for="self-intro-input">Tell us a bit about yourself:</label>
+            <label for="share-real-name-info" class="non-primary-label">Share real name and date of birth with visitors</label>
+            <input type="checkbox" name="share-real-name-info" id="share-real-name-info" class="non-primary-input">
+
+            <label for="self-intro-input">Tell your blog visitors a bit about yourself:</label>
             <textarea rows="3" maxlength="256" cols="36" id="self-intro-input" name="self-intro"></textarea>
 
             <div class="operation-container">
