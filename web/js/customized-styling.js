@@ -1,4 +1,5 @@
 function applyThemeColor(themeColor) {
+    if (themeColor === null) return;
     document.documentElement.style.setProperty('--theme-color', themeColor);
     document.documentElement.style.setProperty('--heavy-color', colorLuminanceVariance(themeColor, -0.4))
 
@@ -24,6 +25,7 @@ function colorLuminanceVariance(colorHexCode, luminanceVariation) {
 }
 
 function applyLayoutSpecificStyling(layoutID, themeColor) {
+    if(themeColor === null) return;
     if (layoutID == 1) {
         const headContainer = document.querySelector(".head-container");
         headContainer.style.setProperty("background",
