@@ -34,6 +34,10 @@
                 Your date of birth:
             </label>
             <input id="date-of-birth" name="date-of-birth" type="date">
+
+            <label for="self-intro-input">Tell us a bit about yourself:</label>
+            <textarea rows="3" maxlength="256" cols="36" id="self-intro-input" name="self-intro"></textarea>
+
             <div class="operation-container">
                 <button type="submit">Yes that's me</button>
 
