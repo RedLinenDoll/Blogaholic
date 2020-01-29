@@ -1,4 +1,4 @@
-const uriStart = '/blog/';
+const uriStart = '/blogaholic/';
 // TODO once we decided on our blog website name, the /blog/ part need to be updated.
 
 

@@ -5,7 +5,7 @@
 <div id="user-top-bar" class="top-bar">
     <div class="top-bar-home-link">
         <a href='<c:url value="/"/>'>
-            JAVA Team Blog
+            Blogaholic
         </a>
     </div>
     <div class="top-bar-links" id="user-top-bar-links">
