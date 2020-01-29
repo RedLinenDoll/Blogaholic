@@ -107,4 +107,17 @@ public class UserDAO {
             }
         }
     }
+
+    public static int checkUsernameCount(Connection connection, String username) throws SQLException {
+        try(PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(users_db.user_id) FROM users_db WHERE username = ?")) {
+            preparedStatement.setString(1, username);
+
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    if (resultSet.getInt(1) >= 1) return 1;
+                }
+            }
+        }
+        return 0;
+    }
 }

@@ -39,4 +39,16 @@ public class SignUp extends HttpServlet {
     //  TODO Will need to deal with avatar upload.
 
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String testedUsername = request.getParameter("tested-username");
+        try(Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            int existingNumber = UserDAO.checkUsernameCount(connection, testedUsername);
+            System.out.println(existingNumber);
+            response.getWriter().print(existingNumber);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
