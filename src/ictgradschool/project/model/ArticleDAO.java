@@ -1,19 +1,62 @@
 package ictgradschool.project.model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.CheckedOutputStream;
 
 public class ArticleDAO {
 
     //TODO delete article by article ID
 
+    public static boolean deleteArticle(Connection connection, int articleID) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM article_db WHERE article_id=?")) {
+            preparedStatement.setInt(1, articleID);
+            int rowUpdated = preparedStatement.executeUpdate();
+            return rowUpdated == 1;
+        }
+    }
+
+
     //TODO add new article, given author ID and new article object
 
+
+    public static int addArticle(Connection connection, int authorID, Article article) throws SQLException {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT  INTO article_db(title, content,  number_of_likes, number_of_dislikes, author_id) VALUES(?,?,?,?,?) ", Statement.RETURN_GENERATED_KEYS)) {
+            preparedStatement.setString(1, article.getArticleTitle());
+            preparedStatement.setString(2, article.getArticleContent());
+            preparedStatement.setInt(3, 0);
+            preparedStatement.setInt(4, 0);
+            preparedStatement.setInt(5, authorID);
+
+            int rowUpdated = preparedStatement.executeUpdate();
+            if (rowUpdated !=1) return 0;
+            try (ResultSet keys = preparedStatement.getGeneratedKeys()) {
+                keys.next();
+                int articleID = keys.getInt(1);
+                return articleID;
+            }
+
+        }
+
+    }
+
+
     //TODO edit article, given article ID and new article object
+
+    public static boolean editArticle(Connection connection, Article article, int articleID) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE article_db SET title=?,content=? WHERE article_id=?")) {
+            preparedStatement.setString(1, article.getArticleTitle());
+            preparedStatement.setString(2, article.getArticleContent());
+            preparedStatement.setInt(3, articleID);
+
+            int rowUpdated = preparedStatement.executeUpdate();
+            return rowUpdated == 1;
+        }
+    }
+
+
     public static List<Article> getRecentBriefArticleList(Connection connection) throws SQLException {
         List<Article> articles = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT article_id, title, brief, created_time, edit_time, number_of_likes, number_of_dislikes\n" +
