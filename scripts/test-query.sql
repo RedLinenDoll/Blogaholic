@@ -21,3 +21,9 @@ ORDER BY created_time DESC
 LIMIT 10;
 
 
+UPDATE users_db
+SET first_name = 'new first name',
+    last_name ='new last name',
+    date_of_birth = '1994-09-01',
+    self_introduction = 'Hi this is A'
+WHERE user_id = 2;

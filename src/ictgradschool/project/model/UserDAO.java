@@ -125,4 +125,19 @@ public class UserDAO {
         }
         return 0;
     }
+
+    public static boolean editUserRealNameInfo(Connection connection, int userID, String firstName, String lastName, Date dateOfBirth, String selfIntroduction, boolean toShare) throws SQLException{
+        try(PreparedStatement preparedStatement = connection.prepareStatement
+                ("UPDATE users_db SET first_name = ?, last_name =?, date_of_birth = ?, self_introduction = ? WHERE user_id = ?;")) {
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setDate(3, dateOfBirth);
+            preparedStatement.setString(4, selfIntroduction);
+            preparedStatement.setInt(5, userID);
+
+            int rowUpdated = preparedStatement.executeUpdate();
+            return rowUpdated == 1;
+        }
+
+    }
 }

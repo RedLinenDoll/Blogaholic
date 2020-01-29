@@ -17,9 +17,7 @@
         <p>and give it your personal touch!</p>
     </div>
     <div class="body-container">
-        <form id="blog-setup-form">
-            <%--        TODO submit it to blog-creation servlet --%>
-
+        <form id="blog-setup-form" action='<c:url value="/change-blog-preference"/>' method="post">
             <label for="blog-name-input">
                 Name for your blog:
             </label>
