@@ -1,5 +1,7 @@
 package ictgradschool.project.model;
 
+import java.sql.Date;
+
 public class User {
     private Integer userID;
     private String username;
@@ -12,6 +14,11 @@ public class User {
     private String blogDescription;
     private String themeColor;
     private int layoutID;
+    private String firstName;
+    private String lastName;
+    private Date dateOfBirth;
+    private String selfIntroduction;
+    private boolean shareRealNameInfo;
 
 
     public User(String username, String passwordHashBase64, String saltHashBase64, int saltLength, int iterationNum) {
@@ -161,4 +168,45 @@ public class User {
     public void setLayoutID(int layoutID) {
         this.layoutID = layoutID;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getSelfIntroduction() {
+        return selfIntroduction;
+    }
+
+    public void setSelfIntroduction(String selfIntroduction) {
+        this.selfIntroduction = selfIntroduction;
+    }
+
+    public boolean isShareRealNameInfo() {
+        return shareRealNameInfo;
+    }
+
+    public void setShareRealNameInfo(boolean shareRealNameInfo) {
+        this.shareRealNameInfo = shareRealNameInfo;
+    }
 }
+
