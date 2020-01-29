@@ -1,5 +1,6 @@
+const uriStart = '/blogaholic/';
+
 window.addEventListener("load", function () {
-    const uriStart = '/blog/';
     const warnSpan = document.querySelector("#duplicate-warning");
 
     const usernameInput = document.querySelector("#username");
