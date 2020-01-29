@@ -25,6 +25,14 @@
 
 </head>
 <body>
+<c:choose>
+    <c:when test="${loggedUser == null}">
+        <jsp:include page="cross-page-view/visitor-bar.jsp"/>
+    </c:when>
+    <c:otherwise>
+        <jsp:include page="cross-page-view/user-bar.jsp"/>
+    </c:otherwise>
+</c:choose>
 
 <div class="head-container">
     <div id="index-welcome-container" class="page-h1-container">

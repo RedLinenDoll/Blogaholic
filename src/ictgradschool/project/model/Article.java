@@ -12,6 +12,8 @@ public class Article {
     private int likesCount;
     private int dislikesCount;
 
+    public Article() {
+    }
 
     // full article fetch
     public Article(int articleID, String articleTitle, String articleContent, String articleBrief, Timestamp timeCreated, Timestamp timeEdited, int likesCount, int dislikesCount) {

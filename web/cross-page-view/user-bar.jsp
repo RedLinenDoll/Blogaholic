@@ -15,6 +15,9 @@
                      alt="${loggedUser.username}'s avatar">
                 My Blog
             </a>
+            <a href="./testing-add-article.jsp">
+                Create a new article
+            </a>
         </span>
         <span id="log-out-span" class="top-bar-span">
             <a href='<c:url value="/logout"/>'>

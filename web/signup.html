@@ -6,8 +6,10 @@
     <link rel="stylesheet" href="assets/cross-layout-style.css">
     <link rel="stylesheet" href="assets/layout2.css">
     <link rel="stylesheet" href="assets/authentication-page-style.css">
+    <script type="text/javascript" src="js/create-account-check.js"></script>
 </head>
 <body>
+<div class="page-content-container">
 <div class="head-container">
     <div class="page-h1-container" id="signup-welcome-container">
         <h1 id="signup-welcome">
@@ -18,13 +20,18 @@
 <div class="body-container">
     <form id="sign-up" action="./signup" method="post">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username">
+        <input type="text" id="username" name="username"><p id="duplicate-warning" class="invisible">Username already exists!</p>
         <br>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password">
         <br>
-        <button type="submit">Submit</button>
+        <div class="operation-container">
+        <button type="submit">Create account</button>
+        <br>
+        <a class="back-to-homepage" href="./index.jsp">I'll visit a bit more</a>
+        </div>
     </form>
+</div>
 </div>
 
 </body>

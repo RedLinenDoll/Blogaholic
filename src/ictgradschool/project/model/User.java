@@ -53,6 +53,12 @@ public class User {
         this.avatarPath = avatarPath;
     }
 
+    // check existing username
+    public User (Integer userID, String username) {
+        this.userID = userID;
+        this.username = username;
+    }
+
     // blog author
     public User(int userID, String username, String avatarPath, String blogName, String blogDescription, String themeColor, int layoutID) {
         this.userID = userID;

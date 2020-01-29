@@ -1,3 +1,8 @@
+body {
+    --theme-color: #3f99ae;
+    --heavy-color: #106688;
+}
+
 .head-container {
     height: 20vh;
 }
@@ -7,13 +12,82 @@ form {
     font-size: 20px;
     font-weight: 400;
     margin: 20px auto;
-    line-height: 2em;
 }
+
 *:focus {
     outline: none;
 }
+
 button {
     border-radius: 0;
 
+}
+
+body {
+    margin: 0;
+    background: url("../images/layout-decor/authentication-decor.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.page-content-container {
+    background-color: rgba(256, 256, 256, 0.8);
+    margin: 10vh auto;
+
+}
+
+@media screen and (max-width: 600px) {
+    .page-content-container {
+        width: 100vw;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .page-content-container {
+        width: fit-content;
+    }
+}
+
+button {
+    background-color: var(--theme-color);
+    border: none;
+    color: var(--gentle-white);
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+button:hover {
+    color: var(--gentle-white);
+    background-color: var(--heavy-color);
+}
+
+.back-to-homepage {
+    color: var(--theme-color);
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.operation-container {
+    width: fit-content;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    right: 2em;
+}
+
+.back-to-homepage:hover {
+    color: var(--heavy-color);
+}
+
+#duplicate-warning {
+    color: red;
+    font-size: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.invisible {
+    display: none;
 }
 

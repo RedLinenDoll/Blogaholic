@@ -8,13 +8,15 @@ async function loadAllBlogList() {
     let blogUserList = await response.json();
     blogListContainer.innerHTML = "";
     blogUserList.forEach(blogUser => {
-            blogListContainer.appendChild(renderBlogDiv(blogUser));
+        const blogDiv = renderBlogDiv(blogUser);
+        if (blogDiv !== null)
+            blogListContainer.appendChild(blogDiv);
         }
     );
 }
 
 function renderBlogDiv(blogUser) {
-    if (blogUser.blogName === null) return;
+    if (blogUser.blogName === null) return null;
     const blogDiv = document.createElement("div");
     blogDiv.classList.add("blog-div", "page-item-div");
 
