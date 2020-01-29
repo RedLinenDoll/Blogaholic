@@ -18,9 +18,14 @@ form {
     align-items: center;
     justify-content: center;
 }
-input {
-    height: 2em;
-    margin: 4px;
+input[type="text"], input[type="password"], input[type="date"] {
+    margin: 2px;
+    font-size: 15px;
+    font-family: var(--primary-font);
+}
+textarea {
+    font-size: 15px;
+    font-family: var(--primary-font);
 }
 
 

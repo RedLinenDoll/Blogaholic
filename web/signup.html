@@ -18,20 +18,20 @@
         </div>
     </div>
     <div class="body-container">
-        <form id="sign-up" action="./signup" method="post">
+        <form id="sign-up" action="./signup" method="post" onsubmit="return validateForm(this)">
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username">
+            <input type="text" id="username" name="username" required>
             <p id="duplicate-warning" class="invisible warning-message">Username already exists!</p>
             <br>
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password">
+            <input type="password" id="password" name="password" required>
             <br>
             <label for="confirm-password">Confirm Password:</label>
             <input type="password" id="confirm-password">
             <p id="not-matching-warning" class="invisible warning-message">Password do not match!</p>
             <br>
             <div class="operation-container">
-                <button type="submit" id="submit-button">Create account</button>
+                <button type="submit" id="submit">Create account</button>
                 <br>
                 <a class="back-to-homepage" href="./index.jsp">I'll visit a bit more</a>
             </div>

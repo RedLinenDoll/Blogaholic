@@ -1,11 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: anran
-  Date: 29/01/20
-  Time: 10:42 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -40,6 +34,10 @@
                 Your date of birth:
             </label>
             <input id="date-of-birth" name="date-of-birth" type="date">
+
+            <label for="self-intro-input">Tell us a bit about yourself:</label>
+            <textarea rows="3" maxlength="256" cols="36" id="self-intro-input" name="self-intro"></textarea>
+
             <div class="operation-container">
                 <button type="submit">Yes that's me</button>
 
