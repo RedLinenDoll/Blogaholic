@@ -5,6 +5,7 @@ import ictgradschool.project.model.UserDAO;
 import ictgradschool.project.util.AuthenticationUtils;
 import ictgradschool.project.util.DBConnectionUtils;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,15 +18,16 @@ import java.sql.SQLException;
 @WebServlet(name = "sign-up", urlPatterns = "/signup")
 public class SignUp extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = req.getParameter("username");
-        String password = req.getParameter("password");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
 
         User user = AuthenticationUtils.createUser(username,password);
         try(Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")){
-            UserDAO.insertUser(connection,user);
-            resp.sendRedirect("./index.jsp");
-
+            User newUser = UserDAO.insertUser(connection,user);
+            request.getSession().setAttribute("newUser", newUser);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/user-creation.jsp");
+            requestDispatcher.forward(request, response);
 
         } catch (SQLException e) {
             e.printStackTrace();

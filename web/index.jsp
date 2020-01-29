@@ -35,7 +35,7 @@
 <div class="head-container">
     <div id="index-welcome-container" class="page-h1-container">
         <h1>
-            Welcome to blogaholic, don't blog too crazy:)
+            Welcome to blogaholic, where ideas sparkle
         </h1>
     </div>
     <button class="link-button">
