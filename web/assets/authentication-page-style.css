@@ -78,7 +78,7 @@ button:hover {
     color: var(--heavy-color);
 }
 
-#duplicate-warning {
+.warning-message {
     color: red;
     font-size: 10px;
     margin-top: 0;

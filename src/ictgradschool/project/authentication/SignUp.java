@@ -44,7 +44,6 @@ public class SignUp extends HttpServlet {
         String testedUsername = request.getParameter("tested-username");
         try(Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             int existingNumber = UserDAO.checkUsernameCount(connection, testedUsername);
-            System.out.println(existingNumber);
             response.getWriter().print(existingNumber);
 
         } catch (SQLException e) {
