@@ -3,8 +3,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%--TODO Create A LANDING PAGE --%>
-    <%--    TODO change the name BLOG to a nice name--%>
 
     <meta charset="UTF-8">
     <title>Welcome to BLOG</title>
@@ -37,7 +35,7 @@
 <div class="head-container">
     <div id="index-welcome-container" class="page-h1-container">
         <h1>
-            Welcome to BLOG, where ideas sparkle
+            Welcome to blogaholic, where ideas sparkle
         </h1>
     </div>
     <button class="link-button">

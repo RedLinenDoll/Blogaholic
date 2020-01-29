@@ -1,7 +1,5 @@
 const uriStart = '/team-java_blogaholic/';
 
-// TODO once we decided on our blog website name, the /blog/ part need to be updated.
-
 async function loadAllBlogList() {
     const blogListContainer = document.querySelector("#all-blog-container");
     let response = await fetch(`${uriStart}load-blog-list`);
@@ -9,9 +7,9 @@ async function loadAllBlogList() {
     console.log(blogUserList);
     blogListContainer.innerHTML = "";
     blogUserList.forEach(blogUser => {
-        const blogDiv = renderBlogDiv(blogUser);
-        if (blogDiv !== null)
-            blogListContainer.appendChild(blogDiv);
+            const blogDiv = renderBlogDiv(blogUser);
+            if (blogDiv !== null)
+                blogListContainer.appendChild(blogDiv);
         }
     );
 }
@@ -28,7 +26,7 @@ function renderBlogDiv(blogUser) {
 
     const blogLink = document.createElement("a");
     blogLink.classList.add("full-article-link");
-    blogLink.href=`${uriStart}blog-view?authorID=${blogUser.userID}`;
+    blogLink.href = `${uriStart}blog-view?authorID=${blogUser.userID}`;
 
     const blogTitleDiv = document.createElement("div");
     blogTitleDiv.classList.add("blog-title-div", "page-item-title-div");

@@ -1,9 +1,6 @@
 package ictgradschool.project.model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,8 +80,8 @@ public class UserDAO {
     }
 
 
-    public static boolean insertUser(Connection connection, User user) throws SQLException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users_db (username, hashed_password, hashed_salt, salt_length, iteration_number) VALUE (?,?,?,?,?)")) {
+    public static User insertUser(Connection connection, User user) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users_db (username, hashed_password, hashed_salt, salt_length, iteration_number) VALUE (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getPasswordHashBase64());
             preparedStatement.setString(3, user.getSaltHashBase64());
@@ -92,8 +89,16 @@ public class UserDAO {
             preparedStatement.setInt(5, user.getIterationNum());
 
             int rowUpdated = preparedStatement.executeUpdate();
-            return rowUpdated == 1;
+            if (rowUpdated == 1) {
+                try (ResultSet keys = preparedStatement.getGeneratedKeys()) {
+                    keys.next();
+                    int userID = keys.getInt(1);
+                    user.setUserID(userID);
+                    return user;
+                }
+            }
         }
+        return null;
     }
 
 
@@ -109,10 +114,10 @@ public class UserDAO {
     }
 
     public static int checkUsernameCount(Connection connection, String username) throws SQLException {
-        try(PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(users_db.user_id) FROM users_db WHERE username = ?")) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(users_db.user_id) FROM users_db WHERE username = ?")) {
             preparedStatement.setString(1, username);
 
-            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     if (resultSet.getInt(1) >= 1) return 1;
                 }
