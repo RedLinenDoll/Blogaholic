@@ -1,13 +1,11 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: anran
-  Date: 30/01/20
-  Time: 8:16 AM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'>
+    <link rel="stylesheet" href='<c:url value="/assets/layout2.css"/>'>
+    <link rel="stylesheet" href='<c:url value="/assets/authentication-page-style.css"/>'>
+
     <title>Birthplace of ${newUser.username}'s awesome blog</title>
 </head>
 <body>
