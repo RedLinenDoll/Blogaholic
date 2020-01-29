@@ -1,4 +1,4 @@
-const uriStart = '/blogaholic/';
+const uriStart = '/team-java_blogaholic/';
 
 window.addEventListener("load", function () {
     const warnSpan = document.querySelector("#duplicate-warning");

@@ -1,11 +1,14 @@
-const uriStart = '/blogaholic/';
+const uriStart = '/team-java_blogaholic/';
 
 // TODO once we decided on our blog website name, the /blog/ part need to be updated.
 
 async function loadAllBlogList() {
     const blogListContainer = document.querySelector("#all-blog-container");
     let response = await fetch(`${uriStart}load-blog-list`);
+    console.log(response);
+    console.log(await response.text());
     let blogUserList = await response.json();
+    console.log(blogUserList);
     blogListContainer.innerHTML = "";
     blogUserList.forEach(blogUser => {
         const blogDiv = renderBlogDiv(blogUser);

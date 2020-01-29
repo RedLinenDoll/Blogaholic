@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="blogaholic">
+    <output-path>$PROJECT_DIR$/out/artifacts/blogaholic</output-path>
+    <root id="archive" name="blogaholic.war">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="pgcit-final-project" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="lib" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="pgcit-final-project/web/Web" />
+    </root>
+  </artifact>
+</component>
