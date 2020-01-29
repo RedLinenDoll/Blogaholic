@@ -1,4 +1,5 @@
 const uriStart = '/team-java_blogaholic/';
+
 // TODO once we decided on our blog website name, the /blog/ part need to be updated.
 
 
@@ -6,7 +7,7 @@ async function loadArticleList(authorID) {
     const postContainer = document.querySelector("#article-list-container");
     let response = await fetch(`${uriStart}load-articles?authorID=${authorID}`);
     let articleList = await response.json();
-    postContainer.innerHTML="";
+    postContainer.innerHTML = "";
     articleList.forEach(article => {
             postContainer.appendChild(renderArticleDiv(article));
         }
@@ -19,7 +20,7 @@ function renderArticleDiv(article) {
 
     const fullArticleLink = document.createElement("a");
     fullArticleLink.classList.add("full-article-link");
-    fullArticleLink.href=`${uriStart}article-view?articleID=${article.articleID}`;
+    fullArticleLink.href = `${uriStart}article-view?articleID=${article.articleID}`;
 
     const articleTitleDiv = document.createElement("div");
     articleTitleDiv.classList.add("article-title-div");
@@ -46,7 +47,7 @@ function renderArticleDiv(article) {
     fullArticleLink.appendChild(articleBriefDiv);
     articleDiv.appendChild(fullArticleLink);
     articleDiv.appendChild(articleInfoDiv);
-    articleDiv.innerHTML+='<hr class="line-between-articles">';
+    articleDiv.innerHTML += '<hr class="line-between-articles">';
     return articleDiv;
 
 }

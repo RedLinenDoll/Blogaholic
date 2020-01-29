@@ -1,5 +1,4 @@
 const uriStart = '/team-java_blogaholic/';
-// TODO once we decided on our blog website name, the /blog/ part need to be updated.
 
 async function loadCommentList(articleID) {
     const commentContainer = document.querySelector("#all-comments-container");

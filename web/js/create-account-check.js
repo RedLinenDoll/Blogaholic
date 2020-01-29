@@ -5,6 +5,7 @@ window.addEventListener("load", function () {
     const usernameWarn = document.querySelector("#duplicate-warning");
     const usernameInput = document.querySelector("#username");
     usernameInput.addEventListener("input", checkIfUserExists);
+
     async function checkIfUserExists() {
         let inputUsername = usernameInput.value;
         let response = await fetch(`${uriStart}signup?tested-username=${inputUsername}`);
@@ -12,8 +13,7 @@ window.addEventListener("load", function () {
         if (existingUsernameCount === 1 + "") {
             usernameWarn.classList.remove("invisible");
             submitButton.disabled = true;
-        }
-        else {
+        } else {
             usernameWarn.classList.add("invisible");
             submitButton.disabled = false;
         }
@@ -30,8 +30,7 @@ window.addEventListener("load", function () {
         if (firstPassword !== confirmedPassword) {
             passwordWarn.classList.remove("invisible");
             submitButton.disabled = true;
-        }
-        else {
+        } else {
             passwordWarn.classList.add("invisible");
             submitButton.disabled = false;
         }
