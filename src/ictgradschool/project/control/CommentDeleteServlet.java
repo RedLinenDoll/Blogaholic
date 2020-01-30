@@ -16,11 +16,12 @@ import java.sql.SQLException;
 @WebServlet(name = "delete-comment", urlPatterns = "/delete-comment")
 public class CommentDeleteServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             int articleID = Integer.parseInt(request.getParameter("articleID"));
             int commentID = Integer.parseInt(request.getParameter("commentID"));
-            CommentDAO.deleteCommentByID(connection, commentID);
+            boolean success = CommentDAO.deleteCommentByID(connection, commentID);
+            System.out.println(success);
             response.sendRedirect("./article-view?articleID=" + articleID);
 
         } catch (SQLException e) {

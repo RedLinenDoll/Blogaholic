@@ -17,9 +17,12 @@ public class Comment {
     private int dislikesCount;
     private List<Comment> childComments;
 
-    public Comment(int commentID, String commentBody, String commenterUsername, String avatarPath, Timestamp timeCreated, Timestamp timeEdited, int likesCount, int dislikesCount) {
+
+
+    public Comment(int commentID, String commentBody, int commenterID, String commenterUsername, String avatarPath, Timestamp timeCreated, Timestamp timeEdited, int likesCount, int dislikesCount) {
         this.commentID = commentID;
         this.commentBody = commentBody;
+        this.commenterID = commenterID;
         this.commenterUsername = commenterUsername;
         this.avatarPath = avatarPath;
         this.timeCreated = timeCreated;
@@ -28,7 +31,6 @@ public class Comment {
         this.dislikesCount = dislikesCount;
         this.childComments = new ArrayList<>();
     }
-
 
     public Comment() {
     }

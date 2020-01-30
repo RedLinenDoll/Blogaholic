@@ -19,7 +19,15 @@
     <script type="text/javascript">
         window.addEventListener("load", function () {
             applyThemeColor(`${author.themeColor}`);
-            loadCommentList(${article.articleID});
+            <c:choose>
+            <c:when test="${loggedUser==null}">
+            loadCommentList(${article.articleID}, ${author.userID}, -1);
+            </c:when>
+            <c:otherwise>
+            loadCommentList(${article.articleID}, ${author.userID}, ${loggedUser.userID});
+
+            </c:otherwise>
+            </c:choose>
             applyLayoutSpecificStyling(`${author.layoutID}`, `${author.themeColor}`);
         })
     </script>
@@ -79,8 +87,7 @@
         <div id="add-article-comment-container">
             <form id="add-article-comment" action='<c:url value="/add-comment"/>' method="post">
                 <label for="add-comment-to-article">Add Comments: </label>
-                <textarea id="add-comment-to-article" rows="4" cols="36" maxlength="512" name="article-comment-body">
-        </textarea>
+                <textarea id="add-comment-to-article" rows="4" cols="36" maxlength="512" name="article-comment-body" placeholder="Add your thoughts"></textarea>
                 <input type="hidden" name="target-id" value="${article.articleID}">
                 <input type="hidden" name="article-id" value="${article.articleID}">
 
@@ -91,15 +98,7 @@
         </div>
     </c:if>
 
-    <c:if test="${loggedUser.userID==author.userID || loggedUser.userID==comment.commenterID}">
-    <div id="delete-article-comment-container">
-        <button id="delete-comment-from-article" class="link-button">
-            <a href="./delete-comment?commentID=${comment.commentID}">
-                Delete
-            </a>
-            </button>
-    </div>
-    </c:if>
+
     <div id="all-comments-container">
         <div class="root-comment-div comment-div">
             <div class="block-avatar-div">
@@ -109,6 +108,7 @@
             <div class="comment-body-div">
             </div>
             <div class="comment-options-div">
+
             </div>
 
             <div class="child-comment-div comment-div">

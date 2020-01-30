@@ -16,13 +16,12 @@ import java.sql.SQLException;
 public class CommentAddServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("trying to add comment");
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             int commenterID = ((User) request.getSession().getAttribute("loggedUser")).getUserID();
             String target = request.getParameter("target-type");
             int targetID = Integer.parseInt(request.getParameter("target-id"));
             int articleID = Integer.parseInt(request.getParameter("article-id"));
-
-
             Comment newComment = new Comment();
             newComment.setCommentBody(request.getParameter("article-comment-body"));
             newComment.setCommenterID(commenterID);
