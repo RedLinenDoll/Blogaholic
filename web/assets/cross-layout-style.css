@@ -1,6 +1,7 @@
 :root {
     --theme-color: #888888;
     --heavy-color: #666666;
+    --light-color: #aaaaaa;
     /*    These will be immediately overwritten as soon as the blog or article view are loaded.*/
 
     --gentle-black: #333333;
@@ -245,3 +246,9 @@ button:focus {
     border-left: var(--gentle-black) 2px solid;
 
 }
+
+::selection
+{
+    background: var(--light-color);
+}
+
