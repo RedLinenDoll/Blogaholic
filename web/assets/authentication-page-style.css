@@ -130,3 +130,55 @@ button:hover {
 .non-primary-input {
     display: inline;
 }
+
+#avatar-set-container {
+    display: grid;
+    width: 90%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 3em 1fr;
+    grid-template-areas: "instruction instruction" "select upload";
+}
+p#info {
+    grid-area: instruction;
+}
+#select-avatar-form
+{
+    grid-area: select;
+
+}
+
+
+#select-avatar-container {
+    display: grid;
+    /*flex-direction: column;*/
+    /*flex-wrap: wrap;*/
+    /*height: 5em;*/
+    /*width: 5em;*/
+
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 10em;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 4px;
+
+}
+.avatar-selection {
+    width: 3.5em;
+    box-sizing: border-box;
+    height: 4em;
+}
+
+#avatar-upload-form {
+    grid-area: upload;
+    border-left: var(--theme-color) 2px dotted;
+
+}
+
+#submit-uploaded-avatar, #submit-selected-avatar{
+    position: static;
+}
+
+#select-avatar-form, #avatar-upload-form {
+    padding: 5px;
+    align-items: stretch;
+    width: unset;
+}

@@ -15,17 +15,21 @@ CREATE TABLE IF NOT EXISTS layout_db
 
 CREATE TABLE IF NOT EXISTS users_db
 (
-    user_id          INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    username         VARCHAR(16)  NOT NULL UNIQUE,
-    hashed_password  VARCHAR(128),
-    hashed_salt      VARCHAR(128),
-    salt_length      INT UNSIGNED NOT NULL,
-    iteration_number INT UNSIGNED NOT NULL,
-    blog_name        VARCHAR(64),
-    blog_description TEXT,
-    layout_id        INT UNSIGNED DEFAULT 1,
-    theme_color      CHAR(7),
-    avatar_path      TEXT,
+    user_id           INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    username          VARCHAR(16)  NOT NULL UNIQUE,
+    hashed_password   VARCHAR(128),
+    hashed_salt       VARCHAR(128),
+    salt_length       INT UNSIGNED NOT NULL,
+    iteration_number  INT UNSIGNED NOT NULL,
+    blog_name         VARCHAR(64),
+    blog_description  VARCHAR(256),
+    layout_id         INT UNSIGNED DEFAULT 1,
+    theme_color       CHAR(7),
+    avatar_path       VARCHAR(64),
+    first_name        VARCHAR(64),
+    last_name         VARCHAR(64),
+    date_of_birth     DATE,
+    self_introduction VARCHAR(256),
     PRIMARY KEY (user_id),
     FOREIGN KEY (layout_id) REFERENCES layout_db (layout_id)
 );
