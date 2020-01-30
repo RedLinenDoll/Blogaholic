@@ -129,14 +129,14 @@
                 <button class="link-button" id="submit-selected-avatar">Use selected avatar</button>
             </form>
 
-            <form id="avatar-upload-form" method="post" action='<c:url value="/set-avatar"/>'>
+            <form id="avatar-upload-form" method="post" action='<c:url value="/upload-avatar"/>' enctype="multipart/form-data">
                 <div id="avatar-preview-container">
                     <img id="preview-image" src='<c:url value="/images/avatar/avatarPreview.png"/>' alt="avatar preview">
                 </div>
                 <div id="upload-avatar-container">
-                    <label for="file-upload">Upload your own avatar here</label>
-                    <input type="file" id="file-upload" onchange="loadPreview(this);">
-                    <button class="link-button" id="submit-uploaded-avatar">Use uploaded avatar</button>
+                    <label for="avatar-upload">Upload your own avatar here</label>
+                    <input type="file" id="avatar-upload" onchange="loadPreview(this);" accept="image/png, image/jpeg" name="avatar">
+                    <button class="link-button" id="submit-uploaded-avatar" type="submit">Use uploaded avatar</button>
 
                 </div>
             </form>
