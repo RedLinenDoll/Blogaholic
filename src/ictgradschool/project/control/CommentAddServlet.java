@@ -17,13 +17,18 @@ public class CommentAddServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-            Comment comment = new Comment();
-            User loggedUser = (User) request.getSession().getAttribute("loggedUser");
-            int commenterID = loggedUser.getUserID();
-            comment.setCommentBody(request.getParameter("body"));
-            int commentID = CommentDAO.addCommentToComment(connection,commenterID,comment);
+            int commenterID = ((User) request.getSession().getAttribute("loggedUser")).getUserID();
+            String target = request.getParameter("target-type");
+            int targetID = Integer.parseInt(request.getParameter("target-id"));
+            int articleID = Integer.parseInt(request.getParameter("article-id"));
 
-            response.sendRedirect("./article-view");
+
+            Comment newComment = new Comment();
+            newComment.setCommentBody(request.getParameter("article-comment-body"));
+            newComment.setCommenterID(commenterID);
+
+            CommentDAO.addComment(connection, (target.equals("article")), targetID, newComment);
+            response.sendRedirect("./article-view?articleID=" + articleID);
         } catch (SQLException e) {
             e.printStackTrace();
         }

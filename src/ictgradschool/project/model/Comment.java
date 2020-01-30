@@ -8,6 +8,7 @@ public class Comment {
 
     private int commentID;
     private String commentBody;
+    private int commenterID;
     private String commenterUsername;
     private String avatarPath;
     private Timestamp timeCreated;
@@ -16,7 +17,6 @@ public class Comment {
     private int dislikesCount;
     private List<Comment> childComments;
 
-    // load comment
     public Comment(int commentID, String commentBody, String commenterUsername, String avatarPath, Timestamp timeCreated, Timestamp timeEdited, int likesCount, int dislikesCount) {
         this.commentID = commentID;
         this.commentBody = commentBody;
@@ -28,6 +28,7 @@ public class Comment {
         this.dislikesCount = dislikesCount;
         this.childComments = new ArrayList<>();
     }
+
 
     public Comment() {
     }
@@ -52,12 +53,12 @@ public class Comment {
         this.commentBody = commentBody;
     }
 
-    public String getCommenterUsername() {
-        return commenterUsername;
+    public int getCommenterID() {
+        return commenterID;
     }
 
-    public void setCommenterUsername(String commenterUsername) {
-        this.commenterUsername = commenterUsername;
+    public void setCommenterID(int commenterID) {
+        this.commenterID = commenterID;
     }
 
     public String getAvatarPath() {
@@ -106,5 +107,13 @@ public class Comment {
 
     public void setChildComments(List<Comment> childComments) {
         this.childComments = childComments;
+    }
+
+    public String getCommenterUsername() {
+        return commenterUsername;
+    }
+
+    public void setCommenterUsername(String commenterUsername) {
+        this.commenterUsername = commenterUsername;
     }
 }

@@ -76,12 +76,19 @@
     </div>
 
     <c:if test="${loggedUser!= null}">
-    <div id="add-comment-container">
-        <label for="add-comment-to-article">Add Comments: </label>
-        <textarea id="add-comment-to-article" rows="4" cols="36" maxlength="512">
+        <div id="add-article-comment-container">
+            <form id="add-article-comment" action='<c:url value="/add-comment"/>' method="post">
+                <label for="add-comment-to-article">Add Comments: </label>
+                <textarea id="add-comment-to-article" rows="4" cols="36" maxlength="512" name="article-comment-body">
         </textarea>
-        <button id="submit-comment-to-article">Post</button>
-    </div>
+                <input type="hidden" name="target-id" value="${article.articleID}">
+                <input type="hidden" name="article-id" value="${article.articleID}">
+
+                <input type="hidden" name="target-type" value="article">
+
+                <button id="submit-comment-to-article">Post</button>
+            </form>
+        </div>
     </c:if>
 
     <div id="all-comments-container">

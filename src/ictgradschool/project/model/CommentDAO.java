@@ -7,40 +7,19 @@ import java.util.List;
 
 public class CommentDAO {
 
-    // TODO add comment on article
+    public static boolean addComment(Connection connection, boolean isToArticle, int targetID, Comment comment) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(isToArticle ?
+                "INSERT INTO comment_db(target_article_id,body,number_of_likes,number_of_dislikes, commenter_id) VALUES (?,?,?,?,?)"
+                : "INSERT INTO comment_db(target_comment_id,body,number_of_likes,number_of_dislikes, commenter_id) VALUES (?,?,?,?,?)")) {
 
-    public static boolean addCommentToArticle(Connection connection, int articleID, Comment comment) throws SQLException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO comment_db(target_article_id,body,number_of_likes,number_of_dislikes) VALUES (?,?,?,?)")) {
-            preparedStatement.setInt(1, articleID);
+            preparedStatement.setInt(1, targetID);
             preparedStatement.setString(2, comment.getCommentBody());
             preparedStatement.setInt(3, 0);
             preparedStatement.setInt(4, 0);
+            preparedStatement.setInt(5, comment.getCommenterID());
             int rowUpdated = preparedStatement.executeUpdate();
             return rowUpdated == 1;
-
         }
-    }
-
-
-    // TODO add comment on comment
-
-
-    public static int addCommentToComment(Connection connection, int commenterID, Comment comment) throws SQLException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO comment_db(commenter_id,body,number_of_likes,number_of_dislikes) VALUES (?,?,?,?)",Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setInt(1, commenterID);
-            preparedStatement.setString(2, comment.getCommentBody());
-            preparedStatement.setInt(3, 0);
-            preparedStatement.setInt(4, 0);
-            int rowUpdated = preparedStatement.executeUpdate();
-            if (rowUpdated !=1) return 0;
-            try (ResultSet keys = preparedStatement.getGeneratedKeys()) {
-                keys.next();
-                return keys.getInt(1);
-            }
-
-
-        }
-
     }
 
 
@@ -68,41 +47,36 @@ public class CommentDAO {
         }
     }
 
-
-    public static List<Comment> getCommentListByArticleID(Connection connection, int articleID) throws SQLException {
+    public static List<Comment> getCommentListByID(Connection connection, int targetID, boolean isForArticle) throws SQLException {
         List<Comment> comments = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement("SELECT comment.comment_id, comment.body, user.username, user.avatar_path, comment.created_time,\n" +
-                "       comment.edit_time, comment.number_of_likes, comment.number_of_dislikes\n" +
-                "FROM comment_db AS comment, users_db AS user\n" +
-                "WHERE comment.target_article_id = ? and comment.commenter_id = user.user_id;")) {
-            statement.setInt(1, articleID);
-            try (ResultSet resultSet = statement.executeQuery()) {
+        String sql = "SELECT comment.comment_id, comment.body, " +
+                "user.username, user.avatar_path, comment.created_time, comment.edit_time, " +
+                "comment.number_of_likes, comment.number_of_dislikes " +
+                "FROM comment_db AS comment, users_db AS user " +
+                (isForArticle ? "WHERE comment.target_article_id = ? " : "WHERE comment.target_comment_id = ? ") +
+                "and comment.commenter_id = user.user_id " +
+                "ORDER BY comment.created_time DESC";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, targetID);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     Comment comment = createCommentFromResultSet(resultSet);
                     comment.setChildComments(getCommentListByCommentID(connection, comment.getCommentID()));
                     comments.add(comment);
                 }
+                return comments;
             }
         }
-        return comments;
+
+    }
+
+    public static List<Comment> getCommentListByArticleID(Connection connection, int articleID) throws SQLException {
+
+        return getCommentListByID(connection, articleID, true);
     }
 
     private static List<Comment> getCommentListByCommentID(Connection connection, int commentID) throws SQLException {
-        List<Comment> comments = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement("SELECT comment.comment_id, comment.body, user.username, user.avatar_path, comment.created_time,\n" +
-                "       comment.edit_time, comment.number_of_likes, comment.number_of_dislikes\n" +
-                "FROM comment_db AS comment, users_db AS user\n" +
-                "WHERE comment.target_comment_id = ? and comment.commenter_id = user.user_id;")) {
-            statement.setInt(1, commentID);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    Comment comment = createCommentFromResultSet(resultSet);
-                    comment.setChildComments(getCommentListByCommentID(connection, comment.getCommentID()));
-                    comments.add(comment);
-                }
-            }
-        }
-        return comments;
+        return getCommentListByID(connection, commentID, false);
     }
 
     private static Comment createCommentFromResultSet(ResultSet resultSet) throws SQLException {
