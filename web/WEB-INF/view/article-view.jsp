@@ -91,6 +91,15 @@
         </div>
     </c:if>
 
+    <c:if test="${loggedUser.userID==author.userID || loggedUser.userID==comment.commenterID}">
+    <div id="delete-article-comment-container">
+        <button id="delete-comment-from-article" class="link-button">
+            <a href="./delete-comment?commentID=${comment.commentID}">
+                Delete
+            </a>
+            </button>
+    </div>
+    </c:if>
     <div id="all-comments-container">
         <div class="root-comment-div comment-div">
             <div class="block-avatar-div">

@@ -78,6 +78,20 @@ public class CommentDAO {
     private static List<Comment> getCommentListByCommentID(Connection connection, int commentID) throws SQLException {
         return getCommentListByID(connection, commentID, false);
     }
+    public static Comment getCommentByID(Connection connection, int commentID) throws SQLException {
+        try (PreparedStatement statement = connection.prepareStatement(
+                "SELECT comment_id,body,created_time,edit_time,number_of_likes,number_of_dislikes,target_article_id,target_comment_id,commenter_id " +
+                        "FROM comment_db " +
+                        "WHERE comment_id = ?;")) {
+            statement.setInt(1, commentID);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return createCommentFromResultSet(resultSet);
+                } else return null;
+            }
+        }
+
+    }
 
     private static Comment createCommentFromResultSet(ResultSet resultSet) throws SQLException {
         return new Comment(
