@@ -249,13 +249,13 @@ button:focus {
 
 ::selection
 {
-    background: var(--light-color);
+    background: var(--theme-color);
 }
 
 textarea, input[type="text"]
 {
     border-image:none;
-    border-color: var(--light-color);
+    border-color: var(--theme-color);
     border-style: solid;
     border-width: 1px;
 }
