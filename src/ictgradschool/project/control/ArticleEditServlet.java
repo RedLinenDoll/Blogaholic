@@ -4,6 +4,7 @@ import ictgradschool.project.model.Article;
 import ictgradschool.project.model.ArticleDAO;
 import ictgradschool.project.util.DBConnectionUtils;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,23 +20,36 @@ public class ArticleEditServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try(Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-            String content= request.getParameter("content");
-            String title= request.getParameter("title");
-            int articleID= Integer.parseInt(request.getParameter("id"));
-            Article article= new Article();
-            article.setArticleContent(content);
-            article.setArticleTitle(title);
-            ArticleDAO.editArticle(connection,article,articleID);
+            int articleID= Integer.parseInt(request.getParameter("articleID"));
+            Article oldArticle = ArticleDAO.getFullArticleByArticleID(connection, articleID);
+            request.setAttribute("oldArticle", oldArticle);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/testing-edit-article.jsp");
+            requestDispatcher.forward(request, response);
 
-
-//            Article article = new Article();
-//            article.setArticleTitle(request.getParameter("title"));
-//            article.setArticleContent(request.getParameter("content"));
-//
-//            ArticleDAO.editArticle(connection, article, articleID);
-            response.sendRedirect("./article-view?articleID="+articleID);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+            String articleContent= request.getParameter("content");
+            String articleTitle= request.getParameter("title");
+            int articleID = Integer.parseInt(request.getParameter("articleID"));
+
+            Article article= new Article();
+            article.setArticleContent(articleContent);
+            article.setArticleTitle(articleTitle);
+            try(Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+                ArticleDAO.editArticle(connection,article,articleID);
+                response.sendRedirect("./article-view?articleID=" + articleID);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+
+
     }
 }

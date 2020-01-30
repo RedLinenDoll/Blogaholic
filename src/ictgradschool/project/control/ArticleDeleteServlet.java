@@ -20,9 +20,10 @@ public class ArticleDeleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try(Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-            int articleID= Integer.parseInt(request.getParameter("id"));
+            int articleID= Integer.parseInt(request.getParameter("articleID"));
             ArticleDAO.deleteArticle(connection,articleID);
-            response.sendRedirect("./welcome-view.jsp");
+            int loggedUserID = ((User)(request.getSession().getAttribute("loggedUser"))).getUserID();
+            response.sendRedirect("./blog-view?authorID=" + loggedUserID);
 
         } catch (SQLException e) {
             e.printStackTrace();
