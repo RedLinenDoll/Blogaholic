@@ -252,7 +252,7 @@ button:focus {
     background: var(--theme-color);
 }
 
-textarea, input[type="text"]
+textarea, input[type="text"], input[type="date"], input[type="password"]
 {
     border-image:none;
     border-color: var(--theme-color);
