@@ -70,10 +70,8 @@
             </a>
         </button>
         <c:if test="${loggedUser.userID==author.userID}">
-            <button id="delete-article" class="link-button">
-                <a href="./delete-article?articleID=${article.articleID}">
+            <button id="delete-article-button" class="link-button article-option-button" onclick="deleteArticle(${article.articleID})">
                     Delete
-                </a>
             </button>
             <button id="edit-article" class="link-button">
                 <a href="./edit-article?articleID=${article.articleID}">
@@ -93,7 +91,7 @@
 
                 <input type="hidden" name="target-type" value="article">
 
-                <button id="submit-comment-to-article">Post</button>
+                <button id="submit-comment-to-article" class="comment-option-button">Post</button>
             </form>
         </div>
     </c:if>

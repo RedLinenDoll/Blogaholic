@@ -18,7 +18,7 @@ import java.sql.SQLException;
 public class ArticleDeleteServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try(Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             int articleID= Integer.parseInt(request.getParameter("articleID"));
             ArticleDAO.deleteArticle(connection,articleID);

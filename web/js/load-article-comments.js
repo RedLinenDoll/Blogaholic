@@ -1,8 +1,19 @@
 const uriStart = '/team-java_blogaholic/';
 let currentArticleID;
-
+let currentAuthorID;
+async function sendDeleteArticleRequest() {
+    const request = new XMLHttpRequest();
+    request.open("POST", `${uriStart}delete-article`, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.send(`articleID=${currentArticleID}`);
+}
+async function deleteArticle() {
+    await sendDeleteArticleRequest();
+    window.location.replace(`${uriStart}blog-view?authorID=${currentAuthorID}`);
+}
 async function loadCommentList(articleID, authorID, loggedUserID) {
     currentArticleID = articleID;
+    currentAuthorID = authorID;
     const commentContainer = document.querySelector("#all-comments-container");
     let response = await fetch(`${uriStart}load-comments?articleID=${articleID}`);
     let commentList = await response.json();
@@ -45,7 +56,7 @@ function getCommentDiv(comment, authorID, loggedUserID) {
     commentLikeDislikeSpan.classList.add("comment-like-dislike-span");
     commentLikeDislikeSpan.innerHTML = `${comment.likesCount} <i class="far fa-thumbs-up like-empty-button like-comment" id="like-comment-${comment.commentID}"></i>· ${comment.dislikesCount} <i class="far fa-thumbs-down dislike-empty-button dislike-comment-${comment.commentIDD}"></i>`;
     commentOptionsDiv.appendChild(commentLikeDislikeSpan);
-    appendEditButton(commentOptionsDiv, authorID, loggedUserID, comment.commentID, comment.commenterID);
+    appendEditButton(commentOptionsDiv, authorID, loggedUserID, comment);
     appendDeleteButton(commentOptionsDiv, authorID, loggedUserID, comment.commentID, comment.commenterID);
 
     commentDiv.appendChild(avatarDiv);
@@ -64,12 +75,13 @@ function getCommentDiv(comment, authorID, loggedUserID) {
     return commentDiv;
 }
 
-function appendEditButton(commentOptionsDiv, authorID, loggedUserID, commentID, commenterID) {
+function appendEditButton(commentOptionsDiv, authorID, loggedUserID, comment) {
     if (loggedUserID < 0) return;
-    if (loggedUserID === commenterID) {
+    if (loggedUserID === comment.commenterID) {
         const editButton = document.createElement("button");
+        editButton.classList.add("edit-comment-button","comment-option-button");
         editButton.innerText = "Edit";
-        editButton.addEventListener("click", editComment(commentID));
+        editButton.addEventListener("click", editComment(comment));
         commentOptionsDiv.appendChild(editButton);
     }
 }
@@ -78,6 +90,7 @@ function appendDeleteButton(commentOptionsDiv, authorID, loggedUserID, commentID
     if (loggedUserID < 0) return;
     if (loggedUserID === commenterID || loggedUserID === authorID) {
         const deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete-comment-button","comment-option-button");
         deleteButton.innerText = "delete";
         deleteButton.addEventListener("click", async function () {
             await deleteComment(commentID);
@@ -87,7 +100,7 @@ function appendDeleteButton(commentOptionsDiv, authorID, loggedUserID, commentID
     }
 }
 
-function editComment(commentID) {
+function editComment(comment) {
 
 }
 
