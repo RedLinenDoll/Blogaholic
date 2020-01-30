@@ -46,7 +46,7 @@ public class ArticleDAO {
     //TODO edit article, given article ID and new article object
 
     public static boolean editArticle(Connection connection, Article article, int articleID) throws SQLException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE article_db SET title=?,content=? WHERE article_id=?")) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE article_db SET title=?,content=?, edit_time=CURRENT_TIMESTAMP WHERE article_id=?")) {
             preparedStatement.setString(1, article.getArticleTitle());
             preparedStatement.setString(2, article.getArticleContent());
             preparedStatement.setInt(3, articleID);
