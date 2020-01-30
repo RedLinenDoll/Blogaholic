@@ -196,8 +196,3 @@ p#info {
     width: unset;
 }
 
-.comment-option-button {
-    border: solid 1px var(--theme-color);
-    background-color: white;
-    color: var(--heavy-color);
-}

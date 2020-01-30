@@ -16,7 +16,6 @@ import java.sql.SQLException;
 public class CommentAddServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("trying to add comment");
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             int commenterID = ((User) request.getSession().getAttribute("loggedUser")).getUserID();
             String target = request.getParameter("target-type");

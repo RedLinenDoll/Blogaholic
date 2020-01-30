@@ -20,8 +20,7 @@ public class CommentDeleteServlet extends HttpServlet {
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             int articleID = Integer.parseInt(request.getParameter("articleID"));
             int commentID = Integer.parseInt(request.getParameter("commentID"));
-            boolean success = CommentDAO.deleteCommentByID(connection, commentID);
-            System.out.println(success);
+            CommentDAO.deleteCommentByID(connection, commentID);
             response.sendRedirect("./article-view?articleID=" + articleID);
 
         } catch (SQLException e) {
