@@ -278,3 +278,9 @@ textarea, input[type="text"], input[type="date"], input[type="password"]
 .tiny-comment-option-button:hover{
     color:var(--heavy-color);
 }
+
+.comment-body {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #555555;
+    font-size: 14px;
+}

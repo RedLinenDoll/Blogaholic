@@ -129,7 +129,7 @@ function timestampToLocaleString(timestamp) {
 function appendCommentButton(optionDiv, targetCommentID) {
     if (currentLoggedUserID < 0) return;
     const commentButton = document.createElement("button");
-    commentButton.innerText = "Comment";
+    commentButton.innerText = "Reply";
     commentButton.classList.add("tiny-comment-option-button", "add-comment-to-comment-button");
     commentButton.addEventListener("click", function () {
         loadCommentingForm(optionDiv, targetCommentID);
@@ -146,7 +146,7 @@ function loadCommentingForm(optionDiv, targetCommentID) {
     commentFormContainer.innerHTML = `
            <form id="add-comment-comment" action="${uriStart}add-comment" method="post">
                 <label for="add-comment-to-comment" class="comment-info" style="font-size: 15px;">Add Comments: </label><br>
-                <textarea id="add-comment-to-comment" rows="4" maxlength="512" name="article-comment-body" placeholder="Share your thoughts on this comment" style="width: 95%; font-size: 15px; font-family:var(--primary-font)"></textarea>
+                <textarea id="add-comment-to-comment" rows="4" maxlength="512" name="article-comment-body" placeholder="Reply to this comment" style="width: 95%; font-size: 15px; font-family:var(--primary-font)"></textarea>
                 <input type="hidden" name="target-id" value="${targetCommentID}">
                 <input type="hidden" name="article-id" value="${currentArticleID}">
                 <input type="hidden" name="target-type" value="comment">
