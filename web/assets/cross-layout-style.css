@@ -42,13 +42,18 @@
 }
 
 .comment-avatar,
-.blog-avatar {
+.blog-avatar
+{
     width: 3em;
     height: 3em;
     float: left;
     grid-area: avatar;
     position: relative;
     top: 1.5em;
+}
+.select-avatar {
+    width: 3em;
+    height: 3em;
 }
 
 .full-article-link {
