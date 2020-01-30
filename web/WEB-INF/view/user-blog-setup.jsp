@@ -30,6 +30,8 @@
             <textarea id="blog-description-input" name="blog-description" maxlength="256" rows="3" cols="36">
             </textarea>
 
+
+
             <%--            TODO finish this form--%>
         </form>
     </div>
