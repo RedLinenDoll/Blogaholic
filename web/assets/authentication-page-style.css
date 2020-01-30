@@ -131,7 +131,7 @@ button:hover {
 
 .non-primary-label {
     font-size: 15px;
-    color: var(--median-gray);
+    color: #444444;
 }
 
 .non-primary-input {
