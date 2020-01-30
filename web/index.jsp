@@ -5,7 +5,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>Welcome to BLOG</title>
+    <title>Welcome to Blogaholic!</title>
 
     <jsp:include page="/cross-page-view/link-fonts.jsp"/>
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'/>

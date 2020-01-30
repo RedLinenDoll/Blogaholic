@@ -239,3 +239,9 @@ button:focus {
     text-align: center;
     right: 1em;
 }
+
+#new-article-link {
+    padding-left: 6px;
+    border-left: var(--gentle-black) 2px solid;
+
+}
