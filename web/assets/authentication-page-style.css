@@ -1,6 +1,7 @@
 body {
     --theme-color: #3f99ae;
     --heavy-color: #106688;
+    --light-color: #58d6f4;
     margin: 0;
 }
 
@@ -124,7 +125,7 @@ button:hover {
 }
 
 .non-primary-label {
-    font-size: 12px;
+    font-size: 15px;
     color: var(--median-gray);
 }
 .non-primary-input {
@@ -180,5 +181,9 @@ p#info {
 #select-avatar-form, #avatar-upload-form {
     padding: 5px;
     align-items: stretch;
+    width: unset;
+}
+
+#user-profile-form {
     width: unset;
 }

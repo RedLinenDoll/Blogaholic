@@ -12,11 +12,9 @@
 <div class="page-content-container">
     <div class="head-container">
         <h1>
-            Now <img class="inline-avatar"
-                     src='<c:url value="/images/avatar/${newUser.avatarPath}"/>'/> ${newUser.username}, let's create
-            your blog.
+            Great <img class="inline-avatar" src='<c:url value="/images/avatar/${newUser.avatarPath}"/>'/> ${newUser.username}, now let's create
+            your blog
         </h1>
-        <p>and give it your personal touch!</p>
     </div>
     <div class="body-container">
         <form id="blog-setup-form" action='<c:url value="/change-blog-preference"/>' method="post">
@@ -25,10 +23,10 @@
             </label>
             <input type="text" id="blog-name-input" name="blog-name" required>
             <label for="blog-description-input">
-                Write a few lines to introduce your blog (maximum 256 characters):
+                Please write some descriptions of your blog (e.g. topic, target-readers):
             </label>
-            <textarea id="blog-description-input" name="blog-description" maxlength="256" rows="3" cols="36">
-            </textarea>
+            <textarea id="blog-description-input" name="blog-description"
+                      rows="3" cols="45">Blogaholic ${newUser.username}'s blog</textarea>
 
 
 
