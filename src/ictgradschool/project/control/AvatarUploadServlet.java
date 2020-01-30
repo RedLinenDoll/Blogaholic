@@ -64,7 +64,6 @@ public class AvatarUploadServlet extends HttpServlet {
 
         try {
             List<FileItem> fileItems = upload.parseRequest(request);
-            System.out.println("fileItems has " + fileItems.size() + " items");
             File fullSizeImageFile;
 
             for (FileItem fi : fileItems) {

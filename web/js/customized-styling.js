@@ -27,7 +27,6 @@ function colorLuminanceVariance(colorHexCode, luminanceVariation) {
 }
 
 function applyLayoutSpecificStyling(layoutID, themeColor) {
-    console.log(themeColor);
     if (themeColor === null) return;
     if (themeColor.length === 0) return;
 
