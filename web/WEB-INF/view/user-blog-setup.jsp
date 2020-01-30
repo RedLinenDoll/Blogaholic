@@ -12,7 +12,9 @@
 <div class="page-content-container">
     <div class="head-container">
         <h1>
-            Now let's create your blog.
+            Now <img class="inline-avatar"
+                     src='<c:url value="/images/avatar/${newUser.avatarPath}"/>'/> ${newUser.username}, let's create
+            your blog.
         </h1>
         <p>and give it your personal touch!</p>
     </div>
@@ -25,10 +27,10 @@
             <label for="blog-description-input">
                 Write a few lines to introduce your blog (maximum 256 characters):
             </label>
-            <textarea id="blog-description-input" name="blog-description" maxlength="256" rows="3">
+            <textarea id="blog-description-input" name="blog-description" maxlength="256" rows="3" cols="36">
             </textarea>
 
-<%--            TODO finish this form--%>
+            <%--            TODO finish this form--%>
         </form>
     </div>
 </div>

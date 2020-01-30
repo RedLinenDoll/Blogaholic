@@ -140,4 +140,19 @@ public class UserDAO {
         }
 
     }
+
+    public static User setUserAvatarPath(Connection connection, int userID, String avatarPath) {
+        try(PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users_db SET avatar_path = ? WHERE user_id = ?")) {
+            preparedStatement.setString(1, avatarPath);
+            preparedStatement.setInt(2, userID);
+            int rowUpdated = preparedStatement.executeUpdate();
+            if(rowUpdated==1)
+                return getAuthorById(connection, userID);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

@@ -45,7 +45,7 @@
 </div>
 
 <div class="body-container" id="recent-article-container">
-    <h2> What's new? </h2>
+    <h2> <u>What's new?</u> </h2>
     <div id="recent-article-list-container" class="page-item-container">
         <%--    This part is for demoenstration of jsp structure, and will be cleared once loaded article --%>
         <div class="article-div page-item-div">
