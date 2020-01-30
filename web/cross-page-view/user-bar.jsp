@@ -5,7 +5,7 @@
 <div id="user-top-bar" class="top-bar">
     <div class="top-bar-home-link">
         <a href='<c:url value="/"/>'>
-            Blogaholic
+            Blogaholic!
         </a>
     </div>
     <div class="top-bar-links" id="user-top-bar-links">
@@ -15,8 +15,8 @@
                      alt="${loggedUser.username}'s avatar">
                 My Blog
             </a>
-            <a href="./testing-add-article.jsp">
-                Create a new article
+            <a href="./testing-add-article.jsp" id="new-article-link">
+                New article
             </a>
         </span>
         <span id="log-out-span" class="top-bar-span">
