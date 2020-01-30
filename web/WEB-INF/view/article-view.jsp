@@ -63,9 +63,14 @@
         </button>
         <c:if test="${loggedUser.userID==author.userID}">
             <button id="delete-article" class="link-button">
-                <a href="#">
+                <a href="./delete-article?id=${article.articleID}">
 <%--                    TODO: link to delete article servlet, include article ID in the parameter--%>
-                    Delete Article
+                    Delete
+                </a>
+            </button>
+            <button id="edit-article" class="link-button">
+                <a href="./edit-article?id=${article.articleID}">
+                    Edit
                 </a>
             </button>
         </c:if>

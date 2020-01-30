@@ -29,6 +29,9 @@ public class Comment {
         this.childComments = new ArrayList<>();
     }
 
+    public Comment() {
+    }
+
     public void addChildComment(Comment comment) {
         childComments.add(comment);
     }

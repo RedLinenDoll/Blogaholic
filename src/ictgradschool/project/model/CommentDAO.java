@@ -8,6 +8,7 @@ import java.util.List;
 public class CommentDAO {
 
     // TODO add comment on article
+
     public static boolean addCommentToArticle(Connection connection, int articleID, Comment comment) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO comment_db(target_article_id,body,number_of_likes,number_of_dislikes) VALUES (?,?,?,?)")) {
             preparedStatement.setInt(1, articleID);
@@ -24,14 +25,19 @@ public class CommentDAO {
     // TODO add comment on comment
 
 
-    public static boolean addCommentToComment(Connection connection, int commenterID, Comment comment) throws SQLException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO comment_db(commenter_id,body,number_of_likes,number_of_dislikes) VALUES (?,?,?,?)")) {
+    public static int addCommentToComment(Connection connection, int commenterID, Comment comment) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO comment_db(commenter_id,body,number_of_likes,number_of_dislikes) VALUES (?,?,?,?)",Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setInt(1, commenterID);
             preparedStatement.setString(2, comment.getCommentBody());
             preparedStatement.setInt(3, 0);
             preparedStatement.setInt(4, 0);
             int rowUpdated = preparedStatement.executeUpdate();
-            return rowUpdated == 1;
+            if (rowUpdated !=1) return 0;
+            try (ResultSet keys = preparedStatement.getGeneratedKeys()) {
+                keys.next();
+                return keys.getInt(1);
+            }
+
 
         }
 
