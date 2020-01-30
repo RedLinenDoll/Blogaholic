@@ -1,11 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: anran
-  Date: 30/01/20
-  Time: 11:30 AM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -24,14 +18,46 @@
             function highlightAvatar(e) {
                 const avatarNum = e.target.value;
                 containers.forEach(container => {
-                    container.style.border=0;
+                    container.style.border = "0";
                 });
                 containers[avatarNum - 1].style.border = "var(--theme-color) dotted 2px";
             }
         });
+        function loadPreview(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
 
+                reader.onload = function () {
+                    document.querySelector("#preview-image").src=reader.result;
+                };
 
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
     </script>
+    <style>
+        #upload-avatar-container {
+            display: flex;
+            flex-direction: column;
+            height: 45%;
+            justify-content: space-between;
+            margin-left: 15px;
+        }
+
+        #preview-image {
+            max-height: 6em;
+            max-width: 6em;
+            border-radius: 50%;
+            border: var(--bright-gray) 4px solid;
+        }
+
+        #avatar-preview-container{
+            width: fit-content;
+            height: fit-content;
+            margin: 15px auto 25px;
+        }
+
+    </style>
 </head>
 <body>
 <div class="page-content-container">
@@ -104,12 +130,15 @@
             </form>
 
             <form id="avatar-upload-form" method="post" action='<c:url value="/set-avatar"/>'>
+                <div id="avatar-preview-container">
+                    <img id="preview-image" src='<c:url value="/images/avatar/avatarPreview.png"/>' alt="avatar preview">
+                </div>
                 <div id="upload-avatar-container">
                     <label for="file-upload">Upload your own avatar here</label>
-                    <input type="file" id="file-upload">
+                    <input type="file" id="file-upload" onchange="loadPreview(this);">
+                    <button class="link-button" id="submit-uploaded-avatar">Use uploaded avatar</button>
 
                 </div>
-                <button class="link-button" id="submit-uploaded-avatar">Use uploaded avatar</button>
             </form>
 
 
