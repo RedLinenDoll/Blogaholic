@@ -27,3 +27,7 @@ SET first_name = 'new first name',
     date_of_birth = '1994-09-01',
     self_introduction = 'Hi this is A'
 WHERE user_id = 2;
+
+
+DELETE FROM users_db
+WHERE user_id > 6;

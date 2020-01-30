@@ -36,10 +36,6 @@ public class SignUp extends HttpServlet {
 
     }
 
-    // TODO do post, create user and set blog settings as well.
-
-    //  TODO Will need to deal with avatar upload.
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

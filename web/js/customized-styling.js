@@ -2,7 +2,8 @@ function applyThemeColor(themeColor) {
     if (themeColor == null) return;
     if (themeColor.length === 0) return;
     document.documentElement.style.setProperty('--theme-color', themeColor);
-    document.documentElement.style.setProperty('--heavy-color', colorLuminanceVariance(themeColor, -0.4))
+    document.documentElement.style.setProperty('--heavy-color', colorLuminanceVariance(themeColor, -0.4));
+    document.documentElement.style.setProperty('--light-color', colorLuminanceVariance(themeColor, +0.4));
 
 }
 
@@ -26,7 +27,6 @@ function colorLuminanceVariance(colorHexCode, luminanceVariation) {
 }
 
 function applyLayoutSpecificStyling(layoutID, themeColor) {
-    console.log(themeColor);
     if (themeColor === null) return;
     if (themeColor.length === 0) return;
 

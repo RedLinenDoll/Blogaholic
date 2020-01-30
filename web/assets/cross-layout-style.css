@@ -1,6 +1,7 @@
 :root {
     --theme-color: #888888;
     --heavy-color: #666666;
+    --light-color: #aaaaaa;
     /*    These will be immediately overwritten as soon as the blog or article view are loaded.*/
 
     --gentle-black: #333333;
@@ -16,8 +17,8 @@
 }
 
 .inline-avatar {
-    width: 1.5em;
-    height: 1.5em;
+    max-width: 1.5em;
+    max-height: 1.5em;
     border-radius: 50%;
     border: var(--bright-gray) solid 1px;
     position: relative;
@@ -44,16 +45,16 @@
 .comment-avatar,
 .blog-avatar
 {
-    width: 3em;
-    height: 3em;
+    max-width: 3em;
+    max-height: 3em;
     float: left;
     grid-area: avatar;
     position: relative;
     top: 1.5em;
 }
 .select-avatar {
-    width: 3em;
-    height: 3em;
+    max-width: 3em;
+    max-height: 3em;
 }
 
 .full-article-link {
@@ -245,3 +246,18 @@ button:focus {
     border-left: var(--gentle-black) 2px solid;
 
 }
+
+::selection
+{
+    background: var(--theme-color);
+}
+
+textarea, input[type="text"]
+{
+    border-image:none;
+    border-color: var(--theme-color);
+    border-style: solid;
+    border-width: 1px;
+}
+
+

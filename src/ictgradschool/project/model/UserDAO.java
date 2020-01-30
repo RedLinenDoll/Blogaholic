@@ -89,16 +89,15 @@ public class UserDAO {
             preparedStatement.setInt(5, user.getIterationNum());
 
             int rowUpdated = preparedStatement.executeUpdate();
-            if (rowUpdated == 1) {
+            if (rowUpdated >= 1) {
                 try (ResultSet keys = preparedStatement.getGeneratedKeys()) {
                     keys.next();
                     int userID = keys.getInt(1);
                     user.setUserID(userID);
                     return user;
                 }
-            }
+            } else return null;
         }
-        return null;
     }
 
 
@@ -141,16 +140,13 @@ public class UserDAO {
 
     }
 
-    public static User setUserAvatarPath(Connection connection, int userID, String avatarPath) {
+    public static User setUserAvatarPath(Connection connection, int userID, String avatarPath) throws SQLException{
         try(PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users_db SET avatar_path = ? WHERE user_id = ?")) {
             preparedStatement.setString(1, avatarPath);
             preparedStatement.setInt(2, userID);
             int rowUpdated = preparedStatement.executeUpdate();
             if(rowUpdated==1)
                 return getAuthorById(connection, userID);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return null;
     }
