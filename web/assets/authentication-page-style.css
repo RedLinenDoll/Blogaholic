@@ -1,6 +1,7 @@
 body {
     --theme-color: #3f99ae;
     --heavy-color: #106688;
+    --light-color: #58d6f4;
     margin: 0;
 }
 
@@ -18,11 +19,13 @@ form {
     align-items: center;
     justify-content: center;
 }
+
 input[type="text"], input[type="password"], input[type="date"] {
     margin: 2px;
     font-size: 15px;
     font-family: var(--primary-font);
 }
+
 textarea {
     font-size: 15px;
     font-family: var(--primary-font);
@@ -38,10 +41,10 @@ textarea {
     .head-container {
         height: 20vh;
     }
+
     form {
         width: 90%;
     }
-
 
 
 }
@@ -58,14 +61,16 @@ button {
 
 body {
     margin: 0;
-    background: url("../images/layout-decor/authentication-decor.jpg") no-repeat center center fixed;
+    background-image: url("../images/layout-decor/authentication-decor.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     background-size: cover;
 }
 
 .page-content-container {
     background-color: rgba(256, 256, 256, 0.8);
     margin: 10vh auto;
-
 }
 
 @media screen and (max-width: 600px) {
@@ -120,13 +125,15 @@ button:hover {
 }
 
 .invisible {
-    display: none;!important;
+    display: none;
+!important;
 }
 
 .non-primary-label {
-    font-size: 12px;
-    color: var(--median-gray);
+    font-size: 15px;
+    color: #444444;
 }
+
 .non-primary-input {
     display: inline;
 }
@@ -138,11 +145,12 @@ button:hover {
     grid-template-rows: 3em 1fr;
     grid-template-areas: "instruction instruction" "select upload";
 }
+
 p#info {
     grid-area: instruction;
 }
-#select-avatar-form
-{
+
+#select-avatar-form {
     grid-area: select;
 
 }
@@ -161,6 +169,7 @@ p#info {
     grid-gap: 4px;
 
 }
+
 .avatar-selection {
     width: 3.5em;
     box-sizing: border-box;
@@ -173,12 +182,16 @@ p#info {
 
 }
 
-#submit-uploaded-avatar, #submit-selected-avatar{
+#submit-uploaded-avatar, #submit-selected-avatar {
     position: static;
 }
 
 #select-avatar-form, #avatar-upload-form {
     padding: 5px;
     align-items: stretch;
+    width: unset;
+}
+
+#user-profile-form {
     width: unset;
 }

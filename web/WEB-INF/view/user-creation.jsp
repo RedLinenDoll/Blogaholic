@@ -18,7 +18,7 @@
         <p>We would like to know more about you!</p>
     </div>
     <div class="body-container">
-        <form id="user-profile-form" method="post" action='<c:url value="/edit-user"/>'>
+        <form id="user-profile-form" method="post" action='<c:url value="/edit-user"/>' style="width: 80%; align-items: stretch; justify-content: stretch">
 
             <input type="hidden" name="user-id" value="${newUser.userID}">
             <label for="first-name">
@@ -33,13 +33,22 @@
             <label for="date-of-birth">
                 Your date of birth:
             </label>
-            <input id="date-of-birth" name="date-of-birth" type="date" required>
+            <input id="date-of-birth" name="date-of-birth" type="date" value="1990-01-01"
+                   min="1900-01-01">
+            <script type="text/javascript">
+                document.querySelector("#date-of-birth").max = new Date().toISOString().split("T")[0];
+            </script>
 
-            <label for="share-real-name-info" class="non-primary-label">Share real name and date of birth with visitors</label>
-            <input type="checkbox" name="share-real-name-info" id="share-real-name-info" class="non-primary-input">
+            <span style="margin: 3px; padding-bottom: 5px"><label for="share-real-name-info" class="non-primary-label">Share real name and date of birth with visitors</label>
+            <input type="checkbox" name="share-real-name-info" id="share-real-name-info"
+                   class="non-primary-input"></span>
+            <div style="height: 1px; width: 60%; border-bottom: 2px dotted var(--median-gray)">
+            </div>
 
-            <label for="self-intro-input">Tell your blog visitors a bit about yourself:</label>
-            <textarea rows="3" maxlength="256" cols="36" id="self-intro-input" name="self-intro" required></textarea>
+
+            <label for="self-intro-input" style="margin: 5px">Tell your blog visitors a bit about yourself:</label>
+            <textarea rows="3" maxlength="256" cols="45" id="self-intro-input" name="self-intro"
+                      required>Hi there, I'm ${newUser.username}, your fellow blogaholic!</textarea>
 
             <div class="operation-container">
                 <button type="submit">Yes that's me</button>
