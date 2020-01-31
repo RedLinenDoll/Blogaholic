@@ -35,7 +35,7 @@ async function loadCommentList(articleID, authorID, loggedUserID) {
     const targetPosition = window.location.href.split('#')[1];
     if (targetPosition.length > 0) {
         const newCommentDiv = document.querySelector(`#${targetPosition}`);
-        newCommentDiv.scrollIntoView();
+        await newCommentDiv.scrollIntoView({behavior: "smooth", block: "center"});
         newCommentDiv.style.boxShadow = "0 0 3px var(--theme-color)";
         newCommentDiv.style.transition = "1s ease-in-out";
         setTimeout(() => {
