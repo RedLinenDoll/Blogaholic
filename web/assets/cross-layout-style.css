@@ -39,7 +39,7 @@
     position: relative;
     grid-template-columns: 5em 1fr;
     grid-template-rows: 2em 4em 1fr;
-    grid-template-areas: "avatar blog" "avatar blog" ". blog";
+    grid-template-areas: "avatar blog" "avatar blog" "avatar blog";
 }
 
 .comment-avatar,
@@ -48,9 +48,17 @@
     max-width: 3em;
     max-height: 3em;
     float: left;
-    grid-area: avatar;
     position: relative;
     top: 1.5em;
+}
+.blog-avatar
+{
+    top: 0.5em;
+}
+
+.blog-avatar-div {
+    grid-area: avatar;
+
 }
 .select-avatar {
     max-width: 3em;
@@ -147,9 +155,6 @@ a {
     padding-right: 4px;
 }
 
-#log-out-span, #log-in-span {
-    padding-left: 6px;
-}
 
 a {
     color: var(--gentle-black);
@@ -216,7 +221,7 @@ button:focus {
 
 .head-container {
     height: 40vh;
-    margin: 0 auto;
+    margin: 20px auto 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -241,11 +246,6 @@ button:focus {
     right: 1em;
 }
 
-#new-article-link {
-    padding-left: 6px;
-    border-left: var(--gentle-black) 2px solid;
-
-}
 
 ::selection
 {
@@ -288,4 +288,45 @@ textarea, input[type="text"], input[type="date"], input[type="password"]
 textarea:focus {
     outline-color: var(--theme-color);
     border: 1px solid var(--theme-color);
+}
+
+#toggle-trigger:hover{
+    color: var(--theme-color);
+    cursor: pointer;
+}
+
+#toggle-trigger {
+    cursor: pointer;
+}
+
+
+#toggle-down-box{
+    position: fixed;
+    margin: 0;
+    top: 45px;
+    left: calc(97vw - 9em);
+    width: 9em;
+
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    height: 7em;
+    font-weight: bold;
+    border: 5px white solid;
+    border-right: 70px white solid;
+
+}
+
+.toggle-down-span {
+    border-bottom: 1px solid var(--median-gray);
+}
+
+#toggle-down-box:last-child {
+    border-bottom: 0;
+}
+
+.invisible {
+    display: none !important;
 }

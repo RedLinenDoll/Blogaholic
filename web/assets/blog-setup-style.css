@@ -1,0 +1,27 @@
+body{
+    position: relative;
+}
+.layout-preview-container {
+    border: 4px var(--bright-gray) solid;
+    text-align: center;
+
+}
+
+.layout-option-container {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.layout-name {
+    font-weight: bolder;
+    text-align: center;
+    font-size: 16px;
+}
+.layout-description {
+    margin: 4px;
+}

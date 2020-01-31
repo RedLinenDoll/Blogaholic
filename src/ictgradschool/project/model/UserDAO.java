@@ -151,4 +151,14 @@ public class UserDAO {
         return null;
     }
 
+    public static void setBlogPreference(Connection connection, int userID, String blogName, String blogDescription, int layoutID, String themeColor) throws SQLException{
+        try(PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users_db SET blog_name = ?, blog_description = ?, layout_id = ?, theme_color = ? WHERE user_id = ?")) {
+            preparedStatement.setString(1, blogName);
+            preparedStatement.setString(2, blogDescription);
+            preparedStatement.setInt(3, layoutID);
+            preparedStatement.setString(4, themeColor);
+            preparedStatement.setInt(5, userID);
+            preparedStatement.executeUpdate();
+        }
+    }
 }

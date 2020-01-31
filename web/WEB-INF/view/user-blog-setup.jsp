@@ -2,31 +2,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <title>${newUser.username}'s blog setting</title>
+
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'>
     <link rel="stylesheet" href='<c:url value="/assets/layout2.css"/>'>
     <link rel="stylesheet" href='<c:url value="/assets/authentication-page-style.css"/>'>
-
-    <title>Creating ${newUser.username}'s awesome blog</title>
-    <script>
-        window.addEventListener("load", function () {
-            setTimeout(function () {
-                document.querySelector("#cover").style.backgroundColor = "rgba(256,256,256,1)";
-                document.querySelector("#clean-message").style.color = "white";
-                }, 1000);
-        })
-    </script>
+    <link rel="stylesheet" href='<c:url value="/assets/blog-setup-style.css"/>'>
+    <script type="text/javascript" src='<c:url value="/js/blog-setup.js"/>'></script>
 </head>
 <body>
-<div style="margin: 0; background-color: rgba(0,0,0,0); width: 100%; height: 100%;transition:all 2s ease-in-out" id="cover">
+
 <div class="page-content-container">
     <div class="head-container">
         <h1>
             <img class="inline-avatar"
-                       src='<c:url value="/images/avatar/${newUser.avatarPath}"/>'/> ${newUser.username}, let's
+                 src='<c:url value="/images/avatar/${newUser.avatarPath}"/>' alt=" "> ${newUser.username}, let's
             make blog decisions
         </h1>
         <p id="clean-message" style="transition-duration: 2s">
-            We'll make this page clean and simple for you.
+            We'll make this page clean and spacious for you.
         </p>
     </div>
     <div class="body-container">
@@ -43,14 +37,37 @@
             <textarea id="blog-description-input" name="blog-description"
                       rows="3" cols="45">Blogaholic ${newUser.username}'s blog</textarea>
 
-            <div style="height: 30px; width: 100%; border-bottom: 1px dashed var(--theme-color)">
+            <div style="height: 30px; width: 100%; border-bottom: 1px dashed var(--theme-color)"></div>
+            <p>Now design decisions! Please pick a layout: </p>
+            <div id="layout-options-container">
+                <div id="layout1-option-container" class="layout-option-container">
+                    <label for="layout-radio-1" class="layout-name">Layout 1</label>
+                    <input type="radio" id="layout-radio-1" name="layout" value="2" class="layout-radio">
 
-<%--                TODO style options here --%>
+                    <label for="layout-radio-1"class="layout-description">Sharp and clear, suitable for technology blog (and everything else,
+                        actually) </label>
+                    <div class="layout-preview-container" id="layout-preview-1">
+                    </div>
+                    <div id="layout1-color-selection-container">
+                    </div>
+                </div>
+                <hr style="width: 60%; ">
 
+                <div id="layout2-option-container" class="layout-option-container">
+                    <label for="layout-radio-2" class="layout-name">Layout 2</label>
+                    <input type="radio" id="layout-radio-2" name="layout" value="1" class="layout-radio">
+                    <label for="layout-radio-2" class="layout-description">An elegant touch in the font and cover, hosting your feelings and
+                        stories</label>
+                    <div class="layout-preview-container" id="layout-preview-2">
+                    </div>
+                    <div id="layout2-color-selection-container">
+                    </div>
+                </div>
+            </div>
 
         </form>
     </div>
 </div>
-</div>
+
 </body>
 </html>

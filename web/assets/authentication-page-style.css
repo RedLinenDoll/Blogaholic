@@ -124,10 +124,6 @@ button:hover {
 
 }
 
-.invisible {
-    display: none;
-!important;
-}
 
 .non-primary-label {
     font-size: 15px;
