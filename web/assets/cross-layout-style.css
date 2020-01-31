@@ -249,7 +249,7 @@ button:focus {
 
 ::selection
 {
-    background: var(--theme-color);
+    background: var(--light-color);
 }
 
 textarea, input[type="text"], input[type="date"], input[type="password"]
