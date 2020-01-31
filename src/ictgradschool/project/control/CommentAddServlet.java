@@ -26,7 +26,7 @@ public class CommentAddServlet extends HttpServlet {
             newComment.setCommenterID(commenterID);
 
             CommentDAO.addComment(connection, (target.equals("article")), targetID, newComment);
-            response.sendRedirect("./article-view?articleID=" + articleID);
+            response.sendRedirect("./article-view?articleID=" + articleID + "#all-comments-container");
         } catch (SQLException e) {
             e.printStackTrace();
         }
