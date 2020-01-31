@@ -213,7 +213,7 @@ button:focus {
 
 .head-container {
     height: 40vh;
-    margin: 0 auto;
+    margin: 20px auto 0;
     display: flex;
     justify-content: center;
     align-items: center;

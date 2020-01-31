@@ -8,11 +8,14 @@
         const arrow = document.querySelector("#toggle-arrow");
         const toggleTrigger = document.querySelector("#toggle-trigger");
         toggleTrigger.addEventListener("click", toggleBar);
+        let toggled = false;
 
         function toggleBar() {
+            toggled = !toggled;
             arrow.classList.toggle("fa-angle-down");
             arrow.classList.toggle("fa-angle-right");
             toggleBox.classList.toggle("invisible");
+
         }
     });
 

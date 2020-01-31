@@ -1,9 +1,8 @@
 INSERT INTO layout_db (layout_name, layout_description, preview_image_path)
-VALUES ('Clean Blog Layout', 'Tidy and clear, suitable for technology blog (and everything else)', 'layout1.png'),
-       ('layout2',
-        'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish.',
-        'layout2.jpg');
-
+VALUES ('Clear', 'Sharp and clear, suitable for technology blog (and everything else)', 'layout1.gif'),
+       ('Elegant',
+        'An elegant touch in the font and cover',
+        'layout2.gif');
 
 INSERT INTO users_db (username, hashed_password, hashed_salt, salt_length, iteration_number, blog_name,
                       blog_description, layout_id, theme_color, avatar_path)
@@ -45,7 +44,8 @@ VALUES ('Cooking curry dish',
         '2020-01-01 12:25:05', NULL, 58, 6, 5);
 
 
-INSERT INTO comment_db (body, created_time, edit_time, number_of_likes, number_of_dislikes, target_article_id, commenter_id)
+INSERT INTO comment_db (body, created_time, edit_time, number_of_likes, number_of_dislikes, target_article_id,
+                        commenter_id)
 VALUES ('On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire.',
         '2019-12-24 20:30:05', NULL, 10, 5, 1, 1),
        ('But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted.',
@@ -57,12 +57,13 @@ VALUES ('On the other hand, we denounce with righteous indignation and dislike m
        ('Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.',
         '2019-08-06 18:34:08', NULL, 5, 12, 3, 5);
 
-INSERT INTO comment_db(body, created_time, edit_time, number_of_likes, number_of_dislikes, target_article_id, target_comment_id, commenter_id)
+INSERT INTO comment_db(body, created_time, edit_time, number_of_likes, number_of_dislikes, target_article_id,
+                       target_comment_id, commenter_id)
 VALUES ('Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.',
-        '2019-08-06 18:34:08', NULL, 0, 8, NULL, 3000,3),
+        '2019-08-06 18:34:08', NULL, 0, 8, NULL, 3000, 3),
        ('Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.',
-        '2019-08-06 18:34:08', NULL, 0, 8, NULL, 3005,3)
-       ;
+        '2019-08-06 18:34:08', NULL, 0, 8, NULL, 3005, 3)
+;
 
 
 
