@@ -145,7 +145,7 @@ function loadCommentingForm(optionDiv, targetCommentID) {
     commentFormContainer.id = "add-comment-container";
     commentFormContainer.innerHTML = `
            <form id="add-comment-comment" action="${uriStart}add-comment" method="post">
-                <label for="add-comment-to-comment" class="comment-info" style="font-size: 15px;">Add Comments: </label><br>
+                <label for="add-comment-to-comment" class="comment-info" style="font-size: 15px;">  </label><br>
                 <textarea id="add-comment-to-comment" rows="4" maxlength="512" name="article-comment-body" placeholder="Reply to this comment" style="width: 95%; font-size: 15px; font-family:var(--primary-font)"></textarea>
                 <input type="hidden" name="target-id" value="${targetCommentID}">
                 <input type="hidden" name="article-id" value="${currentArticleID}">
@@ -155,6 +155,7 @@ function loadCommentingForm(optionDiv, targetCommentID) {
     commentFormContainer.style.gridArea="add-comment";
 
     optionDiv.parentNode.insertBefore(commentFormContainer, optionDiv.nextSibling);
+    document.querySelector("#add-comment-to-comment").focus();
 
 }
 
