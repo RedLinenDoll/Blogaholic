@@ -2,23 +2,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <title>${newUser.username}'s blog setting</title>
+
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'>
     <link rel="stylesheet" href='<c:url value="/assets/layout2.css"/>'>
     <link rel="stylesheet" href='<c:url value="/assets/authentication-page-style.css"/>'>
     <link rel="stylesheet" href='<c:url value="/assets/blog-setup-style.css"/>'>
     <script type="text/javascript" src='<c:url value="/js/blog-setup.js"/>'></script>
-
-    <title>${newUser.username}'s blog setting</title>
-    <script>
-        window.addEventListener("load", function () {
-            setTimeout(function () {
-                document.body.style.backgroundImage = "none";
-                document.querySelector("#clean-message").style.color = "white";
-            }, 1000);
-            loadLayoutPreview([document.querySelector("#layout-preview-1"), document.querySelector("#layout-preview-2")]);
-        });
-
-    </script>
 </head>
 <body>
 
@@ -51,20 +41,26 @@
             <p>Now design decisions! Please pick a layout: </p>
             <div id="layout-options-container">
                 <div id="layout1-option-container" class="layout-option-container">
-                    <input type="radio" id="layout1" name="layout" value="1" class="layout-radio">
-                    <label for="layout1" class="layout-name">Layout 1</label>
-                    <p class="layout-description">Sharp and clear, suitable for technology blog (and everything else,
-                        actually) </p>
+                    <label for="layout-radio-1" class="layout-name">Layout 1</label>
+                    <input type="radio" id="layout-radio-1" name="layout" value="2" class="layout-radio">
+
+                    <label for="layout-radio-1"class="layout-description">Sharp and clear, suitable for technology blog (and everything else,
+                        actually) </label>
                     <div class="layout-preview-container" id="layout-preview-1">
                     </div>
+                    <div id="layout1-color-selection-container">
+                    </div>
                 </div>
+                <hr style="width: 60%; ">
 
                 <div id="layout2-option-container" class="layout-option-container">
-                    <input type="radio" id="layout2" name="layout" value="2" class="layout-radio">
-                    <label for="layout2" class="layout-name">Layout 2</label>
-                    <p class="layout-description">An elegant touch in the font and cover, hosting your feelings and
-                        stories</p>
+                    <label for="layout-radio-2" class="layout-name">Layout 2</label>
+                    <input type="radio" id="layout-radio-2" name="layout" value="1" class="layout-radio">
+                    <label for="layout-radio-2" class="layout-description">An elegant touch in the font and cover, hosting your feelings and
+                        stories</label>
                     <div class="layout-preview-container" id="layout-preview-2">
+                    </div>
+                    <div id="layout2-color-selection-container">
                     </div>
                 </div>
             </div>

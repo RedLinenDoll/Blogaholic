@@ -39,7 +39,7 @@
     position: relative;
     grid-template-columns: 5em 1fr;
     grid-template-rows: 2em 4em 1fr;
-    grid-template-areas: "avatar blog" "avatar blog" ". blog";
+    grid-template-areas: "avatar blog" "avatar blog" "avatar blog";
 }
 
 .comment-avatar,
@@ -48,9 +48,17 @@
     max-width: 3em;
     max-height: 3em;
     float: left;
-    grid-area: avatar;
     position: relative;
     top: 1.5em;
+}
+.blog-avatar
+{
+    top: 0.5em;
+}
+
+.blog-avatar-div {
+    grid-area: avatar;
+
 }
 .select-avatar {
     max-width: 3em;
