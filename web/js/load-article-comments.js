@@ -4,7 +4,6 @@ let currentAuthorID;
 let currentLoggedUserID;
 let currentEditedComment;
 
-
 async function sendDeleteArticleRequest() {
     const request = new XMLHttpRequest();
     request.open("POST", `${uriStart}delete-article`, true);
@@ -27,12 +26,24 @@ async function loadCommentList(articleID, authorID, loggedUserID) {
     let commentList = await response.json();
     commentContainer.innerHTML = "";
 
-    commentList.forEach(comment => {
+    await commentList.forEach(comment => {
             let rootCommentDiv = getCommentDiv(comment, authorID);
             rootCommentDiv.classList.add("root-comment-div");
             commentContainer.appendChild(rootCommentDiv);
         }
     );
+    const targetPosition = window.location.href.split('#')[1];
+    if (targetPosition.length > 0) {
+        const newCommentDiv = document.querySelector(`#${targetPosition}`);
+        newCommentDiv.scrollIntoView();
+        newCommentDiv.style.boxShadow = "0 0 3px var(--theme-color)";
+        newCommentDiv.style.transition = "1s ease-in-out";
+        setTimeout(() => {
+            newCommentDiv.style.boxShadow = "none";
+        }, 1500);
+
+    }
+
 }
 
 function getCommentDiv(comment, authorID) {

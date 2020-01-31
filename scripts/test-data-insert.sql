@@ -59,9 +59,9 @@ VALUES ('On the other hand, we denounce with righteous indignation and dislike m
 
 INSERT INTO comment_db(body, created_time, edit_time, number_of_likes, number_of_dislikes, target_article_id, target_comment_id, commenter_id)
 VALUES ('Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.',
-        '2019-08-06 18:34:08', NULL, 0, 8, NULL, 30000000,3),
+        '2019-08-06 18:34:08', NULL, 0, 8, NULL, 3000,3),
        ('Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.',
-        '2019-08-06 18:34:08', NULL, 0, 8, NULL, 30000005,3)
+        '2019-08-06 18:34:08', NULL, 0, 8, NULL, 3005,3)
        ;
 
 

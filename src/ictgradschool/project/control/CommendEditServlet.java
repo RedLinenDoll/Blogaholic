@@ -23,7 +23,7 @@ public class CommendEditServlet extends HttpServlet {
         int articleID = Integer.parseInt(request.getParameter("article-id"));
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             CommentDAO.editComment(connection, updatedComment);
-            response.sendRedirect("./article-view?articleID=" + articleID + "#all-comments-container");
+            response.sendRedirect("./article-view?articleID=" + articleID + "#comment" + updatedComment.getCommentID());
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS comment_db
 );
 
 ALTER TABLE comment_db
-    AUTO_INCREMENT = 30000000;
+    AUTO_INCREMENT = 3000;
 
 
 

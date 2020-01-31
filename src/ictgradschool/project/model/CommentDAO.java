@@ -7,10 +7,10 @@ import java.util.List;
 
 public class CommentDAO {
 
-    public static boolean addComment(Connection connection, boolean isToArticle, int targetID, Comment comment) throws SQLException {
+    public static int addComment(Connection connection, boolean isToArticle, int targetID, Comment comment) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement(isToArticle ?
                 "INSERT INTO comment_db(target_article_id,body,number_of_likes,number_of_dislikes, commenter_id) VALUES (?,?,?,?,?)"
-                : "INSERT INTO comment_db(target_comment_id,body,number_of_likes,number_of_dislikes, commenter_id) VALUES (?,?,?,?,?)")) {
+                : "INSERT INTO comment_db(target_comment_id,body,number_of_likes,number_of_dislikes, commenter_id) VALUES (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setInt(1, targetID);
             preparedStatement.setString(2, comment.getCommentBody());
@@ -18,8 +18,14 @@ public class CommentDAO {
             preparedStatement.setInt(4, 0);
             preparedStatement.setInt(5, comment.getCommenterID());
             int rowUpdated = preparedStatement.executeUpdate();
-            return rowUpdated == 1;
+            if (rowUpdated == 1) {
+                try(ResultSet generateKeys = preparedStatement.getGeneratedKeys()) {
+                    generateKeys.next();
+                    return generateKeys.getInt(1);
+                }
+            }
         }
+        return -1;
     }
 
 
