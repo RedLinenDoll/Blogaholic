@@ -19,7 +19,15 @@
     <script type="text/javascript">
         window.addEventListener("load", function () {
             applyThemeColor(`${author.themeColor}`);
-            loadCommentList(${article.articleID});
+            <c:choose>
+            <c:when test="${loggedUser==null}">
+            loadCommentList(${article.articleID}, ${author.userID}, -1);
+            </c:when>
+            <c:otherwise>
+            loadCommentList(${article.articleID}, ${author.userID}, ${loggedUser.userID});
+
+            </c:otherwise>
+            </c:choose>
             applyLayoutSpecificStyling(`${author.layoutID}`, `${author.themeColor}`);
         })
     </script>
@@ -62,10 +70,8 @@
             </a>
         </button>
         <c:if test="${loggedUser.userID==author.userID}">
-            <button id="delete-article" class="link-button">
-                <a href="./delete-article?articleID=${article.articleID}">
+            <button id="delete-article-button" class="link-button article-option-button" onclick="deleteArticle(${article.articleID})">
                     Delete
-                </a>
             </button>
             <button id="edit-article" class="link-button">
                 <a href="./edit-article?articleID=${article.articleID}">
@@ -78,18 +84,16 @@
     <c:if test="${loggedUser!= null}">
         <div id="add-article-comment-container">
             <form id="add-article-comment" action='<c:url value="/add-comment"/>' method="post">
-                <label for="add-comment-to-article">Add Comments: </label>
-                <textarea id="add-comment-to-article" rows="4" cols="36" maxlength="512" name="article-comment-body">
-        </textarea>
+                <label for="add-comment-to-article" class="comment-info" style="font-size: 15px;">Add Comments: </label><br>
+                <textarea id="add-comment-to-article" rows="4" maxlength="512" name="article-comment-body" placeholder="Share your thoughts on ${author.username}'s article" style="width: 100%; font-size: 15px; font-family:var(--primary-font)"></textarea>
                 <input type="hidden" name="target-id" value="${article.articleID}">
                 <input type="hidden" name="article-id" value="${article.articleID}">
-
                 <input type="hidden" name="target-type" value="article">
-
-                <button id="submit-comment-to-article">Post</button>
+                <button id="submit-comment-to-article" class="comment-option-button">Post</button>
             </form>
         </div>
     </c:if>
+
 
     <div id="all-comments-container">
         <div class="root-comment-div comment-div">
@@ -100,6 +104,7 @@
             <div class="comment-body-div">
             </div>
             <div class="comment-options-div">
+
             </div>
 
             <div class="child-comment-div comment-div">

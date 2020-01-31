@@ -49,7 +49,7 @@ public class CommentDAO {
 
     public static List<Comment> getCommentListByID(Connection connection, int targetID, boolean isForArticle) throws SQLException {
         List<Comment> comments = new ArrayList<>();
-        String sql = "SELECT comment.comment_id, comment.body, " +
+        String sql = "SELECT comment.comment_id, comment.body, user.user_id," +
                 "user.username, user.avatar_path, comment.created_time, comment.edit_time, " +
                 "comment.number_of_likes, comment.number_of_dislikes " +
                 "FROM comment_db AS comment, users_db AS user " +
@@ -78,17 +78,33 @@ public class CommentDAO {
     private static List<Comment> getCommentListByCommentID(Connection connection, int commentID) throws SQLException {
         return getCommentListByID(connection, commentID, false);
     }
+    public static Comment getCommentByID(Connection connection, int commentID) throws SQLException {
+        try (PreparedStatement statement = connection.prepareStatement(
+                "SELECT comment_id,body,created_time,edit_time,number_of_likes,number_of_dislikes,target_article_id,target_comment_id,commenter_id " +
+                        // TODO change order
+                        "FROM comment_db " +
+                        "WHERE comment_id = ?;")) {
+            statement.setInt(1, commentID);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return createCommentFromResultSet(resultSet);
+                } else return null;
+            }
+        }
+
+    }
 
     private static Comment createCommentFromResultSet(ResultSet resultSet) throws SQLException {
         return new Comment(
-                resultSet.getInt(1),
-                resultSet.getString(2),
-                resultSet.getString(3),
-                resultSet.getString(4),
-                resultSet.getTimestamp(5),
-                resultSet.getTimestamp(6),
-                resultSet.getInt(7),
-                resultSet.getInt(8)
+                resultSet.getInt(1), // commentID
+                resultSet.getString(2), // commentBody
+                resultSet.getInt(3), //commenterID
+                resultSet.getString(4), // commenterUsername
+                resultSet.getString(5), // avatarPath
+                resultSet.getTimestamp(6), // create time
+                resultSet.getTimestamp(7), // edit time
+                resultSet.getInt(8), // like count
+                resultSet.getInt(9) // dislike count
         );
     }
 
