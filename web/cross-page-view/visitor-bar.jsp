@@ -15,7 +15,7 @@
                 Create My Blog
             </a>
         </span>
-        <span id="log-in-span">
+        <span id="log-in-span" style="padding-left:5px">
             <a href='<c:url value="/login.html"/>'>
                 Log In
             </a>

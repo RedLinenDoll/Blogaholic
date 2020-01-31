@@ -147,9 +147,6 @@ a {
     padding-right: 4px;
 }
 
-#log-out-span, #log-in-span {
-    padding-left: 6px;
-}
 
 a {
     color: var(--gentle-black);
@@ -241,11 +238,6 @@ button:focus {
     right: 1em;
 }
 
-#new-article-link {
-    padding-left: 6px;
-    border-left: var(--gentle-black) 2px solid;
-
-}
 
 ::selection
 {
@@ -288,4 +280,45 @@ textarea, input[type="text"], input[type="date"], input[type="password"]
 textarea:focus {
     outline-color: var(--theme-color);
     border: 1px solid var(--theme-color);
+}
+
+#toggle-trigger:hover{
+    color: var(--theme-color);
+    cursor: pointer;
+}
+
+#toggle-trigger {
+    cursor: pointer;
+}
+
+
+#toggle-down-box{
+    position: fixed;
+    margin: 0;
+    top: 45px;
+    left: calc(97vw - 9em);
+    width: 9em;
+
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    height: 7em;
+    font-weight: bold;
+    border: 5px white solid;
+    border-right: 70px white solid;
+
+}
+
+.toggle-down-span {
+    border-bottom: 1px solid var(--median-gray);
+}
+
+#toggle-down-box:last-child {
+    border-bottom: 0;
+}
+
+.invisible {
+    display: none !important;
 }
