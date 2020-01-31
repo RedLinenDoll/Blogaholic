@@ -1,0 +1,35 @@
+body{
+    position: relative;
+}
+.layout-preview-container {
+    width: 20vw;
+}
+
+.layout-option-container {
+    font-size: 12px;
+    display: grid;
+    grid-template-rows: 1em 1em 1.5em 3em 1fr;
+    grid-template-columns: 20em 1fr;
+    grid-template-areas: ". preview" "radio preview" "name preview" "description preview" ". preview";
+    border: var(--theme-color) 1px solid;
+    margin-bottom: 20px;
+}
+
+.layout-radio {
+    grid-area: radio;
+    position: relative;
+    left: 10em;
+}
+.layout-name {
+    grid-area: name;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 15px;
+}
+.layout-description {
+    padding: 4px;
+    grid-area: description;
+}
+.layout-preview-container {
+    grid-area: preview;
+}

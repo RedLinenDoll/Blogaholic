@@ -1,7 +1,7 @@
 INSERT INTO layout_db (layout_name, layout_description, preview_image_path)
 VALUES ('Clear', 'Sharp and clear, suitable for technology blog (and everything else)', 'layout1.gif'),
        ('Elegant',
-        'An elegant touch in the font and cover',
+        'An elegant touch in the font and cover, hosting your feelings and stories',
         'layout2.gif');
 
 INSERT INTO users_db (username, hashed_password, hashed_salt, salt_length, iteration_number, blog_name,
