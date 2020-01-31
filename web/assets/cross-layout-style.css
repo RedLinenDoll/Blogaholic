@@ -285,7 +285,7 @@ textarea, input[type="text"], input[type="date"], input[type="password"]
     font-size: 14px;
 }
 
-#add-comment-to-comment:focus {
+textarea:focus {
     outline-color: var(--theme-color);
     border: 1px solid var(--theme-color);
 }

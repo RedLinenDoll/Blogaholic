@@ -32,9 +32,10 @@ async function loadCommentList(articleID, authorID, loggedUserID) {
             commentContainer.appendChild(rootCommentDiv);
         }
     );
-    const targetPosition = window.location.href.split('#')[1];
-    if (targetPosition.length > 0) {
-        const newCommentDiv = document.querySelector(`#${targetPosition}`);
+    const parsedUrl = window.location.href.split('#comment');
+    if (parsedUrl.length > 0) {
+        const commentID = parsedUrl[1];
+        const newCommentDiv = document.querySelector(`#comment${commentID}`);
         await newCommentDiv.scrollIntoView({behavior: "smooth", block: "center"});
         newCommentDiv.style.boxShadow = "0 0 3px var(--theme-color)";
         newCommentDiv.style.transition = "1s ease-in-out";
@@ -150,9 +151,8 @@ function appendCommentButton(optionDiv, targetCommentID) {
 }
 
 function loadCommentingForm(optionDiv, targetCommentID) {
-    const oldEditor = document.querySelector("#add-comment-container");
-    if (oldEditor !== null)
-        oldEditor.parentNode.removeChild(oldEditor);
+    cancelAddComment();
+    recoverComment();
     const commentFormContainer = document.createElement("div");
     commentFormContainer.id = "add-comment-container";
     commentFormContainer.innerHTML = `
@@ -173,9 +173,8 @@ function loadCommentingForm(optionDiv, targetCommentID) {
 
 
 function loadCommentEditingForm(commentOptionsDiv, comment) {
-    const oldEditor1 = document.querySelector("#add-comment-container");
-    if (oldEditor1 !== null)
-        oldEditor1.parentNode.removeChild(oldEditor);
+
+    cancelAddComment();
     recoverComment();
     currentEditedComment = comment;
 
@@ -201,3 +200,8 @@ function recoverComment() {
 
 }
 
+function cancelAddComment(){
+    const oldEditor = document.querySelector("#add-comment-container");
+    if (oldEditor !== null)
+        oldEditor.parentNode.removeChild(oldEditor);
+}
