@@ -2,7 +2,7 @@ const uriStart = '/team-java_blogaholic/';
 let currentArticleID;
 let currentAuthorID;
 let currentLoggedUserID;
-
+let currentEditedComment;
 
 async function sendDeleteArticleRequest() {
     const request = new XMLHttpRequest();
@@ -20,17 +20,30 @@ async function loadCommentList(articleID, authorID, loggedUserID) {
     currentArticleID = articleID;
     currentAuthorID = authorID;
     currentLoggedUserID = loggedUserID;
+    currentEditedComment = null;
     const commentContainer = document.querySelector("#all-comments-container");
     let response = await fetch(`${uriStart}load-comments?articleID=${articleID}`);
     let commentList = await response.json();
     commentContainer.innerHTML = "";
 
-    commentList.forEach(comment => {
+    await commentList.forEach(comment => {
             let rootCommentDiv = getCommentDiv(comment, authorID);
             rootCommentDiv.classList.add("root-comment-div");
             commentContainer.appendChild(rootCommentDiv);
         }
     );
+    const targetPosition = window.location.href.split('#')[1];
+    if (targetPosition.length > 0) {
+        const newCommentDiv = document.querySelector(`#${targetPosition}`);
+        newCommentDiv.scrollIntoView();
+        newCommentDiv.style.boxShadow = "0 0 3px var(--theme-color)";
+        newCommentDiv.style.transition = "1s ease-in-out";
+        setTimeout(() => {
+            newCommentDiv.style.boxShadow = "none";
+        }, 1500);
+
+    }
+
 }
 
 function getCommentDiv(comment, authorID) {
@@ -92,7 +105,9 @@ function appendEditButton(commentOptionsDiv, authorID, comment) {
         const editButton = document.createElement("button");
         editButton.classList.add("edit-comment-button", "tiny-comment-option-button");
         editButton.innerText = "Edit";
-        editButton.addEventListener("click", editComment(comment));
+        editButton.addEventListener("click", function () {
+            loadCommentEditingForm(commentOptionsDiv, comment);
+        });
         commentOptionsDiv.appendChild(editButton);
     }
 }
@@ -111,9 +126,6 @@ function appendDeleteButton(commentOptionsDiv, authorID, commentID, commenterID)
     }
 }
 
-function editComment(comment) {
-
-}
 
 async function deleteComment(commentID) {
     const request = new XMLHttpRequest();
@@ -146,16 +158,46 @@ function loadCommentingForm(optionDiv, targetCommentID) {
     commentFormContainer.innerHTML = `
            <form id="add-comment-comment" action="${uriStart}add-comment" method="post">
                 <label for="add-comment-to-comment" class="comment-info" style="font-size: 15px;">  </label><br>
-                <textarea id="add-comment-to-comment" rows="4" maxlength="512" name="article-comment-body" placeholder="Reply to this comment" style="width: 95%; font-size: 15px; font-family:var(--primary-font)"></textarea>
+                <textarea id="add-comment-to-comment" rows="4" maxlength="512" name="new-comment-body" placeholder="Reply to this comment" style="width: 95%; font-size: 15px; font-family:var(--primary-font)"></textarea>
                 <input type="hidden" name="target-id" value="${targetCommentID}">
                 <input type="hidden" name="article-id" value="${currentArticleID}">
                 <input type="hidden" name="target-type" value="comment">
                 <button id="submit-comment-to-comment" class="comment-option-button">Post</button>
             </form>`;
-    commentFormContainer.style.gridArea="add-comment";
+    commentFormContainer.style.gridArea = "add-comment";
 
     optionDiv.parentNode.insertBefore(commentFormContainer, optionDiv.nextSibling);
     document.querySelector("#add-comment-to-comment").focus();
+
+}
+
+
+function loadCommentEditingForm(commentOptionsDiv, comment) {
+    const oldEditor1 = document.querySelector("#add-comment-container");
+    if (oldEditor1 !== null)
+        oldEditor1.parentNode.removeChild(oldEditor);
+    recoverComment();
+    currentEditedComment = comment;
+
+    const oldCommentBodyDiv = document.querySelector("#comment" + comment.commentID + ">.comment-body-div");
+    oldCommentBodyDiv.innerHTML = `
+           <form id="${comment.commentID}" class="edit-comment-form" action="${uriStart}edit-comment" method="post">
+                <label for="add-comment-to-comment" class="comment-info" style="font-size: 15px;">  </label><br>
+                <textarea id="add-comment-to-comment" rows="4" maxlength="512" name="new-comment-body" style="width: 100%; font-size: 15px; font-family:var(--primary-font),serif">${comment.commentBody}</textarea>
+                <input type="hidden" name="comment-id" value="${comment.commentID}">
+                <input type="hidden" name="article-id" value="${currentArticleID}">
+                <input type="hidden" name="target-type" value="comment">
+                <button id="submit-comment-to-comment" class="comment-option-button" type="submit">Post</button>
+                <button id="cancel-comment-to-comment" class="comment-option-button" type="button" onclick="recoverComment(${comment.commentID})">Cancel</button>
+            </form>`;
+
+}
+
+function recoverComment() {
+    if (currentEditedComment === null)
+        return;
+    const recoverCommentBodyDiv = document.querySelector("#comment" + currentEditedComment.commentID + ">.comment-body-div");
+    recoverCommentBodyDiv.innerHTML = `<p class="comment-body">${currentEditedComment.commentBody}</p>`
 
 }
 

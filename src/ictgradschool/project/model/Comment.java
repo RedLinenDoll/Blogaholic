@@ -17,8 +17,10 @@ public class Comment {
     private int dislikesCount;
     private List<Comment> childComments;
 
+    public Comment() {
+    }
 
-
+    // for comment creation
     public Comment(int commentID, String commentBody, int commenterID, String commenterUsername, String avatarPath, Timestamp timeCreated, Timestamp timeEdited, int likesCount, int dislikesCount) {
         this.commentID = commentID;
         this.commentBody = commentBody;
@@ -32,8 +34,6 @@ public class Comment {
         this.childComments = new ArrayList<>();
     }
 
-    public Comment() {
-    }
 
     public void addChildComment(Comment comment) {
         childComments.add(comment);

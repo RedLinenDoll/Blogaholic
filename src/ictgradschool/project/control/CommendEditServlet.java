@@ -1,5 +1,6 @@
 package ictgradschool.project.control;
 
+import ictgradschool.project.model.Comment;
 import ictgradschool.project.model.CommentDAO;
 import ictgradschool.project.util.DBConnectionUtils;
 
@@ -12,17 +13,17 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-
-@WebServlet(name = "delete-comment", urlPatterns = "/delete-comment")
-public class CommentDeleteServlet extends HttpServlet {
+@WebServlet(name = "edit-comment", urlPatterns = "/edit-comment")
+public class CommendEditServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Comment updatedComment = new Comment();
+        updatedComment.setCommentID(Integer.parseInt(request.getParameter("comment-id")));
+        updatedComment.setCommentBody(request.getParameter("new-comment-body"));
+        int articleID = Integer.parseInt(request.getParameter("article-id"));
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-            int articleID = Integer.parseInt(request.getParameter("articleID"));
-            int commentID = Integer.parseInt(request.getParameter("commentID"));
-            CommentDAO.deleteCommentByID(connection, commentID);
-            response.sendRedirect("./article-view?articleID=" + articleID + "#all-comments-container");
-
+            CommentDAO.editComment(connection, updatedComment);
+            response.sendRedirect("./article-view?articleID=" + articleID + "#comment" + updatedComment.getCommentID());
         } catch (SQLException e) {
             e.printStackTrace();
         }

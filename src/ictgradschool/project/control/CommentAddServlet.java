@@ -1,6 +1,8 @@
 package ictgradschool.project.control;
 
-import ictgradschool.project.model.*;
+import ictgradschool.project.model.Comment;
+import ictgradschool.project.model.CommentDAO;
+import ictgradschool.project.model.User;
 import ictgradschool.project.util.DBConnectionUtils;
 
 import javax.servlet.ServletException;
@@ -22,11 +24,16 @@ public class CommentAddServlet extends HttpServlet {
             int targetID = Integer.parseInt(request.getParameter("target-id"));
             int articleID = Integer.parseInt(request.getParameter("article-id"));
             Comment newComment = new Comment();
-            newComment.setCommentBody(request.getParameter("article-comment-body"));
+            newComment.setCommentBody(request.getParameter("new-comment-body"));
             newComment.setCommenterID(commenterID);
 
-            CommentDAO.addComment(connection, (target.equals("article")), targetID, newComment);
-            response.sendRedirect("./article-view?articleID=" + articleID);
+            int newCommentID = CommentDAO.addComment(connection, (target.equals("article")), targetID, newComment);
+            if (newCommentID < 0)
+                response.sendRedirect("./article-view?articleID=" + articleID + "#all-comments-container");
+            else
+                response.sendRedirect("./article-view?articleID=" + articleID + "#comment"+newCommentID);
+
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
