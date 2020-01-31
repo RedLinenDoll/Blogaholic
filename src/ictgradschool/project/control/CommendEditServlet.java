@@ -2,7 +2,6 @@ package ictgradschool.project.control;
 
 import ictgradschool.project.model.Comment;
 import ictgradschool.project.model.CommentDAO;
-import ictgradschool.project.model.User;
 import ictgradschool.project.util.DBConnectionUtils;
 
 import javax.servlet.ServletException;
@@ -14,22 +13,17 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebServlet(name = "add-comment", urlPatterns = "/add-comment")
-public class CommentAddServlet extends HttpServlet {
+@WebServlet(name = "edit-comment", urlPatterns = "/edit-comment")
+public class CommendEditServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Comment updatedComment = new Comment();
+        updatedComment.setCommentID(Integer.parseInt(request.getParameter("comment-id")));
+        updatedComment.setCommentBody(request.getParameter("new-comment-body"));
+        int articleID = Integer.parseInt(request.getParameter("article-id"));
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-            int commenterID = ((User) request.getSession().getAttribute("loggedUser")).getUserID();
-            String target = request.getParameter("target-type");
-            int targetID = Integer.parseInt(request.getParameter("target-id"));
-            int articleID = Integer.parseInt(request.getParameter("article-id"));
-            Comment newComment = new Comment();
-            newComment.setCommentBody(request.getParameter("new-comment-body"));
-            newComment.setCommenterID(commenterID);
-
-            CommentDAO.addComment(connection, (target.equals("article")), targetID, newComment);
+            CommentDAO.editComment(connection, updatedComment);
             response.sendRedirect("./article-view?articleID=" + articleID + "#all-comments-container");
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

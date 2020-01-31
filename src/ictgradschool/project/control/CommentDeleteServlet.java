@@ -21,7 +21,7 @@ public class CommentDeleteServlet extends HttpServlet {
             int articleID = Integer.parseInt(request.getParameter("articleID"));
             int commentID = Integer.parseInt(request.getParameter("commentID"));
             CommentDAO.deleteCommentByID(connection, commentID);
-            response.sendRedirect("./article-view?articleID=" + articleID);
+            response.sendRedirect("./article-view?articleID=" + articleID + "#all-comments-container");
 
         } catch (SQLException e) {
             e.printStackTrace();
