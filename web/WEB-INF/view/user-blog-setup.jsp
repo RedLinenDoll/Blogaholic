@@ -42,10 +42,10 @@
             <div id="layout-options-container">
                 <div id="layout1-option-container" class="layout-option-container">
                     <label for="layout-radio-1" class="layout-name">Layout 1</label>
-                    <input type="radio" id="layout-radio-1" name="layout" value="2" class="layout-radio">
+                    <input type="radio" id="layout-radio-1" name="layout" value="1" class="layout-radio">
 
-                    <label for="layout-radio-1"class="layout-description">Sharp and clear, suitable for technology blog (and everything else,
-                        actually) </label>
+                    <label for="layout-radio-1" class="layout-description">An elegant touch in the font and cover, hosting your feelings and
+                        stories</label>
                     <div class="layout-preview-container" id="layout-preview-1">
                     </div>
                     <div id="layout1-color-selection-container">
@@ -55,9 +55,9 @@
 
                 <div id="layout2-option-container" class="layout-option-container">
                     <label for="layout-radio-2" class="layout-name">Layout 2</label>
-                    <input type="radio" id="layout-radio-2" name="layout" value="1" class="layout-radio">
-                    <label for="layout-radio-2" class="layout-description">An elegant touch in the font and cover, hosting your feelings and
-                        stories</label>
+                    <input type="radio" id="layout-radio-2" name="layout" value="2" class="layout-radio">
+                    <label for="layout-radio-2" class="layout-description">Sharp and clear, suitable for technology blog (and everything else,
+                        actually)</label>
                     <div class="layout-preview-container" id="layout-preview-2">
                     </div>
                     <div id="layout2-color-selection-container">
