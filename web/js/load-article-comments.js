@@ -54,7 +54,7 @@ function getCommentDiv(comment, authorID) {
 
     const avatarDiv = document.createElement("div");
     avatarDiv.classList.add("block-avatar-div");
-    avatarDiv.innerHTML = `<img src="${uriStart}images/avatar/${comment.avatarPath}" class="block-avatar comment-avatar" alt="">`;
+    avatarDiv.innerHTML = `<a href="${uriStart}user-profile?user-id=${comment.commenterID}"><img src="${uriStart}images/avatar/${comment.avatarPath}" class="block-avatar comment-avatar" alt=""></a>`;
 
     const commentInfoDiv = document.createElement("div");
     commentInfoDiv.classList.add("comment-info-div");
