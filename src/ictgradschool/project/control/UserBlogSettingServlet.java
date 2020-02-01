@@ -14,7 +14,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet(name = "change-blog-preference", urlPatterns = "/change-blog-preference")
-public class ChangeUserBlogPreferenceServlet extends HttpServlet {
+public class UserBlogSettingServlet extends HttpServlet {
 
 
     @Override

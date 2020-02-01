@@ -12,6 +12,7 @@ public class LogOut extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession().setAttribute("loggedUser", null);
+        req.getSession().setAttribute("existingUser", null);
         resp.sendRedirect("index.jsp");
     }
 }
