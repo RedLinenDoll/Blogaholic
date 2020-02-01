@@ -77,6 +77,8 @@
             <a href="/user-option?user-request=change-account-setting" class="profile-page-button"> <button>Account setting</button></a>
         </c:if>
     </div>
+
+    <p>${profileOwner.selfIntroduction}</p>
     <hr class="profile-page-hr">
     <c:if test="${showRealNameInfo}">
     <div class="real-name-info">
