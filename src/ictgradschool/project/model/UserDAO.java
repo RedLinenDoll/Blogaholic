@@ -215,9 +215,7 @@ public class UserDAO {
             preparedStatement.setInt(6, updatedUser.getUserID());
 
             int rowUpdated = preparedStatement.executeUpdate();
-            if (rowUpdated == 1) {
-                return true;
-            } else return false;
+            return rowUpdated==1;
 
         }
 
