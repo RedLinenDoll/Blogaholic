@@ -16,7 +16,7 @@ public class UserOptionDispatcherServlet extends HttpServlet {
         String userRequest = request.getParameter("user-request");
         HttpSession session = request.getSession();
         session.setAttribute("newUser", session.getAttribute("loggedUser"));
-        session.setAttribute("isNewUser", false);
+        session.setAttribute("existingUser", true);
         RequestDispatcher requestDispatcher;
         switch (userRequest) {
             case "blog-setup":

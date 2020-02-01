@@ -40,7 +40,9 @@
     color: var(--theme-color);
 }
 
-
+.head-container {
+    margin-top: 40px;
+}
 
 
 

@@ -28,7 +28,7 @@ public class ChangeUserProfileServlet extends HttpServlet {
 
         try(Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             UserDAO.editUserRealNameInfo(connection, userID, firstName, lastName, dateOfBirth, selfIntroduction, toShare);
-            if (request.getSession().getAttribute("isNewUser") == null) {
+            if (request.getSession().getAttribute("existingUser") == null) {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/setup-user-avatar.jsp");
                 requestDispatcher.forward(request, response);
             } else {
