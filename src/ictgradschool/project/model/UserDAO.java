@@ -1,5 +1,7 @@
 package ictgradschool.project.model;
 
+import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -202,4 +204,22 @@ public class UserDAO {
     }
 
 
+    public static boolean changeAccountSetting(Connection connection, User updatedUser) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement
+                ("UPDATE users_db SET username = ?, hashed_password =?, hashed_salt = ?, salt_length = ?, iteration_number = ? WHERE user_id = ?;")) {
+            preparedStatement.setString(1, updatedUser.getUsername());
+            preparedStatement.setString(2, updatedUser.getPasswordHashBase64());
+            preparedStatement.setString(3, updatedUser.getSaltHashBase64());
+            preparedStatement.setInt(4, updatedUser.getSaltLength());
+            preparedStatement.setInt(5, updatedUser.getIterationNum());
+            preparedStatement.setInt(6, updatedUser.getUserID());
+
+            int rowUpdated = preparedStatement.executeUpdate();
+            if (rowUpdated == 1) {
+                return true;
+            } else return false;
+
+        }
+
+    }
 }
