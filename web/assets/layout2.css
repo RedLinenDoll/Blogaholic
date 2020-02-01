@@ -6,9 +6,13 @@
     background-color: var(--theme-color);
     border: none;
     color: var(--gentle-white);
+}
+
+.back-to-blog-button {
     position: absolute;
     right: 0;
 }
+
 
 .link-button > a {
     color: var(--gentle-white);
@@ -24,3 +28,4 @@ hr{
     background-color: var(--bright-gray);
     color: var(--bright-gray);
 }
+

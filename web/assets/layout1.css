@@ -27,6 +27,18 @@
     padding-right: 20px;;
 }
 
+.article-author-option-div {
+    top: -4.7em;
+    width: 8em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.link-button:hover{
+    color: var(--theme-color);
+}
 
 
 

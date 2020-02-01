@@ -23,10 +23,8 @@ public class ChangeUserBlogPreferenceServlet extends HttpServlet {
         int layoutID = Integer.parseInt(request.getParameter("layout"));
         String blogName = request.getParameter("blog-name");
         String blogDescription = request.getParameter("blog-description");
-        boolean newUser = true;
         Object user = request.getSession().getAttribute("newUser");
         if (user == null) {
-            newUser = false;
             user = request.getSession().getAttribute("loggedUser");
         }
         if (user == null) {
@@ -37,12 +35,9 @@ public class ChangeUserBlogPreferenceServlet extends HttpServlet {
 
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             UserDAO.setBlogPreference(connection, userID, blogName, blogDescription, layoutID, themeColor);
-            if (newUser) {
                 request.getSession().setAttribute("loggedUser", user);
                 response.sendRedirect("./blog-view?authorID=" + ((User) user).getUserID());
-            } if (!newUser) {
-                response.sendRedirect("./user-profile?userID=" + ((User) user).getUserID());
-            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

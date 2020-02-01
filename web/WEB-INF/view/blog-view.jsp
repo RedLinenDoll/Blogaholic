@@ -46,6 +46,20 @@
                    alt="author avatar"> ${author.username}'s blog
         </span>
     </div>
+    <c:if test="${loggedUser.userID==author.userID}">
+        <div class="blog-author-option-div">
+            <button id="add-article-button" class="link-button article-author-option-button" >
+                <a href='<c:url value="/testing-add-article.jsp"/>'>
+                Write New Article
+                </a>
+            </button>
+            <button id="blog-setting-button" class="link-button article-author-option-button">
+                <a href='<c:url value="user-blog-setup.jsp"/>'>
+                    Blog Settings
+                </a>
+            </button>
+        </div>
+    </c:if>
     <div id="blog-description-container" class="page-description-container">
         <p id="blog-description">${author.blogDescription}</p>
     </div>
