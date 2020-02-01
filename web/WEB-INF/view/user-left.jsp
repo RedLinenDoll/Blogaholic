@@ -20,14 +20,13 @@
         });
 
     </script>
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i&display=swap" rel="stylesheet">
 
     <style>
         #goodbye {
             position: relative;
             top: 80px;
             color: #106688;
-            font-family:  Lora, 'Times New Roman', serif;
+            font-family:  'Times New Roman', serif;
             text-align: center;
             font-weight: 800;
             width: 70vw;
