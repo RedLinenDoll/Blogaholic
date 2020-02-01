@@ -5,6 +5,25 @@ body{
 .body-container {
     position: relative;
     height: 700vh;
-    top: -200px;
+    bottom: 300px;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+
+.profile-avatar {
+    max-width: 5em;
+    max-height: 5em;
+}
+
+#change-avatar {
+    position: relative;
+    left: 5.2em;
+    bottom: 5.2em;
+    cursor: pointer;
+}
+#change-avatar:hover {
+    color: var(--theme-color);
 }

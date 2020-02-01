@@ -22,6 +22,16 @@
         })
     </script>
     <link rel="stylesheet" href='<c:url value="/assets/profile-page-layout.css"/>'>
+
+    <style>
+        <c:if test="${profileOwner.layoutID == 2}">
+        .body-container {
+            position: relative;
+            bottom: 150px;
+        }
+
+        </c:if>
+    </style>
 </head>
 <c:choose>
     <c:when test="${loggedUser == null}">
@@ -33,10 +43,32 @@
 </c:choose>
 
 <body>
+<c:set value="${loggedUser!=null && profileOwner.userID == loggedUser.userID}" var="isOwnProfile"/>
 <div class="head-container">
 </div>
 <div class="body-container">
-    <h1>Welcome to ${profileOwner.username}'s profile</h1>
+    <h1>
+        <c:choose>
+            <c:when test="${isOwnProfile}">
+                Welcome to your profile, ${profileOwner.username}.
+            </c:when>
+            <c:otherwise>
+                Welcome to ${profileOwner.username}'s profile
+            </c:otherwise>
+        </c:choose>
+    </h1>
+
+    <div class="profile-avatar-container">
+        <img src='<c:url value="/images/avatar/${profileOwner.avatarPath}"/>' alt=" "
+             class="block-avatar profile-avatar">
+
+        <c:if test="${isOwnProfile}">
+            <a href='<c:url value="/user-option?user-request=change-avatar"/>'>
+                <i class="fas fa-pen pen-icon-for-edit" title="change avatar" id="change-avatar"></i>
+            </a>
+        </c:if>
+
+    </div>
     ${profileOwner.username}
     ${profileOwner.dateOfBirth}
 
