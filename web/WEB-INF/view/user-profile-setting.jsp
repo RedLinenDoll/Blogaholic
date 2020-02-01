@@ -46,7 +46,7 @@
 
 
             <label for="self-intro-input" style="margin: 5px">Tell your blog visitors a bit about yourself:</label>
-            <textarea rows="3" maxlength="256" cols="45" id="self-intro-input" name="self-intro"
+            <textarea rows="3" maxlength="256" cols="45" id="self-intro-input" name="self-introduction"
                       required>Hi there, I'm ${newUser.username}, your fellow blogaholic!</textarea>
 
             <div class="operation-container">

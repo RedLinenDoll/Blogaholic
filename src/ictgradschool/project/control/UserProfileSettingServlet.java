@@ -31,7 +31,7 @@ public class UserProfileSettingServlet extends HttpServlet {
         String firstName = request.getParameter("first-name");
         String lastName = request.getParameter("last-name");
         Date dateOfBirth = Date.valueOf(request.getParameter("date-of-birth"));
-        String selfIntroduction = request.getParameter("self-intro-input");
+        String selfIntroduction = request.getParameter("self-introduction");
         boolean toShare = (request.getParameter("share-real-name-info") != null);
 
 
