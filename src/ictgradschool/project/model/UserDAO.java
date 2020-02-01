@@ -1,7 +1,5 @@
 package ictgradschool.project.model;
 
-import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -220,4 +218,13 @@ public class UserDAO {
         }
 
     }
+
+    public static boolean deleteUserById(Connection connection, int userID) throws SQLException{
+        try (PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users_db WHERE user_id=?")) {
+            preparedStatement.setInt(1, userID);
+            int rowUpdated = preparedStatement.executeUpdate();
+            return rowUpdated == 1;
+        }
+    }
+
 }

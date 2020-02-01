@@ -43,7 +43,7 @@ function validateForm(form) {
 
 function loadConfirmDeleteAccountForm(bodyContainer, targetUsername, targetUserID) {
     const confirmDeleteForm = document.createElement("form");
-    confirmDeleteForm.action = `${uriStart}delete-account?userID=${targetUserID}`;
+    confirmDeleteForm.action = `${uriStart}delete-user`;
     confirmDeleteForm.method = "post";
     confirmDeleteForm.style.width = "90%";
     confirmDeleteForm.id = "confirm-delete-form";
@@ -55,11 +55,12 @@ function loadConfirmDeleteAccountForm(bodyContainer, targetUsername, targetUserI
         <p class="delete-warning-message">All your creation in blogaholic wiill be deleted. </p>
         <p class="delete-warning-message bold">This operation cannot be undone.</p>
         
-        <div><label for="username">Confirm Username:</label>
-         <input type="text" id="username" name="username"></div>
+        <div><label for="confirm-username">Confirm Username: </label>
+         <input type="text" id="confirm-username" name="confirm-username"></div>
          <div>
-        <label for="password">Confirm Password:</label>
-            <input type="password" id="password" name="password" required>
+        <label for="confirm-password">Confirm Password: </label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+            <input type="hidden" name="user-id" value=${targetUserID}>
             </div>`;
    const  confirmTyping = document.createElement("div");
    const confirmLabel = document.createElement("label");
@@ -82,12 +83,20 @@ function loadConfirmDeleteAccountForm(bodyContainer, targetUsername, targetUserI
     });
 
 }
+function createConfirmButton() {
+    const confirmDeleteButton = document.createElement("button");
+    confirmDeleteButton.type="submit";
+    confirmDeleteButton.id="delete-account-button";
+    confirmDeleteButton.style.backgroundColor = "red";
+    confirmDeleteButton.innerText = "Confirm Delete";
+    return confirmDeleteButton
+
+}
+
 
 function checkDeleteConfirmed(confirmInput, targetUsername, confirmDeleteForm) {
     if (`delete account ${targetUsername}` === confirmInput.value) {
-       confirmDeleteForm.innerHTML += `<button type="submit" id="delete-account-button" style="background-color: red">
-                    Confirm Delete
-                </button>`
+       confirmDeleteForm.appendChild(createConfirmButton());
     }
 
 }
