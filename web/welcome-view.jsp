@@ -15,8 +15,22 @@
             loadRecentArticleList();
             applyThemeColor(`${loggedUser.themeColor}`);
             applyLayoutSpecificStyling(`${loggedUser.layoutID}`, `${loggedUser.themeColor}`);
+            showGreeting();
 
-        })
+        });
+        function showGreeting() {
+            const greetingSpan = document.querySelector("#greeting-span");
+            let today = new Date();
+            let currentHour = today.getHours();
+            if (currentHour < 12) {
+                greetingSpan.innerText = "Good morning, ";
+            } else if (currentHour < 18) {
+                greetingSpan.innerText = "Good afternoon, ";
+            } else {
+                greetingSpan.innerText = "Good evening, ";
+            }
+
+        }
     </script>
 </head>
 <body>
@@ -33,8 +47,8 @@
 <div class="head-container">
     <div class="page-h1-container" id="welcome-message-container">
         <h1 id="welcome-message">
-            Welcome, <img class="inline-avatar"
-                          src='<c:url value="/images/avatar/${loggedUser.avatarPath}"/>'>${loggedUser.username}
+            <span id="greeting-span"></span><a href='<c:url value="user-profile?user-id=${loggedUser.userID}"/>'> <img class="inline-avatar"
+                                                                                         src='<c:url value="/images/avatar/${loggedUser.avatarPath}"/>' alt=" "></a>${loggedUser.username}
         </h1>
         <button class="link-button">
             <a href='<c:url value="/blog-view?authorID=${loggedUser.userID}"/>'>

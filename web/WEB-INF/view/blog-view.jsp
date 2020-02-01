@@ -41,16 +41,17 @@
     <div id="blog-name-container" class="page-h1-container">
         <h1 id="blog-name">${author.blogName}</h1>
     </div>
-    <div class="author-intro-container" class="page-author-container">
-        <span><img class="inline-avatar" src='<c:url value="/images/avatar/${author.avatarPath}"/>'
-                   alt="author avatar"> ${author.username}'s blog
+    <div class="author-intro-container page-author-container">
+        <span><a href='<c:url value="user-profile?user-id=${author.userID}"/>'> <img class="inline-avatar"
+                                                                                src='<c:url value="/images/avatar/${author.avatarPath}"/>'
+                                                                                alt="author avatar"></a> ${author.username}'s blog
         </span>
     </div>
     <c:if test="${loggedUser.userID==author.userID}">
         <div class="blog-author-option-div">
-            <button id="add-article-button" class="link-button article-author-option-button" >
+            <button id="add-article-button" class="link-button article-author-option-button">
                 <a href='<c:url value="/testing-add-article.jsp"/>'>
-                Write New Article
+                    Write New Article
                 </a>
             </button>
             <button id="blog-setting-button" class="link-button article-author-option-button">

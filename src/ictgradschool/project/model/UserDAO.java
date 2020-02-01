@@ -197,9 +197,33 @@ public class UserDAO {
         user.setLastName(resultSet.getString(9));
         user.setDateOfBirth(resultSet.getDate(10));
         user.setShareRealNameInfo(resultSet.getBoolean(11));
-        System.out.println(user);
         return user;
     }
 
+
+    public static boolean changeAccountSetting(Connection connection, User updatedUser) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement
+                ("UPDATE users_db SET username = ?, hashed_password =?, hashed_salt = ?, salt_length = ?, iteration_number = ? WHERE user_id = ?;")) {
+            preparedStatement.setString(1, updatedUser.getUsername());
+            preparedStatement.setString(2, updatedUser.getPasswordHashBase64());
+            preparedStatement.setString(3, updatedUser.getSaltHashBase64());
+            preparedStatement.setInt(4, updatedUser.getSaltLength());
+            preparedStatement.setInt(5, updatedUser.getIterationNum());
+            preparedStatement.setInt(6, updatedUser.getUserID());
+
+            int rowUpdated = preparedStatement.executeUpdate();
+            return rowUpdated==1;
+
+        }
+
+    }
+
+    public static boolean deleteUserById(Connection connection, int userID) throws SQLException{
+        try (PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users_db WHERE user_id=?")) {
+            preparedStatement.setInt(1, userID);
+            int rowUpdated = preparedStatement.executeUpdate();
+            return rowUpdated == 1;
+        }
+    }
 
 }

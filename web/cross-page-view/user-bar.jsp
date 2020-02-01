@@ -42,6 +42,11 @@
 
         <div id="toggle-down-box" class="invisible">
             <span class="toggle-down-span">
+                <a href='<c:url value="/welcome-view.jsp"/>' id="welcome-link">
+                    What's New
+                </a>
+            </span>
+            <span class="toggle-down-span">
                 <a href='<c:url value="/user-profile?user-id=${loggedUser.userID}"/>' id="profile-link">
                     My Profile
                 </a>
