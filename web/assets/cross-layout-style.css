@@ -215,6 +215,10 @@ button:focus {
     border-radius: 50%;
     border: var(--bright-gray) solid 2px;
 }
+#index-message {
+    color: var(--heavy-color);
+    text-decoration: underline;
+}
 
 @media screen and (min-width: 900px) {
     .head-container {
@@ -223,6 +227,10 @@ button:focus {
 
     .body-container {
         width: 50vw;
+    }
+    #index-message {
+        width: 50vw;
+        margin: 0 auto 15px;
     }
 }
 
@@ -233,6 +241,10 @@ button:focus {
 
     .body-container {
         width: 95vw;
+    }
+    #index-message {
+        width: 95vw;
+        margin: 0 auto 15px;
     }
 }
 
