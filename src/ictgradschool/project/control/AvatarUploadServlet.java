@@ -75,7 +75,7 @@ public class AvatarUploadServlet extends HttpServlet {
                     fi.write(fullSizeImageFile);
                     if (newUser) {
                         request.getSession().setAttribute("newUser", user);
-                        request.getRequestDispatcher("WEB-INF/view/user-blog-setup.jsp").forward(request, response);
+                        request.getRequestDispatcher("WEB-INF/view/user-blog-setting.jsp").forward(request, response);
                     } else {
                         request.getSession().setAttribute("loggedUser", user);
                         response.sendRedirect("./user-profile?user-id=" + user.getUserID());

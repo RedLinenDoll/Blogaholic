@@ -29,7 +29,7 @@ public class ChangeUserProfileServlet extends HttpServlet {
         try(Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             UserDAO.editUserRealNameInfo(connection, userID, firstName, lastName, dateOfBirth, selfIntroduction, toShare);
             if (request.getSession().getAttribute("existingUser") == null) {
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/setup-user-avatar.jsp");
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/user-avatar-setting.jsp");
                 requestDispatcher.forward(request, response);
             } else {
                 response.sendRedirect("./user-profile?user-id="+userID);

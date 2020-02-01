@@ -14,7 +14,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet(name = "set-avatar", urlPatterns = "/set-avatar")
-public class SetAvatarServlet extends HttpServlet {
+public class AvatarSelectServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,7 +31,7 @@ public class SetAvatarServlet extends HttpServlet {
             User updatedUser = UserDAO.setUserAvatarPath(connection, userID, "avatar" + avatarNumString + ".jpg");
             if (request.getSession().getAttribute("existingUser") == null) {
                 request.getSession().setAttribute("newUser", updatedUser);
-                request.getRequestDispatcher("WEB-INF/view/user-blog-setup.jsp").forward(request, response);
+                request.getRequestDispatcher("WEB-INF/view/user-blog-setting.jsp").forward(request, response);
             } else {
                 request.getSession().setAttribute("loggedUser", updatedUser);
                 response.sendRedirect("./user-profile?user-id=" + user.getUserID());

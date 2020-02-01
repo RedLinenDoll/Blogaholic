@@ -26,7 +26,7 @@ public class SignUp extends HttpServlet {
         try(Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")){
             User newUser = UserDAO.insertUser(connection,user);
             request.getSession().setAttribute("newUser", newUser);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/user-creation.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/user-profile-setting.jsp");
             requestDispatcher.forward(request, response);
 
         } catch (SQLException e) {
