@@ -1,6 +1,6 @@
 const uriStart = '/team-java_blogaholic/';
-const elegantColorNames = ['Calming Blue', 'Coffee Break', 'Green Breath', 'Sun Bath', 'Rose Perfume', 'Red Blossom'];
-const elegantColorHex = ["#3f99ae", "#9e7865", "#78914d", "#ffd500", "#f29494", "#ba0810"];
+const elegantColorNames = ['Modern Gray', 'Coffee Break', 'Green Breath', 'Sun Bath', 'Rose Perfume', 'Red Blossom'];
+const elegantColorHex = ["#535353", "#9e7865", "#78914d", "#ffd500", "#f29494", "#ba0810"];
 const limitedColorRadios = [];
 const limitedColorLabels = [];
 let layout1ColorSelectionDiv;
@@ -100,7 +100,7 @@ function initializeSubmitButton() {
     submitButton.style.height = "3em";
     submitButton.style.margin = "10px";
     submitButton.style.fontSize = "1.5em";
-    submitButton.style.backgroundColor = "#fc5a03";
+    submitButton.style.backgroundColor = "#535353";
     submitButton.display = "block";
     submitButton.margin = "5px auto";
     return submitButton;
