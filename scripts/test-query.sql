@@ -31,3 +31,8 @@ WHERE user_id = 2;
 
 DELETE FROM users_db
 WHERE user_id > 6;
+
+SELECT username, avatar_path, self_introduction, blog_name, layout_id, theme_color FROM users_db WHERE user_id = 1;
+SELECT username, avatar_path, self_introduction, first_name, last_name, date_of_birth, blog_name, layout_id, theme_color FROM users_db WHERE user_id = 1;
+
+UPDATE users_db SET first_name = 'A', last_name ='B', date_of_birth = '1990-01-02', self_introduction = 'ih', share_real_name_info = false WHERE user_id = 12;

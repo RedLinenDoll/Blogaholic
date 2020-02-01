@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS users_db
     last_name         VARCHAR(64),
     date_of_birth     DATE,
     self_introduction VARCHAR(256),
+    share_real_name_info BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (user_id),
     FOREIGN KEY (layout_id) REFERENCES layout_db (layout_id)
 );

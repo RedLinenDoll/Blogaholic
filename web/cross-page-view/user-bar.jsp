@@ -42,7 +42,7 @@
 
         <div id="toggle-down-box" class="invisible">
             <span class="toggle-down-span">
-                <a href='<c:url value="/user-profile?userID=${loggedUser.userID}"/>' id="profile-link">
+                <a href='<c:url value="/user-profile?user-id=${loggedUser.userID}"/>' id="profile-link">
                     My Profile
                 </a>
             </span>
