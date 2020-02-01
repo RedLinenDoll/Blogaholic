@@ -44,6 +44,7 @@
 
 <body>
 <c:set value="${loggedUser!=null && profileOwner.userID == loggedUser.userID}" var="isOwnProfile"/>
+<c:set value="${isOwnProfile || profileOwner.shareRealNameInfo == true}" var="showRealNameInfo"/>
 <div class="head-container">
 </div>
 <div class="body-container">
@@ -58,7 +59,7 @@
         </c:choose>
     </h1>
 
-    <div class="profile-avatar-container">
+    <div id="account-info">
         <img src='<c:url value="/images/avatar/${profileOwner.avatarPath}"/>' alt=" "
              class="block-avatar profile-avatar">
 
@@ -68,9 +69,25 @@
             </a>
         </c:if>
 
+    <p>
+        ${profileOwner.username}
+
+    </p>
+        <c:if test="${isOwnProfile}">
+            <a href="/user-option?user-request=change-account-setting" class="profile-page-button"> <button>Account setting</button></a>
+        </c:if>
     </div>
-    ${profileOwner.username}
-    ${profileOwner.dateOfBirth}
+    <hr class="profile-page-hr">
+    <c:if test="${showRealNameInfo}">
+    <div class="real-name-info">
+
+        <p><i class="far fa-user head-icon"></i> First Name: ${profileOwner.firstName}</p>
+        <p><i class="far fa-user head-icon"></i> Last Name: ${profileOwner.lastName}</p>
+       <p> <i class="fas fa-birthday-cake"></i>Birthday: ${profileOwner.dateOfBirth}</p>
+
+
+    </div>
+    </c:if>
 
 </div>
 

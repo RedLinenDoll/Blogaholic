@@ -10,7 +10,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: left;
+    text-align: center;
 }
 
 .profile-avatar {
@@ -20,10 +20,31 @@ body{
 
 #change-avatar {
     position: relative;
-    left: 5.2em;
     bottom: 5.2em;
     cursor: pointer;
 }
 #change-avatar:hover {
     color: var(--theme-color);
+}
+
+button:hover{
+    color: var(--theme-color);
+}
+button {
+    font-family: var(--primary-font);
+    font-weight: 400;
+    height: 2em;
+    font-size: 14px;
+}
+
+.profile-avatar {
+    display: inline;
+}
+.profile-page-hr {
+    margin: 40px 0;
+    height: 1px;
+    border: none;
+    background-color: var(--bright-gray);
+    color: var(--bright-gray);
+    width: 60%;
 }

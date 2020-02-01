@@ -15,8 +15,6 @@ import java.sql.SQLException;
 
 @WebServlet(name="user-profile", urlPatterns = "/user-profile")
 public class UserProfileViewServlet extends HttpServlet {
-    //TODO User Profile doGet
-    // Parameter: user-id
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
