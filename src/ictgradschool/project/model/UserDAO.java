@@ -125,34 +125,43 @@ public class UserDAO {
         return 0;
     }
 
-    public static boolean editUserRealNameInfo(Connection connection, int userID, String firstName, String lastName, Date dateOfBirth, String selfIntroduction, boolean toShare) throws SQLException{
-        try(PreparedStatement preparedStatement = connection.prepareStatement
-                ("UPDATE users_db SET first_name = ?, last_name =?, date_of_birth = ?, self_introduction = ? WHERE user_id = ?;")) {
+    public static User editUserRealNameInfo(Connection connection, User user, String firstName, String lastName, Date dateOfBirth, String selfIntroduction, boolean toShare) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement
+                ("UPDATE users_db SET first_name = ?, last_name =?, date_of_birth = ?, self_introduction = ?, share_real_name_info = ? WHERE user_id = ?;")) {
             preparedStatement.setString(1, firstName);
             preparedStatement.setString(2, lastName);
             preparedStatement.setDate(3, dateOfBirth);
             preparedStatement.setString(4, selfIntroduction);
-            preparedStatement.setInt(5, userID);
+            preparedStatement.setBoolean(5, toShare);
+            preparedStatement.setInt(6, user.getUserID());
 
             int rowUpdated = preparedStatement.executeUpdate();
-            return rowUpdated == 1;
+            if (rowUpdated == 1) {
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setShareRealNameInfo(toShare);
+                user.setSelfIntroduction(selfIntroduction);
+                user.setDateOfBirth(dateOfBirth);
+                return user;
+            } else return null;
+
         }
 
     }
 
-    public static User setUserAvatarPath(Connection connection, int userID, String avatarPath) throws SQLException{
-        try(PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users_db SET avatar_path = ? WHERE user_id = ?")) {
+    public static User setUserAvatarPath(Connection connection, int userID, String avatarPath) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users_db SET avatar_path = ? WHERE user_id = ?")) {
             preparedStatement.setString(1, avatarPath);
             preparedStatement.setInt(2, userID);
             int rowUpdated = preparedStatement.executeUpdate();
-            if(rowUpdated==1)
+            if (rowUpdated == 1)
                 return getAuthorById(connection, userID);
         }
         return null;
     }
 
-    public static void setBlogPreference(Connection connection, int userID, String blogName, String blogDescription, int layoutID, String themeColor) throws SQLException{
-        try(PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users_db SET blog_name = ?, blog_description = ?, layout_id = ?, theme_color = ? WHERE user_id = ?")) {
+    public static void setBlogPreference(Connection connection, int userID, String blogName, String blogDescription, int layoutID, String themeColor) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE users_db SET blog_name = ?, blog_description = ?, layout_id = ?, theme_color = ? WHERE user_id = ?")) {
             preparedStatement.setString(1, blogName);
             preparedStatement.setString(2, blogDescription);
             preparedStatement.setInt(3, layoutID);
@@ -161,4 +170,36 @@ public class UserDAO {
             preparedStatement.executeUpdate();
         }
     }
+
+    public static User getProfileOwnerInfoByID(Connection connection, int userID) throws SQLException {
+        String sql = "SELECT user_id, username, avatar_path, self_introduction, blog_name, layout_id, " +
+                "theme_color, first_name, last_name, date_of_birth, share_real_name_info FROM users_db WHERE user_id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, userID);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return createProfileUserFromResultSet(resultSet);
+                } else return null;
+            }
+        }
+    }
+
+    private static User createProfileUserFromResultSet(ResultSet resultSet) throws SQLException {
+        User user = new User();
+        user.setUserID(resultSet.getInt(1));
+        user.setUsername(resultSet.getString(2));
+        user.setAvatarPath(resultSet.getString(3));
+        user.setSelfIntroduction(resultSet.getString(4));
+        user.setBlogName(resultSet.getString(5));
+        user.setLayoutID(resultSet.getInt(6));
+        user.setThemeColor(resultSet.getString(7));
+        user.setFirstName(resultSet.getString(8));
+        user.setLastName(resultSet.getString(9));
+        user.setDateOfBirth(resultSet.getDate(10));
+        user.setShareRealNameInfo(resultSet.getBoolean(11));
+        System.out.println(user);
+        return user;
+    }
+
+
 }

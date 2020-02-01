@@ -24,7 +24,6 @@ public class BlogViewServlet extends HttpServlet {
             request.getRequestDispatcher("WEB-INF/view/blog-view.jsp").forward(request, response);
         } catch (SQLException e) {
             response.setStatus(500);
-//            resp.sendRedirect("WEB-INF/error-view/500.jsp");
             e.printStackTrace();
         }
     }
