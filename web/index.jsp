@@ -44,8 +44,10 @@
         </a>
     </button>
 </div>
+<h2 id="index-message">You will be sharing ideas with these blogaholics: </h2>
 
 <div class="body-container" id="all-blog-container">
+
 
 
 </div>

@@ -14,7 +14,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 
 @WebServlet (name="edit-user", urlPatterns = "/edit-user")
-public class ChangeUserProfileServlet extends HttpServlet {
+public class UserProfileSettingServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

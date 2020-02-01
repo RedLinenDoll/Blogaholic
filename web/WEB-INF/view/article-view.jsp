@@ -89,7 +89,7 @@
         <div id="add-article-comment-container">
             <form id="add-article-comment" action='<c:url value="/add-comment"/>' method="post">
                 <label for="add-comment-to-article" class="comment-info" style="font-size: 15px;">Add Comments: </label><br>
-                <textarea id="add-comment-to-article" rows="4" maxlength="512" name="article-comment-body" placeholder="Share your thoughts on ${author.username}'s article" style="width: 100%; font-size: 15px; font-family:var(--primary-font)"></textarea>
+                <textarea id="add-comment-to-article" rows="4" maxlength="512" name="new-comment-body" placeholder="Share your thoughts on ${author.username}'s article" style="width: 100%; font-size: 15px; font-family:var(--primary-font)"></textarea>
                 <input type="hidden" name="target-id" value="${article.articleID}">
                 <input type="hidden" name="article-id" value="${article.articleID}">
                 <input type="hidden" name="target-type" value="article">
