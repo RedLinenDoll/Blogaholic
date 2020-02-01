@@ -31,6 +31,10 @@ public class UserOptionDispatcherServlet extends HttpServlet {
                 requestDispatcher = request.getRequestDispatcher("WEB-INF/view/user-creation.jsp");
                 requestDispatcher.forward(request, response);
                 return;
+            case "change-user-account":
+                requestDispatcher = request.getRequestDispatcher("WEB-INF/view/user-account-setting.jsp");
+                requestDispatcher.forward(request, response);
+                return;
             default:
                 response.sendRedirect("index.jsp");
 

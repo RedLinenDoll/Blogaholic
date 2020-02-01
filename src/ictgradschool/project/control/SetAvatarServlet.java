@@ -32,7 +32,10 @@ public class SetAvatarServlet extends HttpServlet {
             if (request.getSession().getAttribute("existingUser") == null) {
                 request.getSession().setAttribute("newUser", updatedUser);
                 request.getRequestDispatcher("WEB-INF/view/user-blog-setup.jsp").forward(request, response);
-            } else response.sendRedirect("./user-profile?user-id=" + user.getUserID());
+            } else {
+                request.getSession().setAttribute("loggedUser", updatedUser);
+                response.sendRedirect("./user-profile?user-id=" + user.getUserID());
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
