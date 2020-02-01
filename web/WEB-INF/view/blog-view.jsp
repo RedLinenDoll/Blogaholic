@@ -43,8 +43,23 @@
     </div>
     <div class="author-intro-container" class="page-author-container">
         <span><img class="inline-avatar" src='<c:url value="/images/avatar/${author.avatarPath}"/>'
-                   alt="author avatar"> ${author.username}'s blog</span>
+                   alt="author avatar"> ${author.username}'s blog
+        </span>
     </div>
+    <c:if test="${loggedUser.userID==author.userID}">
+        <div class="blog-author-option-div">
+            <button id="add-article-button" class="link-button article-author-option-button" >
+                <a href='<c:url value="/testing-add-article.jsp"/>'>
+                Write New Article
+                </a>
+            </button>
+            <button id="blog-setting-button" class="link-button article-author-option-button">
+                <a href='<c:url value="/user-option?user-request=blog-setup"/>'>
+                    Blog Settings
+                </a>
+            </button>
+        </div>
+    </c:if>
     <div id="blog-description-container" class="page-description-container">
         <p id="blog-description">${author.blogDescription}</p>
     </div>

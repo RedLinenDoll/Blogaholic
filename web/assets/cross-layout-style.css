@@ -192,6 +192,23 @@ button:focus {
     font-size: 14px;
 }
 
+.head-container {
+    position: relative;
+}
+.article-author-option-div {
+    display: flex;
+    flex-direction: row;
+    height: 3em;
+    justify-content: space-between;
+    align-items: stretch;
+    position: absolute;
+    top: -3em;
+    right: 0;
+}
+
+.body-container {
+    position: relative;
+}
 
 .block-avatar {
     display: block;
@@ -330,3 +347,8 @@ textarea:focus {
 .invisible {
     display: none !important;
 }
+
+button {
+    cursor: pointer;
+}
+

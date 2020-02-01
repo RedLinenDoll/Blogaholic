@@ -15,7 +15,6 @@
             arrow.classList.toggle("fa-angle-down");
             arrow.classList.toggle("fa-angle-right");
             toggleBox.classList.toggle("invisible");
-
         }
     });
 

@@ -44,15 +44,12 @@ public class AvatarUploadServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        boolean newUser = true;
+        boolean newUser = (request.getSession().getAttribute("existingUser") == null);
         User user = (User) request.getSession().getAttribute("newUser");
+
         if (user == null) {
-            user = (User) request.getSession().getAttribute("loggedUser");
-            newUser = false;
-            if (user == null) {
-                response.sendRedirect("index.jsp");
-                return;
-            }
+            response.sendRedirect("index.jsp");
+            return;
         }
 
         String targetFileName = "customer-avatar" + user.getUserID();
@@ -78,10 +75,10 @@ public class AvatarUploadServlet extends HttpServlet {
                     fi.write(fullSizeImageFile);
                     if (newUser) {
                         request.getSession().setAttribute("newUser", user);
-                        request.getRequestDispatcher("WEB-INF/view/user-blog-setup.jsp").forward(request, response);
+                        request.getRequestDispatcher("WEB-INF/view/user-blog-setting.jsp").forward(request, response);
                     } else {
                         request.getSession().setAttribute("loggedUser", user);
-                        response.sendRedirect("index.jsp");
+                        response.sendRedirect("./user-profile?user-id=" + user.getUserID());
                     }
                 }
             }

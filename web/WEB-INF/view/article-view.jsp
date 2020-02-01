@@ -53,9 +53,22 @@
         <span>by <img class="inline-avatar" src='<c:url value="/images/avatar/${author.avatarPath}"/>'
                       alt="author avatar"> ${author.username}</span>
     </div>
+
 </div>
 
 <div class="body-container">
+    <c:if test="${loggedUser.userID==author.userID}">
+        <div class="article-author-option-div">
+            <button id="delete-article-button" class="link-button article-author-option-button" onclick="deleteArticle(${article.articleID})">
+                Delete
+            </button>
+            <button id="edit-article" class="link-button article-author-option-button">
+                <a href="./edit-article?articleID=${article.articleID}">
+                    Edit
+                </a>
+            </button>
+        </div>
+    </c:if>
 
     <div id="article-content-container">
         <p>
@@ -64,21 +77,12 @@
     </div>
 
     <div id="article-options-container">
-        <button class="link-button">
+        <button class="link-button back-to-blog-button">
             <a href='<c:url value="/blog-view?authorID=${author.userID}"/>'>
                 Back to ${author.username}'s blog &nbsp;&#8594;
             </a>
         </button>
-        <c:if test="${loggedUser.userID==author.userID}">
-            <button id="delete-article-button" class="link-button article-option-button" onclick="deleteArticle(${article.articleID})">
-                    Delete
-            </button>
-            <button id="edit-article" class="link-button">
-                <a href="./edit-article?articleID=${article.articleID}">
-                    Edit
-                </a>
-            </button>
-        </c:if>
+
     </div>
 
     <c:if test="${loggedUser!= null}">
