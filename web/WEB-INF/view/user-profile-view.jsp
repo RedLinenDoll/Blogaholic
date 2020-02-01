@@ -68,7 +68,6 @@
                 <i class="fas fa-pen pen-icon-for-edit" title="change avatar" id="change-avatar"></i>
             </a>
         </c:if>
-
         <p>
             ${profileOwner.username}
         </p>
@@ -83,45 +82,46 @@
     <p>${profileOwner.selfIntroduction}</p>
 
     <c:if test="${showRealNameInfo}">
-        <div class="real-name-info">
-            <table align="center">
-                <tr>
-                    <td><i class="far fa-user profile-icon"></i> First Name:</td>
-                    <td>${profileOwner.firstName}</td>
-                </tr>
-                <tr>
-                    <td><i class="far fa-user profile-icon"></i> Last Name:</td>
-                    <td>${profileOwner.lastName}</td>
-                </tr>
-                <tr>
-                    <td><i class="fas fa-birthday-cake profile-icon"></i> Birthday:</td>
-                    <td>${profileOwner.dateOfBirth}</td>
-                </tr>
-            </table>
-            <div style="margin: 15px 0; font-size: 0.8em; color: #777777">
+    <div class="real-name-info">
+        <table align="center">
+            <tr>
+                <td><i class="far fa-user profile-icon"></i> First Name:</td>
+                <td>${profileOwner.firstName}</td>
+            </tr>
+            <tr>
+                <td><i class="far fa-user profile-icon"></i> Last Name:</td>
+                <td>${profileOwner.lastName}</td>
+            </tr>
+            <tr>
+                <td><i class="fas fa-birthday-cake profile-icon"></i> Birthday:</td>
+                <td>${profileOwner.dateOfBirth}</td>
+            </tr>
+        </table>
+        <div style="margin: 15px 0; font-size: 0.8em; color: #777777">
             <c:if test="${isOwnProfile}">
                 <c:choose>
-                <c:when test="${!profileOwner.shareRealNameInfo}">
-                    You chose NOT to share these real name information with your visitors, <br> and we will respect that
-                </c:when>
+                    <c:when test="${!profileOwner.shareRealNameInfo}">
+                        You chose NOT to share these real name information with your visitors,
+                        <br> and we will respect that
+                    </c:when>
                     <c:otherwise>
                         You chose to share these real name information, <br> and you can change your mind any time.
                     </c:otherwise>
                 </c:choose>
             </c:if>
-            </div>
-            <c:if test="${isOwnProfile}">
-                <a href="<c:url value="/user-option?user-request=change-user-profile"/>" class="profile-page-button">
-                    <button>Change Personal Information</button>
-                </a>
-            </c:if>
-            </c:if>
-<br><br>
-            <a href="<c:url value="/blog-view?authorID=${profileOwner.userID}"/>" class="profile-page-button">
-                <button>Go to my blog: ${profileOwner.blogName}</button>
-            </a>
-
         </div>
+        <c:if test="${isOwnProfile}">
+            <a href="<c:url value="/user-option?user-request=change-user-profile"/>" class="profile-page-button">
+                <button>Change Personal Information</button>
+            </a>
+        </c:if>
+        </c:if>
+        <br><br>
+        <a href="<c:url value="/blog-view?authorID=${profileOwner.userID}"/>" class="profile-page-button">
+            <button>Go to my blog: ${profileOwner.blogName}</button>
+        </a>
+
+    </div>
 
 
 </div>
