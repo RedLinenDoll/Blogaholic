@@ -208,5 +208,27 @@ public class User {
     public void setShareRealNameInfo(boolean shareRealNameInfo) {
         this.shareRealNameInfo = shareRealNameInfo;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userID=" + userID +
+                ", username='" + username + '\'' +
+                ", passwordHashBase64='" + passwordHashBase64 + '\'' +
+                ", saltHashBase64='" + saltHashBase64 + '\'' +
+                ", saltLength=" + saltLength +
+                ", iterationNum=" + iterationNum +
+                ", avatarPath='" + avatarPath + '\'' +
+                ", blogName='" + blogName + '\'' +
+                ", blogDescription='" + blogDescription + '\'' +
+                ", themeColor='" + themeColor + '\'' +
+                ", layoutID=" + layoutID +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", selfIntroduction='" + selfIntroduction + '\'' +
+                ", shareRealNameInfo=" + shareRealNameInfo +
+                '}';
+    }
 }
 

@@ -172,28 +172,19 @@ public class UserDAO {
     }
 
     public static User getProfileOwnerInfoByID(Connection connection, int userID) throws SQLException {
-        boolean shareRealNameInfo = false;
-        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT share_real_name_info FROM users_db WHERE user_id = ?")) {
-            preparedStatement.setInt(1, userID);
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (!resultSet.next()) return null;
-                shareRealNameInfo = resultSet.getBoolean(1);
-            }
-        }
-
-        String sql = !shareRealNameInfo ? "SELECT user_id, username, avatar_path, self_introduction, blog_name, layout_id, theme_color FROM users_db WHERE user_id = ?" :
-                "SELECT user_id, username, avatar_path, self_introduction, blog_name, layout_id, theme_color, first_name, last_name, date_of_birth FROM users_db WHERE user_id = ?";
+        String sql = "SELECT user_id, username, avatar_path, self_introduction, blog_name, layout_id, " +
+                "theme_color, first_name, last_name, date_of_birth, share_real_name_info FROM users_db WHERE user_id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, userID);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    return createProfileUserFromResultSet(shareRealNameInfo, resultSet);
+                    return createProfileUserFromResultSet(resultSet);
                 } else return null;
             }
         }
     }
 
-    private static User createProfileUserFromResultSet(boolean shareRealNameInfo, ResultSet resultSet) throws SQLException {
+    private static User createProfileUserFromResultSet(ResultSet resultSet) throws SQLException {
         User user = new User();
         user.setUserID(resultSet.getInt(1));
         user.setUsername(resultSet.getString(2));
@@ -202,12 +193,11 @@ public class UserDAO {
         user.setBlogName(resultSet.getString(5));
         user.setLayoutID(resultSet.getInt(6));
         user.setThemeColor(resultSet.getString(7));
-        if (!shareRealNameInfo) return user;
-
         user.setFirstName(resultSet.getString(8));
         user.setLastName(resultSet.getString(9));
         user.setDateOfBirth(resultSet.getDate(10));
-        user.setShareRealNameInfo(true);
+        user.setShareRealNameInfo(resultSet.getBoolean(11));
+        System.out.println(user);
         return user;
     }
 

@@ -41,10 +41,18 @@ button {
     display: inline;
 }
 .profile-page-hr {
-    margin: 40px 0;
+    margin: 25px 0;
     height: 1px;
     border: none;
     background-color: var(--bright-gray);
     color: var(--bright-gray);
     width: 60%;
+}
+
+.profile-icon {
+    padding: 3px;
+}
+
+.real-name-info {
+    text-align: center;
 }
