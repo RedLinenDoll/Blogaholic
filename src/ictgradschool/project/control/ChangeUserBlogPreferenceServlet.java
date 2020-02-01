@@ -23,20 +23,19 @@ public class ChangeUserBlogPreferenceServlet extends HttpServlet {
         int layoutID = Integer.parseInt(request.getParameter("layout"));
         String blogName = request.getParameter("blog-name");
         String blogDescription = request.getParameter("blog-description");
-        Object user = request.getSession().getAttribute("newUser");
-        if (user == null) {
-            user = request.getSession().getAttribute("loggedUser");
-        }
+        User user = (User) request.getSession().getAttribute("newUser");
+
         if (user == null) {
             response.sendRedirect("./index.jsp");
             return;
         }
-        int userID = ((User) user).getUserID();
+
+        int userID = user.getUserID();
 
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             UserDAO.setBlogPreference(connection, userID, blogName, blogDescription, layoutID, themeColor);
-                request.getSession().setAttribute("loggedUser", user);
-                response.sendRedirect("./blog-view?authorID=" + ((User) user).getUserID());
+            request.getSession().setAttribute("loggedUser", user);
+            response.sendRedirect("./blog-view?authorID=" +  user.getUserID());
 
         } catch (SQLException e) {
             e.printStackTrace();

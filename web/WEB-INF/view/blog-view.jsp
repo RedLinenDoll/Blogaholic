@@ -54,7 +54,7 @@
                 </a>
             </button>
             <button id="blog-setting-button" class="link-button article-author-option-button">
-                <a href='<c:url value="user-blog-setup.jsp"/>'>
+                <a href='<c:url value="/user-option?user-request=blog-setup"/>'>
                     Blog Settings
                 </a>
             </button>

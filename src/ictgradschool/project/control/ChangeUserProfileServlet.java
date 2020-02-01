@@ -25,10 +25,15 @@ public class ChangeUserProfileServlet extends HttpServlet {
         String selfIntroduction = request.getParameter("self-intro-input");
         boolean toShare = request.getParameter("share-real-name-info")!=null;
 
+
         try(Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             UserDAO.editUserRealNameInfo(connection, userID, firstName, lastName, dateOfBirth, selfIntroduction, toShare);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/setup-user-avatar.jsp");
-            requestDispatcher.forward(request, response);
+            if (request.getSession().getAttribute("isNewUser") == null) {
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/setup-user-avatar.jsp");
+                requestDispatcher.forward(request, response);
+            } else {
+                response.sendRedirect("./user-profile?user-id="+userID);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

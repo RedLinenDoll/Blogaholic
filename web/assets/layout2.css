@@ -29,3 +29,6 @@ hr{
     color: var(--bright-gray);
 }
 
+.blog-author-option-div {
+    margin-top: 10px;
+}

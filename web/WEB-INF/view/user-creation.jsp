@@ -13,9 +13,8 @@
 
     <div class="head-container">
         <h1>
-            Welcome in, ${newUser.username}
+            ${newUser.username}, We would love to know better about you!
         </h1>
-        <p>We would like to know more about you!</p>
     </div>
     <div class="body-container">
         <form id="user-profile-form" method="post" action='<c:url value="/edit-user"/>' style="width: 80%; align-items: stretch; justify-content: stretch">
