@@ -29,7 +29,7 @@ public class LogIn extends HttpServlet {
                 resp.sendRedirect("./welcome-view.jsp");
             }
             else {
-                resp.sendRedirect("./login.html");
+                resp.sendRedirect("./login.html#please-try-again");
             }
 
         } catch (SQLException e) {
