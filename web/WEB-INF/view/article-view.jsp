@@ -50,8 +50,8 @@
         <h1 id="article-title">${article.articleTitle}</h1>
     </div>
     <div class="author-intro-container page-author-container">
-        <span>Article by <img class="inline-avatar" src='<c:url value="/images/avatar/${author.avatarPath}"/>'
-                      alt="author avatar"> ${author.username}</span>
+        <span>Article by <a href='<c:url value="user-profile?user-id=${author.userID}"/>'><img class="inline-avatar" src='<c:url value="/images/avatar/${author.avatarPath}"/>'
+                                                                                           alt="author avatar"></a> ${author.username}</span>
     </div>
 
 </div>

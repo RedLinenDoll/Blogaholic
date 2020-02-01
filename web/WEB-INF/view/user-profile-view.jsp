@@ -95,7 +95,7 @@
         <div style="margin: 15px 0; font-size: 0.8em; color: #777777">
                 <c:choose>
                     <c:when test="${!profileOwner.shareRealNameInfo}">
-                        You chose NOT to share these real name information with your visitors,
+                        You chose <u>NOT</u> to share these real name information with your visitors,
                         <br> and we will respect that
                     </c:when>
                     <c:otherwise>
