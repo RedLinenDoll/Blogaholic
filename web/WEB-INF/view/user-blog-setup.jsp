@@ -35,7 +35,7 @@
                 Please write some descriptions of your blog (e.g. topic, target-readers):
             </label>
             <textarea id="blog-description-input" name="blog-description"
-                      rows="3" cols="45">Blogaholic ${newUser.username}'s blog</textarea>
+                      rows="3" cols="45">Blogaholic ${newUser.username}'s blog. ${author.username} will be sharing ideas, experiences, knowledge and stories with you. Hope you'll enjoy!</textarea>
 
             <div style="height: 30px; width: 100%; border-bottom: 1px dashed var(--theme-color)"></div>
             <p>Now design decisions! Please pick a layout: </p>

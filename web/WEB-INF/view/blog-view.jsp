@@ -43,7 +43,8 @@
     </div>
     <div class="author-intro-container" class="page-author-container">
         <span><img class="inline-avatar" src='<c:url value="/images/avatar/${author.avatarPath}"/>'
-                   alt="author avatar"> ${author.username}'s blog</span>
+                   alt="author avatar"> ${author.username}'s blog
+        </span>
     </div>
     <div id="blog-description-container" class="page-description-container">
         <p id="blog-description">${author.blogDescription}</p>
