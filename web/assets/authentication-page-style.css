@@ -192,3 +192,19 @@ p#info {
     width: unset;
 }
 
+#confirm-delete-form {
+    text-align: center;
+    line-height: 180%;
+}
+#confirm-delete-form input[type=text], #confirm-delete-form input[type=password] {
+    color:red;
+}
+
+.delete-warning-message{
+    color:red;
+    font-size: 13px;
+    line-height: 100%;
+}
+.bold{
+    font-weight: 800;
+}
