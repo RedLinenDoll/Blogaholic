@@ -197,7 +197,6 @@ public class UserDAO {
         user.setLastName(resultSet.getString(9));
         user.setDateOfBirth(resultSet.getDate(10));
         user.setShareRealNameInfo(resultSet.getBoolean(11));
-        System.out.println(user);
         return user;
     }
 
