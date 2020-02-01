@@ -57,14 +57,9 @@ function layout1Selected() {
         layout1ColorSelectionDiv.appendChild(limitedColorLabels[i]);
         if (i % 2 === 0) layout1ColorSelectionDiv.innerHTML += " | ";
         else layout1ColorSelectionDiv.innerHTML += "<br>";
-
-        limitedColorRadios[i].addEventListener("click",
-            function () {
-                onColorSelection(elegantColorHex[i]);
-            });
     }
-    submitButton.style.backgroundColor = elegantColorHex[0];
     layout1ColorSelectionDiv.appendChild(submitButton);
+    addLayout1EventListener();
 
 }
 
@@ -72,14 +67,13 @@ function layout2Selected() {
     layout1ColorSelectionDiv.innerHTML = "";
 
     layout2ColorSelectionDiv.appendChild(freeColorLabel);
-    layout2ColorSelectionDiv.innerHTML += "<br>";
     layout2ColorSelectionDiv.appendChild(freeColorInput);
     submitButton.style.backgroundColor = "#fc5a03";
     layout2ColorSelectionDiv.appendChild(submitButton);
     freeColorInput.addEventListener("change",
         function () {
             onColorSelection(freeColorInput.value);
-        })
+        });
 
 }
 
@@ -125,7 +119,18 @@ function initializeFreeColorInput() {
 function initializeColorLabel() {
     const colorLabel = document.createElement("label");
     colorLabel.for = "free-color-input";
-    colorLabel.innerText = "Please pick your color";
+    colorLabel.innerText = "Please pick a theme color";
     colorLabel.innerHTML += "<br>";
     return colorLabel;
+}
+
+function addLayout1EventListener() {
+    const radios = document.querySelectorAll(".color-radio");
+    for (let i = 0; i < 6; i++) {
+        radios[i].addEventListener("click", function () {
+            onColorSelection(elegantColorHex[i]);
+        });
+    }
+
+
 }
