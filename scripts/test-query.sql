@@ -80,4 +80,11 @@ SELECT user_id,
        date_of_birth,
        share_real_name_info
 FROM users_db
-WHERE user_id = 1
+WHERE user_id = 1;
+
+
+UPDATE comment_db
+SET number_of_likes = (number_of_likes + 1) WHERE comment_id = 3000;
+
+UPDATE article_db
+SET number_of_likes = (number_of_likes + 1) WHERE article_id = 1;

@@ -18,7 +18,7 @@ function listenForLikeDislike() {
         const isLike = (targetInfo[0] === "like");
         const targetType = targetInfo[1];
         const targetID = targetInfo[2];
-        //sendDoRequest(targetType, targetID, isLike);
+        sendDoRequest(targetType, targetID, isLike);
         changeDoState(buttonNode, targetID, isLike);
     }
 
@@ -28,7 +28,7 @@ function listenForLikeDislike() {
         const isLike = (targetInfo[0] === "like");
         const targetType = targetInfo[1];
         const targetID = targetInfo[2];
-        //sendUndoRequest(targetType, targetID, isLike);
+        sendUndoRequest(targetType, targetID, isLike);
         changeUndoState(buttonNode, targetID, isLike);
     }
 
@@ -70,6 +70,21 @@ function listenForLikeDislike() {
             pairNode.classList.add("disabled-icon");
 
         }
+    }
+
+    function sendDoRequest(targetType, targetID, isLike) {
+        const request = new XMLHttpRequest();
+        request.open("POST", `${uriStart}like-dislike`, true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        console.log(`target-id=${targetID}&target-type=${targetType}&is-like=${isLike}&is-plus=true`);
+        request.send(`target-id=${targetID}&target-type=${targetType}&is-like=${isLike}&is-plus=true`);
+    }
+
+    function sendUndoRequest(targetType, targetID, isLike) {
+        const request = new XMLHttpRequest();
+        request.open("POST", `${uriStart}like-dislike`, true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.send(`target-id=${targetID}&target-type=${targetType}&is-like=${isLike}&is-plus=false`);
     }
 
 }
