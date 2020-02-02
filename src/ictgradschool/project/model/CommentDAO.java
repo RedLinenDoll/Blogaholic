@@ -1,6 +1,5 @@
 package ictgradschool.project.model;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,7 @@ public class CommentDAO {
             preparedStatement.setInt(5, comment.getCommenterID());
             int rowUpdated = preparedStatement.executeUpdate();
             if (rowUpdated == 1) {
-                try(ResultSet generateKeys = preparedStatement.getGeneratedKeys()) {
+                try (ResultSet generateKeys = preparedStatement.getGeneratedKeys()) {
                     generateKeys.next();
                     return generateKeys.getInt(1);
                 }
@@ -95,4 +94,18 @@ public class CommentDAO {
     }
 
 
+    public static void likeOrDislike(Connection connection, int targetID, String targetType, boolean isLike, boolean isPlus) throws SQLException {
+        String sql;
+        if (targetType.equals("comment"))
+            sql = "UPDATE comment_db SET " + (isLike ? "number_of_likes = (number_of_likes " : "number_of_dislikes = (number_of_dislikes ") + (isPlus ? "+ 1) " : "- 1) ") + "WHERE comment_id = ?;";
+        else
+            sql = "UPDATE article_db SET " + (isLike ? "number_of_likes = (number_of_likes " : "number_of_dislikes = (number_of_dislikes ") + (isPlus ? "+ 1) " : "- 1) ") + "WHERE article_id = ?;";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, targetID);
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+        }
+
+    }
 }

@@ -1,8 +1,5 @@
 const uriStart = '/team-java_blogaholic/';
 
-// TODO once we decided on our blog website name, the /blog/ part need to be updated.
-
-
 async function loadArticleList(authorID) {
     const postContainer = document.querySelector("#article-list-container");
     let response = await fetch(`${uriStart}load-articles?authorID=${authorID}`);
@@ -40,7 +37,11 @@ function renderArticleDiv(article) {
     articleInfoDiv.classList.add("article-info-div", "page-item-info-div");
     const articleInfo = document.createElement("span");
     articleInfo.classList.add("article-info", "page-item-info");
-    articleInfo.innerHTML = `Created on ${timestampToLocaleString(article.timeCreated)} · ${article.likesCount} <i class="far fa-thumbs-up like-empty-button like-article" id="like-article-${article.articleID}"></i>· ${article.dislikesCount} <i class="far fa-thumbs-down dislike-empty-button dislike-article-${article.articleID}"></i>`;
+    articleInfo.innerHTML = `Created on ${timestampToLocaleString(article.timeCreated)} · 
+<span id="like-article-${article.articleID}-count" class="count-span">${article.likesCount}</span>
+<i class="far fa-thumbs-up like-empty-button like-article" id="like-article-${article.articleID}"></i>·
+<span id="dislike-article-${article.articleID}-count" class="count-span">${article.dislikesCount}</span>
+<i class="far fa-thumbs-down dislike-empty-button dislike-comment" id="dislike-article-${article.articleID}"></i>`;
     articleInfoDiv.appendChild(articleInfo);
 
     fullArticleLink.appendChild(articleTitleDiv);

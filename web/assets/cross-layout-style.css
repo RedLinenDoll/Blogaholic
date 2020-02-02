@@ -364,3 +364,89 @@ button {
     cursor: pointer;
 }
 
+.like-empty-button, .dislike-empty-button, .like-full-button, .dislike-full-button{
+    cursor: pointer;
+}
+
+.like-empty-button:hover, .dislike-empty-button:hover {
+    color: var(--theme-color);
+}
+
+.like-full-button:hover, .dislike-full-button:hover {
+    color: inherit;
+}
+
+.like-full-button, .dislike-full-button {
+    color: var(--theme-color);
+}
+
+.disabled-icon {
+    color: inherit;
+    cursor: inherit;
+}
+
+.disabled-icon:hover{
+    color: inherit;
+}
+
+.count-span {
+    padding-left: 3px;
+    padding-right: 5px;
+}
+
+#search-span {
+    font-weight: bolder;
+    padding-right: 10px;
+    font-size: 1.25em;
+}
+
+#search-icon:hover {
+    color: var(--theme-color);
+    cursor: pointer;
+}
+
+#search-box {
+    position: fixed;
+    top: 45px;
+    right: 10em;
+    width: 12em;
+    height: 7em;
+    background-color: white;
+    text-align: left;
+    border: var(--theme-color) 2px solid;
+    line-height: 2em;
+}
+
+#search-form{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+#search-box input[type="text"] {
+    font-size: inherit;
+    width: 95%;
+    margin: 0 auto;
+}
+input[type="text"]:focus{
+    outline-color: var(--theme-color);
+}
+
+
+#search-box button {
+    font-family: inherit;
+    border-radius: 0;
+    background-color: var(--theme-color);
+    border: 0;
+    color: white;
+    font-weight: bolder;
+    font-size: 0.9em;
+    text-align: center;
+    width: fit-content;
+    margin: 0 auto 4px;
+}
+
+#search-box button:hover {
+    background-color: var(--heavy-color);
+}

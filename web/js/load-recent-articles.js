@@ -37,9 +37,11 @@ function renderRecentArticleDiv(article) {
     articleInfoDiv.classList.add("article-info-div", "page-item-info-div");
     const articleInfo = document.createElement("span");
     articleInfo.classList.add("article-info", "page-item-info");
-    articleInfo.innerHTML = `Created on ${timestampToLocaleString(article.timeCreated)} · ${article.likesCount}` +
+    articleInfo.innerHTML = `Created on ${timestampToLocaleString(article.timeCreated)} · 
+        <span id="like-article-${article.articleID}-count" class="count-span">${article.likesCount}</span>` +
         `<i class="far fa-thumbs-up like-empty-button like-article" id="like-article-${article.articleID}"></i> · ` +
-        `${article.dislikesCount} <i class="far fa-thumbs-down dislike-empty-button dislike-article-${article.articleID}"></i>`;
+        `<span id="dislike-article-${article.articleID}-count" class="count-span">${article.dislikesCount}</span> 
+        <i class="far fa-thumbs-down dislike-empty-button dislike-article" id="dislike-article-${article.articleID}"></i>`;
     articleInfoDiv.appendChild(articleInfo);
 
     fullArticleLink.appendChild(articleTitleDiv);

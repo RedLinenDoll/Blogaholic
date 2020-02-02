@@ -36,13 +36,14 @@ async function loadCommentList(articleID, authorID, loggedUserID) {
     if (parsedUrl.length > 0) {
         const commentID = parsedUrl[1];
         const newCommentDiv = document.querySelector(`#comment${commentID}`);
-        await newCommentDiv.scrollIntoView({behavior: "smooth", block: "center"});
-        newCommentDiv.style.boxShadow = "0 0 3px var(--theme-color)";
-        newCommentDiv.style.transition = "1s ease-in-out";
-        setTimeout(() => {
-            newCommentDiv.style.boxShadow = "none";
-        }, 1500);
-
+        if (newCommentDiv !== null) {
+            await newCommentDiv.scrollIntoView({behavior: "smooth", block: "center"});
+            newCommentDiv.style.boxShadow = "0 0 3px var(--theme-color)";
+            newCommentDiv.style.transition = "1s ease-in-out";
+            setTimeout(() => {
+                newCommentDiv.style.boxShadow = "none";
+            }, 1500);
+        }
     }
 
 }
@@ -74,7 +75,10 @@ function getCommentDiv(comment, authorID) {
     commentOptionsDiv.classList.add("comment-options-div");
     const commentLikeDislikeSpan = document.createElement("span");
     commentLikeDislikeSpan.classList.add("comment-like-dislike-span");
-    commentLikeDislikeSpan.innerHTML = `${comment.likesCount} <i class="far fa-thumbs-up like-empty-button like-comment" id="like-comment-${comment.commentID}"></i>· ${comment.dislikesCount} <i class="far fa-thumbs-down dislike-empty-button dislike-comment-${comment.commentIDD}"></i>`;
+    commentLikeDislikeSpan.innerHTML = `<span id="like-comment-${comment.commentID}-count" class="count-span">${comment.likesCount}</span>
+<i class="far fa-thumbs-up like-empty-button like-comment" id="like-comment-${comment.commentID}"></i>· 
+<span id="dislike-comment-${comment.commentID}-count" class="count-span">${comment.dislikesCount}</span>
+<i class="far fa-thumbs-down dislike-empty-button dislike-comment" id="dislike-comment-${comment.commentID}"></i>`;
     commentOptionsDiv.appendChild(commentLikeDislikeSpan);
     appendEditButton(commentOptionsDiv, authorID, comment);
     appendDeleteButton(commentOptionsDiv, authorID, comment.commentID, comment.commenterID);
@@ -200,7 +204,7 @@ function recoverComment() {
 
 }
 
-function cancelAddComment(){
+function cancelAddComment() {
     const oldEditor = document.querySelector("#add-comment-container");
     if (oldEditor !== null)
         oldEditor.parentNode.removeChild(oldEditor);
