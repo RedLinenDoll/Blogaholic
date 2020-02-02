@@ -15,5 +15,6 @@ public class ArticleSearchServlet extends HttpServlet {
 
        //TODO write ArticleDAO method to search for article that contains the keyword in the title or content.
         // TODO find a way to mark the keyword part A different color.
+        // TODO: could be string.split, and after applying style, putting the html content back again?
     }
 }
