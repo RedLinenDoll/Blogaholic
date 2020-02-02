@@ -9,14 +9,31 @@
 
     <jsp:include page="/cross-page-view/link-fonts.jsp"/>
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'/>
-    <link rel="stylesheet" href='<c:url value="/assets/layout1.css"/>'>
+    <c:choose>
+        <c:when test="${not empty loggedUser}">
+            <link rel="stylesheet" href='<c:url value="/assets/layout${loggedUser.layoutID}.css"/>'>
+        </c:when>
+        <c:otherwise>
+            <link rel="stylesheet" href='<c:url value="/assets/layout1.css"/>'>
+        </c:otherwise>
+    </c:choose>
+
     <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>
     <script src='<c:url value="js/load-blog-list.js"/>'></script>
     <script type="text/javascript">
         window.addEventListener("load", function () {
-            loadAllBlogList();
+            <c:choose>
+            <c:when test="${not empty loggedUser}">
+            applyThemeColor(`${loggedUser.themeColor}`);
+            applyLayoutSpecificStyling(`${loggedUser.layoutID}`, `${loggedUser.themeColor}`);
+            </c:when>
+            <c:otherwise>
             applyThemeColor(`#3f99ae`);
             applyLayoutSpecificStyling(`1`, `#3f99ae`);
+            </c:otherwise>
+            </c:choose>
+            loadAllBlogList();
+
         })
     </script>
 
