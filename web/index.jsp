@@ -38,16 +38,27 @@
             Welcome to blogaholic, where ideas sparkle
         </h1>
     </div>
-    <button class="link-button">
+
+    <c:if test="${loggedUser == null}">
         <a href='<c:url value="/signup.html"/>'>
-            Create my blog &nbsp;&#8594;
+            <button class="link-button">
+                Create my blog &nbsp;&#8594;
+            </button>
         </a>
-    </button>
+    </c:if>
+
+    <c:if test="${loggedUser != null}">
+        <a href='<c:url value="/welcome-view.jsp"/>'>
+            <button class="link-button">
+                What's new&nbsp;&#8594;
+            </button>
+        </a>
+    </c:if>
+
 </div>
 <h2 id="index-message">You will be sharing ideas with these blogaholics: </h2>
 
 <div class="body-container" id="all-blog-container">
-
 
 
 </div>
