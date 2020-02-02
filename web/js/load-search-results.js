@@ -1,0 +1,3 @@
+function loadSearchResults(articleList, keyword) {
+
+}

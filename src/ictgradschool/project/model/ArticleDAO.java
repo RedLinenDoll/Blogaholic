@@ -142,7 +142,7 @@ public class ArticleDAO {
        }
     }
 
-    public static Article createSearchResultArticleFromResultSet(Connection connection, ResultSet resultSet) throws SQLException{
+    private static Article createSearchResultArticleFromResultSet(Connection connection, ResultSet resultSet) throws SQLException{
 
         Article article = new Article();
         article.setArticleID(resultSet.getInt(1));
