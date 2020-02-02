@@ -126,4 +126,33 @@ public class ArticleDAO {
                 resultSet.getInt(7) //dislikeCount
         );
     }
+
+    public static List<Article> searchArticleByKeyword(Connection connection, String keyword) throws SQLException{
+        List<Article> articles = new ArrayList<>();
+       String sql = "SELECT article_id, title, content, created_time, edit_time, number_of_likes, number_of_dislikes, author_id FROM article_db WHERE (title LIKE CONCAT('_%', ? , '_%')) OR (content LIKE CONCAT('_%', ?, '_%'))";
+       try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+           preparedStatement.setString(1, keyword);
+           preparedStatement.setString(2, keyword);
+           try(ResultSet resultSet = preparedStatement.executeQuery()) {
+               while(resultSet.next()) {
+                   articles.add(createSearchResultArticleFromResultSet(connection, resultSet));
+               }
+               return articles;
+           }
+       }
+    }
+
+    public static Article createSearchResultArticleFromResultSet(Connection connection, ResultSet resultSet) throws SQLException{
+
+        Article article = new Article();
+        article.setArticleID(resultSet.getInt(1));
+        article.setArticleTitle(resultSet.getString(2));
+        article.setArticleContent(resultSet.getString(3));
+        article.setTimeCreated(resultSet.getTimestamp(4));
+        article.setTimeEdited(resultSet.getTimestamp(5));
+        article.setLikesCount(resultSet.getInt(6));
+        article.setDislikesCount(resultSet.getInt(7));
+        article.setAuthor(UserDAO.getAuthorById(connection, resultSet.getInt(8)));
+        return article;
+    }
 }
