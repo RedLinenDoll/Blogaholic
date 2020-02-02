@@ -2,6 +2,13 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
+<script type="text/javascript" src='<c:url value="/js/load-search-bar.js"/>'></script>
+<script type="text/javascript">
+    window.addEventListener("load", function () {
+        document.querySelector("#search-icon").addEventListener("click", loadSearchBar);
+    });
+</script>
+
 <br>
 <div id="visitor-top-bar" class="top-bar">
     <div class="top-bar-home-link">
@@ -10,7 +17,9 @@
         </a>
     </div>
     <div class="top-bar-links" id="visitor-top-bar-links">
-        <span id="create-blog-span">
+        <span class="top-bar-span" id="search-span">
+            <i class="fas fa-search-plus" id="search-icon"></i>
+        </span>|<span id="create-blog-span">
             <a href='<c:url value="/signup.html"/>' class="primary-link">
                 Create My Blog
             </a>
@@ -20,5 +29,13 @@
                 Log In
             </a>
         </span>
+
+        <div id="search-box" class="invisible">
+            <form action='<c:url value="/article-search"/>' method="get" id="search-form">
+                <label for="search-keyword">Enter your keyword: </label>
+                <input type="text" id="search-keyword" name="search-keyword" required>
+                <button type="submit" id="search-button">Article Search</button>
+            </form>
+        </div>
     </div>
 </div>

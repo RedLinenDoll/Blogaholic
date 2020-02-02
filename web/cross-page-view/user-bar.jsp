@@ -2,20 +2,21 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<script>
+<script type="text/javascript" src='<c:url value="/js/load-search-bar.js"/>'></script>
+<script type="text/javascript">
     window.addEventListener("load", function () {
         const toggleBox = document.querySelector("#toggle-down-box");
         const arrow = document.querySelector("#toggle-arrow");
         const toggleTrigger = document.querySelector("#toggle-trigger");
         toggleTrigger.addEventListener("click", toggleBar);
         let toggled = false;
-
         function toggleBar() {
             toggled = !toggled;
             arrow.classList.toggle("fa-angle-down");
             arrow.classList.toggle("fa-angle-right");
             toggleBox.classList.toggle("invisible");
         }
+        document.querySelector("#search-icon").addEventListener("click", loadSearchBar);
     });
 
 </script>
@@ -28,6 +29,9 @@
     </div>
 
     <div class="top-bar-links" id="user-top-bar-links">
+        <span class="top-bar-span" id="search-span">
+            <i class="fas fa-search-plus" id="search-icon"></i>
+        </span>
         <span class="top-bar-span" id="toggle-trigger">
             <i id="toggle-arrow" class="fas fa-angle-down"
                style="font-size: 1.5em; position:relative; top: 0.2em; right: 0.2em;"></i>
@@ -36,9 +40,7 @@
         <span id="user-name-span" style="margin-right: 10px">
             ${loggedUser.username}
         </span>
-
         </span>
-
 
         <div id="toggle-down-box" class="invisible">
             <span class="toggle-down-span">
@@ -66,6 +68,14 @@
                     Log Out
                 </a>
             </span>
+        </div>
+
+        <div id="search-box" class="invisible">
+            <form action='<c:url value="/article-search"/>' method="get" id="search-form">
+                <label for="search-keyword">Enter your keyword: </label>
+                <input type="text" id="search-keyword" name="search-keyword" required>
+                <button type="submit" id="search-button">Article Search</button>
+            </form>
         </div>
     </div>
 </div>
