@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
 
     <title>Create a new article</title>
     <jsp:include page="/cross-page-view/link-fonts.jsp"/>

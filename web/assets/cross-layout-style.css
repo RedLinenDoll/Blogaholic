@@ -450,3 +450,7 @@ input[type="text"]:focus{
 #search-box button:hover {
     background-color: var(--heavy-color);
 }
+
+#delete-article-button {
+    margin-right: 3px;
+}

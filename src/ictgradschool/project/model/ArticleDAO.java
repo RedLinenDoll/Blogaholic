@@ -9,7 +9,6 @@ import java.util.zip.CheckedOutputStream;
 
 public class ArticleDAO {
 
-    //TODO delete article by article ID
 
     public static boolean deleteArticle(Connection connection, int articleID) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM article_db WHERE article_id=?")) {
@@ -45,13 +44,12 @@ public class ArticleDAO {
     }
 
 
-    //TODO edit article, given article ID and new article object
-
     public static boolean editArticle(Connection connection, Article article, int articleID) throws SQLException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE article_db SET title=?,content=?, edit_time=CURRENT_TIMESTAMP WHERE article_id=?")) {
-            preparedStatement.setString(1, article.getArticleTitle());
-            preparedStatement.setString(2, article.getArticleContent());
-            preparedStatement.setInt(3, articleID);
+        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE article_db SET brief=?, title=?,content=?, edit_time=CURRENT_TIMESTAMP WHERE article_id=?")) {
+            preparedStatement.setString(1, ArticleContentUtil.generateBriefFromHtml(article.getArticleContent()));
+            preparedStatement.setString(2, article.getArticleTitle());
+            preparedStatement.setString(3, article.getArticleContent());
+            preparedStatement.setInt(4, articleID);
 
             int rowUpdated = preparedStatement.executeUpdate();
             return rowUpdated == 1;
