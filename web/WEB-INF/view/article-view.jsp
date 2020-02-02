@@ -11,24 +11,23 @@
 
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'/>
     <link rel="stylesheet" href='<c:url value="/assets/layout${author.layoutID}.css"/>'/>
-
-
     <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>
     <script src='<c:url value="/js/load-article-comments.js"/>' type="text/javascript"></script>
-    <script src='<c:url value="/js/like-or-dislike.js"/>' type="text/javascript"></script>
+    <script src='<c:url value="/js/like-dislike.js"/>' type="text/javascript"></script>
+
     <script type="text/javascript">
-        window.addEventListener("load", function () {
+        window.addEventListener("load",async function () {
             applyThemeColor(`${author.themeColor}`);
+            applyLayoutSpecificStyling(`${author.layoutID}`, `${author.themeColor}`);
             <c:choose>
             <c:when test="${loggedUser==null}">
-            loadCommentList(${article.articleID}, ${author.userID}, -1);
+            await loadCommentList(${article.articleID}, ${author.userID}, -1);
             </c:when>
             <c:otherwise>
-            loadCommentList(${article.articleID}, ${author.userID}, ${loggedUser.userID});
-
+            await loadCommentList(${article.articleID}, ${author.userID}, ${loggedUser.userID});
             </c:otherwise>
             </c:choose>
-            applyLayoutSpecificStyling(`${author.layoutID}`, `${author.themeColor}`);
+            listenForLikeDislike();
         })
     </script>
 

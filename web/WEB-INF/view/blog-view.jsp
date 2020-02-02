@@ -14,12 +14,13 @@
 
     <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>
     <script src='<c:url value="/js/load-blog-articles.js"/>' type="text/javascript"></script>
+    <script src='<c:url value="/js/like-dislike.js"/>' type="text/javascript"></script>
     <script type="text/javascript">
-        window.addEventListener("load", function () {
+        window.addEventListener("load", async function () {
             applyThemeColor(`${author.themeColor}`);
             applyLayoutSpecificStyling(`${author.layoutID}`, `${author.themeColor}`);
-            loadArticleList(${author.userID});
-
+            await loadArticleList(${author.userID});
+            listenForLikeDislike();
         })
     </script>
 
@@ -43,21 +44,21 @@
     </div>
     <div class="author-intro-container page-author-container">
         <span><a href='<c:url value="user-profile?user-id=${author.userID}"/>'> <img class="inline-avatar"
-                                                                                src='<c:url value="/images/avatar/${author.avatarPath}"/>'
-                                                                                alt="author avatar"></a> ${author.username}'s blog
+                                                                                     src='<c:url value="/images/avatar/${author.avatarPath}"/>'
+                                                                                     alt="author avatar"></a> ${author.username}'s blog
         </span>
     </div>
     <c:if test="${loggedUser.userID==author.userID}">
         <div class="blog-author-option-div">
             <a href='<c:url value="/testing-add-article.jsp"/>'>
-            <button id="add-article-button" class="link-button article-author-option-button">
+                <button id="add-article-button" class="link-button article-author-option-button">
                     Write New Article
-            </button>
+                </button>
             </a>
             <a href='<c:url value="/user-option?user-request=blog-setup"/>'>
-            <button id="blog-setting-button" class="link-button article-author-option-button">
+                <button id="blog-setting-button" class="link-button article-author-option-button">
                     Blog Settings
-            </button>
+                </button>
             </a>
 
         </div>

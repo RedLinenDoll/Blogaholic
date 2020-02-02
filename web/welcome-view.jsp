@@ -10,13 +10,15 @@
 
     <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>
     <script type="text/javascript" src='<c:url value="js/load-recent-articles.js"/>'></script>
+    <script src='<c:url value="/js/like-dislike.js"/>' type="text/javascript"></script>
+
     <script type="text/javascript">
-        window.addEventListener("load", function () {
-            loadRecentArticleList();
+        window.addEventListener("load", async function () {
             applyThemeColor(`${loggedUser.themeColor}`);
             applyLayoutSpecificStyling(`${loggedUser.layoutID}`, `${loggedUser.themeColor}`);
             showGreeting();
-
+            await loadRecentArticleList();
+            listenForLikeDislike();
         });
         function showGreeting() {
             const greetingSpan = document.querySelector("#greeting-span");

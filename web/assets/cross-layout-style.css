@@ -364,3 +364,32 @@ button {
     cursor: pointer;
 }
 
+.like-empty-button, .dislike-empty-button, .like-full-button, .dislike-full-button{
+    cursor: pointer;
+}
+
+.like-empty-button:hover, .dislike-empty-button:hover {
+    color: var(--theme-color);
+}
+
+.like-full-button:hover, .dislike-full-button:hover {
+    color: inherit;
+}
+
+.like-full-button, .dislike-full-button {
+    color: var(--theme-color);
+}
+
+.disabled-icon {
+    color: inherit;
+    cursor: inherit;
+}
+
+.disabled-icon:hover{
+    color: inherit;
+}
+
+.count-span {
+    padding-left: 3px;
+    padding-right: 5px;
+}
