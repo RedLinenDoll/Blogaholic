@@ -49,16 +49,17 @@
     </div>
     <c:if test="${loggedUser.userID==author.userID}">
         <div class="blog-author-option-div">
+            <a href='<c:url value="/testing-add-article.jsp"/>'>
             <button id="add-article-button" class="link-button article-author-option-button">
-                <a href='<c:url value="/testing-add-article.jsp"/>'>
                     Write New Article
-                </a>
             </button>
+            </a>
+            <a href='<c:url value="/user-option?user-request=blog-setup"/>'>
             <button id="blog-setting-button" class="link-button article-author-option-button">
-                <a href='<c:url value="/user-option?user-request=blog-setup"/>'>
                     Blog Settings
-                </a>
             </button>
+            </a>
+
         </div>
     </c:if>
     <div id="blog-description-container" class="page-description-container">

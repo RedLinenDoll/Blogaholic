@@ -47,14 +47,14 @@
 <div class="head-container">
     <div class="page-h1-container" id="welcome-message-container">
         <h1 id="welcome-message">
-            <span id="greeting-span"></span><a href='<c:url value="user-profile?user-id=${loggedUser.userID}"/>'> <img class="inline-avatar"
-                                                                                         src='<c:url value="/images/avatar/${loggedUser.avatarPath}"/>' alt=" "></a>${loggedUser.username}
+            <span id="greeting-span"></span><a href='<c:url value="user-profile?user-id=${loggedUser.userID}"/>'> <img class="inline-avatar" src='<c:url value="/images/avatar/${loggedUser.avatarPath}"/>' alt=" "></a>${loggedUser.username}
         </h1>
+        <a href='<c:url value="/blog-view?authorID=${loggedUser.userID}"/>'>
         <button class="link-button">
-            <a href='<c:url value="/blog-view?authorID=${loggedUser.userID}"/>'>
                 Go to my blog &nbsp;&#8594;
-            </a>
         </button>
+        </a>
+
     </div>
 </div>
 
