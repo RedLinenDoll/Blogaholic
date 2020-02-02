@@ -21,14 +21,13 @@ public class ArticleSearchServlet extends HttpServlet {
        String keyword = request.getParameter("search-keyword");
        try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
            List<Article> articles = ArticleDAO.searchArticleByKeyword(connection, keyword);
-
+           request.setAttribute("articles", articles);
+           request.setAttribute("keyword", keyword);
+           request.getRequestDispatcher("WEB-INF/view/search-result-view.jsp").forward(request, response);
 
        } catch (SQLException e) {
            e.printStackTrace();
        }
 
-        //TODO write ArticleDAO method to search for article that contains the keyword in the title or content.
-        // TODO find a way to mark the keyword part A different color.
-        // TODO: could be string.split, and after applying style, putting the html content back again?
-    }
+         }
 }

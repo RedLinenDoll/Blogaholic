@@ -129,7 +129,7 @@ public class ArticleDAO {
 
     public static List<Article> searchArticleByKeyword(Connection connection, String keyword) throws SQLException{
         List<Article> articles = new ArrayList<>();
-       String sql = "SELECT article_id, title, content, created_time, edit_time, number_of_likes, number_of_dislikes, author_id FROM article_db WHERE (title LIKE CONCAT('_%', ? , '_%')) OR (content LIKE CONCAT('_%', ?, '_%'))";
+       String sql = "SELECT article_id, title, content, created_time, edit_time, number_of_likes, number_of_dislikes, author_id FROM article_db WHERE (title LIKE CONCAT('%', ? , '%')) OR (content LIKE CONCAT('%', ?, '%'))";
        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
            preparedStatement.setString(1, keyword);
            preparedStatement.setString(2, keyword);
