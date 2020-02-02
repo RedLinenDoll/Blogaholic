@@ -1,5 +1,7 @@
 package ictgradschool.project.model;
 
+import ictgradschool.project.util.ArticleContentUtil;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,17 +20,17 @@ public class ArticleDAO {
     }
 
 
-    //TODO add new article, given author ID and new article object
 
 
     public static int addArticle(Connection connection, int authorID, Article article) throws SQLException {
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT  INTO article_db(title, content,  number_of_likes, number_of_dislikes, author_id) VALUES(?,?,?,?,?) ", Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT  INTO article_db(title, content,  number_of_likes, number_of_dislikes, author_id, brief) VALUES(?,?,?,?,?,?) ", Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, article.getArticleTitle());
             preparedStatement.setString(2, article.getArticleContent());
             preparedStatement.setInt(3, 0);
             preparedStatement.setInt(4, 0);
             preparedStatement.setInt(5, authorID);
+            preparedStatement.setString(6, ArticleContentUtil.generateBriefFromHtml(article.getArticleContent()));
 
             int rowUpdated = preparedStatement.executeUpdate();
             if (rowUpdated !=1) return 0;

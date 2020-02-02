@@ -50,7 +50,7 @@
     </div>
     <c:if test="${loggedUser.userID==author.userID}">
         <div class="blog-author-option-div">
-            <a href='<c:url value="/testing-add-article.jsp"/>'>
+            <a href='<c:url value="/add-article-view.jsp"/>'>
                 <button id="add-article-button" class="link-button article-author-option-button">
                     Write New Article
                 </button>
