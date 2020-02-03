@@ -60,7 +60,7 @@
             </span>
             <span class="toggle-down-span">
                 <a href='<c:url value="/add-article-view.jsp"/>'>
-                    New article
+                    Create new article
                 </a>
             </span>
             <span class="toggle-down-span">

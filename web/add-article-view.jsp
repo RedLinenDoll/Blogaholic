@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -26,21 +25,35 @@
             position: relative;
             bottom: 150px;
         }
+
         </c:if>
         label {
-           font-weight: bolder;
+            font-weight: bolder;
         }
+
         input[type="text"] {
             width: 80%;
             font-size: 1em;
         }
+
         .body-container {
             text-align: left;
         }
     </style>
 
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>tinymce.init({selector: '#content'});</script>
+    <script>tinymce.init({
+        selector: '#content',
+        plugins: [
+            "advlist autolink lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table paste imagetools wordcount"
+        ],
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+        images_upload_url: '/team-java_blogaholic/article-image-upload',
+        automatic_uploads: true,
+
+    });</script>
 
 
 </head>
@@ -53,18 +66,6 @@
 
 <div class="body-container">
     <h1>Create your new article</h1>
-
-<%--<form id="test" action="./add-article" method="post">--%>
-<%--    <label for="title">Title here:</label>--%>
-<%--    <input type="text" id="title" name="title">--%>
-<%--    <label for="content">--%>
-<%--        Content here:--%>
-<%--    </label>--%>
-<%--    <input type="text" id="content" name="content">--%>
-
-<%--    <button type="submit">Submit!</button>--%>
-
-<%--</form>--%>
 
     <form id="add-article-form" action="./add-article" method="post">
 
