@@ -39,7 +39,6 @@ public class ArticleEditServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        System.out.println(request.getParameter("content"));
         String articleContent = request.getParameter("content");
         String articleTitle = request.getParameter("title");
         int articleID = Integer.parseInt(request.getParameter("article-id"));

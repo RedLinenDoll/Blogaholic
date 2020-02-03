@@ -1,3 +1,5 @@
+
+
 function applyThemeColor(themeColor) {
     if (themeColor == null) return;
     if (themeColor.length === 0) return;
