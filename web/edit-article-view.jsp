@@ -72,7 +72,7 @@
         <label for="content">
             Content here:
         </label>
-        <textarea id="content" name="content">
+        <textarea id="content" name="content" style="height: 600px">
             ${oldArticle.articleContent}
         </textarea>
 

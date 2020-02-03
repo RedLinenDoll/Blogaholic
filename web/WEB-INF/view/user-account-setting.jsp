@@ -74,7 +74,7 @@
             <input type="password" id="new-password" name="new-password" required>
             <br>
             <label for="confirm-new-password">Confirm NewPassword:</label>
-            <input type="password" id="confirm-new-password">
+            <input type="password" id="confirm-new-password" required>
             <p id="not-matching-warning" class="invisible warning-message">Password do not match!</p>
             <div class="operation-container" id="account-setting-operation-container">
                 <button type="submit" id="submit">Submit Change</button>
