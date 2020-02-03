@@ -1,5 +1,7 @@
 package ictgradschool.project.model;
 
+import ictgradschool.project.util.ArticleContentUtil;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +9,6 @@ import java.util.zip.CheckedOutputStream;
 
 public class ArticleDAO {
 
-    //TODO delete article by article ID
 
     public static boolean deleteArticle(Connection connection, int articleID) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM article_db WHERE article_id=?")) {
@@ -18,17 +19,17 @@ public class ArticleDAO {
     }
 
 
-    //TODO add new article, given author ID and new article object
 
 
     public static int addArticle(Connection connection, int authorID, Article article) throws SQLException {
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT  INTO article_db(title, content,  number_of_likes, number_of_dislikes, author_id) VALUES(?,?,?,?,?) ", Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT  INTO article_db(title, content,  number_of_likes, number_of_dislikes, author_id, brief) VALUES(?,?,?,?,?,?) ", Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, article.getArticleTitle());
             preparedStatement.setString(2, article.getArticleContent());
             preparedStatement.setInt(3, 0);
             preparedStatement.setInt(4, 0);
             preparedStatement.setInt(5, authorID);
+            preparedStatement.setString(6, ArticleContentUtil.generateBriefFromHtml(article.getArticleContent()));
 
             int rowUpdated = preparedStatement.executeUpdate();
             if (rowUpdated !=1) return 0;
@@ -43,13 +44,12 @@ public class ArticleDAO {
     }
 
 
-    //TODO edit article, given article ID and new article object
-
     public static boolean editArticle(Connection connection, Article article, int articleID) throws SQLException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE article_db SET title=?,content=?, edit_time=CURRENT_TIMESTAMP WHERE article_id=?")) {
-            preparedStatement.setString(1, article.getArticleTitle());
-            preparedStatement.setString(2, article.getArticleContent());
-            preparedStatement.setInt(3, articleID);
+        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE article_db SET brief=?, title=?,content=?, edit_time=CURRENT_TIMESTAMP WHERE article_id=?")) {
+            preparedStatement.setString(1, ArticleContentUtil.generateBriefFromHtml(article.getArticleContent()));
+            preparedStatement.setString(2, article.getArticleTitle());
+            preparedStatement.setString(3, article.getArticleContent());
+            preparedStatement.setInt(4, articleID);
 
             int rowUpdated = preparedStatement.executeUpdate();
             return rowUpdated == 1;
@@ -125,5 +125,34 @@ public class ArticleDAO {
                 resultSet.getInt(6), //likeCount
                 resultSet.getInt(7) //dislikeCount
         );
+    }
+
+    public static List<Article> searchArticleByKeyword(Connection connection, String keyword) throws SQLException{
+        List<Article> articles = new ArrayList<>();
+       String sql = "SELECT article_id, title, content, created_time, edit_time, number_of_likes, number_of_dislikes, author_id FROM article_db WHERE (title LIKE CONCAT('%', ? , '%')) OR (content LIKE CONCAT('%', ?, '%'))";
+       try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+           preparedStatement.setString(1, keyword);
+           preparedStatement.setString(2, keyword);
+           try(ResultSet resultSet = preparedStatement.executeQuery()) {
+               while(resultSet.next()) {
+                   articles.add(createSearchResultArticleFromResultSet(connection, resultSet));
+               }
+               return articles;
+           }
+       }
+    }
+
+    private static Article createSearchResultArticleFromResultSet(Connection connection, ResultSet resultSet) throws SQLException{
+
+        Article article = new Article();
+        article.setArticleID(resultSet.getInt(1));
+        article.setArticleTitle(resultSet.getString(2));
+        article.setArticleContent(resultSet.getString(3));
+        article.setTimeCreated(resultSet.getTimestamp(4));
+        article.setTimeEdited(resultSet.getTimestamp(5));
+        article.setLikesCount(resultSet.getInt(6));
+        article.setDislikesCount(resultSet.getInt(7));
+        article.setAuthor(UserDAO.getAuthorById(connection, resultSet.getInt(8)));
+        return article;
     }
 }

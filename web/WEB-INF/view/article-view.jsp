@@ -7,7 +7,7 @@
     <meta name="description" content="article: ${article.articleTitle}">
     <title>${article.articleTitle} by ${author.username}</title>
 
-    <jsp:include page="../../cross-page-view/link-fonts.jsp"/>
+    <jsp:include page="/cross-page-view/link-fonts.jsp"/>
 
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'/>
     <link rel="stylesheet" href='<c:url value="/assets/layout${author.layoutID}.css"/>'/>
@@ -16,7 +16,7 @@
     <script src='<c:url value="/js/like-dislike.js"/>' type="text/javascript"></script>
 
     <script type="text/javascript">
-        window.addEventListener("load",async function () {
+        window.addEventListener("load", async function () {
             applyThemeColor(`${author.themeColor}`);
             applyLayoutSpecificStyling(`${author.layoutID}`, `${author.themeColor}`);
             <c:choose>
@@ -37,10 +37,10 @@
 
 <c:choose>
     <c:when test="${loggedUser == null}">
-        <jsp:include page="../../cross-page-view/visitor-bar.jsp"/>
+        <jsp:include page="/cross-page-view/visitor-bar.jsp"/>
     </c:when>
     <c:otherwise>
-        <jsp:include page="../../cross-page-view/user-bar.jsp"/>
+        <jsp:include page="/cross-page-view/user-bar.jsp"/>
     </c:otherwise>
 </c:choose>
 
@@ -49,8 +49,9 @@
         <h1 id="article-title">${article.articleTitle}</h1>
     </div>
     <div class="author-intro-container page-author-container">
-        <span>Article by <a href='<c:url value="user-profile?user-id=${author.userID}"/>'><img class="inline-avatar" src='<c:url value="/images/avatar/${author.avatarPath}"/>'
-                                                                                           alt="author avatar"></a> ${author.username}</span>
+        <span>Article by <a href='<c:url value="user-profile?user-id=${author.userID}"/>'><img class="inline-avatar"
+                                                                                               src='<c:url value="/images/avatar/${author.avatarPath}"/>'
+                                                                                               alt="author avatar"></a> ${author.username}</span>
     </div>
 
 </div>
@@ -58,14 +59,15 @@
 <div class="body-container">
     <c:if test="${loggedUser.userID==author.userID}">
         <div class="article-author-option-div">
-            <button id="delete-article-button" class="link-button article-author-option-button" onclick="deleteArticle(${article.articleID})">
+            <button id="delete-article-button" class="link-button article-author-option-button"
+                    onclick="deleteArticle(${article.articleID})">
                 Delete
             </button>
-            <button id="edit-article" class="link-button article-author-option-button">
-                <a href="./edit-article?articleID=${article.articleID}">
+            <a href='<c:url value="/edit-article?article-id=${article.articleID}"/>'>
+                <button id="edit-article" class="link-button article-author-option-button">
                     Edit
-                </a>
-            </button>
+                </button>
+            </a>
         </div>
     </c:if>
 
@@ -88,7 +90,9 @@
         <div id="add-article-comment-container">
             <form id="add-article-comment" action='<c:url value="/add-comment"/>' method="post">
                 <label for="add-comment-to-article" class="comment-info" style="font-size: 15px;">Add Comments: </label><br>
-                <textarea id="add-comment-to-article" rows="4" maxlength="512" name="new-comment-body" placeholder="Share your thoughts on ${author.username}'s article" style="width: 100%; font-size: 15px; font-family:var(--primary-font)"></textarea>
+                <textarea id="add-comment-to-article" rows="4" maxlength="512" name="new-comment-body"
+                          placeholder="Share your thoughts on ${author.username}'s article"
+                          style="width: 100%; font-size: 15px; font-family:var(--primary-font)"></textarea>
                 <input type="hidden" name="target-id" value="${article.articleID}">
                 <input type="hidden" name="article-id" value="${article.articleID}">
                 <input type="hidden" name="target-type" value="article">

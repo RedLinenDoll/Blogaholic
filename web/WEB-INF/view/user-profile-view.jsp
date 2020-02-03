@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Blogaholic ${profileOwner.username}'s Profile Page</title>
-    <jsp:include page="../../cross-page-view/link-fonts.jsp"/>
+    <jsp:include page="/cross-page-view/link-fonts.jsp"/>
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'>
     <link rel="stylesheet" href='<c:url value="/assets/layout${profileOwner.layoutID}.css"/>'>
     <script type="text/javascript" src='<c:url value="/js/customized-styling.js"/>'></script>
@@ -22,16 +22,15 @@
             position: relative;
             bottom: 150px;
         }
-
         </c:if>
     </style>
 </head>
 <c:choose>
     <c:when test="${loggedUser == null}">
-        <jsp:include page="../../cross-page-view/visitor-bar.jsp"/>
+        <jsp:include page="/cross-page-view/visitor-bar.jsp"/>
     </c:when>
     <c:otherwise>
-        <jsp:include page="../../cross-page-view/user-bar.jsp"/>
+        <jsp:include page="/cross-page-view/user-bar.jsp"/>
     </c:otherwise>
 </c:choose>
 

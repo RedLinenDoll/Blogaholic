@@ -11,6 +11,7 @@ public class Article {
     private Timestamp timeEdited;
     private int likesCount;
     private int dislikesCount;
+    private User author;
 
     public Article() {
     }
@@ -109,5 +110,13 @@ public class Article {
 
     public void setTimeCreated(Timestamp timeCreated) {
         this.timeCreated = timeCreated;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 }

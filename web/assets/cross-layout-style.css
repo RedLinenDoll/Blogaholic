@@ -334,7 +334,7 @@ textarea:focus {
     margin: 0;
     top: 45px;
     left: calc(97vw - 9em);
-    width: 9em;
+    width: 12em;
 
     background-color: white;
     display: flex;
@@ -449,4 +449,8 @@ input[type="text"]:focus{
 
 #search-box button:hover {
     background-color: var(--heavy-color);
+}
+
+#delete-article-button {
+    margin-right: 3px;
 }
