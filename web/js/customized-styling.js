@@ -35,7 +35,7 @@ function applyLayoutSpecificStyling(layoutID, themeColor) {
     if (layoutID == 1) {
         const headContainer = document.querySelector(".head-container");
         headContainer.style.setProperty("background",
-            `url("/team-java_blogaholic/images/layout-decor/layout1-${themeColor.substr(1)}.jpg") no-repeat center center fixed`);
+            `url("./images/layout-decor/layout1-${themeColor.substr(1)}.jpg") no-repeat center center fixed`);
         headContainer.style.setProperty("background-size", "cover");
     }
 }
