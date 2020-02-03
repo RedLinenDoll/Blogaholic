@@ -47,13 +47,14 @@
         plugins: [
             "advlist autolink lists link image charmap print preview anchor",
             "searchreplace visualblocks code fullscreen",
-            "insertdatetime media table paste imagetools wordcount"
+            "insertdatetime media table paste image wordcount"
         ],
         toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
         images_upload_url: '/team-java_blogaholic/article-image-upload',
-        automatic_uploads: true,
+        automatic_uploads: true
 
-    });</script>
+    });
+    </script>
 
 
 </head>
@@ -70,7 +71,7 @@
     <form id="add-article-form" action="./add-article" method="post">
 
         <label for="title">Title here:</label>
-        <input type="text" id="title" name="title">
+        <input type="text" id="title" name="title" required>
         <br>
         <br>
         <label for="content">

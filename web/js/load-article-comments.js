@@ -4,15 +4,15 @@ let currentAuthorID;
 let currentLoggedUserID;
 let currentEditedComment;
 
-async function sendDeleteArticleRequest() {
+async function sendDeleteArticleRequest(articleID) {
     const request = new XMLHttpRequest();
     request.open("POST", `${uriStart}delete-article`, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    request.send(`articleID=${currentArticleID}`);
+    request.send(`articleID=${articleID}`);
 }
 
-async function deleteArticle() {
-    await sendDeleteArticleRequest();
+async function deleteArticle(articleID) {
+    await sendDeleteArticleRequest(articleID);
     window.location.replace(`${uriStart}blog-view?authorID=${currentAuthorID}`);
 }
 

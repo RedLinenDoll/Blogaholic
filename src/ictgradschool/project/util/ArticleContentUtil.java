@@ -6,7 +6,10 @@ public class ArticleContentUtil {
     public static String generateBriefFromHtml (String innerHtml) {
 
         String plainText= Jsoup.parse(innerHtml).text();
-        return plainText.substring(0, Math.min(96, plainText.length()));
+        int length = plainText.length();
+        int briefLength = Math.min(length, 96);
+
+        return plainText.substring(0, briefLength);
 
 
     }
