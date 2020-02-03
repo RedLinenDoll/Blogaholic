@@ -10,24 +10,6 @@ const freeColorInput = initializeFreeColorInput();
 const freeColorLabel = initializeColorLabel();
 
 
-window.addEventListener("load", function () {
-    layout1ColorSelectionDiv = document.querySelector("#layout1-color-selection-container");
-    layout2ColorSelectionDiv = document.querySelector("#layout2-color-selection-container");
-    const layout1Radio = document.querySelector("#layout-radio-1");
-    const layout2Radio = document.querySelector("#layout-radio-2");
-
-    setTimeout(function () {
-        document.body.style.backgroundImage = "none";
-        document.querySelector("#clean-message").style.color = "white";
-    }, 1000);
-    loadLayoutPreview([document.querySelector("#layout-preview-1"), document.querySelector("#layout-preview-2")]);
-
-    layout1Radio.addEventListener("click", layout1Selected);
-    layout2Radio.addEventListener("click", layout2Selected);
-
-
-});
-
 function constructLimitedColorOptions() {
     for (let i = 1; i <= 6; i++) {
         const radio = document.createElement("input");
