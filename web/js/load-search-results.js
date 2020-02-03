@@ -54,6 +54,6 @@ function getProcessedContentHTML(content) {
         return content.substr(0, 96);
     const startCut = Math.max(firstAppear - 48, 0);
     const endCut = Math.min(content.length, startCut + 96);
-    return '<q>' + content.substr(startCut, endCut - startCut).replace(keywordPattern, `<span class="keyword-span">${currentKeyword}</span>`) + '</q>';
+    return '<q>... ' + content.substr(startCut, endCut - startCut).replace(keywordPattern, `<span class="keyword-span">${currentKeyword}</span>`) + ' ...</q>';
 
 }
