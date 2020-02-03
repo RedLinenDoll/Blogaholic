@@ -76,7 +76,6 @@ function listenForLikeDislike() {
         const request = new XMLHttpRequest();
         request.open("POST", `${uriStart}like-dislike`, true);
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        console.log(`target-id=${targetID}&target-type=${targetType}&is-like=${isLike}&is-plus=true`);
         request.send(`target-id=${targetID}&target-type=${targetType}&is-like=${isLike}&is-plus=true`);
     }
 
