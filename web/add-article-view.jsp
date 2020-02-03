@@ -75,9 +75,8 @@
         <br>
         <br>
         <label for="content">
-            Content here:
-            <textarea id="content" name="content"></textarea>
-        </label>
+            Content here: </label>
+        <textarea id="content" name="content" style="height: 600px"></textarea>
         <button type="submit">Submit!</button>
 
     </form>
