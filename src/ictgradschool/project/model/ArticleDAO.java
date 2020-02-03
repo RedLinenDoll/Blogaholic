@@ -147,7 +147,7 @@ public class ArticleDAO {
         Article article = new Article();
         article.setArticleID(resultSet.getInt(1));
         article.setArticleTitle(resultSet.getString(2));
-        article.setArticleContent(resultSet.getString(3));
+        article.setArticleContent(ArticleContentUtil.generateBriefFromHtml(resultSet.getString(3)));
         article.setTimeCreated(resultSet.getTimestamp(4));
         article.setTimeEdited(resultSet.getTimestamp(5));
         article.setLikesCount(resultSet.getInt(6));

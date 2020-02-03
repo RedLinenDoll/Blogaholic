@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: anran
-  Date: 2/02/20
-  Time: 11:36 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -35,7 +28,6 @@
             applyLayoutSpecificStyling(`1`, `#3f99ae`);
             </c:otherwise>
             </c:choose>
-
             listenForLikeDislike();
         });
 
@@ -44,8 +36,19 @@
     <style>
         .keyword-span {
             text-decoration: underline;
-            color: var(--heavy-color);
+            color: var(--theme-color);
         }
+
+        .article-information-div {
+            font-size: small;
+            font-family: var(--secondary-font);
+            line-height: 1.2em;
+            position: relative;
+            bottom: 1em;
+
+        }
+
+
     </style>
 </head>
 <body>
@@ -59,11 +62,6 @@
     </c:otherwise>
 </c:choose>
 
-
-<%-- // TODO find a way to mark the keyword part A different color.
-        // TODO: could be string.split, and after applying style, putting the html content back again?
-  --%>
-<%--TODO populate this page with search results--%>
 
 <div class="head-container">
     <div class="page-h1-container" id="search-title-container">
@@ -81,16 +79,12 @@
 <div class="body-container">
     <div class="results-container">
         <c:forEach var="article" items="${articles}">
-            <div class="result-article-container" id="article-container-${article.articleID}">
-                    <%--                ${article.articleContent}--%>
-                    <%--                ${article.author.username}--%>
-                    <%--           --%>
+            <div class="result-article-container page-item-container" id="article-container-${article.articleID}">
                 <script type="text/javascript">
-                    loadCurrentArticle(${article});
-
-                //    TODO
+                    loadCurrentArticle(${article.articleID}, `${article.articleTitle}`, `${article.articleContent}`,
+                        ${article.author.userID}, `${article.author.username}`, `${article.author.avatarPath}`,
+                        `${article.timeCreated}`, `${keyword}`);
                 </script>
-
             </div>
         </c:forEach>
     </div>
