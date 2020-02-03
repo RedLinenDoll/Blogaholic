@@ -34,6 +34,10 @@ public class UserBlogSettingServlet extends HttpServlet {
 
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             UserDAO.setBlogPreference(connection, userID, blogName, blogDescription, layoutID, themeColor);
+            user.setLayoutID(layoutID);
+            user.setThemeColor(themeColor);
+            user.setBlogName(blogName);
+            user.setBlogDescription(blogDescription);
             request.getSession().setAttribute("loggedUser", user);
             response.sendRedirect("./blog-view?authorID=" +  user.getUserID());
 
