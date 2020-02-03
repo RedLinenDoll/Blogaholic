@@ -454,3 +454,7 @@ input[type="text"]:focus{
 #delete-article-button {
     margin-right: 3px;
 }
+
+#blog-description-container {
+    text-align: center;
+}
