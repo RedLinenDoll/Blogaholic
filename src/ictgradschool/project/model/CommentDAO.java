@@ -103,7 +103,6 @@ public class CommentDAO {
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, targetID);
-            System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         }
 

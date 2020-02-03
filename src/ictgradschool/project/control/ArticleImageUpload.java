@@ -42,7 +42,6 @@ public class ArticleImageUpload extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int currID = AutoIncrementIDGenerator.getID();
-        System.out.println("reached here!");
         String targetFileName = "article-image-" + currID;
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setSizeThreshold(4 * 1024);
