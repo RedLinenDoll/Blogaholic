@@ -71,5 +71,6 @@ CREATE TABLE IF NOT EXISTS comment_db
 ALTER TABLE comment_db
     AUTO_INCREMENT = 3000;
 
+ALTER TABLE users_db MODIFY avatar_path VARCHAR (500);
 
 
