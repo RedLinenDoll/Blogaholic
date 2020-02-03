@@ -7,13 +7,26 @@
     <link rel="stylesheet" href="assets/layout2.css">
     <link rel="stylesheet" href="assets/authentication-page-style.css">
     <script type="text/javascript">
-        if(window.location.href.endsWith("#please-try-again")) {
+        if (window.location.href.endsWith("#please-try-again")) {
             alert("Username and password did not match. Please try again!");
         }
-        if(window.location.href.endsWith("#account-setting-successful")) {
+        if (window.location.href.endsWith("#account-setting-successful")) {
             alert("Setting succeed. Please log in with your new account setting");
         }
     </script>
+    <script>
+        function start() {
+            gapi.load('auth2', function () {
+                auth2 = gapi.auth2.init({
+                    client_id: '263347824175-hug28ksnd327ufaafdfqmjm5bv9dg1ab.apps.googleusercontent.com',
+
+                });
+            });
+        }
+    </script>
+    <script type="text/javascript" src="js/googleLogin.js"></script>
+    <meta name="google-signin-client_id"
+          content="263347824175-hug28ksnd327ufaafdfqmjm5bv9dg1ab.apps.googleusercontent.com">
 </head>
 <body>
 <div class="page-content-container">
@@ -35,11 +48,13 @@
             <br>
             <div class="operation-container">
                 <button type="submit">Log in</button>
-                <a href="./signup.html" class="back-to-homepage" style="font-weight: bold; margin-left: 5px">Join now</a>
+                <a href="./signup.html" class="back-to-homepage" style="font-weight: bold; margin-left: 5px">Join
+                    now</a>
                 <br>
                 <a class="back-to-homepage" href="./index.jsp">Back to home page</a>
             </div>
-
+            <div id="my-signin2"></div>
+            <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
         </form>
     </div>
 </div>

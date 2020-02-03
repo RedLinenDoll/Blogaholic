@@ -79,6 +79,28 @@ public class UserDAO {
         }
     }
 
+    public static User insertGoogleUser(Connection connection, User user) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users_db (username, salt_length,iteration_number, avatar_path,first_name,last_name) VALUE (?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS)) {
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setInt(2, user.getSaltLength());
+            preparedStatement.setInt(3, user.getIterationNum());
+            preparedStatement.setString(4, user.getAvatarPath());
+            preparedStatement.setString(5, user.getFirstName());
+            preparedStatement.setString(6, user.getLastName());
+
+
+            int rowUpdated = preparedStatement.executeUpdate();
+            if (rowUpdated >= 1) {
+                try (ResultSet keys = preparedStatement.getGeneratedKeys()) {
+                    keys.next();
+                    int userID = keys.getInt(1);
+                    user.setUserID(userID);
+                    return user;
+                }
+            } else return null;
+        }
+    }
+
 
     public static User insertUser(Connection connection, User user) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users_db (username, hashed_password, hashed_salt, salt_length, iteration_number) VALUE (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS)) {
@@ -212,13 +234,13 @@ public class UserDAO {
             preparedStatement.setInt(6, updatedUser.getUserID());
 
             int rowUpdated = preparedStatement.executeUpdate();
-            return rowUpdated==1;
+            return rowUpdated == 1;
 
         }
 
     }
 
-    public static boolean deleteUserById(Connection connection, int userID) throws SQLException{
+    public static boolean deleteUserById(Connection connection, int userID) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users_db WHERE user_id=?")) {
             preparedStatement.setInt(1, userID);
             int rowUpdated = preparedStatement.executeUpdate();
