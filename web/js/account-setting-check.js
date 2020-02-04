@@ -62,19 +62,19 @@ function loadConfirmDeleteAccountForm(bodyContainer, targetUsername, targetUserI
             <input type="password" id="confirm-password" name="confirm-password" required>
             <input type="hidden" name="user-id" value=${targetUserID}>
             </div>`;
-   const  confirmTyping = document.createElement("div");
-   const confirmLabel = document.createElement("label");
-   confirmLabel.for="confirm-input";
-   confirmLabel.innerText = `Please confirm by typing in "delete account ${targetUsername}" below:`;
-   const confirmInput =document.createElement("input");
-   confirmInput.id="confirm-input";
-   confirmInput.type="text";
-   confirmTyping.appendChild(confirmLabel);
-   confirmTyping.appendChild(confirmInput);
+    const confirmTyping = document.createElement("div");
+    const confirmLabel = document.createElement("label");
+    confirmLabel.for = "confirm-input";
+    confirmLabel.innerText = `Please confirm by typing in "delete account ${targetUsername}" below:`;
+    const confirmInput = document.createElement("input");
+    confirmInput.id = "confirm-input";
+    confirmInput.type = "text";
+    confirmTyping.appendChild(confirmLabel);
+    confirmTyping.appendChild(confirmInput);
 
     confirmDeleteForm.appendChild(confirmLogInDiv);
     confirmDeleteForm.appendChild(confirmTyping);
-   confirmDeleteForm.style.paddingBottom = "50px";
+    confirmDeleteForm.style.paddingBottom = "50px";
     bodyContainer.appendChild(confirmDeleteForm);
     confirmDeleteForm.scrollIntoView({behavior: "smooth", block: "start"});
 
@@ -83,10 +83,11 @@ function loadConfirmDeleteAccountForm(bodyContainer, targetUsername, targetUserI
     });
 
 }
+
 function createConfirmButton() {
     const confirmDeleteButton = document.createElement("button");
-    confirmDeleteButton.type="submit";
-    confirmDeleteButton.id="delete-account-button";
+    confirmDeleteButton.type = "submit";
+    confirmDeleteButton.id = "delete-account-button";
     confirmDeleteButton.style.backgroundColor = "red";
     confirmDeleteButton.innerText = "Confirm Delete";
     return confirmDeleteButton
@@ -96,7 +97,7 @@ function createConfirmButton() {
 
 function checkDeleteConfirmed(confirmInput, targetUsername, confirmDeleteForm) {
     if (`delete account ${targetUsername}` === confirmInput.value) {
-       confirmDeleteForm.appendChild(createConfirmButton());
+        confirmDeleteForm.appendChild(createConfirmButton());
     }
 
 }

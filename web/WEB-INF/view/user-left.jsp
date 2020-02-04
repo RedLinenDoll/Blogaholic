@@ -12,6 +12,7 @@
             setInterval(function () {
                 countdown();
             }, 1000);
+
             function countdown() {
                 currentTime -= 1;
                 countDownSpan.innerText = currentTime;
@@ -26,15 +27,17 @@
             position: relative;
             top: 80px;
             color: #106688;
-            font-family:  'Times New Roman', serif;
+            font-family: 'Times New Roman', serif;
             text-align: center;
             font-weight: 800;
             width: 70vw;
             margin: 30px auto;
         }
+
         p {
             font-size: 30px;
         }
+
         #countdown-span {
             color: #3f99ae;
         }
@@ -43,8 +46,8 @@
 </head>
 <body>
 <div id="goodbye">
-<h1>
-    Goodbye, ${userLeft}!</h1>
+    <h1>
+        Goodbye, ${userLeft}!</h1>
     <p>We will redirect you to our index page in <span id="countdown-span">5</span> seconds...</p>
     <p>Hope we'll see you again!</p>
 

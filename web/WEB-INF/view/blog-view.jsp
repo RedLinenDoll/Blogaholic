@@ -7,7 +7,7 @@
     <meta name="description" content="blog: ${author.blogName}">
     <title>${author.blogName}</title>
 
-    <jsp:include page="../../cross-page-view/link-fonts.jsp"/>
+    <jsp:include page="/cross-page-view/link-fonts.jsp"/>
 
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'/>
     <link rel="stylesheet" href='<c:url value="/assets/layout${author.layoutID}.css"/>'/>
@@ -15,15 +15,23 @@
     <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>
     <script src='<c:url value="/js/load-blog-articles.js"/>' type="text/javascript"></script>
     <script src='<c:url value="/js/like-dislike.js"/>' type="text/javascript"></script>
+    <script type="text/javascript" src='<c:url value="/js/draggable-element.js"/>'></script>
+    <script type="text/javascript" src='<c:url value="/js/sort-articles-by-rules.js"/>'></script>
     <script type="text/javascript">
-        window.addEventListener("load", async function () {
+        window.addEventListener("load", function () {
+
             applyThemeColor(`${author.themeColor}`);
             applyLayoutSpecificStyling(`${author.layoutID}`, `${author.themeColor}`);
-            await loadArticleList(${author.userID});
-            listenForLikeDislike();
+            loadArticleList(${author.userID});
+            const sortController = document.querySelector("#sort-rule");
+            sortController.addEventListener("change", resortArticles);
         })
     </script>
-
+    <style>
+        .body-container {
+            top: 1em;
+        }
+    </style>
 
 </head>
 
@@ -39,6 +47,19 @@
 </c:choose>
 
 <div class="head-container">
+    <div id="sort-option" class="draggable-container">
+        <div id="sort-option-head">
+            <label for="sort-rule"><span>Sort by</span></label>
+        </div>
+        <div id="sort-option-body">
+            <select name="sort-rule" id="sort-rule">
+                <option value="latest-first" selected>Latest Article First</option>
+                <option value="most-liked-first">Most Liked First</option>
+                <option value="article-title-a-z">Article Title (A-Z)</option>
+                <option value="article-title-z-a">Article Title (Z-A)</option>
+            </select>
+        </div>
+    </div>
     <div id="blog-name-container" class="page-h1-container">
         <h1 id="blog-name">${author.blogName}</h1>
     </div>
@@ -66,6 +87,7 @@
     <div id="blog-description-container" class="page-description-container">
         <p id="blog-description">${author.blogDescription}</p>
     </div>
+
 
 </div>
 <div class="body-container">

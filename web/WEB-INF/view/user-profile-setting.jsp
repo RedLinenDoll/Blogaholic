@@ -36,7 +36,8 @@
             <label for="date-of-birth">
                 Your date of birth:
             </label>
-            <input id="date-of-birth" name="date-of-birth" type="date" value="1990-01-01"
+            <input id="date-of-birth" name="date-of-birth" type="date"
+                   <c:if test="${!changing}">value="1990-01-01"</c:if>
                    <c:if test="${changing}">value="${existingProfileOwner.dateOfBirth}"</c:if>
                    min="1900-01-01">
             <script type="text/javascript">
