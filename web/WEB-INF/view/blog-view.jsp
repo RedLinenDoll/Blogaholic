@@ -7,7 +7,7 @@
     <meta name="description" content="blog: ${author.blogName}">
     <title>${author.blogName}</title>
 
-    <jsp:include page="../../cross-page-view/link-fonts.jsp"/>
+    <jsp:include page="/cross-page-view/link-fonts.jsp"/>
 
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'/>
     <link rel="stylesheet" href='<c:url value="/assets/layout${author.layoutID}.css"/>'/>
@@ -15,6 +15,7 @@
     <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>
     <script src='<c:url value="/js/load-blog-articles.js"/>' type="text/javascript"></script>
     <script src='<c:url value="/js/like-dislike.js"/>' type="text/javascript"></script>
+    <script type="text/javascript" src='<c:url value="/js/draggable-element.js"/>'></script>
     <script type="text/javascript">
         window.addEventListener("load", async function () {
             applyThemeColor(`${author.themeColor}`);
@@ -23,7 +24,11 @@
             listenForLikeDislike();
         })
     </script>
-
+    <style>
+        .body-container {
+            top: 1em;
+        }
+    </style>
 
 </head>
 
@@ -79,7 +84,6 @@
     <div id="blog-description-container" class="page-description-container">
         <p id="blog-description">${author.blogDescription}</p>
     </div>
-
 
 
 </div>
