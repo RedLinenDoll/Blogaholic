@@ -16,12 +16,15 @@
     <script src='<c:url value="/js/load-blog-articles.js"/>' type="text/javascript"></script>
     <script src='<c:url value="/js/like-dislike.js"/>' type="text/javascript"></script>
     <script type="text/javascript" src='<c:url value="/js/draggable-element.js"/>'></script>
+    <script type="text/javascript" src='<c:url value="/js/sort-articles-by-rules.js"/>'></script>
     <script type="text/javascript">
-        window.addEventListener("load", async function () {
+        window.addEventListener("load", function () {
+
             applyThemeColor(`${author.themeColor}`);
             applyLayoutSpecificStyling(`${author.layoutID}`, `${author.themeColor}`);
-            await loadArticleList(${author.userID});
-            listenForLikeDislike();
+            loadArticleList(${author.userID});
+            const sortController = document.querySelector("#sort-rule");
+            sortController.addEventListener("change", resortArticles);
         })
     </script>
     <style>
@@ -52,8 +55,8 @@
             <select name="sort-rule" id="sort-rule">
                 <option value="latest-first" selected>Latest Article First</option>
                 <option value="most-liked-first">Most Liked First</option>
-                <option value="article-name-a-z">Article Name (A-Z)</option>
-                <option value="article-name-z-a">Article Name (Z-A)</option>
+                <option value="article-title-a-z">Article Title (A-Z)</option>
+                <option value="article-title-z-a">Article Title (Z-A)</option>
             </select>
         </div>
     </div>

@@ -1,7 +1,8 @@
-
 window.addEventListener("load", function () {
     const draggableContainers = document.querySelectorAll(".draggable-container");
-    draggableContainers.forEach(container => {dragElement(container)});
+    draggableContainers.forEach(container => {
+        dragElement(container)
+    });
 
 });
 

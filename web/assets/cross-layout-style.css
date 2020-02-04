@@ -31,7 +31,7 @@
     position: relative;
     grid-template-columns: 4em 1fr;
     grid-template-rows: 2em 1fr 2em;
-    grid-template-areas: "avatar comment-info" "avatar comment-body" ". comment-option" ". add-comment" ". child-comment" ;
+    grid-template-areas: "avatar comment-info" "avatar comment-body" ". comment-option" ". add-comment" ". child-comment";
 }
 
 .blog-div {
@@ -43,16 +43,15 @@
 }
 
 .comment-avatar,
-.blog-avatar
-{
+.blog-avatar {
     max-width: 3em;
     max-height: 3em;
     float: left;
     position: relative;
     top: 1.5em;
 }
-.blog-avatar
-{
+
+.blog-avatar {
     top: 0.5em;
 }
 
@@ -60,6 +59,7 @@
     grid-area: avatar;
 
 }
+
 .select-avatar {
     max-width: 3em;
     max-height: 3em;
@@ -195,6 +195,7 @@ button:focus {
 .head-container {
     position: relative;
 }
+
 .article-author-option-div {
     display: flex;
     flex-direction: row;
@@ -215,6 +216,7 @@ button:focus {
     border-radius: 50%;
     border: var(--bright-gray) solid 2px;
 }
+
 #index-message {
     color: var(--heavy-color);
     text-decoration: underline;
@@ -228,6 +230,7 @@ button:focus {
     .body-container {
         width: 50vw;
     }
+
     #index-message {
         width: 50vw;
         margin: 0 auto 15px;
@@ -242,6 +245,7 @@ button:focus {
     .body-container {
         width: 95vw;
     }
+
     #index-message {
         width: 95vw;
         margin: 0 auto 15px;
@@ -269,7 +273,6 @@ button:focus {
 }
 
 
-
 .blog-tiny-username {
     position: relative;
     top: 1.5em;
@@ -278,14 +281,12 @@ button:focus {
 }
 
 
-::selection
-{
+::selection {
     background: var(--light-color);
 }
 
-textarea, input[type="text"], input[type="date"], input[type="password"]
-{
-    border-image:none;
+textarea, input[type="text"], input[type="date"], input[type="password"] {
+    border-image: none;
     border-color: var(--theme-color);
     border-style: solid;
     border-width: 1px;
@@ -296,7 +297,8 @@ textarea, input[type="text"], input[type="date"], input[type="password"]
     background-color: var(--theme-color);
     color: white;
 }
-.comment-option-button:hover{
+
+.comment-option-button:hover {
     background-color: var(--heavy-color);
 }
 
@@ -306,8 +308,9 @@ textarea, input[type="text"], input[type="date"], input[type="password"]
     color: var(--theme-color);
     margin-left: 3px;
 }
-.tiny-comment-option-button:hover{
-    color:var(--heavy-color);
+
+.tiny-comment-option-button:hover {
+    color: var(--heavy-color);
 }
 
 .comment-body {
@@ -321,7 +324,7 @@ textarea:focus {
     border: 1px solid var(--theme-color);
 }
 
-#toggle-trigger:hover{
+#toggle-trigger:hover {
     color: var(--theme-color);
     cursor: pointer;
 }
@@ -331,7 +334,7 @@ textarea:focus {
 }
 
 
-#toggle-down-box{
+#toggle-down-box {
     position: fixed;
     margin: 0;
     top: 45px;
@@ -366,7 +369,7 @@ button {
     cursor: pointer;
 }
 
-.like-empty-button, .dislike-empty-button, .like-full-button, .dislike-full-button{
+.like-empty-button, .dislike-empty-button, .like-full-button, .dislike-full-button {
     cursor: pointer;
 }
 
@@ -387,7 +390,7 @@ button {
     cursor: inherit;
 }
 
-.disabled-icon:hover{
+.disabled-icon:hover {
     color: inherit;
 }
 
@@ -419,19 +422,21 @@ button {
     line-height: 2em;
 }
 
-#search-form{
+#search-form {
     display: flex;
     flex-direction: column;
     height: 100%;
     align-items: center;
     justify-content: space-between;
 }
+
 #search-box input[type="text"] {
     font-size: inherit;
     width: 95%;
     margin: 0 auto;
 }
-input[type="text"]:focus{
+
+input[type="text"]:focus {
     outline-color: var(--theme-color);
 }
 
@@ -461,7 +466,7 @@ input[type="text"]:focus{
     text-align: center;
 }
 
-#home-icon{
+#home-icon {
     font-size: 1.5em;
 }
 
@@ -491,17 +496,19 @@ input[type="text"]:focus{
     cursor: move;
 }
 
-#sort-option-head *{
+#sort-option-head * {
     cursor: move;
 
 }
-#sort-option-body>select{
+
+#sort-option-body > select {
     font-family: inherit;
     font-size: 0.8em;
     border-radius: 0;
-    border-color:var(--theme-color);
+    border-color: var(--theme-color);
     border-image: none;
 }
-#sort-option-body>select:focus {
+
+#sort-option-body > select:focus {
     outline-color: var(--theme-color);
 }
