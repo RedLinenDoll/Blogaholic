@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS comment_db;
 DROP TABLE IF EXISTS article_db;
 DROP TABLE IF EXISTS users_db;
 DROP TABLE IF EXISTS layout_db;
+DROP TABLE IF EXISTS subscription_db;
 
 
 CREATE TABLE IF NOT EXISTS layout_db
@@ -16,7 +17,7 @@ CREATE TABLE IF NOT EXISTS layout_db
 CREATE TABLE IF NOT EXISTS users_db
 (
     user_id           INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    username          VARCHAR(16)  NOT NULL UNIQUE,
+    username          VARCHAR(12)  NOT NULL UNIQUE,
     hashed_password   VARCHAR(128),
     hashed_salt       VARCHAR(128),
     salt_length       INT UNSIGNED NOT NULL,
@@ -73,4 +74,12 @@ ALTER TABLE comment_db
 
 ALTER TABLE users_db MODIFY avatar_path VARCHAR (500);
 
+
+CREATE TABLE IF NOT EXISTS subscription_db (
+    follower_id INT UNSIGNED NOT NULL,
+    publisher_id INT UNSIGNED NOT NULL,
+    PRIMARY KEY (follower_id, publisher_id),
+    FOREIGN KEY (follower_id) REFERENCES users_db (user_id) ON DELETE CASCADE,
+    FOREIGN KEY (publisher_id) REFERENCES users_db (user_id) ON DELETE CASCADE
+);
 

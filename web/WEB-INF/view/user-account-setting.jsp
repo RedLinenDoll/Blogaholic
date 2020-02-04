@@ -67,14 +67,14 @@
             <br>
 
             <label for="new-username">New Username:</label>
-            <input type="text" id="new-username" name="new-username" required>
+            <input type="text" id="new-username" name="new-username" required maxlength="10">
             <p id="duplicate-warning" class="invisible warning-message">Username already exists!</p>
             <br>
             <label for="new-password">New Password:</label>
-            <input type="password" id="new-password" name="new-password" required>
+            <input type="password" id="new-password" name="new-password" required minlength="6" maxlength="20">
             <br>
             <label for="confirm-new-password">Confirm NewPassword:</label>
-            <input type="password" id="confirm-new-password" required>
+            <input type="password" id="confirm-new-password" required minlength="6" maxlength="20">
             <p id="not-matching-warning" class="invisible warning-message">Password do not match!</p>
             <div class="operation-container" id="account-setting-operation-container">
                 <button type="submit" id="submit">Submit Change</button>

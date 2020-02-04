@@ -275,9 +275,7 @@ button:focus {
 
 .blog-tiny-username {
     position: relative;
-    top: 1.5em;
     text-align: center;
-    right: 1em;
 }
 
 
@@ -511,4 +509,12 @@ input[type="text"]:focus {
 
 #sort-option-body > select:focus {
     outline-color: var(--theme-color);
+}
+
+.block-avatar-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 15px;
 }
