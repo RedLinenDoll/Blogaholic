@@ -1,7 +1,7 @@
 :root {
-    --theme-color: #888888;
-    --heavy-color: #666666;
-    --light-color: #aaaaaa;
+    --theme-color: #3f99ae;
+    --heavy-color: #106688;
+    --light-color: #58d6f4;
     /*    These will be immediately overwritten as soon as the blog or article view are loaded.*/
 
     --gentle-black: #333333;
@@ -255,6 +255,8 @@ button:focus {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    flex-wrap: wrap;
+
 
 }
 
@@ -461,4 +463,34 @@ input[type="text"]:focus{
 
 #home-icon{
     font-size: 1.5em;
+}
+
+
+#sort-option {
+    position: absolute;
+    top: 100%;
+    right: 15px;
+    width: fit-content;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    z-index: 9999;
+}
+#sort-option-head {
+    width: 100%;
+    height: 1.5em;
+    background-color: var(--theme-color);
+    color: white;
+    font-weight: bolder;
+}
+#sort-option-body>select{
+    font-family: inherit;
+    font-size: 0.8em;
+    border-radius: 0;
+    border-color:var(--theme-color);
+}
+#sort-option-body>select:focus {
+    outline-color: var(--theme-color);
 }

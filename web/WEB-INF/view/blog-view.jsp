@@ -39,6 +39,19 @@
 </c:choose>
 
 <div class="head-container">
+    <div id="sort-option" class="draggable-container">
+        <div id="sort-option-head">
+            <label for="sort-rule"><span>Sort by</span></label>
+        </div>
+        <div id="sort-option-body">
+            <select name="sort-rule" id="sort-rule">
+                <option value="latest-first" selected>Latest Article First</option>
+                <option value="most-liked-first">Most Liked First</option>
+                <option value="article-name-a-z">Article Name (A-Z)</option>
+                <option value="article-name-z-a">Article Name (Z-A)</option>
+            </select>
+        </div>
+    </div>
     <div id="blog-name-container" class="page-h1-container">
         <h1 id="blog-name">${author.blogName}</h1>
     </div>
@@ -66,6 +79,8 @@
     <div id="blog-description-container" class="page-description-container">
         <p id="blog-description">${author.blogDescription}</p>
     </div>
+
+
 
 </div>
 <div class="body-container">

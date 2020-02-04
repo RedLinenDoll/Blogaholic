@@ -7,9 +7,9 @@ window.addEventListener("load", function () {
 
 function dragElement(draggableContainer) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(draggableContainer.id + "header")) {
+    if (document.getElementById(draggableContainer.id + "-head")) {
         // if present, the header is where you move the DIV from:
-        document.getElementById(draggableContainer.id + "header").onmousedown = dragMouseDown;
+        document.getElementById(draggableContainer.id + "-head").onmousedown = dragMouseDown;
     } else {
         // otherwise, move the DIV from anywhere inside the DIV:
         draggableContainer.onmousedown = dragMouseDown;
