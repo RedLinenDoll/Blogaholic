@@ -36,5 +36,7 @@
         <jarDirectory url="file://$MODULE_DIR$/../google-api-java-client/libs" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="platform" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
 </module>

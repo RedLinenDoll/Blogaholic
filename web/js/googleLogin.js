@@ -1,5 +1,4 @@
 function onSuccess(googleUser) {
-    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
     onSignIn(googleUser);
 }
 
@@ -10,7 +9,7 @@ function onFailure(error) {
 
 
 function renderButton() {
-    gapi.signin2.render('my-signin2', {
+    gapi.signin2.render('google-log-in-button', {
         'scope': 'profile email',
         'width': 300,
         'height': 50,
@@ -23,34 +22,18 @@ function renderButton() {
 
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
-    // var id_token = googleUser.getAuthResponse(true).id_token;
-    // var xhr = new XMLHttpRequest();
-    // xhr.open('POST', './google-login');
-    // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    // xhr.onload = function () {
-    //     console.log('Signed in as: ' + xhr.responseText);
-    // };
-    // xhr.send('idtoken=' + id_token);
-    // console.log(id_token);
     var redirectUrl = './google-login';
     //using jquery to post data dynamically
-    var form = $('<form action="' + redirectUrl + '" method="post">' +
-        '<input type="text" name="idtoken" value="' +
+    var form = $('<form action="' + redirectUrl + '" method="post" style="display: none">' +
+        '<input type="hidden" name="idtoken" value="' +
         googleUser.getAuthResponse(true).id_token + '" />' +
         '</form>');
     $('body').append(form);
     form.submit();
 
-
 }
 
 
-function googleSignOut() {
-    let auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-        console.log('User signed out.');
-    });
-}
 
 
 
