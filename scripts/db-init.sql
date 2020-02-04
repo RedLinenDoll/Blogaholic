@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS article_db
     title              VARCHAR(64),
     content            TEXT,
     brief              VARCHAR(128)          DEFAULT LEFT(content, 96),
-    created_time       TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_time       TIMESTAMP    NOT NULL DEFAULT NOW(),
     edit_time          TIMESTAMP    NULL     DEFAULT NULL,
     number_of_likes    INT UNSIGNED NOT NULL DEFAULT 0,
     number_of_dislikes INT UNSIGNED NOT NULL DEFAULT 0,
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS comment_db
 (
     comment_id         INT UNSIGNED NOT NULL AUTO_INCREMENT,
     body               TEXT,
-    created_time       TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_time       TIMESTAMP    NOT NULL DEFAULT NOW(),
     edit_time          TIMESTAMP    NULL     DEFAULT NULL,
     number_of_likes    INT UNSIGNED NOT NULL DEFAULT 0,
     number_of_dislikes INT UNSIGNED NOT NULL DEFAULT 0,

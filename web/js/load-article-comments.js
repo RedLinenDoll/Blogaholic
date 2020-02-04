@@ -131,7 +131,6 @@ function appendDeleteButton(commentOptionsDiv, authorID, commentID, commenterID)
     }
 }
 
-
 async function deleteComment(commentID) {
     const request = new XMLHttpRequest();
     request.open("POST", `${uriStart}delete-comment`, true);
@@ -140,7 +139,8 @@ async function deleteComment(commentID) {
 }
 
 function timestampToLocaleString(timestamp) {
-    return new Date(timestamp).toLocaleString()
+    const databaseTime = new Date(timestamp - new Date().getTimezoneOffset() * 60 * 1000);
+    return databaseTime.toLocaleString('en-NZ', {timeZone: 'Pacific/Auckland'});
 }
 
 function appendCommentButton(optionDiv, targetCommentID) {
