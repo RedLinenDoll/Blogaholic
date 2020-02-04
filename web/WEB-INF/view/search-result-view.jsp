@@ -45,9 +45,7 @@
             line-height: 1.2em;
             position: relative;
             bottom: 1em;
-
         }
-
 
     </style>
 </head>

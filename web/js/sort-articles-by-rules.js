@@ -12,6 +12,7 @@ function sortArticlesByTitleZtoA(articles) {
     articles.sort((articleA, articleB) => (articleB.articleTitle.localeCompare(articleA.articleTitle)));
     return articles;
 }
+
 function sortArticlesByTitleAtoZ(articles) {
     articles.sort((articleA, articleB) => (articleA.articleTitle.localeCompare(articleB.articleTitle)));
     return articles;

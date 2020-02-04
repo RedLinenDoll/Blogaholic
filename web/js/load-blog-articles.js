@@ -15,6 +15,7 @@ async function loadArticleList(authorID) {
     renderArticlesDisplay(articleList, postContainer);
 
 }
+
 async function resortArticles(e) {
     const newSortRule = e.target.value;
     const articleList = sortArticlesByRules(newSortRule, await fetchArticles(currentAuthorID));
@@ -22,13 +23,13 @@ async function resortArticles(e) {
     renderArticlesDisplay(articleList, postContainer);
 }
 
- function renderArticlesDisplay(articleList, postContainer) {
+function renderArticlesDisplay(articleList, postContainer) {
     articleList.forEach(article => {
             postContainer.appendChild(renderArticleDiv(article));
         }
     );
     listenForLikeDislike();
- }
+}
 
 function renderArticleDiv(article) {
     const articleDiv = document.createElement("div");
