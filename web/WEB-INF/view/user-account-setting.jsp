@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: anran
-  Date: 2/02/20
-  Time: 8:41 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -73,7 +66,7 @@
             <label for="new-password">New Password:</label>
             <input type="password" id="new-password" name="new-password" required minlength="6" maxlength="20">
             <br>
-            <label for="confirm-new-password">Confirm NewPassword:</label>
+            <label for="confirm-new-password">Confirm New Password:</label>
             <input type="password" id="confirm-new-password" required minlength="6" maxlength="20">
             <p id="not-matching-warning" class="invisible warning-message">Password do not match!</p>
             <div class="operation-container" id="account-setting-operation-container">

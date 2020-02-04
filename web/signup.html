@@ -20,14 +20,14 @@
     <div class="body-container">
         <form id="sign-up" action="./signup" method="post" onsubmit="return validateForm(this)" >
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required maxlength="10">
+            <input type="text" id="username" name="username" maxlength="10" required>
             <p id="duplicate-warning" class="invisible warning-message">Username already exists!</p>
             <br>
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required minlength="6" maxlength="20">
+            <input type="password" id="password" name="password" minlength="6" maxlength="20" required>
             <br>
             <label for="confirm-password">Confirm Password:</label>
-            <input type="password" id="confirm-password" required minlength="6" maxlength="20">
+            <input type="password" id="confirm-password" minlength="6" maxlength="20" required>
             <p id="not-matching-warning" class="invisible warning-message">Password do not match!</p>
             <br>
             <div class="operation-container">

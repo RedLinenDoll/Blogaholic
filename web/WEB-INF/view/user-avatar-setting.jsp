@@ -12,7 +12,7 @@
             const containers = document.querySelectorAll(".avatar-selection");
             const radios = document.querySelectorAll(".avatar-radio");
             radios.forEach(radio => {
-                addEventListener("click", highlightAvatar)
+                radio.addEventListener("click", highlightAvatar)
             });
 
             function highlightAvatar(e) {
@@ -138,7 +138,7 @@
                 </div>
                 <div id="upload-avatar-container">
                     <label for="avatar-upload">Upload your own avatar here</label>
-                    <input type="file" id="avatar-upload" onchange="loadPreview(this);" accept="image/png, image/jpeg"
+                    <input type="file" id="avatar-upload" onchange="loadPreview(this);" accept="image/*"
                            name="avatar">
                     <button class="link-button" id="submit-uploaded-avatar" type="submit">Use uploaded avatar</button>
 
