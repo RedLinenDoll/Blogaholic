@@ -458,3 +458,7 @@ input[type="text"]:focus{
 #blog-description-container {
     text-align: center;
 }
+
+#home-icon{
+    font-size: 1.5em;
+}

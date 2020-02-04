@@ -4,6 +4,9 @@ function loadSearchBar() {
     const searchIcon = document.querySelector("#search-icon");
     searchIcon.classList.toggle("fa-search-plus");
     searchIcon.classList.toggle("fa-search-minus");
+    if (!searchBox.classList.contains("invisible")) {
+        document.querySelector("#search-keyword").focus();
+    }
 
 }
 
