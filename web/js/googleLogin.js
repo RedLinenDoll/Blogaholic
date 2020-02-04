@@ -23,15 +23,24 @@ function renderButton() {
 
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
-    var id_token = googleUser.getAuthResponse(true).id_token;
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', './google-login');
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onload = function () {
-        console.log('Signed in as: ' + xhr.responseText);
-    };
-    xhr.send('idtoken=' + id_token);
-    console.log(id_token);
+    // var id_token = googleUser.getAuthResponse(true).id_token;
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('POST', './google-login');
+    // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    // xhr.onload = function () {
+    //     console.log('Signed in as: ' + xhr.responseText);
+    // };
+    // xhr.send('idtoken=' + id_token);
+    // console.log(id_token);
+    var redirectUrl = './google-login';
+    //using jquery to post data dynamically
+    var form = $('<form action="' + redirectUrl + '" method="post">' +
+        '<input type="text" name="idtoken" value="' +
+        googleUser.getAuthResponse(true).id_token + '" />' +
+        '</form>');
+    $('body').append(form);
+    form.submit();
+
 
 }
 
