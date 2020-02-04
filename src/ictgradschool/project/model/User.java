@@ -20,6 +20,20 @@ public class User {
     private String selfIntroduction;
     private boolean shareRealNameInfo;
 
+    public User(int userID,String username, String blogName, String blogDescription, int layoutID, String themeColor, String avatarPath,  String firstName, String lastName, Date dateOfBirth, String selfIntroduction, boolean shareRealNameInfo) {
+        this.userID = userID;
+        this.username = username;
+        this.avatarPath = avatarPath;
+        this.blogName = blogName;
+        this.blogDescription = blogDescription;
+        this.themeColor = themeColor;
+        this.layoutID = layoutID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.selfIntroduction = selfIntroduction;
+        this.shareRealNameInfo = shareRealNameInfo;
+    }
 
     public User(String username, String passwordHashBase64, String saltHashBase64, int saltLength, int iterationNum) {
         this.username = username;
