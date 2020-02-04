@@ -73,7 +73,7 @@
             <label for="new-password">New Password:</label>
             <input type="password" id="new-password" name="new-password" required minlength="6" maxlength="20">
             <br>
-            <label for="confirm-new-password">Confirm NewPassword:</label>
+            <label for="confirm-new-password">Confirm New Password:</label>
             <input type="password" id="confirm-new-password" required minlength="6" maxlength="20">
             <p id="not-matching-warning" class="invisible warning-message">Password do not match!</p>
             <div class="operation-container" id="account-setting-operation-container">
