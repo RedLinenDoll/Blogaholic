@@ -80,14 +80,10 @@ public class UserDAO {
     }
 
     public static User insertGoogleUser(Connection connection, User user) throws SQLException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users_db (username, salt_length,iteration_number, avatar_path,first_name,last_name) VALUE (?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users_db (username, first_name,last_name) VALUE (?,?,?)", Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setInt(2, user.getSaltLength());
-            preparedStatement.setInt(3, user.getIterationNum());
-            preparedStatement.setString(4, user.getAvatarPath());
-            preparedStatement.setString(5, user.getFirstName());
-            preparedStatement.setString(6, user.getLastName());
-
+            preparedStatement.setString(2, user.getFirstName());
+            preparedStatement.setString(3, user.getLastName());
 
             int rowUpdated = preparedStatement.executeUpdate();
             if (rowUpdated >= 1) {
