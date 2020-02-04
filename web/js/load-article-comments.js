@@ -12,8 +12,10 @@ async function sendDeleteArticleRequest(articleID) {
 }
 
 async function deleteArticle(articleID) {
-    await sendDeleteArticleRequest(articleID);
-    window.location.replace(`${uriStart}blog-view?authorID=${currentAuthorID}`);
+    if (window.confirm("You cannot undo this operation. Are you sure you want to delete the current article?")) {
+        await sendDeleteArticleRequest(articleID);
+        window.location.replace(`${uriStart}blog-view?authorID=${currentAuthorID}`);
+    }
 }
 
 async function loadCommentList(articleID, authorID, loggedUserID) {
