@@ -468,7 +468,7 @@ input[type="text"]:focus{
 
 #sort-option {
     position: absolute;
-    top: 100%;
+    top: 101%;
     left: 0;
     width: fit-content;
     text-align: center;
