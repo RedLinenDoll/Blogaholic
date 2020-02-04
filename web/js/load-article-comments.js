@@ -12,7 +12,7 @@ async function sendDeleteArticleRequest(articleID) {
 }
 
 async function deleteArticle(articleID) {
-    if (window.confirm("You cannot undo this operation. Are you sure you want to delete the current article?")) {
+    if (window.confirm("You cannot undo this operation. \nAre you sure you want to delete the current article?")) {
         await sendDeleteArticleRequest(articleID);
         window.location.replace(`${uriStart}blog-view?authorID=${currentAuthorID}`);
     }
