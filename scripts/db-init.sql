@@ -1,9 +1,9 @@
 DROP TABLE IF EXISTS comment_db;
 DROP TABLE IF EXISTS article_db;
-DROP TABLE IF EXISTS users_db;
-DROP TABLE IF EXISTS layout_db;
 DROP TABLE IF EXISTS subscription_db;
 
+DROP TABLE IF EXISTS users_db;
+DROP TABLE IF EXISTS layout_db;
 
 CREATE TABLE IF NOT EXISTS layout_db
 (
@@ -17,11 +17,11 @@ CREATE TABLE IF NOT EXISTS layout_db
 CREATE TABLE IF NOT EXISTS users_db
 (
     user_id           INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    username          VARCHAR(12)  NOT NULL UNIQUE,
+    username          VARCHAR(16)  NOT NULL UNIQUE,
     hashed_password   VARCHAR(128),
     hashed_salt       VARCHAR(128),
-    salt_length       INT UNSIGNED NOT NULL,
-    iteration_number  INT UNSIGNED NOT NULL,
+    salt_length       INT NOT NULL DEFAULT -1,
+    iteration_number  INT NOT NULL DEFAULT -1,
     blog_name         VARCHAR(64),
     blog_description  VARCHAR(256),
     layout_id         INT UNSIGNED DEFAULT 1,

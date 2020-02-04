@@ -210,3 +210,7 @@ p#info {
 .bold {
     font-weight: 800;
 }
+
+#sort-option {
+    width: 10em;
+}
