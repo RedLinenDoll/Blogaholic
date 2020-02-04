@@ -5,7 +5,7 @@
 <meta name="google-signin-client_id"
       content="263347824175-hug28ksnd327ufaafdfqmjm5bv9dg1ab.apps.googleusercontent.com">
 <script type="text/javascript" src='<c:url value="/js/load-search-bar.js"/>'></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 <script type="text/javascript" src='<c:url value="/js/responsive-layout.js"/>'></script>
 <script type="text/javascript">
     window.addEventListener("load", function () {
@@ -69,13 +69,9 @@
                 </a>
             </span>
             <span class="toggle-down-span">
-                <a href='<c:url value="/logout"/>'>
+                <a href='<c:url value="/logout"/>' id="logout-link">
                     Log Out
                 </a>
-                <script type="text/javascript">
-                    let logOutLink = document.getElementById("logout-link");
-                    logOutLink.addEventListener('click',googleSignOut);
-                </script>
             </span>
         </div>
 

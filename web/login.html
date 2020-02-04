@@ -14,20 +14,12 @@
             alert("Setting succeed. Please log in with your new account setting");
         }
     </script>
-    <script>
-        function start() {
-            gapi.load('auth2', function () {
-                auth2 = gapi.auth2.init({
-                    client_id: '263347824175-hug28ksnd327ufaafdfqmjm5bv9dg1ab.apps.googleusercontent.com',
 
-                });
-            });
-        }
-    </script>
-    <script type="text/javascript" src="js/googleLogin.js"></script>
     <meta name="google-signin-client_id"
           content="263347824175-hug28ksnd327ufaafdfqmjm5bv9dg1ab.apps.googleusercontent.com">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+    <script type="text/javascript" src="js/googleLogin.js"></script>
 </head>
 <body>
 <div class="page-content-container">
@@ -54,8 +46,7 @@
                 <br>
                 <a class="back-to-homepage" href="./index.jsp">Back to home page</a>
             </div>
-            <div id="my-signin2"></div>
-            <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+            <div id="google-log-in-button"></div>
         </form>
     </div>
 </div>
