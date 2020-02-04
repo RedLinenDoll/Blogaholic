@@ -17,6 +17,7 @@
     <script src='<c:url value="/js/like-dislike.js"/>' type="text/javascript"></script>
     <script type="text/javascript" src='<c:url value="/js/draggable-element.js"/>'></script>
     <script type="text/javascript" src='<c:url value="/js/sort-articles-by-rules.js"/>'></script>
+    <script type="text/javascript" src='<c:url value="/js/render-follow-option.js"/>'></script>
     <script type="text/javascript">
         window.addEventListener("load", function () {
 
@@ -30,6 +31,11 @@
     <style>
         .body-container {
             top: 1em;
+        }
+        #follow-option {
+            margin-left: 10px;
+            padding-left: 10px;
+            border-left: 1px solid var(--gentle-black);
         }
     </style>
 
@@ -68,6 +74,13 @@
                                                                                      src='<c:url value="/images/avatar/${author.avatarPath}"/>'
                                                                                      alt="author avatar"></a> ${author.username}'s blog
         </span>
+        <c:if test="${not empty loggedUser}">
+        <span id="follow-option" class="follow-option">
+            <script type="text/javascript">
+                renderFollowOption(${author.userID}, ${loggedUser.userID})
+            </script>
+        </span>
+        </c:if>
     </div>
     <c:if test="${loggedUser.userID==author.userID}">
         <div class="blog-author-option-div">
