@@ -12,8 +12,10 @@ async function sendDeleteArticleRequest(articleID) {
 }
 
 async function deleteArticle(articleID) {
-    await sendDeleteArticleRequest(articleID);
-    window.location.replace(`${uriStart}blog-view?authorID=${currentAuthorID}`);
+    if (window.confirm("You cannot undo this operation. Are you sure you want to delete the current article?")) {
+        await sendDeleteArticleRequest(articleID);
+        window.location.replace(`${uriStart}blog-view?authorID=${currentAuthorID}`);
+    }
 }
 
 async function loadCommentList(articleID, authorID, loggedUserID) {
@@ -131,7 +133,6 @@ function appendDeleteButton(commentOptionsDiv, authorID, commentID, commenterID)
     }
 }
 
-
 async function deleteComment(commentID) {
     const request = new XMLHttpRequest();
     request.open("POST", `${uriStart}delete-comment`, true);
@@ -140,7 +141,8 @@ async function deleteComment(commentID) {
 }
 
 function timestampToLocaleString(timestamp) {
-    return new Date(timestamp).toLocaleString()
+    const databaseTime = new Date(timestamp);
+    return databaseTime.toLocaleString('en-NZ', {timeZone: 'Pacific/Auckland'});
 }
 
 function appendCommentButton(optionDiv, targetCommentID) {

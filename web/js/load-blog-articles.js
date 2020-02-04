@@ -74,5 +74,6 @@ function renderArticleDiv(article) {
 }
 
 function timestampToLocaleString(timestamp) {
-    return new Date(timestamp).toLocaleString()
+    const databaseTime = new Date(timestamp);
+    return databaseTime.toLocaleString('en-NZ', {timeZone: 'Pacific/Auckland'});
 }

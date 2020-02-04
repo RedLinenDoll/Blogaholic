@@ -41,8 +41,10 @@ function loadCurrentArticle(articleID, articleTitle, articleContent, authorID,
 }
 
 function timestampToLocaleString(timestamp) {
-    return new Date(timestamp).toLocaleString()
+    const databaseTime = new Date(timestamp);
+    return databaseTime.toLocaleString('en-NZ', {timeZone: 'Pacific/Auckland'});
 }
+
 
 function getProcessedTitleHTML(title) {
     return title.replace(keywordPattern, `<span class="keyword-span">${currentKeyword}</span>`)

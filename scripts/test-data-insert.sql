@@ -23,25 +23,25 @@ VALUES ('jayp', 'dCCxTC0I2ZFjhKWZc', '3tHlj6E', 20, 107, 'Cooking made easy',
         1, '#f29494', 'avatar5.jpg', 'Vila', 'M', '1982-12-29', 'Hello I am Vila!', true);
 
 
-INSERT INTO article_db (title, content, created_time, edit_time, number_of_likes, number_of_dislikes, author_id)
+INSERT INTO article_db (title, content, number_of_likes, number_of_dislikes, author_id)
 VALUES ('Cooking curry dish',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        '2020-01-19 23:00:05', '2020-01-22 11:00:02', 20, 10, 3),
+        20, 10, 3),
        ('Teething issues',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        '2019-12-24 20:30:05', NULL, 0, 8, 3),
+        0, 8, 3),
        ('Child teething issues',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        '2019-12-24 20:30:05', NULL, 0, 8, 2),
+        0, 8, 2),
        ('Treating fungal infection',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        '2018-01-25 10:12:05', '2019-01-18 00:08:02', 50, 60, 4),
+       50, 60, 4),
        ('Child eating disorder',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        '2019-08-19 23:00:05', NULL, 18, 36, 1),
+        18, 36, 1),
        ('Washing dishes',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        '2020-01-01 12:25:05', NULL, 58, 6, 5);
+        58, 6, 5);
 
 
 INSERT INTO comment_db (body, created_time, edit_time, number_of_likes, number_of_dislikes, target_article_id,
