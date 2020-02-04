@@ -26,17 +26,18 @@
                 Your first name:
             </label>
             <input type="text" id="first-name" name="first-name" required
-                   <c:if test="${changing}">value="${existingProfileOwner.firstName}"</c:if>>
+                   <c:if test="${changing}">value="${existingProfileOwner.firstName}"</c:if> maxlength="16">
             <label for="last-name">
                 Your last name:
             </label>
             <input type="text" id="last-name" name="last-name" required
-                   <c:if test="${changing}">value="${existingProfileOwner.lastName}"</c:if>>
+                   <c:if test="${changing}">value="${existingProfileOwner.lastName}"</c:if> maxlength="16">
 
             <label for="date-of-birth">
                 Your date of birth:
             </label>
-            <input id="date-of-birth" name="date-of-birth" type="date" value="1990-01-01"
+            <input id="date-of-birth" name="date-of-birth" type="date"
+                   <c:if test="${!changing}">value="1990-01-01"</c:if>
                    <c:if test="${changing}">value="${existingProfileOwner.dateOfBirth}"</c:if>
                    min="1900-01-01">
             <script type="text/javascript">

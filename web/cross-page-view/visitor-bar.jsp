@@ -3,6 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <script type="text/javascript" src='<c:url value="/js/load-search-bar.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/responsive-layout.js"/>'></script>
 <script type="text/javascript">
     window.addEventListener("load", function () {
         document.querySelector("#search-icon").addEventListener("click", loadSearchBar);
@@ -13,7 +14,8 @@
 <div id="visitor-top-bar" class="top-bar">
     <div class="top-bar-home-link">
         <a href='<c:url value="/"/>'>
-            Blogaholic!
+            <span id="home-icon"><i class="fas fa-home"></i></span>
+            <span id="home-name">Blogaholic!</span>
         </a>
     </div>
     <div class="top-bar-links" id="visitor-top-bar-links">

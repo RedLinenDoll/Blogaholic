@@ -12,7 +12,7 @@
             const containers = document.querySelectorAll(".avatar-selection");
             const radios = document.querySelectorAll(".avatar-radio");
             radios.forEach(radio => {
-                addEventListener("click", highlightAvatar)
+                radio.addEventListener("click", highlightAvatar)
             });
 
             function highlightAvatar(e) {
@@ -23,12 +23,13 @@
                 containers[avatarNum - 1].style.border = "var(--theme-color) dotted 2px";
             }
         });
+
         function loadPreview(input) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
 
                 reader.onload = function () {
-                    document.querySelector("#preview-image").src=reader.result;
+                    document.querySelector("#preview-image").src = reader.result;
                 };
 
                 reader.readAsDataURL(input.files[0]);
@@ -51,7 +52,7 @@
             border: var(--bright-gray) 4px solid;
         }
 
-        #avatar-preview-container{
+        #avatar-preview-container {
             width: fit-content;
             height: fit-content;
             margin: 15px auto 25px;
@@ -129,13 +130,16 @@
                 <button class="link-button" id="submit-selected-avatar">Use selected avatar</button>
             </form>
 
-            <form id="avatar-upload-form" method="post" action='<c:url value="/upload-avatar"/>' enctype="multipart/form-data">
+            <form id="avatar-upload-form" method="post" action='<c:url value="/upload-avatar"/>'
+                  enctype="multipart/form-data">
                 <div id="avatar-preview-container">
-                    <img id="preview-image" src='<c:url value="/images/avatar/avatarPreview.png"/>' alt="avatar preview">
+                    <img id="preview-image" src='<c:url value="/images/avatar/avatarPreview.png"/>'
+                         alt="avatar preview">
                 </div>
                 <div id="upload-avatar-container">
                     <label for="avatar-upload">Upload your own avatar here</label>
-                    <input type="file" id="avatar-upload" onchange="loadPreview(this);" accept="image/png, image/jpeg" name="avatar">
+                    <input type="file" id="avatar-upload" onchange="loadPreview(this);" accept="image/*"
+                           name="avatar">
                     <button class="link-button" id="submit-uploaded-avatar" type="submit">Use uploaded avatar</button>
 
                 </div>

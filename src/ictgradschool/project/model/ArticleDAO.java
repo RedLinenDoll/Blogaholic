@@ -104,7 +104,7 @@ public class ArticleDAO {
         try (PreparedStatement statement = connection.prepareStatement
                 ("SELECT article_id, title, brief, created_time, edit_time, number_of_likes, number_of_dislikes " +
                         "FROM article_db " +
-                        "WHERE author_id = ?")) {
+                        "WHERE author_id = ? ORDER BY created_time DESC")) {
             statement.setInt(1, authorID);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
@@ -147,7 +147,7 @@ public class ArticleDAO {
         Article article = new Article();
         article.setArticleID(resultSet.getInt(1));
         article.setArticleTitle(resultSet.getString(2));
-        article.setArticleContent(resultSet.getString(3));
+        article.setArticleContent(ArticleContentUtil.generateBriefFromHtml(resultSet.getString(3)));
         article.setTimeCreated(resultSet.getTimestamp(4));
         article.setTimeEdited(resultSet.getTimestamp(5));
         article.setLikesCount(resultSet.getInt(6));

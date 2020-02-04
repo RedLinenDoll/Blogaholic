@@ -69,13 +69,13 @@
                 Name for your blog:
             </label>
             <input type="text" id="blog-name-input" name="blog-name" required
-                   <c:if test="${changing}">value="${existingBlogAuthor.blogName}"</c:if>>
+                   <c:if test="${changing}">value="${existingBlogAuthor.blogName}"</c:if> maxlength="40">
             <br>
             <label for="blog-description-input">
                 Please write some descriptions of your blog (e.g. topic, target-readers):
             </label>
             <textarea id="blog-description-input" name="blog-description"
-                      rows="3" cols="45"><c:choose><c:when
+                      rows="3" cols="45" maxlength="128"><c:choose><c:when
                     test="${!changing}">Blogaholic ${newUser.username}'s blog. ${newUser.username} will be sharing ideas, experiences, knowledge and stories with you. Hope you'll enjoy!</c:when><c:otherwise>${existingBlogAuthor.blogDescription}</c:otherwise></c:choose></textarea>
 
             <div style="height: 30px; width: 100%; border-bottom: 1px dashed var(--theme-color)"></div>

@@ -22,6 +22,7 @@
             position: relative;
             bottom: 150px;
         }
+
         </c:if>
     </style>
 </head>
@@ -91,7 +92,7 @@
         </table>
         <c:if test="${isOwnProfile}">
 
-        <div style="margin: 15px 0; font-size: 0.8em; color: #777777">
+            <div style="margin: 15px 0; font-size: 0.8em; color: #777777">
                 <c:choose>
                     <c:when test="${!profileOwner.shareRealNameInfo}">
                         You chose <u>NOT</u> to share these real name information with your visitors,
@@ -101,7 +102,7 @@
                         You chose to share these real name information, <br> and you can change your mind any time.
                     </c:otherwise>
                 </c:choose>
-        </div>
+            </div>
         </c:if>
 
         <c:if test="${isOwnProfile}">

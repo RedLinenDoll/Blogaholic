@@ -1,14 +1,34 @@
 const uriStart = '/team-java_blogaholic/';
+let currentAuthorID;
+let postContainer;
+
+async function fetchArticles(authorID) {
+    let response = await fetch(`${uriStart}load-articles?authorID=${authorID}`);
+    return await response.json();
+}
 
 async function loadArticleList(authorID) {
-    const postContainer = document.querySelector("#article-list-container");
-    let response = await fetch(`${uriStart}load-articles?authorID=${authorID}`);
-    let articleList = await response.json();
+    currentAuthorID = authorID;
+    postContainer = document.querySelector("#article-list-container");
+    const articleList = await fetchArticles(authorID);
     postContainer.innerHTML = "";
+    renderArticlesDisplay(articleList, postContainer);
+
+}
+
+async function resortArticles(e) {
+    const newSortRule = e.target.value;
+    const articleList = sortArticlesByRules(newSortRule, await fetchArticles(currentAuthorID));
+    postContainer.innerHTML = "";
+    renderArticlesDisplay(articleList, postContainer);
+}
+
+function renderArticlesDisplay(articleList, postContainer) {
     articleList.forEach(article => {
             postContainer.appendChild(renderArticleDiv(article));
         }
     );
+    listenForLikeDislike();
 }
 
 function renderArticleDiv(article) {
@@ -54,5 +74,6 @@ function renderArticleDiv(article) {
 }
 
 function timestampToLocaleString(timestamp) {
-    return new Date(timestamp).toLocaleString()
+    const databaseTime = new Date(timestamp);
+    return databaseTime.toLocaleString('en-NZ', {timeZone: 'Pacific/Auckland'});
 }
