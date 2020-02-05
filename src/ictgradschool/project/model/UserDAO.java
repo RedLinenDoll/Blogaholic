@@ -244,4 +244,27 @@ public class UserDAO {
         }
     }
 
+    public static List<User> getFollowerListByUserID(Connection connection, int userID) throws SQLException {
+        List<User> followers = new ArrayList<>();
+        try(PreparedStatement preparedStatement = connection.prepareStatement("SELECT users.user_id, users.username, users.avatar_path\n" +
+                "FROM users_db AS users, subscription_db AS subscription\n" +
+                "WHERE subscription.publisher_id = ? AND users.user_id = subscription.follower_id;")) {
+            preparedStatement.setInt(1, userID);
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                while(resultSet.next()) {
+                    followers.add(createFollowerFromResultSet(resultSet));
+                }
+                return followers;
+            }
+        }
+    }
+
+    private static User createFollowerFromResultSet(ResultSet resultSet) throws SQLException {
+        User user = new User();
+        user.setUserID(resultSet.getInt(1));
+        user.setUsername(resultSet.getString(2));
+        user.setAvatarPath(resultSet.getString(3));
+        return user;
+    }
+
 }
