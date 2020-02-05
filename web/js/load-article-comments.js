@@ -4,17 +4,22 @@ let currentAuthorID;
 let currentLoggedUserID;
 let currentEditedComment;
 
-async function sendDeleteArticleRequest(articleID) {
+function sendDeleteArticleRequest(articleID) {
     const request = new XMLHttpRequest();
     request.open("POST", `${uriStart}delete-article`, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.send(`articleID=${articleID}`);
+
+    request.onreadystatechange = function() {
+        if (request.readyState === 4) {
+            window.location.replace(`${uriStart}blog-view?authorID=${currentAuthorID}`);
+        }
+    }
 }
 
 async function deleteArticle(articleID) {
     if (window.confirm("You cannot undo this operation. \nAre you sure you want to delete the current article?")) {
-        await sendDeleteArticleRequest(articleID);
-        window.location.replace(`${uriStart}blog-view?authorID=${currentAuthorID}`);
+        sendDeleteArticleRequest(articleID);
     }
 }
 
