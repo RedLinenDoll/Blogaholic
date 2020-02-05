@@ -39,7 +39,7 @@ public class UserBlogSettingServlet extends HttpServlet {
             user.setBlogName(blogName);
             user.setBlogDescription(blogDescription);
             request.getSession().setAttribute("loggedUser", user);
-            response.sendRedirect("./blog-view?authorID=" +  user.getUserID());
+            response.sendRedirect("./blog-view?authorID=" + user.getUserID());
 
         } catch (SQLException e) {
             e.printStackTrace();

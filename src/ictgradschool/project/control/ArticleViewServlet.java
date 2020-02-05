@@ -1,9 +1,10 @@
 package ictgradschool.project.control;
 
-import ictgradschool.project.model.*;
+import ictgradschool.project.model.Article;
+import ictgradschool.project.model.ArticleDAO;
+import ictgradschool.project.model.UserDAO;
 import ictgradschool.project.util.DBConnectionUtils;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,36 +17,37 @@ import java.sql.SQLException;
 @WebServlet(name = "article-view", urlPatterns = "/article-view")
 public class ArticleViewServlet extends HttpServlet {
 
-    // TODO get method, load article basic information, as well as author information, so as to have a consistent look.
-    //  JSP need author and article object.
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int articleID = Integer.parseInt(request.getParameter("articleID"));
-//        int commentID = Integer.parseInt(request.getParameter("commentID"));
+        int articleID;
+        try {
+            articleID = Integer.parseInt(request.getParameter("articleID"));
+        } catch (NumberFormatException e) {
+            request.setAttribute("errorMessage", "the article you are looking for does not exist.");
+            request.getRequestDispatcher("WEB-INF/view/error-redirect.jsp").forward(request, response);
+            return;
+        }
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
 
             Article fullArticle = ArticleDAO.getFullArticleByArticleID(connection, articleID);
-//            Comment comment = CommentDAO.getCommentByID(connection,commentID);
+            if (fullArticle == null) {
+                request.setAttribute("errorMessage", "the article you are looking for does not exist.");
+                request.getRequestDispatcher("WEB-INF/view/error-redirect.jsp").forward(request, response);
+                return;
+            }
             Object author = request.getAttribute("author");
             if (author == null)
                 author = UserDAO.getAuthorByArticleId(connection, articleID);
 
             request.setAttribute("article", fullArticle);
             request.setAttribute("author", author);
-//            request.setAttribute("comment",commentID);
 
             request.getRequestDispatcher("WEB-INF/view/article-view.jsp").forward(request, response);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            request.setAttribute("errorMessage", "we failed to load the article from the database.");
+            request.getRequestDispatcher("WEB-INF/view/error-redirect.jsp").forward(request, response);
         }
     }
 
-
-
-
-
-
-    //TODO post method, article editing or deleting.
 }

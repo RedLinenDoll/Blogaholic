@@ -41,7 +41,6 @@ public class UserDeleteServlet extends HttpServlet {
             request.getRequestDispatcher("WEB-INF/view/user-left.jsp").forward(request, response);
 
 
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
