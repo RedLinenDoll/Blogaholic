@@ -17,7 +17,7 @@
         function toggleBar() {
             toggled = !toggled;
             arrow.classList.toggle("fa-angle-down");
-            arrow.classList.toggle("fa-angle-right");
+            arrow.classList.toggle("fa-angle-up");
             toggleBox.classList.toggle("invisible");
         }
         document.querySelector("#search-icon").addEventListener("click", loadSearchBar);
@@ -35,7 +35,7 @@
 
     <div class="top-bar-links" id="user-top-bar-links">
         <span class="top-bar-span" id="search-span">
-            <i class="fas fa-search-plus" id="search-icon"></i>
+            <i class="fas fa-search" id="search-icon"></i>
         </span>
         <span class="top-bar-span" id="toggle-trigger">
             <i id="toggle-arrow" class="fas fa-angle-down"
