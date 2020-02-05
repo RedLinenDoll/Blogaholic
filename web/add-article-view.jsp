@@ -71,7 +71,7 @@
     <form id="add-article-form" action="./add-article" method="post">
 
         <label for="title">Title here:</label>
-        <input type="text" id="title" name="title" required>
+        <input type="text" id="title" name="title" required maxlength="40">
         <br>
         <br>
         <label for="content">

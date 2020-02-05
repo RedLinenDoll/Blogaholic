@@ -83,7 +83,7 @@ function getCommentDiv(comment, authorID) {
 <i class="far fa-thumbs-down dislike-empty-button dislike-comment" id="dislike-comment-${comment.commentID}"></i>`;
     commentOptionsDiv.appendChild(commentLikeDislikeSpan);
     appendEditButton(commentOptionsDiv, authorID, comment);
-    appendDeleteButton(commentOptionsDiv, authorID, comment.commentID, comment.commenterID);
+    appendDeleteButton(commentOptionsDiv, comment.commentID, comment.commenterID);
     appendCommentButton(commentOptionsDiv, comment.commentID);
 
     commentDiv.appendChild(avatarDiv);
@@ -119,15 +119,14 @@ function appendEditButton(commentOptionsDiv, authorID, comment) {
     }
 }
 
-function appendDeleteButton(commentOptionsDiv, authorID, commentID, commenterID) {
+function appendDeleteButton(commentOptionsDiv, commentID, commenterID) {
     if (currentLoggedUserID < 0) return;
-    if (currentLoggedUserID === commenterID || currentLoggedUserID === authorID) {
+    if (currentLoggedUserID === commenterID || currentLoggedUserID === currentAuthorID) {
         const deleteButton = document.createElement("button");
         deleteButton.classList.add("delete-comment-button", "tiny-comment-option-button");
         deleteButton.innerText = "Delete";
         deleteButton.addEventListener("click", async function () {
             await deleteComment(commentID);
-            location.reload();
         });
         commentOptionsDiv.appendChild(deleteButton);
     }
@@ -138,6 +137,13 @@ async function deleteComment(commentID) {
     request.open("POST", `${uriStart}delete-comment`, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.send(`commentID=${commentID}&articleID=${currentArticleID}`);
+
+    request.onreadystatechange = function() {
+        if (request.readyState === 4) {
+            location.reload();
+        }
+    }
+
 }
 
 function timestampToLocaleString(timestamp) {
