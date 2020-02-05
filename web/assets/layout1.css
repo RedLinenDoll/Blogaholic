@@ -21,6 +21,10 @@
     text-align: center;
 }
 
+#sort-option {
+    width: 10.2em;
+}
+
 #blog-description-container {
     text-align: center;
     padding-left: 20px;

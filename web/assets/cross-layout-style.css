@@ -516,3 +516,7 @@ input[type="text"]:focus {
     align-items: center;
     margin-right: 15px;
 }
+
+#sort-option {
+    width: fit-content!important;
+}
