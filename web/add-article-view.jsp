@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="icon" href='<c:url value="/images/icon.png"/>'>
 
     <title>Create a new article</title>
     <jsp:include page="/cross-page-view/link-fonts.jsp"/>

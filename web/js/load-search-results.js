@@ -4,7 +4,8 @@ let currentKeyword;
 
 function loadCurrentArticle(articleID, articleTitle, articleContent, authorID,
                             authorUsername, avatarPath, timeCreated, keyword) {
-    keywordPattern = new RegExp(keyword, 'gi');
+    const processedKeyword = keyword.replace(`\.`, `[.]`);
+    keywordPattern = new RegExp(processedKeyword, 'gi');
 
     currentKeyword = keyword;
     const resultDiv = document.querySelector("#article-container-" + articleID);
@@ -51,7 +52,8 @@ function getProcessedTitleHTML(title) {
 }
 
 function getProcessedContentHTML(content) {
-    const firstAppear = content.toUpperCase().indexOf(currentKeyword.toUpperCase());
+    const firstAppear = content.indexOf(`${currentKeyword}`);
+    console.log(firstAppear);
     if (firstAppear === -1)
         return content.substr(0, 96);
     const startCut = Math.max(firstAppear - 48, 0);

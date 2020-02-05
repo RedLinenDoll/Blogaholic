@@ -2,6 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="icon" href='<c:url value="/images/icon.png"/>'>
+
     <title>Account Setting for ${loggedUser.username}</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href='<c:url  value="assets/cross-layout-style.css"/>'>

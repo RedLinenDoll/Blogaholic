@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="icon" href='<c:url value="/images/icon.png"/>'>
+
     <title>Edit article</title>
     <jsp:include page="/cross-page-view/link-fonts.jsp"/>
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'>
