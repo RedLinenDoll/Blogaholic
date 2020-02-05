@@ -87,9 +87,12 @@ public class ArticleDAO {
     }
 
     private static Article createFullArticleFromResultSet(ResultSet resultSet) throws SQLException {
+        String titleText = ArticleContentUtil.generateTextFromHtml(resultSet.getString(2));// article title
+        if (titleText.length() == 0) titleText = "Untitled";
+
         return new Article(
                 resultSet.getInt(1), // article ID
-                resultSet.getString(2), // article title
+                titleText,
                 resultSet.getString(3), // article content
                 resultSet.getString(4), // article brief
                 resultSet.getTimestamp(5), // time edited
@@ -116,9 +119,10 @@ public class ArticleDAO {
     }
 
     private static Article createBriefArticleFromResultSet(ResultSet resultSet) throws SQLException {
+
         return new Article(
                 resultSet.getInt(1), //articleID
-                resultSet.getString(2), //articleTitle
+                getPlainTitle(resultSet.getString(2)),
                 resultSet.getString(3), //articleBrief
                 resultSet.getTimestamp(4), //timeCreated
                 resultSet.getTimestamp(5), //timeEdited
@@ -146,7 +150,7 @@ public class ArticleDAO {
 
         Article article = new Article();
         article.setArticleID(resultSet.getInt(1));
-        article.setArticleTitle(resultSet.getString(2));
+        article.setArticleTitle(getPlainTitle(resultSet.getString(2)));
         article.setArticleContent(ArticleContentUtil.generateBriefFromHtml(resultSet.getString(3)));
         article.setTimeCreated(resultSet.getTimestamp(4));
         article.setTimeEdited(resultSet.getTimestamp(5));
@@ -154,5 +158,11 @@ public class ArticleDAO {
         article.setDislikesCount(resultSet.getInt(7));
         article.setAuthor(UserDAO.getAuthorById(connection, resultSet.getInt(8)));
         return article;
+    }
+
+    private static String getPlainTitle(String originalHTML) {
+        String plainText = ArticleContentUtil.generateBriefFromHtml(originalHTML);
+        if (plainText.length() == 0) return "Untitled";
+        else return plainText;
     }
 }

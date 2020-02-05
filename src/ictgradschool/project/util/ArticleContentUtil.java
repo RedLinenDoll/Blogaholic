@@ -13,4 +13,11 @@ public class ArticleContentUtil {
 
 
     }
+
+    public static String generateTextFromHtml (String innerHtml) {
+
+        return Jsoup.parse(innerHtml).text();
+
+
+    }
 }
