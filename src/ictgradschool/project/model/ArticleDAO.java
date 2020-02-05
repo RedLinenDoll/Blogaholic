@@ -9,7 +9,6 @@ import java.util.zip.CheckedOutputStream;
 
 public class ArticleDAO {
 
-
     public static boolean deleteArticle(Connection connection, int articleID) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM article_db WHERE article_id=?")) {
             preparedStatement.setInt(1, articleID);
@@ -17,9 +16,6 @@ public class ArticleDAO {
             return rowUpdated == 1;
         }
     }
-
-
-
 
     public static int addArticle(Connection connection, int authorID, Article article) throws SQLException {
 
@@ -43,7 +39,6 @@ public class ArticleDAO {
 
     }
 
-
     public static boolean editArticle(Connection connection, Article article, int articleID) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE article_db SET brief=?, title=?,content=?, edit_time=CURRENT_TIMESTAMP WHERE article_id=?")) {
             preparedStatement.setString(1, ArticleContentUtil.generateBriefFromHtml(article.getArticleContent()));
@@ -55,7 +50,6 @@ public class ArticleDAO {
             return rowUpdated == 1;
         }
     }
-
 
     public static List<Article> getRecentBriefArticleList(Connection connection) throws SQLException {
         List<Article> articles = new ArrayList<>();
@@ -147,7 +141,6 @@ public class ArticleDAO {
     }
 
     private static Article createSearchResultArticleFromResultSet(Connection connection, ResultSet resultSet) throws SQLException{
-
         Article article = new Article();
         article.setArticleID(resultSet.getInt(1));
         article.setArticleTitle(getPlainTitle(resultSet.getString(2)));
