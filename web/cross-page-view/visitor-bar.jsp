@@ -20,7 +20,7 @@
     </div>
     <div class="top-bar-links" id="visitor-top-bar-links">
         <span class="top-bar-span" id="search-span">
-            <i class="fas fa-search-plus" id="search-icon"></i>
+            <i class="fas fa-search" id="search-icon"></i>
         </span>|<span id="create-blog-span">
             <a href='<c:url value="/signup.html"/>' class="primary-link">
                 Create My Blog
