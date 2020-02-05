@@ -3,6 +3,7 @@
 <html>
 <head>
     <link rel="icon" href='<c:url value="/images/icon.png"/>'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Account Setting for ${loggedUser.username}</title>
     <meta charset="UTF-8">

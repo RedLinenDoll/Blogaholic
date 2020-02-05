@@ -3,6 +3,7 @@
 <html>
 <head>
     <link rel="icon" href='<c:url value="/images/icon.png"/>'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,6 +30,10 @@
             const sortController = document.querySelector("#sort-rule");
             sortController.addEventListener("change", resortArticles);
         })
+
+        function putInText(selector, content) {
+            document.querySelector(selector).innerText = content;
+        }
     </script>
     <style>
         .body-container {
@@ -69,7 +74,9 @@
         </div>
     </div>
     <div id="blog-name-container" class="page-h1-container">
-        <h1 id="blog-name">${author.blogName}</h1>
+        <h1 id="blog-name">
+            <script>putInText("#blog-name", `${author.blogName}`);</script>
+        </h1>
     </div>
     <div class="author-intro-container page-author-container">
         <span><a href='<c:url value="user-profile?user-id=${author.userID}"/>'> <img class="inline-avatar"
