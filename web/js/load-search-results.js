@@ -11,7 +11,7 @@ function loadCurrentArticle(articleID, articleTitle, articleContent, authorID,
 
     const articleLink = document.createElement("a");
     articleLink.classList.add("full-article-link");
-    articleLink.href = `${uriStart}blog-view?authorID=${articleID}`;
+    articleLink.href = `${uriStart}article-view?articleID=${articleID}`;
 
     const articleTitleDiv = document.createElement("div");
     articleTitleDiv.classList.add("article-title-div", "page-item-title-div");
@@ -29,7 +29,7 @@ function loadCurrentArticle(articleID, articleTitle, articleContent, authorID,
     const articleInformationDiv = document.createElement("div");
     articleInformationDiv.classList.add("article-information-div");
     const articleInformation = document.createElement("span");
-    articleInformation.innerHTML = `created by <img class="inline-avatar" src=${uriStart}images/avatar/${avatarPath} alt=" "> ${authorUsername} on ${timestampToLocaleString(timeCreated)}`;
+    articleInformation.innerHTML = `created by <img class="inline-avatar" src=${uriStart}images/avatar/${avatarPath} alt=" "> ${authorUsername} on ${javaTimestampToLocaleString(timeCreated)}`;
     articleInformationDiv.appendChild(articleInformation);
 
     articleLink.appendChild(articleTitleDiv);
@@ -40,8 +40,8 @@ function loadCurrentArticle(articleID, articleTitle, articleContent, authorID,
 
 }
 
-function timestampToLocaleString(timestamp) {
-    const databaseTime = new Date(timestamp);
+function javaTimestampToLocaleString(timestamp) {
+    const databaseTime = new Date(timestamp + ' UTC');
     return databaseTime.toLocaleString('en-NZ', {timeZone: 'Pacific/Auckland'});
 }
 

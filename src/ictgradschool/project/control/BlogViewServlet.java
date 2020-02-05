@@ -17,9 +17,21 @@ import java.sql.SQLException;
 public class BlogViewServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String authorID = request.getParameter("authorID");
+        int authorID;
+        try {
+            authorID = Integer.parseInt(request.getParameter("authorID"));
+        } catch (NumberFormatException e) {
+            request.setAttribute("errorMessage", "the blog you are looking for does not exist.");
+            request.getRequestDispatcher("WEB-INF/view/error-redirect.jsp").forward(request, response);
+            return;
+        }
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-            User author = UserDAO.getAuthorById(connection, Integer.parseInt(authorID));
+            User author = UserDAO.getAuthorById(connection, authorID);
+            if (author == null) {
+                request.setAttribute("errorMessage", "the blog you are looking for does not exist.");
+                request.getRequestDispatcher("WEB-INF/view/error-redirect.jsp").forward(request, response);
+                return;
+            }
             request.setAttribute("author", author);
             request.getRequestDispatcher("WEB-INF/view/blog-view.jsp").forward(request, response);
         } catch (SQLException e) {
