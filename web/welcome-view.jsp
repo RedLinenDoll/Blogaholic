@@ -2,6 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="icon" href='<c:url value="/images/icon.png"/>'>
+
     <title>Welcome, ${loggedUser.username}!</title>
 
     <jsp:include page="/cross-page-view/link-fonts.jsp"/>

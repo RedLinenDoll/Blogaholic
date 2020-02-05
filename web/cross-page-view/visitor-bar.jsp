@@ -10,6 +10,7 @@
     });
 </script>
 
+
 <br>
 <div id="visitor-top-bar" class="top-bar">
     <div class="top-bar-home-link">
@@ -33,7 +34,7 @@
         </span>
 
         <div id="search-box" class="invisible">
-            <form action='<c:url value="/article-search"/>' method="get" id="search-form">
+            <form action='<c:url value="/article-search"/>' method="post" id="search-form">
                 <label for="search-keyword">Enter your keyword: </label>
                 <input type="text" id="search-keyword" name="search-keyword" required>
                 <button type="submit" id="search-button">Article Search</button>

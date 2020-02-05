@@ -11,13 +11,15 @@ public class ArticleContentUtil {
 
         return plainText.substring(0, briefLength);
 
-
     }
 
     public static String generateTextFromHtml (String innerHtml) {
 
         return Jsoup.parse(innerHtml).text();
 
+    }
 
+    public static void main(String[] args) {
+        System.out.println(generateTextFromHtml("<h1>hello</h1>"));
     }
 }

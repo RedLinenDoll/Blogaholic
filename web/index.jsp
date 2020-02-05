@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" href='<c:url value="/images/icon.png"/>'>
 
     <meta charset="UTF-8">
     <title>Welcome to Blogaholic!</title>

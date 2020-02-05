@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="icon" href='<c:url value="/images/icon.png"/>'>
+
     <title>Goodbye, ${userLeft}</title>
     <script type="text/javascript">
         window.addEventListener("load", function () {
