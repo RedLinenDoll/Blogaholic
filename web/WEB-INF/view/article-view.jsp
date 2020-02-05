@@ -17,6 +17,7 @@
     <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>
     <script src='<c:url value="/js/load-article-comments.js"/>' type="text/javascript"></script>
     <script src='<c:url value="/js/like-dislike.js"/>' type="text/javascript"></script>
+    <script type="text/javascript" src='<c:url value="/js/render-follow-option.js"/>'></script>
 
     <script type="text/javascript">
         window.addEventListener("load", async function () {
@@ -31,6 +32,14 @@
             </c:otherwise>
             </c:choose>
             listenForLikeDislike();
+            <c:choose>
+            <c:when test="${not empty loggedUser}">
+            renderFollowSpan(${author.userID}, ${loggedUser.userID}, `${author.username}`);
+            </c:when>
+            <c:otherwise>
+            renderFollowSpan(${author.userID}, -1, `${author.username}`);
+            </c:otherwise>
+            </c:choose>
         })
     </script>
 
@@ -55,6 +64,9 @@
         <span>Article by <a href='<c:url value="user-profile?user-id=${author.userID}"/>'><img class="inline-avatar"
                                                                                                src='<c:url value="/images/avatar/${author.avatarPath}"/>'
                                                                                                alt="author avatar"></a> ${author.username}</span>
+
+        <span id="follow-span" class="follow-span">
+        </span>
     </div>
 
 </div>

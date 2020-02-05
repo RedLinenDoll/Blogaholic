@@ -536,3 +536,9 @@ input[type="text"]:focus {
 #follower-number-span:hover {
     color: var(--heavy-color);
 }
+
+#follow-span {
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid var(--gentle-black);
+}
