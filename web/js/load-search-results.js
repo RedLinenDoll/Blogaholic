@@ -52,6 +52,7 @@ function getProcessedTitleHTML(title) {
 }
 
 function getProcessedContentHTML(content) {
+    console.log(content);
     const firstAppear = content.indexOf(`${currentKeyword}`);
     console.log(firstAppear);
     if (firstAppear === -1)
