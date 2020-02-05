@@ -518,6 +518,21 @@ input[type="text"]:focus {
 }
 
 #sort-option {
-    width: fit-content!important;
+    width: fit-content !important;
 }
 
+#follow-check-circle:hover {
+    color: var(--theme-color);
+}
+#follow-span {
+    cursor: pointer;
+}
+
+#follower-number-span {
+    text-decoration: underline;
+    color: var(--theme-color);
+}
+
+#follower-number-span:hover {
+    color: var(--heavy-color);
+}

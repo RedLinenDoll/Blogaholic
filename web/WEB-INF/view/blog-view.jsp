@@ -29,17 +29,24 @@
             loadArticleList(${author.userID});
             const sortController = document.querySelector("#sort-rule");
             sortController.addEventListener("change", resortArticles);
-        })
+            <c:choose>
+            <c:when test="${not empty loggedUser}">
+            renderFollowSpan(${author.userID}, ${loggedUser.userID}, `${author.username}`);
+            </c:when>
+            <c:otherwise>
+            renderFollowSpan(${author.userID}, -1, `${author.username}`);
+            </c:otherwise>
+            </c:choose>
+        });
 
-        function putInText(selector, content) {
-            document.querySelector(selector).innerText = content;
-        }
+
     </script>
     <style>
         .body-container {
             top: 1em;
         }
-        #follow-option {
+
+        #follow-span {
             margin-left: 10px;
             padding-left: 10px;
             border-left: 1px solid var(--gentle-black);
@@ -75,7 +82,7 @@
     </div>
     <div id="blog-name-container" class="page-h1-container">
         <h1 id="blog-name">
-            <script>putInText("#blog-name", `${author.blogName}`);</script>
+            ${author.blogName}
         </h1>
     </div>
     <div class="author-intro-container page-author-container">
@@ -83,13 +90,8 @@
                                                                                      src='<c:url value="/images/avatar/${author.avatarPath}"/>'
                                                                                      alt="author avatar"></a> ${author.username}'s blog
         </span>
-        <c:if test="${not empty loggedUser}">
-        <span id="follow-option" class="follow-option">
-            <script type="text/javascript">
-                renderFollowOption(${author.userID}, ${loggedUser.userID})
-            </script>
+        <span id="follow-span" class="follow-span">
         </span>
-        </c:if>
     </div>
     <c:if test="${loggedUser.userID==author.userID}">
         <div class="blog-author-option-div">

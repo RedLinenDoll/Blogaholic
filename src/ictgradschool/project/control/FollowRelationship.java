@@ -5,6 +5,7 @@ import ictgradschool.project.model.UserDAO;
 import ictgradschool.project.util.DBConnectionUtils;
 import ictgradschool.project.util.JSONResponse;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +32,16 @@ public class FollowRelationship extends HttpServlet {
                 case "get-publisher-list":
                     List<User> publishers = UserDAO.getPublisherListByUserID(connection, targetUserID);
                     JSONResponse.send(response, publishers);
+                    return;
+                case "get-follower-number":
+                    int followerNumber = UserDAO.getFollowerNumberByUserID(connection, targetUserID);
+                    JSONResponse.send(response, followerNumber);
+                    return;
+                case "check-if-following":
+                    int publisherID = Integer.parseInt(request.getParameter("publisher-id"));
+                    boolean following = UserDAO.checkIfFollowing(connection, targetUserID, publisherID);
+                    JSONResponse.send(response, following);
+                    return;
             }
 
         } catch (SQLException e) {
@@ -42,8 +53,13 @@ public class FollowRelationship extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int followerID = Integer.parseInt(request.getParameter("follower-id"));
         int publisherID = Integer.parseInt(request.getParameter("publisher-id"));
+        boolean adding = Boolean.parseBoolean(request.getParameter("adding"));
+        System.out.println(followerID + " " + publisherID + " " + adding);
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-            UserDAO.addFollowingRelationship(connection, followerID, publisherID);
+            if (adding)
+                UserDAO.addFollowingRelationship(connection, followerID, publisherID);
+            else
+                UserDAO.removeFollowingRelationship(connection, followerID, publisherID);
         } catch (SQLException e) {
             e.printStackTrace();
         }

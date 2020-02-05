@@ -110,3 +110,5 @@ FROM users_db AS users, subscription_db AS subscription
 WHERE subscription.publisher_id = 3 AND users.user_id = subscription.follower_id;
 
 INSERT IGNORE INTO subscription_db (follower_id, publisher_id )VALUE (2,4);
+
+DELETE IGNORE FROM subscription_db WHERE (follower_id = 2) AND (publisher_id = 4)

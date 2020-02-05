@@ -259,6 +259,18 @@ public class UserDAO {
         }
     }
 
+    public static int getFollowerNumberByUserID(Connection connection, int userID) throws SQLException {
+        try(PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(users.user_id)" +
+                "FROM users_db AS users, subscription_db AS subscription\n" +
+                "WHERE subscription.publisher_id = ? AND users.user_id = subscription.follower_id;")) {
+            preparedStatement.setInt(1, userID);
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) return resultSet.getInt(1);
+                else return 0;
+            }
+        }
+    }
+
     public static List<User> getPublisherListByUserID(Connection connection, int userID) throws SQLException {
         List<User> publishers = new ArrayList<>();
         try(PreparedStatement preparedStatement = connection.prepareStatement("SELECT users.user_id, users.username, users.avatar_path\n" +
@@ -290,6 +302,26 @@ public class UserDAO {
             return rowUpdated == 1;
         }
     }
+
+    public static boolean removeFollowingRelationship (Connection connection, int followerID, int publisherID) throws SQLException {
+        try(PreparedStatement preparedStatement = connection.prepareStatement("DELETE IGNORE FROM subscription_db WHERE (follower_id = ?) AND (publisher_id = ?);")) {
+            preparedStatement.setInt(1, followerID);
+            preparedStatement.setInt(2, publisherID);
+            int rowUpdated = preparedStatement.executeUpdate();
+            return rowUpdated == 1;
+        }
+    }
+
+    public static boolean checkIfFollowing(Connection connection, int followerID, int publisherID) throws SQLException {
+        try(PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM subscription_db WHERE (follower_id = ?) AND (publisher_id = ?)")) {
+            preparedStatement.setInt(1, followerID);
+            preparedStatement.setInt(2, publisherID);
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                return resultSet.next();
+            }
+        }
+    }
+
 
 
 }
