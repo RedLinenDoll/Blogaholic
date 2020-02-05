@@ -4,6 +4,7 @@
 <html>
 <head>
     <link rel="icon" href='<c:url value="/images/icon.png"/>'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Edit article</title>
     <jsp:include page="/cross-page-view/link-fonts.jsp"/>

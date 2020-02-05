@@ -1,9 +1,9 @@
 window.addEventListener("load", function () {
-    let small = window.matchMedia("(max-width: 700px)").matches;
+    let small = window.matchMedia("(max-width: 769px)").matches;
     updateResponsive(small);
 });
 window.addEventListener("resize", function () {
-    let small = window.matchMedia("(max-width: 700px)").matches;
+    let small = window.matchMedia("(max-width: 769px)").matches;
     updateResponsive(small);
 });
 
