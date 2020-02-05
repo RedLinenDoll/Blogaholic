@@ -108,3 +108,5 @@ Where (title like '%lorem%') OR (content like '%lorem%')
 SELECT users.user_id, users.username, users.avatar_path
 FROM users_db AS users, subscription_db AS subscription
 WHERE subscription.publisher_id = 3 AND users.user_id = subscription.follower_id;
+
+INSERT IGNORE INTO subscription_db (follower_id, publisher_id )VALUE (2,4);

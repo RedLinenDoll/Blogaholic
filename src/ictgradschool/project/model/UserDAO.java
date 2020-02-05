@@ -282,6 +282,14 @@ public class UserDAO {
         return user;
     }
 
+    public static boolean addFollowingRelationship (Connection connection, int followerID, int publisherID) throws SQLException {
+        try(PreparedStatement preparedStatement = connection.prepareStatement("INSERT IGNORE INTO subscription_db (follower_id, publisher_id )VALUE (?,?);")) {
+            preparedStatement.setInt(1, followerID);
+            preparedStatement.setInt(2, publisherID);
+            int rowUpdated = preparedStatement.executeUpdate();
+            return rowUpdated == 1;
+        }
+    }
 
 
 }
