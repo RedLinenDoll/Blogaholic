@@ -10,11 +10,39 @@
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'>
     <link rel="stylesheet" href='<c:url value="/assets/layout${profileOwner.layoutID}.css"/>'>
     <script type="text/javascript" src='<c:url value="/js/customized-styling.js"/>'></script>
+    <script type="text/javascript" src='<c:url value="/js/render-follow-option.js"/>'></script>
+
     <script type="text/javascript">
-        window.addEventListener("load", function () {
+        let uriStart = `/team-java_blogaholic/`;
+        currentAuthorID = ${profileOwner.userID};
+        window.addEventListener("load", async function () {
             applyThemeColor(`${profileOwner.themeColor}`);
             applyLayoutSpecificStyling(`${profileOwner.layoutID}`, `${profileOwner.themeColor}`);
 
+            const parsedUrl = window.location.href.split('#');
+
+            <c:choose>
+            <c:when test="${not empty loggedUser}">
+            renderProfileFollowParagraph(${profileOwner.userID}, ${loggedUser.userID}, `${profileOwner.username}`);
+            </c:when>
+            <c:otherwise>
+            renderProfileFollowParagraph(${profileOwner.userID}, -1, `${profileOwner.username}`);
+            </c:otherwise>
+            </c:choose>
+            await loadUserBox();
+
+            if (parsedUrl.length > 0) {
+                const targetID = "#" + parsedUrl[1];
+                const targetDiv = document.querySelector(targetID);
+                if (targetDiv !== null) {
+                    targetDiv.scrollIntoView({behavior: "smooth", block: "center"});
+                }
+                targetDiv.style.boxShadow = "0 0 3px var(--theme-color)";
+                targetDiv.style.transition = "1s ease-in-out";
+                setTimeout(() => {
+                    targetDiv.style.boxShadow = "none";
+                }, 1500);
+            }
         })
     </script>
     <link rel="stylesheet" href='<c:url value="/assets/profile-page-layout.css"/>'>
@@ -43,6 +71,7 @@
 <c:set value="${isOwnProfile || profileOwner.shareRealNameInfo == true}" var="showRealNameInfo"/>
 <div class="head-container">
 </div>
+
 <div class="body-container">
     <h1>
         <c:choose>
@@ -78,52 +107,64 @@
     <p>${profileOwner.selfIntroduction}</p>
 
     <c:if test="${showRealNameInfo}">
-    <div class="real-name-info">
-        <table align="center">
-            <tr>
-                <td><i class="far fa-user profile-icon"></i> First Name:</td>
-                <td>${profileOwner.firstName}</td>
-            </tr>
-            <tr>
-                <td><i class="far fa-user profile-icon"></i> Last Name:</td>
-                <td>${profileOwner.lastName}</td>
-            </tr>
-            <tr>
-                <td><i class="fas fa-birthday-cake profile-icon"></i> Birthday:</td>
-                <td>${profileOwner.dateOfBirth}</td>
-            </tr>
-        </table>
-        <c:if test="${isOwnProfile}">
+        <div class="real-name-info">
+            <table align="center">
+                <tr>
+                    <td><i class="far fa-user profile-icon"></i> First Name:</td>
+                    <td>${profileOwner.firstName}</td>
+                </tr>
+                <tr>
+                    <td><i class="far fa-user profile-icon"></i> Last Name:</td>
+                    <td>${profileOwner.lastName}</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-birthday-cake profile-icon"></i> Birthday:</td>
+                    <td>${profileOwner.dateOfBirth}</td>
+                </tr>
+            </table>
+        </div>
+    </c:if>
+    <c:if test="${isOwnProfile}">
 
-            <div style="margin: 15px 0; font-size: 0.8em; color: #777777">
-                <c:choose>
-                    <c:when test="${!profileOwner.shareRealNameInfo}">
-                        You chose <u>NOT</u> to share these real name information with your visitors,
-                        <br> and we will respect that
-                    </c:when>
-                    <c:otherwise>
-                        You chose to share these real name information, <br> and you can change your mind any time.
-                    </c:otherwise>
-                </c:choose>
-            </div>
-        </c:if>
+        <div style="margin: 15px 0; font-size: 0.8em; color: #777777">
+            <c:choose>
+                <c:when test="${!profileOwner.shareRealNameInfo}">
+                    You chose <u>NOT</u> to share these real name information with your visitors,
+                    <br> and we will respect that
+                </c:when>
+                <c:otherwise>
+                    You chose to share these real name information, <br> and you can change your mind any time.
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </c:if>
 
-        <c:if test="${isOwnProfile}">
-            <a href="<c:url value="/user-option?user-request=change-user-profile"/>" class="profile-page-button">
-                <button>Change Personal Information</button>
-            </a>
-        </c:if>
-        </c:if>
-        <br><br>
-        <a href="<c:url value="/blog-view?authorID=${profileOwner.userID}"/>" class="profile-page-button">
-            <button>Go to ${profileOwner.username}'s blog: ${profileOwner.blogName}</button>
+    <c:if test="${isOwnProfile}">
+        <a href="<c:url value="/user-option?user-request=change-user-profile"/>" class="profile-page-button">
+            <button>Change Personal Information</button>
         </a>
+    </c:if>
+    <br><br>
+    <a href="<c:url value="/blog-view?authorID=${profileOwner.userID}"/>" class="profile-page-button">
+        <button>Go to ${profileOwner.username}'s blog &nbsp;&#8594 </button>
+    </a>
 
+    <hr class="profile-page-hr">
+    <div id="followers">
+         <p id="follow-paragraph"></p>
+        <div id="follower-box" class="user-box">
+        </div>
     </div>
 
+    <hr class="profile-page-hr">
+    <div id="following">
+
+        <p>${profileOwner.username} is following these blogaholics:</p>
+        <div id="following-box" class="user-box">
+        </div>
+    </div>
 
 </div>
-
 
 </body>
 </html>

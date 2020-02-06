@@ -5,7 +5,8 @@ VALUES ('Elegant', 'An elegant touch in the font and cover, hosting your feeling
 ;
 
 INSERT INTO users_db (username, hashed_password, hashed_salt, salt_length, iteration_number, blog_name,
-                      blog_description, layout_id, theme_color, avatar_path, first_name, last_name, date_of_birth, self_introduction, share_real_name_info)
+                      blog_description, layout_id, theme_color, avatar_path, first_name, last_name, date_of_birth,
+                      self_introduction, share_real_name_info)
 VALUES ('jayp', 'dCCxTC0I2ZFjhKWZc', '3tHlj6E', 20, 107, 'Cooking made easy',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         1, '#78914d', 'avatar1.jpg', 'Jay', 'P', '1990-09-12', 'Hello I am Jay', false),
@@ -35,7 +36,7 @@ VALUES ('Cooking curry dish',
         0, 8, 2),
        ('Treating fungal infection',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-       50, 60, 4),
+        50, 60, 4),
        ('Child eating disorder',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
         18, 36, 1),
@@ -67,6 +68,12 @@ VALUES ('Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil im
 
 
 
+INSERT INTO subscription_db (follower_id, publisher_id)
+values (1, 2),
+       (2, 3),
+       (1, 4),
+       (2, 5),
+       (1, 5);
 
 
 

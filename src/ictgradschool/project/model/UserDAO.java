@@ -244,4 +244,84 @@ public class UserDAO {
         }
     }
 
+    public static List<User> getFollowerListByUserID(Connection connection, int userID) throws SQLException {
+        List<User> followers = new ArrayList<>();
+        try(PreparedStatement preparedStatement = connection.prepareStatement("SELECT users.user_id, users.username, users.avatar_path\n" +
+                "FROM users_db AS users, subscription_db AS subscription\n" +
+                "WHERE subscription.publisher_id = ? AND users.user_id = subscription.follower_id;")) {
+            preparedStatement.setInt(1, userID);
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                while(resultSet.next()) {
+                    followers.add(createSimpleUserFromResultSet(resultSet));
+                }
+                return followers;
+            }
+        }
+    }
+
+    public static int getFollowerNumberByUserID(Connection connection, int userID) throws SQLException {
+        try(PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(users.user_id)" +
+                "FROM users_db AS users, subscription_db AS subscription\n" +
+                "WHERE subscription.publisher_id = ? AND users.user_id = subscription.follower_id;")) {
+            preparedStatement.setInt(1, userID);
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) return resultSet.getInt(1);
+                else return 0;
+            }
+        }
+    }
+
+    public static List<User> getPublisherListByUserID(Connection connection, int userID) throws SQLException {
+        List<User> publishers = new ArrayList<>();
+        try(PreparedStatement preparedStatement = connection.prepareStatement("SELECT users.user_id, users.username, users.avatar_path\n" +
+                "FROM users_db AS users, subscription_db AS subscription\n" +
+                "WHERE subscription.follower_id = ? AND users.user_id = subscription.publisher_id;")) {
+            preparedStatement.setInt(1, userID);
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                while(resultSet.next()) {
+                    publishers.add(createSimpleUserFromResultSet(resultSet));
+                }
+                return publishers;
+            }
+        }
+    }
+
+    private static User createSimpleUserFromResultSet(ResultSet resultSet) throws SQLException {
+        User user = new User();
+        user.setUserID(resultSet.getInt(1));
+        user.setUsername(resultSet.getString(2));
+        user.setAvatarPath(resultSet.getString(3));
+        return user;
+    }
+
+    public static boolean addFollowingRelationship (Connection connection, int followerID, int publisherID) throws SQLException {
+        try(PreparedStatement preparedStatement = connection.prepareStatement("INSERT IGNORE INTO subscription_db (follower_id, publisher_id )VALUE (?,?);")) {
+            preparedStatement.setInt(1, followerID);
+            preparedStatement.setInt(2, publisherID);
+            int rowUpdated = preparedStatement.executeUpdate();
+            return rowUpdated == 1;
+        }
+    }
+
+    public static boolean removeFollowingRelationship (Connection connection, int followerID, int publisherID) throws SQLException {
+        try(PreparedStatement preparedStatement = connection.prepareStatement("DELETE IGNORE FROM subscription_db WHERE (follower_id = ?) AND (publisher_id = ?);")) {
+            preparedStatement.setInt(1, followerID);
+            preparedStatement.setInt(2, publisherID);
+            int rowUpdated = preparedStatement.executeUpdate();
+            return rowUpdated == 1;
+        }
+    }
+
+    public static boolean checkIfFollowing(Connection connection, int followerID, int publisherID) throws SQLException {
+        try(PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM subscription_db WHERE (follower_id = ?) AND (publisher_id = ?)")) {
+            preparedStatement.setInt(1, followerID);
+            preparedStatement.setInt(2, publisherID);
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                return resultSet.next();
+            }
+        }
+    }
+
+
+
 }
