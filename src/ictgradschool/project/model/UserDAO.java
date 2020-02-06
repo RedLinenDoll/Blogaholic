@@ -275,7 +275,7 @@ public class UserDAO {
         List<User> publishers = new ArrayList<>();
         try(PreparedStatement preparedStatement = connection.prepareStatement("SELECT users.user_id, users.username, users.avatar_path\n" +
                 "FROM users_db AS users, subscription_db AS subscription\n" +
-                "WHERE subscription.follower_id = ? AND users.user_id = subscription.follower_id;")) {
+                "WHERE subscription.follower_id = ? AND users.user_id = subscription.publisher_id;")) {
             preparedStatement.setInt(1, userID);
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
                 while(resultSet.next()) {
