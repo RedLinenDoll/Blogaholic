@@ -42,6 +42,7 @@ public class FollowRelationship extends HttpServlet {
                     boolean following = UserDAO.checkIfFollowing(connection, targetUserID, publisherID);
                     JSONResponse.send(response, following);
                     return;
+
             }
 
         } catch (SQLException e) {

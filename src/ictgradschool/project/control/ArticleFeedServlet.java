@@ -1,7 +1,9 @@
 package ictgradschool.project.control;
 
 import ictgradschool.project.model.Article;
+import ictgradschool.project.model.ArticleDAO;
 import ictgradschool.project.util.DBConnectionUtils;
+import ictgradschool.project.util.JSONResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,13 +18,27 @@ import java.util.List;
 @WebServlet(name = "article-feed", urlPatterns = "/article-feed")
 public class ArticleFeedServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Article> feedList;
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String requestOption = request.getParameter("request-option");
+        int userID;
+        int articleID;
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-
-
-
-
+            switch (requestOption) {
+                case "load-feed-article-ids":
+                    userID = Integer.parseInt(request.getParameter("user-id"));
+                    List<Integer> feedArticleIds = ArticleDAO.getFeedArticleIDListByUserID(connection, userID);
+                    JSONResponse.send(response, feedArticleIds);
+                    return;
+                case "load-more-article-ids":
+                    userID = Integer.parseInt(request.getParameter("user-id"));
+                    List<Integer> moreArticleIds = ArticleDAO.getRecentArticleIDListExceptFeedByUserID(connection, userID);
+                    JSONResponse.send(response, moreArticleIds);
+                    return;
+                case "load-article-by-id":
+                    articleID = Integer.parseInt(request.getParameter("article-id"));
+                    Article feedArticle = ArticleDAO.getFeedArticleByArticleID(connection, articleID);
+                    JSONResponse.send(response, feedArticle);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
