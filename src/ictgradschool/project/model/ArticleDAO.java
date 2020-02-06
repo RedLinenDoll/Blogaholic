@@ -177,6 +177,7 @@ public class ArticleDAO {
                         "WHERE target_authors.author_id = article_db.author_id\n" +
                         "ORDER BY created_time DESC;")) {
             preparedStatement.setInt(1, userID);
+            preparedStatement.setInt(2, userID);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     articleIDList.add(resultSet.getInt(1));
@@ -186,14 +187,27 @@ public class ArticleDAO {
         }
     }
     public static Article getFeedArticleByArticleID(Connection connection, int articleID) throws SQLException {
-        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT article_id, title, content, created_time, edit_time, number_of_likes, number_of_dislikes, author_id FROM article_db WHERE article_id = ?")) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT article_id, title, brief, created_time, edit_time, number_of_likes, number_of_dislikes, author_id FROM article_db WHERE article_id = ?")) {
             preparedStatement.setInt(1, articleID);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next())
-                    return createSearchResultArticleFromResultSet(connection, resultSet);
+                    return createFeedResultArticleFromResultSet(connection, resultSet);
                 else return null;
             }
         }
+    }
+
+    private static Article createFeedResultArticleFromResultSet(Connection connection, ResultSet resultSet) throws SQLException{
+        Article article = new Article();
+        article.setArticleID(resultSet.getInt(1));
+        article.setArticleTitle(getPlainTitle(resultSet.getString(2)));
+        article.setArticleBrief(ArticleContentUtil.generateTextFromHtml(resultSet.getString(3)));
+        article.setTimeCreated(resultSet.getTimestamp(4));
+        article.setTimeEdited(resultSet.getTimestamp(5));
+        article.setLikesCount(resultSet.getInt(6));
+        article.setDislikesCount(resultSet.getInt(7));
+        article.setAuthor(UserDAO.getAuthorById(connection, resultSet.getInt(8)));
+        return article;
     }
 
 }
