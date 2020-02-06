@@ -22,12 +22,11 @@ async function renderProfileFollowParagraph(authorID, visitorID, authorUsername)
     currentVisitorID = visitorID;
     authorName = authorUsername;
     followSpan = document.createElement("span");
-    followSpan.id="follow-span";
+    followSpan.id = "follow-span";
     const followParagraph = document.querySelector("#follow-paragraph");
     if (authorID === visitorID) {
         followParagraph.innerHTML = `You have ${await getFollowerNumber()} follower(s). <br>`
-    }
-    else {
+    } else {
         followParagraph.innerHTML = `${authorName} has ${await getFollowerNumber()} follower(s). <br>`
         if (visitorID > 0) {
             await renderFollowOption(authorID, visitorID);
@@ -102,15 +101,17 @@ async function loadUserBox() {
     const publisherBox = document.querySelector("#following-box");
     const publisherList = await getPublisherList();
 
-    followerList.forEach(follower => {
-        followerBox.appendChild(renderRelationshipAvatarDiv(follower));
-    });
+    if (followerList.length > 0)
+        followerList.forEach(follower => {
+            followerBox.appendChild(renderRelationshipAvatarDiv(follower));
+        });
+    else followerBox.innerHTML = `<p style="font-size:0.7em">(not following anyone yet)</p>`;
+
     if (publisherList.length > 0) {
         publisherList.forEach(publisher => {
             publisherBox.appendChild(renderRelationshipAvatarDiv(publisher));
         })
-    }
-    else publisherBox.innerHTML = `<p style="font-size:0.7em">(not following anyone yet)</p>`;
+    } else publisherBox.innerHTML = `<p style="font-size:0.7em">(not following anyone yet)</p>`;
 
 }
 
@@ -121,8 +122,8 @@ function renderRelationshipAvatarDiv(user) {
     const avatarDiv = document.createElement("div");
     avatarDiv.classList.add("relationship-avatar-div");
     const userProfileLink = document.createElement("a");
-    userProfileLink.href=`${uriStart}user-profile?user-id=${user.userID}`;
-    userProfileLink.target="_blank";
+    userProfileLink.href = `${uriStart}user-profile?user-id=${user.userID}`;
+    userProfileLink.target = "_blank";
 
     const avatar = document.createElement("img");
     avatar.src = `${uriStart}images/avatar/${user.avatarPath}`;
