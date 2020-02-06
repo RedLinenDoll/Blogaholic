@@ -146,7 +146,7 @@
     </c:if>
     <br><br>
     <a href="<c:url value="/blog-view?authorID=${profileOwner.userID}"/>" class="profile-page-button">
-        <button>Go to ${profileOwner.username}'s blog: ${profileOwner.blogName}</button>
+        <button>Go to ${profileOwner.username}'s blog &nbsp;&#8594 </button>
     </a>
 
     <hr class="profile-page-hr">
