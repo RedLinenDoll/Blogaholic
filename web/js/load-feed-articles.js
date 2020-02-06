@@ -27,7 +27,14 @@ async function initializeRecentArticleIDList() {
 }
 
 async function loadMoreFeedArticles() {
+
     if (isLoadingFollowingArticles) {
+        if (followingArticleIDList.length === 0) {
+            await initializeRecentArticleIDList();
+            isLoadingFollowingArticles = false;
+            loadMoreFeedArticles();
+            return;
+        }
         let from = currentFollowingArticleIndex;
         let to = Math.min(currentFollowingArticleIndex + 5, followingArticleIDList.length);
         for (let i = from; i < to; i++) {
@@ -36,7 +43,7 @@ async function loadMoreFeedArticles() {
         if (to === followingArticleIDList.length) {
             await initializeRecentArticleIDList();
             isLoadingFollowingArticles = false;
-            renderFinishFollowingFeedDiv(); // put the div before the button
+            renderFinishFollowingFeedDiv(true); // put the div before the button
         } else {
             currentFollowingArticleIndex = to;
         }
@@ -103,14 +110,17 @@ function timestampToLocaleString(timestamp) {
     return databaseTime.toLocaleString('en-NZ', {timeZone: 'Pacific/Auckland'});
 }
 
-function renderFinishFollowingFeedDiv() {
+function renderFinishFollowingFeedDiv(loadedSomeFollowing) {
+
     const finishFollowingDiv = document.createElement("div");
     finishFollowingDiv.classList.add("finish-following-div");
-    const finishFollowingMessage = document.createElement("p");
-    finishFollowingMessage.innerText ="That's all articles written by people you are following.";
+    if (loadedSomeFollowing) {
+        const finishFollowingMessage = document.createElement("p");
+        finishFollowingMessage.innerText = "That's all articles written by people you are following.";
+        finishFollowingDiv.appendChild(finishFollowingMessage);
+    }
     const nextMessage = document.createElement("p");
     nextMessage.innerText ="We can show you more articles by other users if you like.";
-    finishFollowingDiv.appendChild(finishFollowingMessage);
     finishFollowingDiv.appendChild(nextMessage);
     postContainer.insertBefore(finishFollowingDiv, loadMoreButton);
 
