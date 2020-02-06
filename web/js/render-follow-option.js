@@ -105,9 +105,12 @@ async function loadUserBox() {
     followerList.forEach(follower => {
         followerBox.appendChild(renderRelationshipAvatarDiv(follower));
     });
-    publisherList.forEach(publisher => {
-        publisherBox.appendChild(renderRelationshipAvatarDiv(publisher));
-    })
+    if (publisherList.length > 0) {
+        publisherList.forEach(publisher => {
+            publisherBox.appendChild(renderRelationshipAvatarDiv(publisher));
+        })
+    }
+    else publisherBox.innerHTML = `<p style="font-size:0.5em">(not following anyone yet)</p>`;
 
 }
 

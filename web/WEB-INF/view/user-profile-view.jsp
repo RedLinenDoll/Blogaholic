@@ -159,7 +159,7 @@
     <hr class="profile-page-hr">
     <div id="following">
 
-        <p>${profileOwner.username} is following these blogaholics:</p>
+        <p>${profileOwner.username} is following these blogaholic(s):</p>
         <div id="following-box" class="user-box">
         </div>
     </div>
