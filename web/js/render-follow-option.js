@@ -110,7 +110,7 @@ async function loadUserBox() {
             publisherBox.appendChild(renderRelationshipAvatarDiv(publisher));
         })
     }
-    else publisherBox.innerHTML = `<p style="font-size:0.5em">(not following anyone yet)</p>`;
+    else publisherBox.innerHTML = `<p style="font-size:0.7em">(not following anyone yet)</p>`;
 
 }
 
