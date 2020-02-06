@@ -1,17 +1,27 @@
 const uriStart = '/team-java_blogaholic/';
+let currentFollowingArticleIndex = 0;
+let currentRecentArticleIndex = 0;
+let followingArticleIDList = [];
+let recentArticleIDList = [];
+let loadingFollowingArticles = true;
 
-async function loadRecentArticleList() {
-    const postContainer = document.querySelector("#recent-article-list-container");
-    let response = await fetch(`${uriStart}load-articles`);
-    let articleList = await response.json();
+async function loadFeedArticleList() {
+    const postContainer = document.querySelector("#feed-article-list-container");
     postContainer.innerHTML = "";
-    articleList.forEach(article => {
-            postContainer.appendChild(renderRecentArticleDiv(article));
-        }
-    );
+
+    let response = await fetch(`${uriStart}load-articles`);
+    followingArticleIDList = await response.json();
+
+    loadMoreFeedArticles();
 }
 
-function renderRecentArticleDiv(article) {
+function loadMoreFeedArticles() {
+    let from = currentFollowingArticleIndex;
+    let to = currentFollowingArticleIndex + 5;
+    //if (to > )
+}
+
+function renderFeedArticleDiv(article) {
     const articleDiv = document.createElement("div");
     articleDiv.classList.add("article-div", "page-item-div");
 

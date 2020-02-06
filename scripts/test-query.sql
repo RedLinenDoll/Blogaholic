@@ -101,17 +101,68 @@ SELECT article_id,
        number_of_dislikes,
        author_id
 From article_db
-Where (title like '%lorem%') OR (content like '%lorem%')
+Where (title like '%lorem%')
+   OR (content like '%lorem%')
 
 
 
 SELECT users.user_id, users.username, users.avatar_path
-FROM users_db AS users, subscription_db AS subscription
-WHERE subscription.publisher_id = 3 AND users.user_id = subscription.follower_id;
+FROM users_db AS users,
+     subscription_db AS subscription
+WHERE subscription.publisher_id = 3
+  AND users.user_id = subscription.follower_id;
 
-INSERT IGNORE INTO subscription_db (follower_id, publisher_id )VALUE (2,4);
+INSERT IGNORE INTO subscription_db (follower_id, publisher_id) VALUE (2, 4);
 
-DELETE IGNORE FROM subscription_db WHERE (follower_id = 2) AND (publisher_id = 4);
+DELETE IGNORE
+FROM subscription_db
+WHERE (follower_id = 2)
+  AND (publisher_id = 4);
 
-INSERT IGNORE INTO subscription_db (follower_id, publisher_id) VALUES
-(7,3),(7,4),(2,7),(4,7),(5,7),(8,7),(3,1),(4,1),(2,1),(2,5),(4,5),(5,3),(5,6),(3,2),(4,3),(1,3),(8,3),(9,3),(6,3);
+INSERT IGNORE INTO subscription_db (follower_id, publisher_id)
+VALUES (7, 3),
+       (7, 4),
+       (2, 7),
+       (4, 7),
+       (5, 7),
+       (8, 7),
+       (3, 1),
+       (4, 1),
+       (2, 1),
+       (2, 5),
+       (4, 5),
+       (5, 3),
+       (5, 6),
+       (3, 2),
+       (4, 3),
+       (1, 3),
+       (8, 3),
+       (9, 3),
+       (6, 3);
+
+
+SELECT articles.article_id
+FROM article_db AS articles,
+     subscription_db AS subscription
+WHERE (subscription.follower_id = 1)
+  AND (subscription.publisher_id = articles.author_id)
+ORDER BY articles.created_time DESC;
+
+
+
+WITH target_authors AS (
+    SELECT users.user_id AS author_id
+    FROM users_db AS users
+        EXCEPT
+    SELECT subscription.publisher_id
+    FROM subscription_db AS subscription
+    WHERE (subscription.follower_id = 1)
+       OR (subscription.publisher_id = 1))
+SELECT article_db.article_id, target_authors.author_id
+FROM article_db,
+     target_authors
+WHERE target_authors.author_id = article_db.author_id
+ORDER BY created_time DESC;
+
+
+DELETE FROM users_db WHERE user_id = 12;
