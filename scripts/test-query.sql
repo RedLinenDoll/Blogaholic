@@ -114,4 +114,4 @@ INSERT IGNORE INTO subscription_db (follower_id, publisher_id )VALUE (2,4);
 DELETE IGNORE FROM subscription_db WHERE (follower_id = 2) AND (publisher_id = 4)
 
 INSERT IGNORE INTO subscription_db (follower_id, publisher_id) VALUES
-(7,3),(7,4),(2,7),(4,7),(5,7),(8,7);
+(7,3),(7,4),(2,7),(4,7),(5,7),(8,7),(3,1),(4,1),(2,1),(2,5),(4,5),(5,3),(5,6),(3,2),(4,3);
