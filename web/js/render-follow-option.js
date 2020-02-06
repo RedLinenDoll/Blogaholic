@@ -8,13 +8,30 @@ async function renderFollowSpan(authorID, visitorID, authorUsername) {
     authorName = authorUsername;
     followSpan = document.querySelector("#follow-span");
     if (authorID === visitorID) {
-        followSpan.innerHTML = `You have <a href="${uriStart}user-profile?user-id=${authorID}#followers"><span id="follower-number-span">${await getFollowerNumber()}</span></a> followers.`
+        followSpan.innerHTML = `You have <a href="${uriStart}user-profile?user-id=${authorID}#followers"><span id="follower-number-span">${await getFollowerNumber()}</span></a> follower(s).`
     }
     if (visitorID === -1) {
-        followSpan.innerHTML = `${authorName} has <a href="${uriStart}user-profile?user-id=${authorID}#followers"><span id="follower-number-span">${await getFollowerNumber()}</span></a> followers.`
+        followSpan.innerHTML = `${authorName} has <a href="${uriStart}user-profile?user-id=${authorID}#followers"><span id="follower-number-span">${await getFollowerNumber()}</span></a> follower(s).`
+    } else {
+        await renderFollowOption(authorID, visitorID);
+    }
+}
+
+async function renderProfileFollowParagraph(authorID, visitorID, authorUsername) {
+    currentVisitorID = visitorID;
+    authorName = authorUsername;
+    followSpan = document.createElement("span");
+    followSpan.id="follow-span";
+    const followParagraph = document.querySelector("#follow-paragraph");
+    if (authorID === visitorID) {
+        followParagraph.innerHTML = `You have ${await getFollowerNumber()} follower(s). <br>`
     }
     else {
-        await renderFollowOption(authorID, visitorID);
+        followParagraph.innerHTML = `${authorName} has ${await getFollowerNumber()} follower(s). <br>`
+        if (visitorID > 0) {
+            await renderFollowOption(authorID, visitorID);
+            followParagraph.appendChild(followSpan);
+        }
     }
 
 }
@@ -50,7 +67,7 @@ async function renderFollowOption() {
         checkCircle.classList.add("fa-check-circle");
         followSpan.appendChild(checkCircle);
         followSpan.innerHTML += ` You are following ${authorName}`;
-        addFollowOptionListener( false);
+        addFollowOptionListener(false);
     } else {
         checkCircle.classList.add("fa-circle");
         followSpan.appendChild(checkCircle);
@@ -64,5 +81,52 @@ function addFollowOptionListener(clickToFollow) {
     followSpan.addEventListener("click", function () {
         changeFollowingRelationship(clickToFollow);
     })
+
+}
+
+async function getFollowerList() {
+    let response = await fetch(`${uriStart}follow-relationship?request-option=get-follower-list&target-user-id=${currentAuthorID}`);
+    return await response.json();
+}
+
+async function getPublisherList() {
+    let response = await fetch(`${uriStart}follow-relationship?request-option=get-publisher-list&target-user-id=${currentAuthorID}`);
+    return await response.json();
+
+}
+
+async function loadUserBox() {
+    const followerBox = document.querySelector("#follower-box");
+    const followerList = await getFollowerList();
+    const publisherBox = document.querySelector("#following-box");
+    const publisherList = await getPublisherList();
+
+    followerList.forEach(follower => {
+        followerBox.appendChild(renderRelationshipAvatarDiv(follower));
+    });
+    publisherList.forEach(publisher => {
+        publisherBox.appendChild(renderRelationshipAvatarDiv(publisher));
+    })
+
+}
+
+function renderRelationshipAvatarDiv(user) {
+    const relationshipDiv = document.createElement("div");
+    relationshipDiv.classList.add("relationship-div");
+
+    const avatarDiv = document.createElement("div");
+    avatarDiv.classList.add("relationship-avatar-div");
+    const avatar = document.createElement("img");
+    avatar.src = `${uriStart}images/avatar/${user.avatarPath}`;
+    avatar.classList.add("blockAvatar", "relationship-avatar");
+    avatarDiv.appendChild(avatar);
+
+    const usernameDiv = document.createElement("div");
+    usernameDiv.classList.add("relationship-username-div");
+    usernameDiv.innerHTML = `<p>${user.username}</p>`;
+
+    relationshipDiv.appendChild(avatarDiv);
+    relationshipDiv.appendChild(usernameDiv);
+    return relationshipDiv;
 
 }

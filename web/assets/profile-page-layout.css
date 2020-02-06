@@ -56,3 +56,46 @@ button {
 .real-name-info {
     text-align: center;
 }
+
+#followers, #following{
+    padding: 0 40px 40px;
+    text-align: center;
+}
+
+.user-box {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+#follow-span{
+    border-left:none;
+}
+
+.relationship-div {
+    display: grid;
+    grid-template-rows: 2.5em 0.5em;
+    grid-template-columns: 3em;
+    grid-template-areas: "avatar" "username";
+}
+.relationship-avatar-div {
+    grid-area: avatar;
+}
+.relationship-username-div {
+    grid-area: username;
+    font-size: 0.4em;
+}
+
+.relationship-avatar{
+    max-width: 2.5em;
+    max-height: 2.5em;
+}
+
+#follow-span {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: 0;
+}
