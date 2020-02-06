@@ -1,69 +1,129 @@
 const uriStart = '/team-java_blogaholic/';
-let currentFollowingArticleIndex = 0;
-let currentRecentArticleIndex = 0;
+let currentFollowingArticleIndex = 1;
+let currentRecentArticleIndex = 1;
 let followingArticleIDList = [];
 let recentArticleIDList = [];
-let loadingFollowingArticles = true;
+let isLoadingFollowingArticles = true;
+let postContainer;
+let currentUserID;
+let loadMoreButton;
 
-async function loadFeedArticleList() {
-    const postContainer = document.querySelector("#feed-article-list-container");
-    postContainer.innerHTML = "";
-
-    let response = await fetch(`${uriStart}load-articles`);
+async function loadFeedArticleList(userID) {
+    loadMoreButton = document.querySelector("#feed-more-button");
+    loadMoreButton.addEventListener("click", loadMoreFeedArticles);
+    currentUserID = userID;
+    postContainer = document.querySelector("#feed-article-list-container");
+    let response = await fetch(`${uriStart}article-feed?request-option=load-feed-article-ids&user-id=${currentUserID}`);
     followingArticleIDList = await response.json();
+    console.log("articleID list: " + followingArticleIDList);
+    await loadMoreFeedArticles();
 
-    loadMoreFeedArticles();
 }
 
-function loadMoreFeedArticles() {
-    let from = currentFollowingArticleIndex;
-    let to = currentFollowingArticleIndex + 5;
-    //if (to > )
+async function initializeRecentArticleIDList() {
+    console.log(`${uriStart}article-feed?request-option=load-more-article-ids&user-id=${currentUserID}`);
+    let response = await fetch(`${uriStart}article-feed?request-option=load-more-article-ids&user-id=${currentUserID}`);
+    recentArticleIDList = await response.json();
 }
 
-function renderFeedArticleDiv(article) {
+async function loadMoreFeedArticles() {
+    if (isLoadingFollowingArticles) {
+        let from = currentFollowingArticleIndex;
+        let to = Math.min(currentFollowingArticleIndex + 5, followingArticleIDList.length);
+        for (let i = from; i < to; i++) {
+            await renderFeedArticleByArticleID(followingArticleIDList[i]);
+        }
+        if (to === followingArticleIDList.length) {
+            await initializeRecentArticleIDList();
+            isLoadingFollowingArticles = false;
+            renderFinishFollowingFeedDiv(); // put the div before the button
+        } else {
+            currentFollowingArticleIndex = to;
+        }
+    }
+   else if (!isLoadingFollowingArticles) {
+        let from = currentRecentArticleIndex;
+        let to = Math.min(currentRecentArticleIndex + 5, recentArticleIDList.length);
+        for (let i = from; i < to; i++) {
+            console.log("loading article of id: " + i);
+            await renderFeedArticleByArticleID(recentArticleIDList[i]);
+        }
+        if (to === recentArticleIDList.length) {
+            renderFinishAllDiv(); // remove the button, and add a link to homepage instead
+        } else {
+            currentRecentArticleIndex = to;
+        }
+    }
+}
+
+async function renderFeedArticleByArticleID(articleID) {
+    let response = await fetch(`${uriStart}article-feed?request-option=load-article-by-id&article-id=${articleID}`);
+    const article = await response.json();
+    console.log("article: " + article);
+
     const articleDiv = document.createElement("div");
-    articleDiv.classList.add("article-div", "page-item-div");
+    articleDiv.classList.add("feed-article-div", "article-div", "page-item-div");
 
     const fullArticleLink = document.createElement("a");
     fullArticleLink.classList.add("full-article-link");
-    fullArticleLink.href = `${uriStart}article-view?articleID=${article.articleID}`;
+    fullArticleLink.href = `${uriStart}article-view?articleID=${articleID}`;
 
     const articleTitleDiv = document.createElement("div");
-    articleTitleDiv.classList.add("article-title-div");
-    const articleTitle = document.createElement("h2");
-    articleTitleDiv.classList.add("article-title");
-    articleTitle.innerText = article.articleTitle;
-    articleTitleDiv.appendChild(articleTitle);
+    articleTitleDiv.classList.add("article-title-div", "page-item-title-div");
+    const articleTitleH2 = document.createElement("h2");
+    articleTitleH2.classList.add("article-title", "page-item-title");
+    articleTitleH2.innerText = article.articleTitle;
+    articleTitleDiv.appendChild(articleTitleH2);
 
     const articleBriefDiv = document.createElement("div");
-    articleBriefDiv.classList.add("article-brief-div", "page-item-brief-div");
     const articleBrief = document.createElement("p");
     articleBrief.classList.add("article-brief", "page-item-brief");
     articleBrief.innerText = article.articleBrief;
     articleBriefDiv.appendChild(articleBrief);
 
-    const articleInfoDiv = document.createElement("div");
-    articleInfoDiv.classList.add("article-info-div", "page-item-info-div");
-    const articleInfo = document.createElement("span");
-    articleInfo.classList.add("article-info", "page-item-info");
-    articleInfo.innerHTML = `Created on ${timestampToLocaleString(article.timeCreated)} · 
-        <span id="like-article-${article.articleID}-count" class="count-span">${article.likesCount}</span>` +
-        `<i class="far fa-thumbs-up like-empty-button like-article" id="like-article-${article.articleID}"></i> · ` +
-        `<span id="dislike-article-${article.articleID}-count" class="count-span">${article.dislikesCount}</span> 
-        <i class="far fa-thumbs-down dislike-empty-button dislike-article" id="dislike-article-${article.articleID}"></i>`;
-    articleInfoDiv.appendChild(articleInfo);
+    const articleInformationDiv = document.createElement("div");
+    articleInformationDiv.classList.add("article-information-div");
+    const articleInformation = document.createElement("span");
+    articleInformation.innerHTML = `created by <img class="inline-avatar" src=${uriStart}images/avatar/${article.author.avatarPath} alt=" "> ${article.author.username} on ${timestampToLocaleString(article.timeCreated)}`;
+    articleInformationDiv.appendChild(articleInformation);
 
     fullArticleLink.appendChild(articleTitleDiv);
     fullArticleLink.appendChild(articleBriefDiv);
+
     articleDiv.appendChild(fullArticleLink);
-    articleDiv.appendChild(articleInfoDiv);
-    articleDiv.innerHTML += '<hr class="line-between-articles">';
-    return articleDiv;
+    articleDiv.appendChild(articleInformationDiv);
+
+    postContainer.insertBefore(articleDiv, loadMoreButton);
 
 }
+
 
 function timestampToLocaleString(timestamp) {
     const databaseTime = new Date(timestamp);
     return databaseTime.toLocaleString('en-NZ', {timeZone: 'Pacific/Auckland'});
+}
+
+function renderFinishFollowingFeedDiv() {
+    const finishFollowingDiv = document.createElement("div");
+    finishFollowingDiv.classList.add("finish-following-div");
+    const finishFollowingMessage = document.createElement("p");
+    finishFollowingMessage.innerText ="That's all articles written by people you are following.";
+    const nextMessage = document.createElement("p");
+    nextMessage.innerText ="We can show you more articles by other users if you like.";
+    finishFollowingDiv.appendChild(finishFollowingMessage);
+    finishFollowingDiv.appendChild(nextMessage);
+    postContainer.insertBefore(finishFollowingDiv, loadMoreButton);
+
+}
+
+function renderFinishAllDiv() {
+    const finishAllDiv = document.createElement("div");
+    const finishAllMessage = document.createElement("p");
+    finishAllMessage.innerText ="That's all articles we can feed";
+
+    finishAllDiv.classList.add("finish-all-div");
+    finishAllDiv.appendChild(finishAllMessage);
+    postContainer.removeChild(loadMoreButton);
+    postContainer.insertBefore(finishAllDiv, document.querySelector("#go-top-link"));
+
 }

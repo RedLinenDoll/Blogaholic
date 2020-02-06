@@ -20,7 +20,7 @@
             applyThemeColor(`${loggedUser.themeColor}`);
             applyLayoutSpecificStyling(`${loggedUser.layoutID}`, `${loggedUser.themeColor}`);
             showGreeting();
-            await loadFeedArticleList();
+            await loadFeedArticleList(${loggedUser.userID});
             listenForLikeDislike();
         });
         function showGreeting() {
@@ -36,6 +36,27 @@
             }
         }
     </script>
+    <style>
+        .article-information-div {
+            margin: 0;
+            position: relative;
+            bottom: 1em;
+            font-size: 0.8em;
+            text-align: right;
+        }
+        .finish-following-div, .finish-all-div {
+            text-align: center;
+            font-weight: bold;
+            background-color: var(--theme-color);
+            color: white;
+            padding: 5px 10px;
+            margin-bottom: 4px;
+        }
+
+        #feed-more-button {
+            margin-right: 8px;
+        }
+    </style>
 </head>
 <body>
 
@@ -65,8 +86,10 @@
 <div class="body-container" id="recent-article-container">
     <h2> <u>What's new?</u> </h2>
     <div id="feed-article-list-container" class="page-item-container">
+<%--        This is where we put all the articles --%>
 
-
+        <button id="feed-more-button" class="link-button">Load more articles</button>
+        <a href="#" id="go-top-link" > <button class="link-button">Go to top of page</button></a>
     </div>
 </div>
 </body>
