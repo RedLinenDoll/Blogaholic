@@ -216,6 +216,13 @@ button:focus {
     border-radius: 50%;
     border: var(--bright-gray) solid 2px;
 }
+.block-avatar:hover {
+    border: var(--theme-color) solid 3px;
+}
+
+.inline-avatar:hover{
+    border:var(--theme-color) solid 3px;
+}
 
 #index-message {
     color: var(--heavy-color);

@@ -91,7 +91,7 @@ async function renderFeedArticleByArticleID(articleID) {
     const articleInformationDiv = document.createElement("div");
     articleInformationDiv.classList.add("article-information-div");
     const articleInformation = document.createElement("span");
-    articleInformation.innerHTML = `created by <img class="inline-avatar" src=${uriStart}images/avatar/${article.author.avatarPath} alt=" "> ${article.author.username} on ${timestampToLocaleString(article.timeCreated)}`;
+    articleInformation.innerHTML = `created by <a href="${uriStart}blog-view?authorID=${article.author.userID}"><img class="inline-avatar" src=${uriStart}images/avatar/${article.author.avatarPath} alt=" "></a> ${article.author.username} on ${timestampToLocaleString(article.timeCreated)}`;
     articleInformationDiv.appendChild(articleInformation);
 
     fullArticleLink.appendChild(articleTitleDiv);

@@ -122,11 +122,10 @@ function renderRelationshipAvatarDiv(user) {
     avatarDiv.classList.add("relationship-avatar-div");
     const userProfileLink = document.createElement("a");
     userProfileLink.href = `${uriStart}user-profile?user-id=${user.userID}`;
-    userProfileLink.target = "_blank";
 
     const avatar = document.createElement("img");
     avatar.src = `${uriStart}images/avatar/${user.avatarPath}`;
-    avatar.classList.add("blockAvatar", "relationship-avatar");
+    avatar.classList.add("block-avatar", "relationship-avatar");
     userProfileLink.appendChild(avatar);
     avatarDiv.appendChild(userProfileLink);
 
