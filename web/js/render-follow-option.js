@@ -9,6 +9,7 @@ async function renderFollowSpan(authorID, visitorID, authorUsername) {
     followSpan = document.querySelector("#follow-span");
     if (authorID === visitorID) {
         followSpan.innerHTML = `You have <a href="${uriStart}user-profile?user-id=${authorID}#followers"><span id="follower-number-span">${await getFollowerNumber()}</span></a> follower(s).`
+        return;
     }
     if (visitorID === -1) {
         followSpan.innerHTML = `${authorName} has <a href="${uriStart}user-profile?user-id=${authorID}#followers"><span id="follower-number-span">${await getFollowerNumber()}</span></a> follower(s).`
