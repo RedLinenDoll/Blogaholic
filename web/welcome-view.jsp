@@ -5,13 +5,14 @@
     <link rel="icon" href='<c:url value="/images/icon.png"/>'>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome, ${loggedUser.username}!</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
     <jsp:include page="/cross-page-view/link-fonts.jsp"/>
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'>
     <link rel="stylesheet" href='<c:url value="/assets/layout${loggedUser.layoutID}.css"/>'>
 
     <script src='<c:url value="/js/customized-styling.js"/>' type="text/javascript"></script>
-    <script type="text/javascript" src='<c:url value="js/load-recent-articles.js"/>'></script>
+    <script type="text/javascript" src='<c:url value="js/load-feed-articles.js"/>'></script>
     <script src='<c:url value="/js/like-dislike.js"/>' type="text/javascript"></script>
 
     <script type="text/javascript">
@@ -19,7 +20,7 @@
             applyThemeColor(`${loggedUser.themeColor}`);
             applyLayoutSpecificStyling(`${loggedUser.layoutID}`, `${loggedUser.themeColor}`);
             showGreeting();
-            await loadRecentArticleList();
+            await loadFeedArticleList();
             listenForLikeDislike();
         });
         function showGreeting() {
@@ -33,7 +34,6 @@
             } else {
                 greetingSpan.innerText = "Good evening, ";
             }
-
         }
     </script>
 </head>
@@ -64,32 +64,10 @@
 
 <div class="body-container" id="recent-article-container">
     <h2> <u>What's new?</u> </h2>
-    <div id="recent-article-list-container" class="page-item-container">
-        <%--    This part is for demoenstration of jsp structure, and will be cleared once loaded article --%>
-        <div class="article-div page-item-div">
+    <div id="feed-article-list-container" class="page-item-container">
 
-            <a class="full-article-link page-item-link" href='<c:url value="#"/>'>
-                <div class="article-title-div page-item-title-div">
-                    <h2 class="article-title page-item-title">
-                        <%--            article title shows here  --%>
-                    </h2>
-                </div>
-                <div class="article-brief-div page-item-brief-div">
-                    <p class="article-brief page-item-brief">
-                        <%--            article brief shows here --%>
-                    </p>
-                </div>
-            </a>
-            <div class="article-info-div page-item-info-div">
-                <span class="article-info page-item-info">
-                    <%--           creation date , likes and dislikes shows here --%>
-                </span>
-            </div>
 
-        </div>
     </div>
-
 </div>
-
 </body>
 </html>
