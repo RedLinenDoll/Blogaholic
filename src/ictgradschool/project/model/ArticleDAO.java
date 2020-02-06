@@ -4,6 +4,7 @@ import ictgradschool.project.util.ArticleContentUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.zip.CheckedOutputStream;
 
@@ -157,5 +158,30 @@ public class ArticleDAO {
         String plainText = ArticleContentUtil.generateBriefFromHtml(originalHTML);
         if (plainText.length() == 0) return "Untitled";
         else return plainText;
+    }
+
+    public static List<Article> createFollowingFeedArticleListByUserID(Connection connection, int userID) throws SQLException {
+        List<Article> articles = new ArrayList<>();
+        List <User>followingList = UserDAO.getPublisherListByUserID(connection, userID);
+        if (followingList.size() == 0)
+            return articles;
+        for (User following: followingList) {
+            List<Article> followingArticles = getBriefArticleListByAuthorID(connection, following.getUserID());
+            for (Article article: followingArticles) {
+                article.setAuthor(following);
+            }
+            articles.addAll(followingArticles);
+        }
+
+        articles.sort(new ArticleComparatorByCreateDate());
+        return articles;
+
+    }
+
+    private static class ArticleComparatorByCreateDate implements Comparator<Article> {
+        @Override
+        public int compare(Article article1, Article article2) {
+            return article2.getTimeCreated().compareTo(article1.getTimeCreated());
+        }
     }
 }

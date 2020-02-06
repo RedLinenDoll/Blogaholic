@@ -21,7 +21,7 @@ public class ArticleListLoadServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String authorIDParameter = request.getParameter("authorID");
-        List<Article> articles = new ArrayList<>();
+        List<Article> articles;
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
 
             if (authorIDParameter == null || authorIDParameter.length() == 0) {
