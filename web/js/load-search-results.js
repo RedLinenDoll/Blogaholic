@@ -52,9 +52,7 @@ function getProcessedTitleHTML(title) {
 }
 
 function getProcessedContentHTML(content) {
-    console.log(content);
     const firstAppear = content.indexOf(`${currentKeyword}`);
-    console.log(firstAppear);
     if (firstAppear === -1)
         return content.substr(0, 96);
     const startCut = Math.max(firstAppear - 48, 0);

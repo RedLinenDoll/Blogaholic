@@ -55,7 +55,6 @@ public class FollowRelationship extends HttpServlet {
         int followerID = Integer.parseInt(request.getParameter("follower-id"));
         int publisherID = Integer.parseInt(request.getParameter("publisher-id"));
         boolean adding = Boolean.parseBoolean(request.getParameter("adding"));
-        System.out.println(followerID + " " + publisherID + " " + adding);
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             if (adding)
                 UserDAO.addFollowingRelationship(connection, followerID, publisherID);

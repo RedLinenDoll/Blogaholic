@@ -15,13 +15,11 @@ async function loadFeedArticleList(userID) {
     postContainer = document.querySelector("#feed-article-list-container");
     let response = await fetch(`${uriStart}article-feed?request-option=load-feed-article-ids&user-id=${currentUserID}`);
     followingArticleIDList = await response.json();
-    console.log("articleID list: " + followingArticleIDList);
     await loadMoreFeedArticles();
 
 }
 
 async function initializeRecentArticleIDList() {
-    console.log(`${uriStart}article-feed?request-option=load-more-article-ids&user-id=${currentUserID}`);
     let response = await fetch(`${uriStart}article-feed?request-option=load-more-article-ids&user-id=${currentUserID}`);
     recentArticleIDList = await response.json();
 }
@@ -52,7 +50,6 @@ async function loadMoreFeedArticles() {
         let from = currentRecentArticleIndex;
         let to = Math.min(currentRecentArticleIndex + 5, recentArticleIDList.length);
         for (let i = from; i < to; i++) {
-            console.log("loading article of id: " + i);
             await renderFeedArticleByArticleID(recentArticleIDList[i]);
         }
         if (to === recentArticleIDList.length) {
@@ -66,7 +63,6 @@ async function loadMoreFeedArticles() {
 async function renderFeedArticleByArticleID(articleID) {
     let response = await fetch(`${uriStart}article-feed?request-option=load-article-by-id&article-id=${articleID}`);
     const article = await response.json();
-    console.log("article: " + article);
 
     const articleDiv = document.createElement("div");
     articleDiv.classList.add("feed-article-div", "article-div", "page-item-div");
