@@ -34,7 +34,7 @@
         }
 
         input[type="text"] {
-            width: 80%;
+            width: 100%;
             font-size: 1em;
         }
 
@@ -45,6 +45,8 @@
 
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>tinymce.init({
+        width: "100%",
+        height: "50vh",
         selector: '#content',
         plugins: [
             "advlist autolink lists link image charmap print preview anchor",
@@ -65,7 +67,7 @@
 
 <div class="body-container">
     <h1>Editing Article ${oldArticle.articleTitle}</h1>
-    <form id="edit-article" action="./edit-article" method="post">
+    <form id="edit-article-form" action="./edit-article" method="post">
 
         <input type="hidden" name="article-id" value="${oldArticle.articleID}">
         <label for="title">Title here:</label>

@@ -34,7 +34,7 @@
         }
 
         input[type="text"] {
-            width: 80%;
+            width: 100%;
             font-size: 1em;
         }
 
@@ -45,6 +45,8 @@
 
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>tinymce.init({
+        width: "100%",
+        height: "50vh",
         selector: '#content',
         plugins: [
             "advlist autolink lists link image charmap print preview anchor",
@@ -54,6 +56,7 @@
         toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
         images_upload_url: '/team-java_blogaholic/article-image-upload',
         automatic_uploads: true
+
 
     });
     </script>
