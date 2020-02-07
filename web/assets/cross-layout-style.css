@@ -549,3 +549,8 @@ input[type="text"]:focus {
     padding-left: 10px;
     border-left: 1px solid var(--gentle-black);
 }
+
+.inline-avatar, .block-avatar {
+    transition-duration: 100ms;
+    transition-timing-function: linear;
+}

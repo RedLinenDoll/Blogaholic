@@ -104,3 +104,8 @@ button {
 .block-avatar:hover{
     border: var(--bright-gray) solid 2px;
 }
+
+.relationship-avatar:hover{
+    border: solid 2px var(--theme-color);
+
+}
