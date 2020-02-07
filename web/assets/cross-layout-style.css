@@ -258,7 +258,7 @@ button:focus {
         margin: 0 auto 15px;
     }
 
-    #edit-article, #add-article-form {
+    #edit-article-form, #add-article-form {
         width: 100%;
     }
 
