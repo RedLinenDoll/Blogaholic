@@ -110,7 +110,7 @@
 
 
 </div>
-<div class="body-container">
+<div class="body-container" id="blog-article-list-container">
     <div id="article-list-container" class="page-item-container">
         <%--    This part is for demoenstration of jsp structure, and will be cleared once loaded article --%>
         <div class="article-div page-item-div">

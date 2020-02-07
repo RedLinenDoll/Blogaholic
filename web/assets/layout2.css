@@ -32,3 +32,9 @@ hr{
 .blog-author-option-div {
     margin-top: 10px;
 }
+
+@media screen and (max-width: 900px){
+    #blog-article-list-container {
+        padding-top: 2.5em;
+    }
+}
