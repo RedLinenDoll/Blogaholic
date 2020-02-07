@@ -257,6 +257,11 @@ button:focus {
         width: 95vw;
         margin: 0 auto 15px;
     }
+
+    #edit-article, #add-article-form {
+        width: 100%;
+    }
+
 }
 
 .head-container {

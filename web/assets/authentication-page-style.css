@@ -32,7 +32,7 @@ textarea {
 }
 
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
 
     .page-content-container {
         height: 90vh;
