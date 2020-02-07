@@ -19,7 +19,4 @@ public class ArticleContentUtil {
 
     }
 
-    public static void main(String[] args) {
-        System.out.println(generateTextFromHtml("<h1>hello</h1>"));
-    }
 }

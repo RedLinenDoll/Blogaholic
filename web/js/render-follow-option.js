@@ -47,7 +47,6 @@ function changeFollowingRelationship(adding) {
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.send(`adding=${adding}&follower-id=${currentVisitorID}&publisher-id=${currentAuthorID}`);
     request.onreadystatechange = function () {
-        console.log(request.onreadystatechange);
         if (request.readyState === 4) {
             window.location.reload();
         }
