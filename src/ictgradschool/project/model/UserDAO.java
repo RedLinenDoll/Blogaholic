@@ -1,5 +1,7 @@
 package ictgradschool.project.model;
 
+import ictgradschool.project.util.HtmlProcessUtil;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,12 +39,15 @@ public class UserDAO {
     }
 
     private static User createBlogAuthorFromResultSet(ResultSet resultSet) throws SQLException {
+        String username = resultSet.getString(2);
+        String processedBlogName = getProcessedBlogName(username, resultSet.getString(4));
+        String processedBlogDescription = getProcessedBlogDescription(processedBlogName, resultSet.getString(5));
         return new User(
                 resultSet.getInt(1), // userID
-                resultSet.getString(2), // userName
+                username, // userName
                 resultSet.getString(3), // avatarPath
-                resultSet.getString(4), // blog name
-                resultSet.getString(5), // blog description
+                processedBlogName, // blog name
+                processedBlogDescription, // blog description
                 resultSet.getString(6), // theme color
                 resultSet.getInt(7) // layout id
         );
@@ -322,6 +327,16 @@ public class UserDAO {
         }
     }
 
+    private static String getProcessedBlogName(String username, String originalBlogNameHtml) {
+        String plainText = HtmlProcessUtil.generateTextFromHtml(originalBlogNameHtml);
+        if (plainText.length() == 0) return HtmlProcessUtil.generateTextFromHtml(username +"'s Unnamed Blog");
+        else return plainText;
+    }
 
+    private static String getProcessedBlogDescription(String blogName, String originalBlogDescriptionHtml) {
+        String plainText = HtmlProcessUtil.generateTextFromHtml(originalBlogDescriptionHtml);
+        if (plainText.length() == 0) return "No description was written for " + blogName +" yet";
+        else return plainText;
+    }
 
 }
