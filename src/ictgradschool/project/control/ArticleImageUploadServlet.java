@@ -22,7 +22,7 @@ writes it into the server, and writes a JSON string containing file position int
 // This servlet users provided code from https://gitlab.com/auckland-ict-grad-school/lab-exercises/web/web-lab-11 to process file
 
 @WebServlet(name = "article-image-upload", urlPatterns = "/article-image-upload")
-public class ArticleImageUpload extends HttpServlet {
+public class ArticleImageUploadServlet extends HttpServlet {
     private File uploadsFolder;
     private File tempFolder;
     private final String imagesRelativePath = "/images/article-images";

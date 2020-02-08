@@ -45,8 +45,7 @@ async function loadMoreFeedArticles() {
         } else {
             currentFollowingArticleIndex = to;
         }
-    }
-   else if (!isLoadingFollowingArticles) {
+    } else if (!isLoadingFollowingArticles) {
         let from = currentRecentArticleIndex;
         let to = Math.min(currentRecentArticleIndex + 5, recentArticleIDList.length);
         for (let i = from; i < to; i++) {
@@ -116,7 +115,7 @@ function renderFinishFollowingFeedDiv(loadedSomeFollowing) {
         finishFollowingDiv.appendChild(finishFollowingMessage);
     }
     const nextMessage = document.createElement("p");
-    nextMessage.innerText ="We can show you more articles by other users if you like.";
+    nextMessage.innerText = "We can show you more articles by other users if you like.";
     finishFollowingDiv.appendChild(nextMessage);
     postContainer.insertBefore(finishFollowingDiv, loadMoreButton);
 
@@ -125,7 +124,7 @@ function renderFinishFollowingFeedDiv(loadedSomeFollowing) {
 function renderFinishAllDiv() {
     const finishAllDiv = document.createElement("div");
     const finishAllMessage = document.createElement("p");
-    finishAllMessage.innerText ="That's all articles we can feed";
+    finishAllMessage.innerText = "That's all articles we can feed";
 
     finishAllDiv.classList.add("finish-all-div");
     finishAllDiv.appendChild(finishAllMessage);

@@ -22,14 +22,14 @@ public class BlogViewServlet extends HttpServlet {
             authorID = Integer.parseInt(request.getParameter("authorID"));
         } catch (NumberFormatException e) {
             request.setAttribute("errorMessage", "the blog you are looking for does not exist.");
-            request.getRequestDispatcher("WEB-INF/view/error-redirect.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/view/error-redirect-view.jsp").forward(request, response);
             return;
         }
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             User author = UserDAO.getAuthorById(connection, authorID);
             if (author == null) {
                 request.setAttribute("errorMessage", "the blog you are looking for does not exist.");
-                request.getRequestDispatcher("WEB-INF/view/error-redirect.jsp").forward(request, response);
+                request.getRequestDispatcher("WEB-INF/view/error-redirect-view.jsp").forward(request, response);
                 return;
             }
             request.setAttribute("author", author);

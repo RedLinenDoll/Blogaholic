@@ -7,8 +7,9 @@ function applyThemeColor(themeColor) {
 
 }
 
-function colorLuminanceVariance(colorHexCode, luminanceVariation) {
 
+// This method is based on code from https://www.sitepoint.com/javascript-generate-lighter-darker-color/
+function colorLuminanceVariance(colorHexCode, luminanceVariation) {
     // validate colorHexCode string
     colorHexCode = String(colorHexCode).replace(/[^0-9a-f]/gi, '');
     if (colorHexCode.length < 6) {

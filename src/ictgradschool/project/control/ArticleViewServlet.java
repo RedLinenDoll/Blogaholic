@@ -24,7 +24,7 @@ public class ArticleViewServlet extends HttpServlet {
             articleID = Integer.parseInt(request.getParameter("articleID"));
         } catch (NumberFormatException e) {
             request.setAttribute("errorMessage", "the article you are looking for does not exist.");
-            request.getRequestDispatcher("WEB-INF/view/error-redirect.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/view/error-redirect-view.jsp").forward(request, response);
             return;
         }
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
@@ -32,7 +32,7 @@ public class ArticleViewServlet extends HttpServlet {
             Article fullArticle = ArticleDAO.getFullArticleByArticleID(connection, articleID);
             if (fullArticle == null) {
                 request.setAttribute("errorMessage", "the article you are looking for does not exist.");
-                request.getRequestDispatcher("WEB-INF/view/error-redirect.jsp").forward(request, response);
+                request.getRequestDispatcher("WEB-INF/view/error-redirect-view.jsp").forward(request, response);
                 return;
             }
             Object author = request.getAttribute("author");
@@ -46,7 +46,7 @@ public class ArticleViewServlet extends HttpServlet {
 
         } catch (SQLException e) {
             request.setAttribute("errorMessage", "we failed to load the article from the database.");
-            request.getRequestDispatcher("WEB-INF/view/error-redirect.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/view/error-redirect-view.jsp").forward(request, response);
         }
     }
 

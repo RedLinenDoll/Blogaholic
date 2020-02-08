@@ -21,7 +21,7 @@ import java.util.List;
 * responsible for adding or removing following relationship. */
 
 @WebServlet(name = "follow-relationship", urlPatterns = "/follow-relationship")
-public class FollowRelationship extends HttpServlet {
+public class FollowRelationshipServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

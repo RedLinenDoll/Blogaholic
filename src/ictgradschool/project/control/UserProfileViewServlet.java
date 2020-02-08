@@ -23,7 +23,7 @@ public class UserProfileViewServlet extends HttpServlet {
             userID = Integer.parseInt(request.getParameter("user-id"));
         } catch (NumberFormatException e) {
             request.setAttribute("errorMessage", "the user you are looking for does not exist.");
-            request.getRequestDispatcher("WEB-INF/view/error-redirect.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/view/error-redirect-view.jsp").forward(request, response);
             return;
         }
 
@@ -32,7 +32,7 @@ public class UserProfileViewServlet extends HttpServlet {
             profileOwner = UserDAO.getProfileOwnerInfoByID(connection, userID);
             if (profileOwner == null) {
                 request.setAttribute("errorMessage", "the user you are looking for does not exist.");
-                request.getRequestDispatcher("WEB-INF/view/error-redirect.jsp").forward(request, response);
+                request.getRequestDispatcher("WEB-INF/view/error-redirect-view.jsp").forward(request, response);
                 return;
             }
             request.setAttribute("profileOwner", profileOwner);
