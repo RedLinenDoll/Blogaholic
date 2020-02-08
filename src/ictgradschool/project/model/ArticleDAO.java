@@ -100,7 +100,7 @@ public class ArticleDAO {
 
         return new Article(
                 resultSet.getInt(1), //articleID
-                getPlainTitle(resultSet.getString(2)),
+                getProcessedTitle(resultSet.getString(2)),
                 resultSet.getString(3), //articleBrief
                 resultSet.getTimestamp(4), //timeCreated
                 resultSet.getTimestamp(5), //timeEdited
@@ -127,7 +127,7 @@ public class ArticleDAO {
     private static Article createSearchResultArticleFromResultSet(Connection connection, ResultSet resultSet) throws SQLException {
         Article article = new Article();
         article.setArticleID(resultSet.getInt(1));
-        article.setArticleTitle(getPlainTitle(resultSet.getString(2)));
+        article.setArticleTitle(getProcessedTitle(resultSet.getString(2)));
         article.setArticleContent(HtmlProcessUtil.generateTextFromHtml(resultSet.getString(3)));
         article.setTimeCreated(resultSet.getTimestamp(4));
         article.setTimeEdited(resultSet.getTimestamp(5));
@@ -139,8 +139,8 @@ public class ArticleDAO {
 
 
 
-    private static String getPlainTitle(String originalHTML) {
-        String plainText = HtmlProcessUtil.generateBriefFromHtml(originalHTML);
+    private static String getProcessedTitle(String originalHTML) {
+        String plainText = HtmlProcessUtil.generateTextFromHtml(originalHTML);
         if (plainText.length() == 0) return "Untitled";
         else return plainText;
     }
@@ -200,8 +200,8 @@ public class ArticleDAO {
     private static Article createFeedResultArticleFromResultSet(Connection connection, ResultSet resultSet) throws SQLException{
         Article article = new Article();
         article.setArticleID(resultSet.getInt(1));
-        article.setArticleTitle(getPlainTitle(resultSet.getString(2)));
-        article.setArticleBrief(HtmlProcessUtil.generateTextFromHtml(resultSet.getString(3)));
+        article.setArticleTitle(getProcessedTitle(resultSet.getString(2))); // title
+        article.setArticleBrief(HtmlProcessUtil.generateTextFromHtml(resultSet.getString(3))); // brief
         article.setTimeCreated(resultSet.getTimestamp(4));
         article.setTimeEdited(resultSet.getTimestamp(5));
         article.setLikesCount(resultSet.getInt(6));

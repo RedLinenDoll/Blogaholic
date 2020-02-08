@@ -10,6 +10,7 @@ import org.jsoup.Jsoup;
 
 public class HtmlProcessUtil {
     public static String generateBriefFromHtml (String innerHtml) {
+        if(innerHtml == null) return "";
 
         String plainText= Jsoup.parse(innerHtml).text();
         int length = plainText.length();
@@ -20,6 +21,7 @@ public class HtmlProcessUtil {
     }
 
     public static String generateTextFromHtml (String innerHtml) {
+        if (innerHtml == null) return "";
 
         return Jsoup.parse(innerHtml).text();
 

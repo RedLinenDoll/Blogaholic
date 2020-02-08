@@ -10,7 +10,7 @@ function sendDeleteArticleRequest(articleID) {
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.send(`articleID=${articleID}`);
 
-    request.onreadystatechange = function() {
+    request.onreadystatechange = function () {
         if (request.readyState === 4) {
             window.location.replace(`${uriStart}blog-view?authorID=${currentAuthorID}`);
         }
@@ -143,7 +143,7 @@ async function deleteComment(commentID) {
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.send(`commentID=${commentID}&articleID=${currentArticleID}`);
 
-    request.onreadystatechange = function() {
+    request.onreadystatechange = function () {
         if (request.readyState === 4) {
             location.reload();
         }
