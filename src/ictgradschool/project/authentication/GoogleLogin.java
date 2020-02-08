@@ -16,6 +16,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/*This servlet is for Google user login. If the user already exists, logs the user in and set corresponding properties of
+ * logged user; Otherwise, create a new account, and then guide the user to set their profile and blog.
+ * */
 @WebServlet(urlPatterns = {"/google-login"})
 public class GoogleLogin extends HttpServlet {
     @Override

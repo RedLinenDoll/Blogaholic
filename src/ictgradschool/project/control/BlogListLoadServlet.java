@@ -15,6 +15,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+/*This servlet provides for index page with the blog information of all current users. */
+
 @WebServlet(name="load-blog-list", urlPatterns = "/load-blog-list")
 public class BlogListLoadServlet extends HttpServlet {
 

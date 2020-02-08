@@ -16,8 +16,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+/*This servlet deals with following relationship among users.*/
+/* doGet is responsible for providing information about a users' followers and people followed by them; doPost is
+* responsible for adding or removing following relationship. */
+
 @WebServlet(name = "follow-relationship", urlPatterns = "/follow-relationship")
 public class FollowRelationship extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestOption = request.getParameter("request-option");

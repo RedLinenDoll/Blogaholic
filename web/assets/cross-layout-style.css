@@ -262,6 +262,10 @@ button:focus {
         width: 100%;
     }
 
+    #home-name{
+        display: none;
+    }
+
 }
 
 .head-container {

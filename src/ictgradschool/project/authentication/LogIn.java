@@ -14,6 +14,10 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/*Log in servlet, if authentication succeeds, redirects user to welcome page, where they are fed with articles authored
+ * by people they are following;
+ * Otherwise, redirect back to log in page with an alert. */
+
 @WebServlet(name = "log-in", urlPatterns = "/login")
 public class LogIn extends HttpServlet {
     @Override
@@ -21,14 +25,13 @@ public class LogIn extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        try(Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")){
-            User existingUser=UserDAO.getLoggedUserByUsername(connection,username);
+        try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            User existingUser = UserDAO.getLoggedUserByUsername(connection, username);
             boolean isAuthenticated = AuthenticationUtils.authenticateUser(existingUser, password);
             if (isAuthenticated) {
                 req.getSession().setAttribute("loggedUser", existingUser);
                 resp.sendRedirect("./welcome-view.jsp");
-            }
-            else {
+            } else {
                 resp.sendRedirect("./login.html#please-try-again");
             }
 
@@ -36,7 +39,6 @@ public class LogIn extends HttpServlet {
             e.printStackTrace();
         }
     }
-
 
 
 }

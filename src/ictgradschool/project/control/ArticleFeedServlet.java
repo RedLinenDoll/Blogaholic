@@ -15,6 +15,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+/* Responsible for providing the welcome page of logged in user with article feed. */
+
 @WebServlet(name = "article-feed", urlPatterns = "/article-feed")
 public class ArticleFeedServlet extends HttpServlet {
     @Override
@@ -24,17 +26,17 @@ public class ArticleFeedServlet extends HttpServlet {
         int articleID;
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             switch (requestOption) {
-                case "load-feed-article-ids":
+                case "load-feed-article-ids": // Gives IDs of articles written by users followed by current logged in user
                     userID = Integer.parseInt(request.getParameter("user-id"));
                     List<Integer> feedArticleIds = ArticleDAO.getFeedArticleIDListByUserID(connection, userID);
                     JSONResponse.send(response, feedArticleIds);
                     return;
-                case "load-more-article-ids":
+                case "load-more-article-ids": // Gives IDs of most recent articles, after the followed users' articles are all fed.
                     userID = Integer.parseInt(request.getParameter("user-id"));
                     List<Integer> moreArticleIds = ArticleDAO.getRecentArticleIDListExceptFeedByUserID(connection, userID);
                     JSONResponse.send(response, moreArticleIds);
                     return;
-                case "load-article-by-id":
+                case "load-article-by-id":  // provides feed information about one article based on the article id.
                     articleID = Integer.parseInt(request.getParameter("article-id"));
                     Article feedArticle = ArticleDAO.getFeedArticleByArticleID(connection, articleID);
                     JSONResponse.send(response, feedArticle);

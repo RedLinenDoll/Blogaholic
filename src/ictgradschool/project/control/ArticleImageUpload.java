@@ -1,6 +1,6 @@
 package ictgradschool.project.control;
 
-import ictgradschool.project.util.AutoIncrementIDGenerator;
+import ictgradschool.project.util.AutoIncrementNumberGenerator;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -14,6 +14,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+
+/* This servlet works with TinyMCE image auto-upload. It takes the image file from post request, gives it a standard file name,
+writes it into the server, and writes a JSON string containing file position into the response as required by TinyMCE API.
+* */
+
+// This servlet users provided code from https://gitlab.com/auckland-ict-grad-school/lab-exercises/web/web-lab-11 to process file
 
 @WebServlet(name = "article-image-upload", urlPatterns = "/article-image-upload")
 public class ArticleImageUpload extends HttpServlet {
@@ -41,7 +47,7 @@ public class ArticleImageUpload extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int currID = AutoIncrementIDGenerator.getID();
+        int currID = AutoIncrementNumberGenerator.getUniqueNum();
         String targetFileName = "article-image-" + currID;
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setSizeThreshold(4 * 1024);

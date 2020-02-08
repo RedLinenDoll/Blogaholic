@@ -3,7 +3,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <script type="text/javascript" src='<c:url value="/js/load-search-bar.js"/>'></script>
-<script type="text/javascript" src='<c:url value="/js/responsive-layout.js"/>'></script>
 <script type="text/javascript">
     window.addEventListener("load", function () {
         document.querySelector("#search-icon").addEventListener("click", loadSearchBar);

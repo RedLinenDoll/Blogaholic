@@ -1,3 +1,5 @@
+/* The code in this file is from https://www.w3schools.com/howto/howto_js_draggable.asp */
+
 window.addEventListener("load", function () {
     const draggableContainers = document.querySelectorAll(".draggable-container");
     draggableContainers.forEach(container => {

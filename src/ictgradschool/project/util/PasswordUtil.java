@@ -9,6 +9,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Random;
+/* This is provided code. */
 
 /**
  * @author Cameron Grout
