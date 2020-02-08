@@ -13,9 +13,11 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+
+/* Responsible for updating user's blog settings (name, description, layout, theme color) */
+
 @WebServlet(name = "change-blog-preference", urlPatterns = "/change-blog-preference")
 public class UserBlogSettingServlet extends HttpServlet {
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/* This is provided code. Writes object as JSON string into HttpServlet response. */
+
 public class JSONResponse {
     public static void send(HttpServletResponse response, Object object) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");

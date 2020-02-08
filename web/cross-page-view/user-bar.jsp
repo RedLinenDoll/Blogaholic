@@ -6,7 +6,6 @@
       content="263347824175-hug28ksnd327ufaafdfqmjm5bv9dg1ab.apps.googleusercontent.com">
 <script type="text/javascript" src='<c:url value="/js/load-search-bar.js"/>'></script>
 
-<script type="text/javascript" src='<c:url value="/js/responsive-layout.js"/>'></script>
 <script type="text/javascript">
     window.addEventListener("load", function () {
         const toggleBox = document.querySelector("#toggle-down-box");

@@ -38,7 +38,7 @@ public class UserDeleteServlet extends HttpServlet {
             request.getSession().setAttribute("existingUser", null);
             request.getSession().setAttribute("newUser", null);
 
-            request.getRequestDispatcher("WEB-INF/view/user-left.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/view/user-goodbye-view.jsp").forward(request, response);
 
 
         } catch (SQLException e) {

@@ -4,9 +4,14 @@ import ictgradschool.project.model.User;
 
 import java.util.Random;
 
+/* This class processes the username/password pairs provided by users (A),
+and hashed password information saved in the database (B)
+* */
+
 public class AuthenticationUtils {
     private static Random RANDOM_GENERATOR = new Random();
 
+    // saves A as B
     public static User createUser(String username, String password) {
         int randomSaltLength = RANDOM_GENERATOR.nextInt(20) + 1;
         int randomIterationNum = RANDOM_GENERATOR.nextInt(20) + 1;
@@ -22,10 +27,10 @@ public class AuthenticationUtils {
     }
 
 
+    // matches A with B
     public static boolean authenticateUser(User user,String password){
         if (user == null) return false;
 
-//            public static boolean isExpectedPassword(char[] password, byte[] salt, int iterations, byte[] expectedHash) {
         return PasswordUtil.isExpectedPassword(
                 password.toCharArray(),
                 PasswordUtil.base64Decode(user.getSaltHashBase64()),
@@ -34,8 +39,5 @@ public class AuthenticationUtils {
                 ) ;
     }
 
-    // TODO authenticateUser, given a User object that contains authentication info
-    //  (created from data queried from database with username) and a user input password, return
-    //  a boolean indicating whether username and password match with each other.
 
 }

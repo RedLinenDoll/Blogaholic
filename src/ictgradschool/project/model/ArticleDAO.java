@@ -1,6 +1,6 @@
 package ictgradschool.project.model;
 
-import ictgradschool.project.util.ArticleContentUtil;
+import ictgradschool.project.util.HtmlProcessUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class ArticleDAO {
             preparedStatement.setInt(3, 0);
             preparedStatement.setInt(4, 0);
             preparedStatement.setInt(5, authorID);
-            preparedStatement.setString(6, ArticleContentUtil.generateBriefFromHtml(article.getArticleContent()));
+            preparedStatement.setString(6, HtmlProcessUtil.generateBriefFromHtml(article.getArticleContent()));
 
             int rowUpdated = preparedStatement.executeUpdate();
             if (rowUpdated != 1) return 0;
@@ -40,7 +40,7 @@ public class ArticleDAO {
 
     public static boolean editArticle(Connection connection, Article article, int articleID) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE article_db SET brief=?, title=?,content=?, edit_time=CURRENT_TIMESTAMP WHERE article_id=?")) {
-            preparedStatement.setString(1, ArticleContentUtil.generateBriefFromHtml(article.getArticleContent()));
+            preparedStatement.setString(1, HtmlProcessUtil.generateBriefFromHtml(article.getArticleContent()));
             preparedStatement.setString(2, article.getArticleTitle());
             preparedStatement.setString(3, article.getArticleContent());
             preparedStatement.setInt(4, articleID);
@@ -65,7 +65,7 @@ public class ArticleDAO {
     }
 
     private static Article createFullArticleFromResultSet(ResultSet resultSet) throws SQLException {
-        String titleText = ArticleContentUtil.generateTextFromHtml(resultSet.getString(2));// article title
+        String titleText = HtmlProcessUtil.generateTextFromHtml(resultSet.getString(2));// article title
         if (titleText.length() == 0) titleText = "Untitled";
 
         return new Article(
@@ -128,7 +128,7 @@ public class ArticleDAO {
         Article article = new Article();
         article.setArticleID(resultSet.getInt(1));
         article.setArticleTitle(getPlainTitle(resultSet.getString(2)));
-        article.setArticleContent(ArticleContentUtil.generateTextFromHtml(resultSet.getString(3)));
+        article.setArticleContent(HtmlProcessUtil.generateTextFromHtml(resultSet.getString(3)));
         article.setTimeCreated(resultSet.getTimestamp(4));
         article.setTimeEdited(resultSet.getTimestamp(5));
         article.setLikesCount(resultSet.getInt(6));
@@ -140,7 +140,7 @@ public class ArticleDAO {
 
 
     private static String getPlainTitle(String originalHTML) {
-        String plainText = ArticleContentUtil.generateBriefFromHtml(originalHTML);
+        String plainText = HtmlProcessUtil.generateBriefFromHtml(originalHTML);
         if (plainText.length() == 0) return "Untitled";
         else return plainText;
     }
@@ -201,7 +201,7 @@ public class ArticleDAO {
         Article article = new Article();
         article.setArticleID(resultSet.getInt(1));
         article.setArticleTitle(getPlainTitle(resultSet.getString(2)));
-        article.setArticleBrief(ArticleContentUtil.generateTextFromHtml(resultSet.getString(3)));
+        article.setArticleBrief(HtmlProcessUtil.generateTextFromHtml(resultSet.getString(3)));
         article.setTimeCreated(resultSet.getTimestamp(4));
         article.setTimeEdited(resultSet.getTimestamp(5));
         article.setLikesCount(resultSet.getInt(6));
