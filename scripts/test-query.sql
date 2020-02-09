@@ -165,4 +165,6 @@ WHERE target_authors.author_id = article_db.author_id
 ORDER BY created_time DESC;
 
 
-DELETE FROM users_db WHERE user_id = 12;
+DELETE FROM users_db WHERE user_id = 25;
+
+ALTER TABLE users_db ALTER COLUMN avatar_path SET DEFAULT 'avatar-default.jpg';
