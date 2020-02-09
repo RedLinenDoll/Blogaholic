@@ -209,10 +209,11 @@ public class UserDAO {
 
     private static User createProfileUserFromResultSet(ResultSet resultSet) throws SQLException {
         User user = new User();
+        String username = resultSet.getString(2);
         user.setUserID(resultSet.getInt(1));
-        user.setUsername(resultSet.getString(2));
+        user.setUsername(username);
         user.setAvatarPath(resultSet.getString(3));
-        user.setSelfIntroduction(resultSet.getString(4));
+        user.setSelfIntroduction(getProcessedSelfIntroduction(username, resultSet.getString(4)));
         user.setBlogName(resultSet.getString(5));
         user.setLayoutID(resultSet.getInt(6));
         user.setThemeColor(resultSet.getString(7));
@@ -221,6 +222,14 @@ public class UserDAO {
         user.setDateOfBirth(resultSet.getDate(10));
         user.setShareRealNameInfo(resultSet.getBoolean(11));
         return user;
+    }
+
+    private static String getProcessedSelfIntroduction(String username, String selfIntroduction) {
+        String plainIntroduction = HtmlProcessUtil.generateTextFromHtml(selfIntroduction);
+        if (plainIntroduction.length() == 0)
+            return username + " has not written a self introduction yet...";
+        else
+            return plainIntroduction;
     }
 
 
