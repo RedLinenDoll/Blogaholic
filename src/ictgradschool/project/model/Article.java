@@ -28,7 +28,7 @@ public class Article {
         this.dislikesCount = dislikesCount;
     }
 
-    // article creation without brief
+    // article creation without brief: brief will be automatically generated from content.
     public Article(String articleTitle, String articleContent) {
         this.articleTitle = articleTitle;
         this.articleContent = articleContent;
