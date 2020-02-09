@@ -37,6 +37,5 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="platform" level="application" />
-    <orderEntry type="library" name="jquery" level="application" />
   </component>
 </module>
