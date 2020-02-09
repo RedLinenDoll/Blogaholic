@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS users_db
     blog_description  VARCHAR(256),
     layout_id         INT UNSIGNED DEFAULT 1,
     theme_color       CHAR(7),
-    avatar_path       VARCHAR(64),
+    avatar_path       VARCHAR(64) DEFAULT 'avatar-default.jpg',
     first_name        VARCHAR(64),
     last_name         VARCHAR(64),
     date_of_birth     DATE,
