@@ -46,6 +46,7 @@ function loadConfirmDeleteAccountForm(bodyContainer, targetUsername, targetUserI
     confirmDeleteForm.action = `${uriStart}delete-user`;
     confirmDeleteForm.method = "post";
     confirmDeleteForm.style.width = "90%";
+    confirmDeleteForm.style.backgroundColor = "white";
     confirmDeleteForm.id = "confirm-delete-form";
 
     const confirmLogInDiv = document.createElement("div");

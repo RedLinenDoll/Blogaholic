@@ -146,20 +146,27 @@
     </c:if>
     <br><br>
     <a href="<c:url value="/blog-view?authorID=${profileOwner.userID}"/>" class="profile-page-button">
-        <button>Go to ${profileOwner.username}'s blog &nbsp;&#8594 </button>
+        <button>Go to ${profileOwner.username}'s blog &nbsp;&#8594</button>
     </a>
 
     <hr class="profile-page-hr">
     <div id="followers">
-         <p id="follow-paragraph"></p>
+        <p id="follow-paragraph"></p>
         <div id="follower-box" class="user-box">
         </div>
     </div>
 
     <hr class="profile-page-hr">
     <div id="following">
+        <c:choose>
+            <c:when test="${not empty loggedUser && loggedUser.userID == profileOwner.userID}">
+                <p>You are following these blogaholic(s):</p>
+            </c:when>
+            <c:otherwise>
+                <p>${profileOwner.username} is following these blogaholic(s):</p>
 
-        <p>${profileOwner.username} is following these blogaholic(s):</p>
+            </c:otherwise>
+        </c:choose>
         <div id="following-box" class="user-box">
         </div>
     </div>

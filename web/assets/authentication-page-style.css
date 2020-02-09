@@ -34,9 +34,6 @@ textarea {
 
 @media screen and (max-width: 900px) {
 
-    .page-content-container {
-        height: 90vh;
-    }
 
     .head-container {
         height: 20vh;
@@ -175,6 +172,28 @@ p#info {
 #avatar-upload-form {
     grid-area: upload;
     border-left: var(--theme-color) 2px dotted;
+
+}
+
+
+@media screen and (max-width: 800px){
+
+    #avatar-set-container {
+        display: grid;
+        width: 95vw;
+        height: fit-content;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 3em 1fr 1fr;
+        grid-template-areas: "instruction instruction" "select select" "upload upload";
+        position: relative;
+    }
+
+    #avatar-upload-form {
+        border-top: var(--theme-color) 2px dotted;
+        border-left: 0;
+
+    }
+
 
 }
 
