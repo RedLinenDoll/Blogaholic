@@ -3,6 +3,7 @@ package ictgradschool.project.control;
 import ictgradschool.project.model.User;
 import ictgradschool.project.model.UserDAO;
 import ictgradschool.project.util.DBConnectionUtils;
+import ictgradschool.project.util.ImageCompressUtil;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -61,18 +62,21 @@ public class AvatarUploadServlet extends HttpServlet {
 
         try {
             List<FileItem> fileItems = upload.parseRequest(request);
-            File fullSizeImageFile;
+            File targetImageFile;
 
             for (FileItem fi : fileItems) {
                 if (!fi.isFormField() && acceptableMimeTypes.contains(fi.getContentType())) {
                     String fileType = fi.getContentType().split("/")[1];
-                    fullSizeImageFile = new File(uploadsFolder, targetFileName + "." + fileType);
+                    targetImageFile = new File(uploadsFolder, targetFileName + "." + fileType);
+                    if (fileType.equals("jpg")||fileType.equals("jpeg")) {
+                        ImageCompressUtil.compressJpgImage(fi, targetImageFile);
+                    } else
+                        fi.write(targetImageFile);
 
                     try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
                         user = UserDAO.setUserAvatarPath(connection, user.getUserID(), targetFileName + "." + fileType);
                     }
 
-                    fi.write(fullSizeImageFile);
                     if (newUser) {
                         request.getSession().setAttribute("newUser", user);
                         request.getRequestDispatcher("WEB-INF/view/user-blog-setting.jsp").forward(request, response);

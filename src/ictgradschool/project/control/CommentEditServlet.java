@@ -14,7 +14,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet(name = "edit-comment", urlPatterns = "/edit-comment")
-public class CommendEditServlet extends HttpServlet {
+public class CommentEditServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Comment updatedComment = new Comment();
