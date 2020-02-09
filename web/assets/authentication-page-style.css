@@ -188,7 +188,11 @@ p#info {
         position: relative;
     }
 
+    #avatar-upload-form {
+        border-top: var(--theme-color) 2px dotted;
+        border-left: 0;
 
+    }
 
 
 }
