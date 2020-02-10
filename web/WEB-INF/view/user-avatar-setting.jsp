@@ -79,7 +79,7 @@
                         <label class="avatar-label" for="avatar1"><img class="block-avatar select-avatar"
                                                                        src='<c:url value="/images/avatar/avatar1.jpg"/>'
                                                                        alt="panda"></label>
-                        <input type="radio" id="avatar1" class="avatar-radio" name="chosen-avatar" value="1">
+                        <input type="radio" id="avatar1" class="avatar-radio" name="chosen-avatar" value="1" checked required>
                     </div>
                     <div class="avatar-selection" id="avatar-selection2">
                         <label class="avatar-label" for="avatar2"><img class="block-avatar select-avatar"
@@ -142,7 +142,7 @@
                 <div id="upload-avatar-container">
                     <label for="avatar-upload">Upload your own avatar here</label>
                     <input type="file" id="avatar-upload" onchange="loadPreview(this);" accept="image/*"
-                           name="avatar">
+                           name="avatar" required>
                     <button class="link-button" id="submit-uploaded-avatar" type="submit">Use uploaded avatar</button>
 
                 </div>

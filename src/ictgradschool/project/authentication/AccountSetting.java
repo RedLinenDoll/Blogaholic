@@ -21,14 +21,31 @@ If matches, take the new username and password from the form and set it to the d
 If setting is successful, redirects to log in page and alerts the user that setting is successful and they need to re-login.
 */
 
-@WebServlet(name="account-setting", urlPatterns = "/account-setting")
+@WebServlet(name = "account-setting", urlPatterns = "/account-setting")
 public class AccountSetting extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("old-username");
-        String password = request.getParameter("old-password");
-        try(Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")){
-            User existingUser= UserDAO.getLoggedUserByUsername(connection,username);
+        try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            String username = request.getParameter("old-username");
+            User existingUser = UserDAO.getLoggedUserByUsername(connection, username);
+            if (existingUser == null) {
+                settingFailed(request, response);
+                return;
+            }
+
+            // If initiating the password for google user
+            String googleUser = request.getParameter("google-user-initiation");
+            if (googleUser != null && Boolean.parseBoolean(googleUser)) {
+                String password = request.getParameter("new-password");
+                User updatedUser = AuthenticationUtils.createUser(username, password);
+                updatedUser.setUserID(existingUser.getUserID());
+                UserDAO.changeAccountSetting(connection, updatedUser);
+                request.setAttribute("newUser", updatedUser);
+                request.getRequestDispatcher("/WEB-INF/view/user-profile-setting.jsp").forward(request, response);
+                return;
+            }
+            // If changing account setting for existing user
+            String password = request.getParameter("old-password");
             boolean isAuthenticated = AuthenticationUtils.authenticateUser(existingUser, password);
             if (!isAuthenticated) {
                 request.getRequestDispatcher("WEB-INF/view/user-account-setting.jsp#setting-failed").forward(request, response);
@@ -52,5 +69,10 @@ public class AccountSetting extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private void settingFailed(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("setting failed!");
+        request.getRequestDispatcher("WEB-INF/view/user-account-setting.jsp#setting-failed").forward(request, response);
     }
 }
