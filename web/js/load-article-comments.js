@@ -145,7 +145,7 @@ async function deleteComment(commentID) {
 
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
-            location.reload();
+            loadCommentList(currentArticleID, currentAuthorID, currentLoggedUserID);
         }
     }
 
