@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS google_user_db;
 DROP TABLE IF EXISTS comment_db;
 DROP TABLE IF EXISTS article_db;
 DROP TABLE IF EXISTS subscription_db;
@@ -83,3 +84,9 @@ CREATE TABLE IF NOT EXISTS subscription_db (
     FOREIGN KEY (publisher_id) REFERENCES users_db (user_id) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS google_user_db (
+    google_email VARCHAR(256),
+    google_user_id INT UNSIGNED NOT NULL,
+    PRIMARY KEY (google_user_id, google_email),
+    FOREIGN KEY (google_user_id) REFERENCES users_db (user_id) ON DELETE CASCADE
+);

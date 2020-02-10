@@ -84,18 +84,45 @@ public class UserDAO {
         }
     }
 
-    public static User insertGoogleUser(Connection connection, User user) throws SQLException {
+    private static String getUniqueUsername(Connection connection, String username, int uniqueAppendix) throws SQLException {
+        String currentUsername = (uniqueAppendix >= 0) ? (username + uniqueAppendix) : username;
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(username) from users_db WHERE username=?")) {
+            preparedStatement.setString(1, currentUsername);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    int existingCount = resultSet.getInt(1);
+                    if (existingCount == 0)
+                        return currentUsername;
+                    else
+                        return getUniqueUsername(connection, username, uniqueAppendix + 1);
+                } else return null;
+            }
+        }
+    }
+
+    public static User insertGoogleUser(Connection connection, User user, String email) throws SQLException {
+
+        String uniqueUsername = getUniqueUsername(connection, user.getUsername(), -1);
+
         try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users_db (username, first_name,last_name) VALUE (?,?,?)", Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(1, uniqueUsername);
             preparedStatement.setString(2, user.getFirstName());
             preparedStatement.setString(3, user.getLastName());
 
             int rowUpdated = preparedStatement.executeUpdate();
-            if (rowUpdated >= 1) {
+            if (rowUpdated == 1) {
                 try (ResultSet keys = preparedStatement.getGeneratedKeys()) {
                     keys.next();
                     int userID = keys.getInt(1);
+
+                    try (PreparedStatement setGooglePairStatement = connection.prepareStatement("INSERT INTO google_user_db (google_email, google_user_id) VALUE(?,?)")) {
+                        setGooglePairStatement.setString(1, email);
+                        setGooglePairStatement.setInt(2, userID);
+                        setGooglePairStatement.executeUpdate();
+                    }
+
                     user.setUserID(userID);
+                    user.setUsername(uniqueUsername);
                     return user;
                 }
             } else return null;
@@ -130,6 +157,23 @@ public class UserDAO {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     return createLoggedUserFromResultSet(resultSet);
+                } else return null;
+            }
+        }
+    }
+
+    public static User getLoggedGoogleUserByID(Connection connection, int userID) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT user_id, username, layout_id, theme_color, avatar_path FROM users_db WHERE user_id = ?")) {
+            preparedStatement.setInt(1, userID);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    User googleUser = new User();
+                    googleUser.setUserID(resultSet.getInt(1));
+                    googleUser.setUsername(resultSet.getString(2));
+                    googleUser.setLayoutID(resultSet.getInt(3));
+                    googleUser.setThemeColor(resultSet.getString(4));
+                    googleUser.setAvatarPath(resultSet.getString(5));
+                    return googleUser;
                 } else return null;
             }
         }
@@ -260,12 +304,12 @@ public class UserDAO {
 
     public static List<User> getFollowerListByUserID(Connection connection, int userID) throws SQLException {
         List<User> followers = new ArrayList<>();
-        try(PreparedStatement preparedStatement = connection.prepareStatement("SELECT users.user_id, users.username, users.avatar_path\n" +
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT users.user_id, users.username, users.avatar_path\n" +
                 "FROM users_db AS users, subscription_db AS subscription\n" +
                 "WHERE subscription.publisher_id = ? AND users.user_id = subscription.follower_id;")) {
             preparedStatement.setInt(1, userID);
-            try(ResultSet resultSet = preparedStatement.executeQuery()) {
-                while(resultSet.next()) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     followers.add(createSimpleUserFromResultSet(resultSet));
                 }
                 return followers;
@@ -274,11 +318,11 @@ public class UserDAO {
     }
 
     public static int getFollowerNumberByUserID(Connection connection, int userID) throws SQLException {
-        try(PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(users.user_id)" +
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(users.user_id)" +
                 "FROM users_db AS users, subscription_db AS subscription\n" +
                 "WHERE subscription.publisher_id = ? AND users.user_id = subscription.follower_id;")) {
             preparedStatement.setInt(1, userID);
-            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) return resultSet.getInt(1);
                 else return 0;
             }
@@ -287,12 +331,12 @@ public class UserDAO {
 
     public static List<User> getPublisherListByUserID(Connection connection, int userID) throws SQLException {
         List<User> publishers = new ArrayList<>();
-        try(PreparedStatement preparedStatement = connection.prepareStatement("SELECT users.user_id, users.username, users.avatar_path\n" +
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT users.user_id, users.username, users.avatar_path\n" +
                 "FROM users_db AS users, subscription_db AS subscription\n" +
                 "WHERE subscription.follower_id = ? AND users.user_id = subscription.publisher_id;")) {
             preparedStatement.setInt(1, userID);
-            try(ResultSet resultSet = preparedStatement.executeQuery()) {
-                while(resultSet.next()) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     publishers.add(createSimpleUserFromResultSet(resultSet));
                 }
                 return publishers;
@@ -308,8 +352,8 @@ public class UserDAO {
         return user;
     }
 
-    public static boolean addFollowingRelationship (Connection connection, int followerID, int publisherID) throws SQLException {
-        try(PreparedStatement preparedStatement = connection.prepareStatement("INSERT IGNORE INTO subscription_db (follower_id, publisher_id )VALUE (?,?);")) {
+    public static boolean addFollowingRelationship(Connection connection, int followerID, int publisherID) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT IGNORE INTO subscription_db (follower_id, publisher_id )VALUE (?,?);")) {
             preparedStatement.setInt(1, followerID);
             preparedStatement.setInt(2, publisherID);
             int rowUpdated = preparedStatement.executeUpdate();
@@ -317,8 +361,8 @@ public class UserDAO {
         }
     }
 
-    public static boolean removeFollowingRelationship (Connection connection, int followerID, int publisherID) throws SQLException {
-        try(PreparedStatement preparedStatement = connection.prepareStatement("DELETE IGNORE FROM subscription_db WHERE (follower_id = ?) AND (publisher_id = ?);")) {
+    public static boolean removeFollowingRelationship(Connection connection, int followerID, int publisherID) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("DELETE IGNORE FROM subscription_db WHERE (follower_id = ?) AND (publisher_id = ?);")) {
             preparedStatement.setInt(1, followerID);
             preparedStatement.setInt(2, publisherID);
             int rowUpdated = preparedStatement.executeUpdate();
@@ -327,10 +371,10 @@ public class UserDAO {
     }
 
     public static boolean checkIfFollowing(Connection connection, int followerID, int publisherID) throws SQLException {
-        try(PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM subscription_db WHERE (follower_id = ?) AND (publisher_id = ?)")) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM subscription_db WHERE (follower_id = ?) AND (publisher_id = ?)")) {
             preparedStatement.setInt(1, followerID);
             preparedStatement.setInt(2, publisherID);
-            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 return resultSet.next();
             }
         }
@@ -338,14 +382,26 @@ public class UserDAO {
 
     private static String getProcessedBlogName(String username, String originalBlogNameHtml) {
         String plainText = HtmlProcessUtil.generateTextFromHtml(originalBlogNameHtml);
-        if (plainText.length() == 0) return HtmlProcessUtil.generateTextFromHtml(username +"'s Unnamed Blog");
+        if (plainText.length() == 0) return HtmlProcessUtil.generateTextFromHtml(username + "'s Unnamed Blog");
         else return plainText;
     }
 
     private static String getProcessedBlogDescription(String blogName, String originalBlogDescriptionHtml) {
         String plainText = HtmlProcessUtil.generateTextFromHtml(originalBlogDescriptionHtml);
-        if (plainText.length() == 0) return "No description was written for " + blogName +" yet";
+        if (plainText.length() == 0) return "No description was written for " + blogName + " yet";
         else return plainText;
+    }
+
+    public static int getUserIDByGoogleEmail(Connection connection, String email) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT google_user_id FROM google_user_db WHERE google_email = ?")) {
+            preparedStatement.setString(1, email);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next())
+                    return resultSet.getInt(1);
+                else
+                    return -1;
+            }
+        }
     }
 
 }

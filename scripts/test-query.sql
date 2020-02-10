@@ -27,6 +27,17 @@ SET avatar_path = 'avatar5.jpg',
     theme_color = '#3f99ae'
 WHERE username = 'anran';
 
+
+UPDATE users_db
+SET hashed_password = '+vwtCi/b/5Sl5aTxPSm2YLDCopSEmt3p2UORDuja5zryqeye41Ajc42fneJECF20bh7YydA86kbpCFMlkE8tEw==',
+    hashed_salt = 'kJj7Zo9OtkeIK2QmurQ=',
+    salt_length = 14,
+    iteration_number = 19
+WHERE user_id = 50;
+
+INSERT INTO google_user_db (google_email, google_user_id) value
+('vmaf848@aucklanduni.ac.nz', 50);
+
 SELECT article_id, title, brief, created_time, edit_time, number_of_likes, number_of_dislikes
 FROM article_db
 ORDER BY created_time DESC
@@ -102,7 +113,7 @@ SELECT article_id,
        author_id
 From article_db
 Where (title like '%lorem%')
-   OR (content like '%lorem%')
+   OR (content like '%lorem%');
 
 
 
@@ -165,6 +176,9 @@ WHERE target_authors.author_id = article_db.author_id
 ORDER BY created_time DESC;
 
 
-DELETE FROM users_db WHERE user_id = 25;
+DELETE FROM google_user_db WHERE google_user_id = 55;
+
+DELETE FROM users_db where user_id = 55;
 
 ALTER TABLE users_db ALTER COLUMN avatar_path SET DEFAULT 'avatar-default.jpg';
+

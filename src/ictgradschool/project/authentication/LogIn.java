@@ -29,6 +29,7 @@ public class LogIn extends HttpServlet {
             User existingUser = UserDAO.getLoggedUserByUsername(connection, username);
             boolean isAuthenticated = AuthenticationUtils.authenticateUser(existingUser, password);
             if (isAuthenticated) {
+                existingUser.setPasswordHashBase64(null);
                 req.getSession().setAttribute("loggedUser", existingUser);
                 resp.sendRedirect("./welcome-view.jsp");
             } else {
