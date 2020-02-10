@@ -35,7 +35,7 @@ Hi Andrew and Yu-Cheng,
 We only have internal access in our Google organization at this moment, 
 and we registered our organization as aucklanduni.ac.nz.
 We do not have your aucklanduni emails (the auckland.ac.nz emails are rejected),
-So if you would like to test our google log-in, please contact Akash [mailto: apra984@aucklanduni.ac.nz], and he will add it for you.
+So if you would like to test our google log-in, please contact Akash [apra984@aucklanduni.ac.nz], and he will add it for you.
 (Or, our native Blogaholic account creation is quite good to use too)
 Thank you!
 </p>
