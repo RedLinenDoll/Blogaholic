@@ -18,7 +18,7 @@ ___
 9. Greeting: When user logs in, he/she will be greeted at the welcome page based on time of the day.
 ___
 - Are there any special setup instructions, beyond initializing the database and running your servlet project?
-** please do NOT run the db-init.sql file, as the database has already been initiated and populated. **
+**please do NOT run the db-init.sql file, as the database has already been initiated and populated.**
 
 - Local host setup instruction
 Port:
@@ -31,22 +31,19 @@ Hi Andrew and Yu-Cheng,
 We only have internal access in our Google organization at this moment, 
 and we registered our organization as aucklanduni.ac.nz.
 We do not have your aucklanduni emails (the auckland.ac.nz emails are rejected),
-So if you would like to test our google log-in, please contact Akash (apra984@aucklanduni.ac.nz), and he will add it for you.
+So if you would like to test our google log-in, please contact Akash [mailto: apra984@aucklanduni.ac.nz], and he will add it for you.
 (Or, our native Blogaholic account creation is quite good to use too)
 Thank you!
 
 ___
 - At least one username / password combination for an existing user in your system, with some already-created articles & comments
 
-Username: Jay
-Password: jBlogaholic123
----
-Username: Anran N
-Password: 78g*tw23.ysq
+<p>Username: Vila</p>
+<p>Password: qwe123</p>
 
 ___
 - Any other instructions and comments
-** Thank you for all your support on such a brilliant opportunity to sharpen our skills, to celebrate
+**Thank you for all your support on such a brilliant opportunity to sharpen our skills, to celebrate
 what we've learnt and to celebrate ourselves. 
 We hope you will enjoy our Blogaholic website as much as we do.   
 Cheers,
