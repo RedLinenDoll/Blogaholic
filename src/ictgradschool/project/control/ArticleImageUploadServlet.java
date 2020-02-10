@@ -1,6 +1,6 @@
 package ictgradschool.project.control;
 
-import ictgradschool.project.util.AutoIncrementNumberGenerator;
+import ictgradschool.project.util.UniqueFileNameGenerator;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -46,8 +46,7 @@ public class ArticleImageUploadServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int currID = AutoIncrementNumberGenerator.getUniqueNum();
-        String targetFileName = "article-image-" + currID;
+        String targetFileName = "article-image-" + UniqueFileNameGenerator.getUniqueFileName();
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setSizeThreshold(4 * 1024);
         factory.setRepository(tempFolder);
