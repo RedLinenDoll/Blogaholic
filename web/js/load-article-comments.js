@@ -145,7 +145,7 @@ async function deleteComment(commentID) {
 
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
-            window.location.replace(`${uriStart}blog-view?authorID=${currentAuthorID}#all-comments-container`);
+            window.location.reload();
         }
     }
 
