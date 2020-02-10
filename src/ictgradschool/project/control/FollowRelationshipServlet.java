@@ -5,7 +5,6 @@ import ictgradschool.project.model.UserDAO;
 import ictgradschool.project.util.DBConnectionUtils;
 import ictgradschool.project.util.JSONResponse;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +17,7 @@ import java.util.List;
 
 /*This servlet deals with following relationship among users.*/
 /* doGet is responsible for providing information about a users' followers and people followed by them; doPost is
-* responsible for adding or removing following relationship. */
+ * responsible for adding or removing following relationship. */
 
 @WebServlet(name = "follow-relationship", urlPatterns = "/follow-relationship")
 public class FollowRelationshipServlet extends HttpServlet {

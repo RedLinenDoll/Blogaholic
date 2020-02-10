@@ -19,6 +19,8 @@ import java.sql.Connection;
 import java.util.Arrays;
 import java.util.List;
 
+// This servlet users provided code from https://gitlab.com/auckland-ict-grad-school/lab-exercises/web/web-lab-11 to process file
+
 @WebServlet(name = "avatar-upload", urlPatterns = "/upload-avatar")
 public class AvatarUploadServlet extends HttpServlet {
     private File uploadsFolder;
@@ -68,7 +70,7 @@ public class AvatarUploadServlet extends HttpServlet {
                 if (!fi.isFormField() && acceptableMimeTypes.contains(fi.getContentType())) {
                     String fileType = fi.getContentType().split("/")[1];
                     targetImageFile = new File(uploadsFolder, targetFileName + "." + fileType);
-                    if (fileType.equals("jpg")||fileType.equals("jpeg")) {
+                    if (fileType.equals("jpg") || fileType.equals("jpeg")) {
                         ImageCompressUtil.compressJpgImage(fi, targetImageFile);
                     } else
                         fi.write(targetImageFile);

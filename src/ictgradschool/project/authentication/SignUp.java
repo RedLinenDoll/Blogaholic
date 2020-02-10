@@ -22,9 +22,9 @@ public class SignUp extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        User user = AuthenticationUtils.createUser(username,password);
-        try(Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")){
-            User newUser = UserDAO.insertUser(connection,user);
+        User user = AuthenticationUtils.createUser(username, password);
+        try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            User newUser = UserDAO.insertUser(connection, user);
             request.getSession().setAttribute("newUser", newUser);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/user-profile-setting.jsp");
             requestDispatcher.forward(request, response);
@@ -40,7 +40,7 @@ public class SignUp extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String testedUsername = request.getParameter("tested-username");
-        try(Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+        try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             int existingNumber = UserDAO.checkUsernameCount(connection, testedUsername);
             response.getWriter().print(existingNumber);
 

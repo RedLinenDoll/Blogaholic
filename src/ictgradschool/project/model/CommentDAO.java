@@ -101,7 +101,7 @@ public class CommentDAO {
         else
             sql = "UPDATE article_db SET " + (isLike ? "number_of_likes = (number_of_likes " : "number_of_dislikes = (number_of_dislikes ") + (isPlus ? "+ 1) " : "- 1) ") + "WHERE article_id = ?;";
 
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, targetID);
             preparedStatement.executeUpdate();
         }

@@ -8,21 +8,24 @@ import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.ImageOutputStream;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Iterator;
 
 /* This class is used to compress avatar jpg/jpeg files, as we only display avatars in icon size, and
-* compressing the files save the space in our server.
-* The code is based on
-* https://www.tutorialspoint.com/java_dip/image_compression_technique.htm
-* */
+ * compressing the files save the space in our server.
+ * The code is based on
+ * https://www.tutorialspoint.com/java_dip/image_compression_technique.htm
+ * */
 public class ImageCompressUtil {
     public static void compressJpgImage(FileItem originalImageFileItem, File compressedImageFile) throws IOException {
         BufferedImage originalImage = ImageIO.read(originalImageFileItem.getInputStream());
 
-        OutputStream outputStream =new FileOutputStream(compressedImageFile);
+        OutputStream outputStream = new FileOutputStream(compressedImageFile);
 
-        Iterator<ImageWriter> writers =  ImageIO.getImageWritersByFormatName("jpg");
+        Iterator<ImageWriter> writers = ImageIO.getImageWritersByFormatName("jpg");
         ImageWriter writer = writers.next();
 
         ImageOutputStream imageOutputStream = ImageIO.createImageOutputStream(outputStream);

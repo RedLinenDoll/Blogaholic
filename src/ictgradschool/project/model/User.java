@@ -20,7 +20,7 @@ public class User {
     private String selfIntroduction;
     private boolean shareRealNameInfo;
 
-    public User(int userID,String username, String blogName, String blogDescription, int layoutID, String themeColor, String avatarPath,  String firstName, String lastName, Date dateOfBirth, String selfIntroduction, boolean shareRealNameInfo) {
+    public User(int userID, String username, String blogName, String blogDescription, int layoutID, String themeColor, String avatarPath, String firstName, String lastName, Date dateOfBirth, String selfIntroduction, boolean shareRealNameInfo) {
         this.userID = userID;
         this.username = username;
         this.avatarPath = avatarPath;
@@ -75,7 +75,7 @@ public class User {
     }
 
     // check existing username
-    public User (Integer userID, String username) {
+    public User(Integer userID, String username) {
         this.userID = userID;
         this.username = username;
     }

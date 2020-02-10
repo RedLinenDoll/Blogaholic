@@ -31,7 +31,7 @@ public class CommentAddServlet extends HttpServlet {
             if (newCommentID < 0)
                 response.sendRedirect("./article-view?articleID=" + articleID + "#all-comments-container");
             else
-                response.sendRedirect("./article-view?articleID=" + articleID + "#comment"+newCommentID);
+                response.sendRedirect("./article-view?articleID=" + articleID + "#comment" + newCommentID);
 
 
         } catch (SQLException e) {

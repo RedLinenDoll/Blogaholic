@@ -5,7 +5,7 @@
     <link rel="icon" href='<c:url value="/images/icon.png"/>'>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome, ${loggedUser.username}!</title>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 
     <jsp:include page="/cross-page-view/link-fonts.jsp"/>
     <link rel="stylesheet" href='<c:url value="/assets/cross-layout-style.css"/>'>
@@ -23,6 +23,7 @@
             await loadFeedArticleList(${loggedUser.userID});
             listenForLikeDislike();
         });
+
         function showGreeting() {
             const greetingSpan = document.querySelector("#greeting-span");
             let today = new Date();
@@ -44,6 +45,7 @@
             font-size: 0.8em;
             text-align: right;
         }
+
         .finish-following-div, .finish-all-div {
             text-align: center;
             font-weight: bold;
@@ -72,24 +74,28 @@
 <div class="head-container">
     <div class="page-h1-container" id="welcome-message-container">
         <h1 id="welcome-message">
-            <span id="greeting-span"></span><a href='<c:url value="user-profile?user-id=${loggedUser.userID}"/>'> <img class="inline-avatar" src='<c:url value="/images/avatar/${loggedUser.avatarPath}"/>' alt=" "></a>${loggedUser.username}
+            <span id="greeting-span"></span><a href='<c:url value="user-profile?user-id=${loggedUser.userID}"/>'> <img
+                class="inline-avatar" src='<c:url value="/images/avatar/${loggedUser.avatarPath}"/>'
+                alt=" "></a>${loggedUser.username}
         </h1>
         <a href='<c:url value="/blog-view?authorID=${loggedUser.userID}"/>'>
-        <button class="link-button">
+            <button class="link-button">
                 Go to my blog &nbsp;&#8594;
-        </button>
+            </button>
         </a>
 
     </div>
 </div>
 
 <div class="body-container" id="recent-article-container">
-    <h2> <u>What's new?</u> </h2>
+    <h2><u>What's new?</u></h2>
     <div id="feed-article-list-container" class="page-item-container">
-<%--        This is where we put all the articles --%>
+        <%--        This is where we put all the articles --%>
 
         <button id="feed-more-button" class="link-button">Load more articles</button>
-        <a href="#" id="go-top-link" > <button class="link-button">Go to top of page</button></a>
+        <a href="#" id="go-top-link">
+            <button class="link-button">Go to top of page</button>
+        </a>
     </div>
 </div>
 </body>

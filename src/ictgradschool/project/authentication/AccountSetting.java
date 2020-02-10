@@ -14,13 +14,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-/*
-This servlet is used when users change the username or password of their account. Old username and password are checked,
-if not matching, redirects user back to the form and alerts the user;
-If matches, take the new username and password from the form and set it to the database.
-If setting is successful, redirects to log in page and alerts the user that setting is successful and they need to re-login.
-*/
-
 @WebServlet(name = "account-setting", urlPatterns = "/account-setting")
 public class AccountSetting extends HttpServlet {
     @Override
@@ -72,7 +65,6 @@ public class AccountSetting extends HttpServlet {
     }
 
     private void settingFailed(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("setting failed!");
         request.getRequestDispatcher("WEB-INF/view/user-account-setting.jsp#setting-failed").forward(request, response);
     }
 }

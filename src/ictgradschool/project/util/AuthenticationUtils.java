@@ -28,7 +28,7 @@ public class AuthenticationUtils {
 
 
     // matches A with B
-    public static boolean authenticateUser(User user,String password){
+    public static boolean authenticateUser(User user, String password) {
         if (user == null) return false;
 
         return PasswordUtil.isExpectedPassword(
@@ -36,7 +36,7 @@ public class AuthenticationUtils {
                 PasswordUtil.base64Decode(user.getSaltHashBase64()),
                 user.getIterationNum(),
                 PasswordUtil.base64Decode(user.getPasswordHashBase64())
-                ) ;
+        );
     }
 
 

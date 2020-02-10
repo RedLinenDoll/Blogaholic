@@ -9,10 +9,10 @@ import org.jsoup.Jsoup;
 */
 
 public class HtmlProcessUtil {
-    public static String generateBriefFromHtml (String innerHtml) {
-        if(innerHtml == null) return "";
+    public static String generateBriefFromHtml(String innerHtml) {
+        if (innerHtml == null) return "";
 
-        String plainText= Jsoup.parse(innerHtml).text();
+        String plainText = Jsoup.parse(innerHtml).text();
         int length = plainText.length();
         int briefLength = Math.min(length, 96);
 
@@ -20,7 +20,7 @@ public class HtmlProcessUtil {
 
     }
 
-    public static String generateTextFromHtml (String innerHtml) {
+    public static String generateTextFromHtml(String innerHtml) {
         if (innerHtml == null) return "";
 
         return Jsoup.parse(innerHtml).text();
