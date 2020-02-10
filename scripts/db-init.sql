@@ -1,3 +1,7 @@
+
+-- Pleas do NOT run this when testing.
+-- The database HAS been initiated and populated.
+
 DROP TABLE IF EXISTS google_user_db;
 DROP TABLE IF EXISTS comment_db;
 DROP TABLE IF EXISTS article_db;
@@ -27,7 +31,7 @@ CREATE TABLE IF NOT EXISTS users_db
     blog_description  VARCHAR(256),
     layout_id         INT UNSIGNED DEFAULT 1,
     theme_color       CHAR(7),
-    avatar_path       VARCHAR(64) DEFAULT 'avatar-default.jpg',
+    avatar_path       VARCHAR(64) DEFAULT 'avatar-unset.jpg',
     first_name        VARCHAR(64),
     last_name         VARCHAR(64),
     date_of_birth     DATE,
@@ -72,8 +76,6 @@ CREATE TABLE IF NOT EXISTS comment_db
 
 ALTER TABLE comment_db
     AUTO_INCREMENT = 3000;
-
-ALTER TABLE users_db MODIFY avatar_path VARCHAR (500);
 
 
 CREATE TABLE IF NOT EXISTS subscription_db (

@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-/*Log in servlet, if authentication succeeds, redirects user to welcome page, where they are fed with articles authored
+/*if authentication succeeds, redirects user to welcome page, where they are fed with articles authored
  * by people they are following;
  * Otherwise, redirect back to log in page with an alert. */
 

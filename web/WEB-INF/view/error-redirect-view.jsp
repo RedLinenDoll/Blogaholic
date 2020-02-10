@@ -45,7 +45,8 @@
         #countdown-span {
             color: #3f99ae;
         }
-        a{
+
+        a {
             text-decoration: underline;
             color: #3f99ae;
         }
@@ -55,7 +56,7 @@
 <body>
 <div id="goodbye">
     <h1>
-       Sorry, ${errorMessage}</h1>
+        Sorry, ${errorMessage}</h1>
     <p>We will redirect you to our homepage in <span id="countdown-span">5</span> seconds...</p>
     <p>Or click <a href='<c:url value="index.jsp"/>'>here</a> to go to homepage now</p>
 

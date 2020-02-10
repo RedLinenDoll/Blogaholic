@@ -12,7 +12,8 @@ import java.util.Properties;
 /*
  * This class was provided to us in the original project.
  */
- /**
+
+/**
  * This class allows you to create {@link Connection}s to databases based on a properties file.
  * <p>
  * This class has methods to allow you to load the properties file either from the src folder, or from the

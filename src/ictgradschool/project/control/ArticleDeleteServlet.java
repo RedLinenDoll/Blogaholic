@@ -1,6 +1,5 @@
 package ictgradschool.project.control;
 
-import ictgradschool.project.model.Article;
 import ictgradschool.project.model.ArticleDAO;
 import ictgradschool.project.model.User;
 import ictgradschool.project.util.DBConnectionUtils;
@@ -19,10 +18,10 @@ public class ArticleDeleteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try(Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-            int articleID= Integer.parseInt(request.getParameter("articleID"));
-            ArticleDAO.deleteArticle(connection,articleID);
-            int loggedUserID = ((User)(request.getSession().getAttribute("loggedUser"))).getUserID();
+        try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            int articleID = Integer.parseInt(request.getParameter("articleID"));
+            ArticleDAO.deleteArticle(connection, articleID);
+            int loggedUserID = ((User) (request.getSession().getAttribute("loggedUser"))).getUserID();
             response.sendRedirect("./blog-view?authorID=" + loggedUserID);
 
         } catch (SQLException e) {

@@ -138,7 +138,6 @@ public class ArticleDAO {
     }
 
 
-
     private static String getProcessedTitle(String originalHTML) {
         String plainText = HtmlProcessUtil.generateTextFromHtml(originalHTML);
         if (plainText.length() == 0) return "Untitled";
@@ -186,6 +185,7 @@ public class ArticleDAO {
             }
         }
     }
+
     public static Article getFeedArticleByArticleID(Connection connection, int articleID) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT article_id, title, brief, created_time, edit_time, number_of_likes, number_of_dislikes, author_id FROM article_db WHERE article_id = ?")) {
             preparedStatement.setInt(1, articleID);
@@ -197,7 +197,7 @@ public class ArticleDAO {
         }
     }
 
-    private static Article createFeedResultArticleFromResultSet(Connection connection, ResultSet resultSet) throws SQLException{
+    private static Article createFeedResultArticleFromResultSet(Connection connection, ResultSet resultSet) throws SQLException {
         Article article = new Article();
         article.setArticleID(resultSet.getInt(1));
         article.setArticleTitle(getProcessedTitle(resultSet.getString(2))); // title

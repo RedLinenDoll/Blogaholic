@@ -15,8 +15,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-/* Responsible for providing the welcome page of logged in user with article feed. */
-
 @WebServlet(name = "article-feed", urlPatterns = "/article-feed")
 public class ArticleFeedServlet extends HttpServlet {
     @Override

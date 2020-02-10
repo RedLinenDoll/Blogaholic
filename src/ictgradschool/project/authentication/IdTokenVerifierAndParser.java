@@ -9,7 +9,7 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 public class IdTokenVerifierAndParser {
     private static final String GOOGLE_CLIENT_ID = "263347824175-hug28ksnd327ufaafdfqmjm5bv9dg1ab.apps.googleusercontent.com";
 
-    public static GoogleIdToken.Payload getPayload (String tokenString) throws Exception {
+    public static GoogleIdToken.Payload getPayload(String tokenString) throws Exception {
 
         JacksonFactory jacksonFactory = new JacksonFactory();
 

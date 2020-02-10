@@ -136,7 +136,7 @@
             <form id="avatar-upload-form" method="post" action='<c:url value="/upload-avatar"/>'
                   enctype="multipart/form-data">
                 <div id="avatar-preview-container">
-                    <img id="preview-image" src='<c:url value="/images/avatar/avatarPreview.png"/>'
+                    <img id="preview-image" src='<c:url value="/images/avatar/avatar-preview.png"/>'
                          alt="avatar preview">
                 </div>
                 <div id="upload-avatar-container">
