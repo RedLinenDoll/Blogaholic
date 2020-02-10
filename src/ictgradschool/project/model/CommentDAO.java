@@ -47,7 +47,7 @@ public class CommentDAO {
         }
     }
 
-    public static List<Comment> getCommentListByID(Connection connection, int targetID, boolean isForArticle) throws SQLException {
+    public static List<Comment> getCommentListByTargetID(Connection connection, int targetID, boolean isForArticle) throws SQLException {
         List<Comment> comments = new ArrayList<>();
         String sql = "SELECT comment.comment_id, comment.body, user.user_id," +
                 "user.username, user.avatar_path, comment.created_time, comment.edit_time, " +
@@ -72,11 +72,11 @@ public class CommentDAO {
 
     public static List<Comment> getCommentListByArticleID(Connection connection, int articleID) throws SQLException {
 
-        return getCommentListByID(connection, articleID, true);
+        return getCommentListByTargetID(connection, articleID, true);
     }
 
     private static List<Comment> getCommentListByCommentID(Connection connection, int commentID) throws SQLException {
-        return getCommentListByID(connection, commentID, false);
+        return getCommentListByTargetID(connection, commentID, false);
     }
 
     private static Comment createCommentFromResultSet(ResultSet resultSet) throws SQLException {
