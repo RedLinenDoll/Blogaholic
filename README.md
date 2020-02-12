@@ -17,19 +17,21 @@ ___
 7. Server-side avatar compression: When a user uploads an avatar of type jpg/jpeg, the image will be compressed server-side to save storage space.
 8. Anti-XSS attack protection: Texts like article/blog name/blog description/self introduction will be pre-processed before being dispatched to the page.
 9. Greeting: When user logs in, he/she will be greeted at the welcome page based on time of the day.
+10. unique article image file management
 ___
 <p><strong>Database setup</strong></p>
 <p>
 <strong>please do NOT run the db-init.sql file, as the database has already been initiated and populated.</strong>
 </p>
-<p><strong>Local Host Setup</strong></p>
 ___
+<p><strong>Local Host Setup</strong></p>
 <p>
 Port:
 10000<br>
 Deployment Application Context:
 /team-java_blogaholic
 </p>
+
 ___
 <p><strong>Google Login</strong></p>
 <p>
@@ -41,7 +43,6 @@ So if you would like to test our google log-in, please contact Akash [apra984@au
 (Or, our native Blogaholic account creation is quite good to use too)
 Thank you!
 </p>
-
 ___
 - At least one username / password combination for an existing user in your system, with some already-created articles & comments
 
