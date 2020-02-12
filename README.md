@@ -6,6 +6,7 @@ Welcome to team java's Blogaholic Project!
 ___
 - Website URL: [https://trex-sandwich.com/team-java_blogaholic/]
 - Presentation video link: [https://www.youtube.com/watch?v=xZibWO3UgNw]
+- Trello Board: [https://trello.com/b/E26zp8bt/team-java-blog-project]
 ___
 - Our Extra features:
 1. Customizable color theme: Blog owner will be asked to choose a theme color when they create their blog, and this color will be used in their blog page as a personal touch.
