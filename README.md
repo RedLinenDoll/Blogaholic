@@ -44,6 +44,7 @@ So if you would like to test our google log-in, please contact Akash [apra984@au
 (Or, our native Blogaholic account creation is quite good to use too)
 Thank you!
 </p>
+
 ___
 - At least one username / password combination for an existing user in your system, with some already-created articles & comments
 
