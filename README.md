@@ -5,6 +5,7 @@ Welcome to team java's Blogaholic Project!
 - Team name: Team JAVA
 ___
 - Website URL: [https://trex-sandwich.com/team-java_blogaholic/]
+- Presentation video link: [https://www.youtube.com/watch?v=xZibWO3UgNw]
 ___
 - Our Extra features:
 1. Customizable color theme: Blog owner will be asked to choose a theme color when they create their blog, and this color will be used in their blog page as a personal touch.
@@ -17,19 +18,20 @@ ___
 8. Anti-XSS attack protection: Texts like article/blog name/blog description/self introduction will be pre-processed before being dispatched to the page.
 9. Greeting: When user logs in, he/she will be greeted at the welcome page based on time of the day.
 ___
-- Are there any special setup instructions, beyond initializing the database and running your servlet project?
+<p><strong>Database setup</strong></p>
 <p>
 <strong>please do NOT run the db-init.sql file, as the database has already been initiated and populated.</strong>
 </p>
-- Local host setup instruction
+<p><strong>Local Host Setup</strong></p>
+___
 <p>
 Port:
 10000<br>
 Deployment Application Context:
 /team-java_blogaholic
 </p>
-
-- Google login instruction
+___
+<p><strong>Google Login</strong></p>
 <p>
 Hi Andrew and Yu-Cheng,
 We only have internal access in our Google organization at this moment, 
@@ -47,12 +49,12 @@ ___
 <p>Password: qwe123</p>
 
 ___
-- Any other instructions and comments
-<p><strong>Thank you for all your support on such a brilliant opportunity to sharpen our skills, to celebrate
-what we've learnt and to celebrate ourselves. 
-We hope you will enjoy our Blogaholic website as much as we do.   
-Cheers,
-Team Java Members: Jay, Akash, Vila, Anran</strong></p>
+
+<p>Thank you for all your support on such an opportunity to sharpen our skills, to celebrate
+what we've learnt and to celebrate ourselves.  </p>
+<p>We hope you will enjoy our product as much as we do.</p>   
+<p>Cheers,</p>
+<p>Team Java Members: Jay, Akash, Vila, Anran</p>
 
 
 
